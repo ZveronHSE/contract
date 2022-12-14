@@ -1,0 +1,18 @@
+syntax = "proto3";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "ExampleProto";
+option java_multiple_files = true;
+
+message ExampleResponse {
+  string message = 1;
+}
+
+message ExampleRequest {
+  string name = 1;
+}
+
+service ExampleService {
+  rpc getName(ExampleRequest) returns(ExampleResponse);
+}

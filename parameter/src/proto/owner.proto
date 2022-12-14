@@ -1,0 +1,18 @@
+syntax = "proto3";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "OwnerProto";
+option java_multiple_files = true;
+
+message OwnerInfoResponse {
+  string message = 1;
+}
+
+message OwnerInfoRequest {
+  string name = 1;
+}
+
+service OwnerInfoService {
+  rpc getName(OwnerInfoRequest) returns(OwnerInfoResponse);
+}

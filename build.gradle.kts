@@ -96,10 +96,13 @@ subprojects {
         publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
-                artifactId = project.artifacts.toString()
                 version = project.version.toString()
 
                 from(components["java"])
+
+                afterEvaluate {
+                    artifactId = tasks.jar.get().archiveBaseName.get()
+                }
             }
         }
     }

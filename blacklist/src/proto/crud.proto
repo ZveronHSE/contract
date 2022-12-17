@@ -16,7 +16,9 @@ service BlacklistCrudService {
 
   rpc Delete(DeleteRequest) returns(google.protobuf.Empty);
 
-  rpc DeleteAll(DeleteAllRequest) returns(google.protobuf.Empty);
+  rpc DeleteAllUsersRecord(DeleteAllUsersRecordRequest) returns(google.protobuf.Empty);
+
+  rpc DeleteAllRecordAboutUser(DeleteAllRecordAboutUserRequest) returns(google.protobuf.Empty);
 }
 
 message ExistInBlacklistRequest {
@@ -56,9 +58,12 @@ message DeleteRequest {
   int64 deleted_user_id = 2;
 }
 
-message DeleteAllRequest {
+message DeleteAllUsersRecordRequest {
   // Blacklist owner's id
   int64 owner_id = 1;
-  // Profiles to be deleted from the blacklist
-  repeated int64 deleted_users_id = 2;
+}
+
+message DeleteAllRecordAboutUserRequest {
+  // Profile to be deleted from all blacklists
+  int64 deleted_user_id = 1;
 }

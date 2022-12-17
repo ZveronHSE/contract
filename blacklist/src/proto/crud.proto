@@ -1,0 +1,64 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "BlacklistCrudGrpc";
+option java_multiple_files = true;
+
+service BlacklistCrudGrpc {
+
+  rpc ExistInBlacklist(ExistInBlacklistRequest) returns(ExistInBlacklistResponse);
+
+  rpc GetList(GetListRequest) returns(GetListResponse);
+
+  rpc Add(AddRequest) returns(google.protobuf.Empty);
+
+  rpc Delete(DeleteRequest) returns(google.protobuf.Empty);
+
+  rpc DeleteAll(DeleteAllRequest) returns(google.protobuf.Empty);
+}
+
+message ExistInBlacklistRequest {
+  // Blacklist owner's id
+  int64 owner_id = 1;
+  int64 target_user_id = 2;
+}
+
+message ExistInBlacklistResponse {
+  bool exists = 1;
+}
+
+message GetListRequest {
+  // Blacklist owner's id
+  int64 id = 1;
+}
+
+message GetListResponse {
+  repeated BlacklistProfile blacklist_records = 1;
+}
+
+message BlacklistProfile {
+  int64 id = 1;
+}
+
+message AddRequest {
+  // Blacklist owner's id
+  int64 owner_id = 1;
+  // Profile to be added to the blacklist
+  int64 target_user_id = 2;
+}
+
+message DeleteRequest {
+  // Blacklist owner's id
+  int64 owner_id = 1;
+  // Profile to be deleted from the blacklist
+  int64 deleted_user_id = 2;
+}
+
+message DeleteAllRequest {
+  // Blacklist owner's id
+  int64 owner_id = 1;
+  // Profiles to be deleted from the blacklist
+  repeated int64 deleted_users_id = 2;
+}

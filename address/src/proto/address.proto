@@ -29,7 +29,7 @@ message AddressRequest {
 }
 
 message AddressResponse {
-  int64 id = 1;
+  uint64 id = 1;
   string region = 2;
   string district = 3;
   string town = 4;
@@ -40,5 +40,5 @@ message AddressResponse {
 }
 
 message AddressIdRequest {
-  int64 id = 1;
+  uint64 id = 1;
 }

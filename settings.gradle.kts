@@ -1,4 +1,3 @@
 rootProject.name = "contract"
 
-include("address", "parameter")
-include("blacklist")
+include("address", "parameter", "blacklist")

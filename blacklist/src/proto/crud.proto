@@ -6,23 +6,28 @@ option java_package = "ru.zveron";
 option java_outer_classname = "BlacklistCrudGrpc";
 option java_multiple_files = true;
 
-service BlacklistCrudService {
-
+service BlacklistService {
+  // Проверяет наличие определенного пользователя в черном списке владельца
   rpc ExistInBlacklist(ExistInBlacklistRequest) returns(ExistInBlacklistResponse);
 
-  rpc GetList(GetListRequest) returns(GetListResponse);
+  // Получение списка всех добавленных в черный список владельца других пользователей
+  rpc GetBlacklist(GetBlacklistRequest) returns(GetBlacklistResponse);
 
-  rpc Add(AddRequest) returns(google.protobuf.Empty);
+  // Добавление в черный список владельца нового пользователя
+  rpc AddToBlacklist(AddToBlacklistRequest) returns(google.protobuf.Empty);
 
-  rpc Delete(DeleteRequest) returns(google.protobuf.Empty);
+  // Удаление из черного списка владельца определенного пользователя
+  rpc DeleteFromBlacklist(DeleteFromBlacklistRequest) returns(google.protobuf.Empty);
 
+  // Удаление всех упоминаний о добавлении в черный список определенного пользователя
   rpc DeleteAllRecordsWhereUserBlocks(DeleteAllRecordsWhereUserBlocksRequest) returns(google.protobuf.Empty);
 
+  // Удаление всех записей в черном списке владельца
   rpc DeleteAllRecordsWhereUserIsBlocked(DeleteAllRecordsWhereUserIsBlockedRequest) returns(google.protobuf.Empty);
 }
 
 message ExistInBlacklistRequest {
-  // Blacklist owner's id
+  // Id владельца черного списка
   int64 owner_id = 1;
   int64 target_user_id = 2;
 }
@@ -31,39 +36,39 @@ message ExistInBlacklistResponse {
   bool exists = 1;
 }
 
-message GetListRequest {
-  // Blacklist owner's id
+message GetBlacklistRequest {
+  // Id владельца черного списка
   int64 id = 1;
 }
 
-message GetListResponse {
-  repeated BlacklistProfile blacklist_records = 1;
+message GetBlacklistResponse {
+  repeated BlacklistUser blacklist_users = 1;
 }
 
-message BlacklistProfile {
+message BlacklistUser {
   int64 id = 1;
 }
 
-message AddRequest {
-  // Blacklist owner's id
+message AddToBlacklistRequest {
+  // Id владельца черного списка
   int64 owner_id = 1;
-  // Profile to be added to the blacklist
+  // Id пользователя, добавляемого в черный список
   int64 target_user_id = 2;
 }
 
-message DeleteRequest {
-  // Blacklist owner's id
+message DeleteFromBlacklistRequest {
+  // Id владельца черного списка
   int64 owner_id = 1;
-  // Profile to be deleted from the blacklist
+  // Id пользователя, удаляемого из черного списка
   int64 deleted_user_id = 2;
 }
 
 message DeleteAllRecordsWhereUserBlocksRequest {
-  // Blacklist owner's id
+  // Id владельца черного списка
   int64 owner_id = 1;
 }
 
 message DeleteAllRecordsWhereUserIsBlockedRequest {
-  // Profile to be deleted from all blacklists
+  // Id пользователя, удаляемого из всех черных списков
   int64 deleted_user_id = 1;
 }

@@ -1,0 +1,75 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "ListFavoritesGrpc";
+option java_multiple_files = true;
+
+service ListFavoritesService {
+  // Добавление объявления в избранное пользователя
+  rpc addLotToFavorites(AddLotToFavoritesRequest) returns(google.protobuf.Empty);
+
+  // Удаление объявления из избранного пользователя
+  rpc removeLotFromFavorites(RemoveLotFromFavoritesRequest) returns(google.protobuf.Empty);
+
+  // Проверка на существование объявления в избранном пользователя
+  rpc lotExistsInFavorites(LotExistsInFavoritesRequest) returns(LotExistsInFavoritesResponse);
+
+  // Получение списка избранных объявлений пользователя
+  rpc listFavoriteLots(ListFavoriteLotsRequest) returns(ListFavoriteLotsResponse);
+
+  // Получение количества добавлений объявления в избранное
+  rpc getLotFavoritesCounter(GetLotFavoritesCounterRequest) returns(GetLotFavoritesCounterResponse);
+}
+
+message AddLotToFavoritesRequest {
+  // Id владельца списка избранного
+  int64 wishlist_owner_id = 1;
+  // Добавляемое в избранное объявление
+  int64 favorite_lot_id = 2;
+}
+
+message RemoveLotFromFavoritesRequest {
+  // Id владельца списка избранного
+  int64 wishlist_owner_id = 1;
+  // Удаляемое из избранного объявление
+  int64 favorite_lot_id = 2;
+}
+
+message LotExistsInFavoritesRequest {
+  // Id владельца списка избранного
+  int64 wishlist_owner_id = 1;
+  // Объявление, наличие которого проверяется в избранном
+  int64 favorite_lot_id = 2;
+}
+
+message LotExistsInFavoritesResponse {
+  // Содержится ли объявление в избранном
+  bool lot_exists = 1;
+}
+
+message ListFavoriteLotsRequest {
+  // Id владельца списка избранного
+  int64 wishlist_owner_id = 1;
+}
+
+message ListFavoriteLotsResponse {
+  // Список добавленных в избранное объявлений
+  repeated FavoriteLot favorite_lots = 1;
+}
+
+message FavoriteLot {
+  // Идентификатор объявления
+  int64 lot_id = 1;
+}
+
+message GetLotFavoritesCounterRequest {
+  // Идентификатор объявления
+  int64 lot_id = 1;
+}
+
+message GetLotFavoritesCounterResponse {
+  // Количество добавлений объявления в избранное
+  int64 adds_to_favorites_counter = 1;
+}

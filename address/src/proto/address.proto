@@ -1,0 +1,44 @@
+syntax = "proto3";
+package ru.zveron.contract;
+
+option java_package = "ru.zveron.contract";
+option java_outer_classname = "AddressProto";
+option java_multiple_files = true;
+
+service AddressService {
+  /**
+   Мы проверяем уникальность адреса только по координатам, поэтому сначала проверим, что такой адрес существует,
+   если да, то мы просто возвращаем его из БД(поэтому данные могут отличаться от того, что пришло в запросе), а не создаем.
+   */
+  rpc SaveAddressIfNotExists (AddressRequest) returns (AddressResponse);
+
+  /**
+  Получить информацию адреса по идентификатору
+   */
+  rpc GetAddress (AddressIdRequest) returns (AddressResponse);
+}
+
+message AddressRequest {
+  string region = 1;
+  string district = 2;
+  string town = 3;
+  string street = 4;
+  string house = 5;
+  double longitude = 6;
+  double latitude = 7;
+}
+
+message AddressResponse {
+  uint64 id = 1;
+  string region = 2;
+  string district = 3;
+  string town = 4;
+  string street = 5;
+  string house = 6;
+  double longitude = 7;
+  double latitude = 8;
+}
+
+message AddressIdRequest {
+  uint64 id = 1;
+}

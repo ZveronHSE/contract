@@ -18,6 +18,12 @@ service ProfileFavoritesService {
 
   // Получение списка избранных профилей пользователя
   rpc listFavoriteProfiles(ListFavoriteProfilesRequest) returns(ListFavoriteProfilesResponse);
+
+  // Удаление всех записей из избранного определенного пользователя
+  rpc removeAllByOwner(RemoveAllByOwnerRequest) returns(google.protobuf.Empty);
+
+  // Удаление опредленного пользователя из всех список избранного
+  rpc removeAllByFavoriteProfile(RemoveAllByFavoriteProfileRequest) returns(google.protobuf.Empty);
 }
 
 message AddProfileToFavoritesRequest {
@@ -57,6 +63,16 @@ message ListFavoriteProfilesResponse {
 }
 
 message FavoriteProfile {
+  // Идентификатор профиля
+  int64 profile_id = 1;
+}
+
+message RemoveAllByOwnerRequest {
+  // Идентификатор профиля
+  int64 profile_id = 1;
+}
+
+message RemoveAllByFavoriteProfileRequest {
   // Идентификатор профиля
   int64 profile_id = 1;
 }

@@ -21,6 +21,12 @@ service LotFavoritesService {
 
   // Получение количества добавлений объявления в избранное
   rpc getLotFavoritesCounter(GetLotFavoritesCounterRequest) returns(GetLotFavoritesCounterResponse);
+
+  // Удаление всех записей из избранного определенного пользователя
+  rpc removeAllByOwner(RemoveAllByOwnerRequest) returns(google.protobuf.Empty);
+
+  // Удаление опредленного объявления из всех список избранного
+  rpc removeAllByFavoriteLot(RemoveAllByFavoriteLotRequest) returns(google.protobuf.Empty);
 }
 
 message AddLotToFavoritesRequest {
@@ -72,4 +78,14 @@ message GetLotFavoritesCounterRequest {
 message GetLotFavoritesCounterResponse {
   // Количество добавлений объявления в избранное
   int64 adds_to_favorites_counter = 1;
+}
+
+message RemoveAllByOwnerRequest {
+  // Идентификатор профиля
+  int64 profile_id = 1;
+}
+
+message RemoveAllByFavoriteLotRequest {
+  // Идентификатор объявления
+  int64 lot_id = 1;
 }

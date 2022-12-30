@@ -23,7 +23,7 @@ service LotFavoritesService {
   rpc getLotFavoritesCounter(GetLotFavoritesCounterRequest) returns(GetLotFavoritesCounterResponse);
 
   // Удаление всех записей из избранного определенного пользователя
-  rpc removeAllByOwner(RemoveAllByOwnerRequest) returns(google.protobuf.Empty);
+  rpc removeAllLotsByOwner(RemoveAllLotsByOwnerRequest) returns(google.protobuf.Empty);
 
   // Удаление опредленного объявления из всех список избранного
   rpc removeAllByFavoriteLot(RemoveAllByFavoriteLotRequest) returns(google.protobuf.Empty);

@@ -80,7 +80,7 @@ message GetLotFavoritesCounterResponse {
   int64 adds_to_favorites_counter = 1;
 }
 
-message RemoveAllByOwnerRequest {
+message RemoveAllLotsByOwnerRequest {
   // Идентификатор профиля
   int64 profile_id = 1;
 }

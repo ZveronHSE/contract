@@ -51,8 +51,8 @@ message LotsExistInFavoritesRequest {
 }
 
 message LotsExistInFavoritesResponse {
-  // Содержится ли объявление в избранном
-  bool is_exists = 1;
+  // Содержится ли каждое из объявлений в избранном. Порядок сохраняется
+  repeated bool is_exists = 1;
 }
 
 message GetFavoriteLotsRequest {

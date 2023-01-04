@@ -1,0 +1,24 @@
+syntax = "proto3";
+package ru.zveron.contract.category;
+
+option java_package = "ru.zveron.contract.category";
+option java_outer_classname = "CategoryProto";
+option java_multiple_files = true;
+
+service CategoryService {
+  // Получить список подкатегорий для категории
+  rpc getChild(CategoryRequest) returns(CategoryResponse);
+}
+
+message CategoryRequest {
+  int32 id = 1;
+}
+
+message CategoryResponse {
+  repeated Category category = 1;
+}
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+}

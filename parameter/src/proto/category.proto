@@ -15,7 +15,7 @@ message CategoryRequest {
 }
 
 message CategoryResponse {
-  repeated Category category = 1;
+  repeated Category categories = 1;
 }
 
 message Category {

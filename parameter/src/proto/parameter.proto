@@ -1,0 +1,44 @@
+syntax = "proto3";
+package ru.zveron.contract.parameter;
+
+import "google/protobuf/any.proto";
+
+
+option java_package = "ru.zveron.contract.parameter";
+option java_outer_classname = "ParameterProto";
+option java_multiple_files = true;
+
+
+service ParameterService {
+  // Получить список параметров для определенной категории и типа объявления.
+  rpc getParametersByCategory(ParameterRequest) returns (ParameterResponse);
+}
+
+message ParameterRequest {
+  // Идентификатор категория.
+  int32 category_id = 1;
+  // Идентификатор типа объявления.
+  int32 lot_form_id = 2;
+}
+
+message ParameterResponse {
+  repeated Parameter parameters = 1;
+}
+
+message Parameter {
+  int32 id = 1;
+  // Название параметра
+  string name = 2;
+  // Тип значения, который в себе содержит параметр
+  Type type = 3;
+  // Обязательное ли значение или нет
+  bool is_required = 4;
+  // Список возможных значений, если они имеются
+  repeated google.protobuf.Any values = 5;
+}
+
+enum Type {
+  STRING = 0;
+  DATE = 1;
+  INT = 2;
+}

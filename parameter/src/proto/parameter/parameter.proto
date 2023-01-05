@@ -52,14 +52,6 @@ message ParameterValueRequest {
   int32 category_id = 1;
   // Идентификатор типа объявления.
   int32 lot_form_id = 2;
-  // Значения для каждого параметра.
-  repeated ParameterValue parameter_values = 3;
-}
-
-// Значение для параметра
-message ParameterValue {
-  // Идентификатор параметра
-  int32 id = 1;
-  // Значение параметра
-  string value = 2;
+  // Значения для каждого параметра по id/string
+  map<int32, string> parameter_values = 3;
 }

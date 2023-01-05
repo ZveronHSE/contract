@@ -44,7 +44,7 @@ message Parameter {
 enum Type {
   STRING = 0;
   DATE = 1;
-  INT = 2;
+  INTEGER = 2;
 }
 
 message ParameterValueRequest {

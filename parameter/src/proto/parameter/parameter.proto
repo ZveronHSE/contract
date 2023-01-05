@@ -2,6 +2,7 @@ syntax = "proto3";
 package ru.zveron.contract.parameter;
 
 import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
 
 
 option java_package = "ru.zveron.contract.parameter";
@@ -12,6 +13,9 @@ option java_multiple_files = true;
 service ParameterService {
   // Получить список параметров для определенной категории и типа объявления.
   rpc getParametersByCategory(ParameterRequest) returns (ParameterResponse);
+
+  // Проверка, что пользователь правильно ввел значения для параметров. Если все ок - вернется пустой ответ, иначе ошибка.
+  rpc validateValuesForParameters(ParameterValueRequest) returns (google.protobuf.Empty);
 }
 
 message ParameterRequest {
@@ -34,11 +38,28 @@ message Parameter {
   // Обязательное ли значение или нет
   bool is_required = 4;
   // Список возможных значений, если они имеются
-  repeated google.protobuf.Any values = 5;
+  repeated string values = 5;
 }
 
 enum Type {
   STRING = 0;
   DATE = 1;
   INT = 2;
+}
+
+message ParameterValueRequest {
+  // Идентификатор категория.
+  int32 category_id = 1;
+  // Идентификатор типа объявления.
+  int32 lot_form_id = 2;
+  // Значения для каждого параметра.
+  repeated ParameterValue parameter_values = 3;
+}
+
+// Значение для параметра
+message ParameterValue {
+  // Идентификатор параметра
+  int32 id = 1;
+  // Значение параметра
+  string value = 2;
 }

@@ -1,0 +1,150 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "ProfileGrpc";
+option java_multiple_files = true;
+
+service ProfileService {
+
+  // Создание профиля пользователя
+  rpc CreateProfile(CreateProfileRequest) returns(google.protobuf.Empty);
+
+  // Получение профиля, как сущности, описывающей личные данные,
+  rpc GetProfile(GetProfileRequest) returns(GetProfileResponse);
+
+  // Полное удаление профиля без возможности восстановления
+  rpc DeleteProfile(DeleteProfileRequest) returns(google.protobuf.Empty);
+
+  // Получение профиля, как страницы в маркетплейсе (агрегируем данные из разных источников)
+  rpc GetProfilePage(GetProfilePageRequest) returns(GetProfilePageResponse);
+
+  // Получение профиля, как страницы в маркетплейсе, для его владельца
+  rpc GetProfileInfo(GetProfileInfoRequest) returns(GetProfileInfoResponse);
+
+  // Редактирование профиля, как страницы в маркетплейсе, владельцем
+  rpc SetProfileInfo(SetProfileInfoRequest) returns(google.protobuf.Empty);
+
+  // Получение настроек профиля
+  rpc GetSettings(GetSettingsRequest) returns(GetSettingsResponse);
+
+  // Изменение настроект профиля
+  rpc SetSettings(SetSettingsRequest) returns(google.protobuf.Empty);
+}
+
+message CreateProfileRequest {
+  int64 auth_account_id = 1;
+  string name = 2;
+  string surname = 3;
+  PreferredWaysOfCommunication waysOfCommunication = 4;
+}
+
+message PreferredWaysOfCommunication {
+  bool phone = 1;
+  bool vk = 2;
+  bool email = 3;
+  bool chat = 4;
+}
+
+message WaysOfCommunication {
+  string phone = 1;
+  string vk_ref = 2;
+  string email = 3;
+}
+
+message GetProfileRequest {
+  int64 id = 1;
+}
+
+message GetProfileResponse {
+  string name = 1;
+  string surname = 2;
+  int64 image_id = 3;
+  PreferredWaysOfCommunication waysOfCommunication = 4;
+  int64 address_id = 5;
+}
+
+message DeleteProfileRequest {
+  int64 id = 1;
+}
+
+message GetProfilePageRequest {
+  int64 requested_profile_id = 1;
+  int64 authorized_profile_id = 2;
+}
+
+message GetProfilePageResponse {
+  string name = 1;
+  string surname = 2;
+  int64 image_id = 3;
+  Contacts contacts = 4;
+  double rating = 5;
+  int32 review_number = 6;
+  string address = 7;
+  LotSummary active_lots = 8;
+  LotSummary closed_lots = 9;
+  google.protobuf.Timestamp last_activity = 10;
+}
+
+message LotSummary {
+  int64 id = 1;
+  string title = 2;
+  int32 price = 3;
+  google.protobuf.Timestamp publication_date = 4;
+  LotStatus status = 5;
+  int64 first_image = 6;
+}
+
+enum LotStatus {
+  ACTIVE = 0;
+  CLOSED = 1;
+  CANCELED = 2;
+}
+
+message Contacts {
+  PreferredWaysOfCommunication preferred_ways = 1;
+  WaysOfCommunication contacts = 2;
+}
+
+message GetProfileInfoRequest {
+  int64 id = 1;
+}
+
+message GetProfileInfoResponse {
+  string name = 1;
+  string surname = 2;
+  int64 image_id = 3;
+  PreferredWaysOfCommunication waysOfCommunication = 4;
+  Address address = 5;
+}
+
+message Address {
+  string region = 1;
+  string town = 2;
+  double longitude = 3;
+  double latitude = 4;
+}
+
+message SetProfileInfoRequest {
+  string name = 1;
+  string surname = 2;
+  int64 image_id = 3;
+  Address address = 4;
+}
+
+message GetSettingsRequest {
+  int64 id = 1;
+}
+
+message GetSettingsResponse {
+  bool has_password = 1;
+  PreferredWaysOfCommunication waysOfCommunication = 2;
+  Address address = 3;
+}
+
+message SetSettingsRequest {
+  PreferredWaysOfCommunication waysOfCommunication = 1;
+  Address address = 2;
+}

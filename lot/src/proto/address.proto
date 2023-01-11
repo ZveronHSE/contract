@@ -1,0 +1,18 @@
+syntax = "proto3";
+package ru.zveron.contract.lot;
+
+option java_package = "ru.zveron.contract.lot";
+option java_outer_classname = "LotProto";
+option java_multiple_files = true;
+
+service LotService {
+
+}
+
+// TODO:
+//  - Request/Response для получения превью объявления
+// - Request/Response для получения списка объявления(лента)
+// - Request/Response для создания объявления и получение результата
+// - Request/Response для редактирования объявления
+// - request/response для закрытия объявления
+// - service, request/response для получения списка объявлений в профиле пользака

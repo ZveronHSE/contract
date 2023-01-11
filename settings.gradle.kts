@@ -8,4 +8,5 @@ include(
     "apigateway",
     "auth",
     "profile",
+    "lot",
     )

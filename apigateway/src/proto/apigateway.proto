@@ -1,8 +1,8 @@
 syntax = "proto3";
 package ru.zveron.contract;
 
-option java_package = "ru.zveron.contract";
-option java_outer_classname = "AddressProto";
+option java_package = "ru.zveron.contract.apigateway";
+option java_outer_classname = "ApigatewayProto";
 option java_multiple_files = true;
 
 service ApigatewayService{

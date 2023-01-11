@@ -31,7 +31,8 @@ message ApigatewayResponse{
 }
 
 message ServiceRequest{
-  bytes request_body = 1;
+  string method_alias = 1;
+  bytes request_body = 2;
 }
 
 message ServiceResponse{

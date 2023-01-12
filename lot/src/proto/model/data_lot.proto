@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package ru.zveron.contract.lot.model;
+
+option java_package = "ru.zveron.contract.lot.model";
+option java_outer_classname = "DataLotProto";
+option java_multiple_files = true;
+
+message WaysOfCommunicating {
+  bool phone = 1;
+  bool facebook = 2;
+  bool vk = 3;
+  bool email = 4;
+  bool chat = 5;
+}
+
+enum Gender {
+  FEMALE = 0;
+  MALE = 1;
+  METIS = 2;
+}
+
+message Address {
+  string address = 1;
+  double longitude = 2;
+  double latitude = 3;
+}
+
+
+message Parameter {
+  // Название параметра
+  string name = 1;
+  // Значение параметра
+  string value = 2;
+}
+
+message LotPhoto {
+  int64 id = 1;
+  // Порядок фотографии
+  int32 order = 2;
+}

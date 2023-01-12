@@ -1,0 +1,103 @@
+syntax = "proto3";
+package ru.zveron.contract.lot.preview;
+
+option java_package = "ru.zveron.contract.lot.preview";
+option java_outer_classname = "PreviewLotProto";
+option java_multiple_files = true;
+
+message PreviewLotRequest {
+  // ID объявления
+  int64 id = 1;
+}
+
+message PreviewLotResponse {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  repeated LotPhoto photos = 3;
+  // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
+  optional Gender gender = 4;
+  Address address = 5;
+  // Заданные параметры объявления
+  repeated Parameter parameters = 6;
+  string description = 7;
+  // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
+  string price = 8;
+  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
+  bool is_favorite = 9;
+  // Является ли это объявление собственным, и если да, то нужно будет скрыть кнопку "Избранное" и отображать кнопку "Редактировать".
+  bool is_own = 10;
+  // Может ли пользователь добавлять отзыв на это объявление, если да, то отображать кнопку.
+  bool can_add_review = 11;
+  Contact contact = 12;
+}
+
+enum Gender {
+  FEMALE = 0;
+  MALE = 1;
+  METIS = 2;
+}
+
+message LotPhoto {
+  int64 id = 1;
+  // Порядок фотографии
+  int32 order = 2;
+}
+
+message Address {
+  string address = 1;
+  double longitude = 2;
+  double latitude = 3;
+}
+
+// Статистика объявления
+message Statistics {
+  // Количество просмотров
+  int32 view = 1;
+  // Количество добавленных в избранное
+  int32 favorite = 2;
+}
+
+message Parameter {
+  // Название параметра
+  string name = 1;
+  // Значение параметра
+  string value = 2;
+}
+
+message Seller {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  // Рейтинг продавца
+  double rating = 4;
+  // Если сейчас продавец в онлайне, то придет пустая строка, иначе форматированная дата.
+  optional string date_online = 5;
+}
+
+message Contact {
+  // Какие способы связи были выбраны.
+  WaysOfCommunicating ways_of_communicating = 1;
+  // Ссылки для выбранных способов связи.
+  LinksToContacts links_to_contacts = 2;
+}
+
+message WaysOfCommunicating {
+  bool phone = 1;
+  bool facebook = 2;
+  bool vk = 3;
+  bool email = 4;
+  bool chat = 5;
+}
+
+// Отображается информация про тех или иных способах только в тех случаях, когда они были выбраны в WaysOfCommunicating
+message LinksToContacts {
+  // Номер телефона в формате +79994443322
+  optional string phone = 1;
+  // Ссылка на профиль в ФБ
+  optional string facebook = 2;
+  // Ссылка на профиль в ВК
+  optional string vk = 3;
+  // Ссылка на почту для создания письма (emailto:..)
+  optional string email = 4;
+}

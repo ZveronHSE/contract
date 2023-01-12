@@ -1,4 +1,6 @@
 syntax = "proto3";
+import "model/data_lot.proto";
+
 package ru.zveron.contract.lot.manage;
 
 option java_package = "ru.zveron.contract.lot.manage";
@@ -8,3 +10,19 @@ option java_multiple_files = true;
 // - Request/Response для создания объявления и получение результата
 // - Request/Response для редактирования объявления
 // - request/response для закрытия объявления
+
+message PreviewLotResponse {
+  // ID объявления
+  string title = 1;
+  repeated LotPhoto photos = 2;
+  // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
+  optional Gender gender = 3;
+  Address address = 4;
+  // Заданные параметры объявления
+  repeated Parameter parameters = 5;
+  string description = 6;
+  string price = 7;
+  WaysOfCommunicating ways_of_communicating = 8;
+  int32 lot_form_id = 9;
+  int32 category_id = 10;
+}

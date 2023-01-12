@@ -1,5 +1,8 @@
 syntax = "proto3";
+
 package ru.zveron.contract.lot.preview;
+
+import "model/data_lot.proto";
 
 option java_package = "ru.zveron.contract.lot.preview";
 option java_outer_classname = "PreviewLotProto";
@@ -32,24 +35,6 @@ message PreviewLotResponse {
   Contact contact = 12;
 }
 
-enum Gender {
-  FEMALE = 0;
-  MALE = 1;
-  METIS = 2;
-}
-
-message LotPhoto {
-  int64 id = 1;
-  // Порядок фотографии
-  int32 order = 2;
-}
-
-message Address {
-  string address = 1;
-  double longitude = 2;
-  double latitude = 3;
-}
-
 // Статистика объявления
 message Statistics {
   // Количество просмотров
@@ -80,14 +65,6 @@ message Contact {
   WaysOfCommunicating ways_of_communicating = 1;
   // Ссылки для выбранных способов связи.
   LinksToContacts links_to_contacts = 2;
-}
-
-message WaysOfCommunicating {
-  bool phone = 1;
-  bool facebook = 2;
-  bool vk = 3;
-  bool email = 4;
-  bool chat = 5;
 }
 
 // Отображается информация про тех или иных способах только в тех случаях, когда они были выбраны в WaysOfCommunicating

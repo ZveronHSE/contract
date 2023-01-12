@@ -1,0 +1,10 @@
+syntax = "proto3";
+package ru.zveron.contract.lot.manage;
+
+option java_package = "ru.zveron.contract.lot.manage";
+option java_outer_classname = "CreateLotProto";
+option java_multiple_files = true;
+
+// - Request/Response для создания объявления и получение результата
+// - Request/Response для редактирования объявления
+// - request/response для закрытия объявления

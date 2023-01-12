@@ -1,0 +1,107 @@
+syntax = "proto3";
+package ru.zveron.contract.lot.waterfall;
+
+option java_package = "ru.zveron.contract.lot.waterfall";
+option java_outer_classname = "WaterfallLotProto";
+option java_multiple_files = true;
+
+
+message WaterfallRequest {
+  // Количество элементов запрашиваемых на страницу
+  int32 page_size = 1;
+  // По какому слову искать в объявлениях, например, по "собака"
+  optional string query = 2;
+  // Фильтровать по параметрам.
+  repeated Filter filters = 3;
+  // По какому признаку нужно сортировать объявления
+  oneof sort {
+    SortByDate sort_by_date = 4;
+    SortByPrice sort_by_price = 5;
+    // Используется только для первой страницы, там и не требуется сортировка!
+    NoSort no_sort = 6;
+  }
+}
+
+message SortByDate {
+  // Идентификатор последнего объявления, который был на прошлой странице.
+  int32 lot_id = 1;
+  // Дата создания последнего объявления, который был на прошлой странице.
+  int64 date = 2;
+  TypeSort type_sort = 3;
+}
+
+message SortByPrice {
+  // Идентификатор последнего объявления, который был на прошлой странице.
+  int32 lot_id = 1;
+  // Цена последнего объявления, который был на прошлой странице.
+  int32 price = 2;
+  TypeSort type_sort = 3;
+}
+
+enum TypeSort {
+  // Сортировка по возрастанию
+  ASC = 0;
+  // Сортировка по убыванию
+  DESC = 1;
+}
+
+message NoSort {
+}
+
+message Filter {
+  Field field = 1;
+  Operation operation = 2;
+  string value = 3;
+}
+
+enum Field {
+  PRICE = 0;
+  // Тип объявления
+  LOT_FORM_ID = 1;
+  // Когда создано объявление
+  DATE_CREATION = 2;
+  // Гендер у объявления, если продают животного.
+  GENDER = 3;
+  // Категория
+  CATEGORY_ID = 4;
+  // Параметры у объявления
+  PARAMETER_ID = 5;
+}
+
+enum Operation {
+  // Поле равно значению.
+  EQUALITY = 0;
+  // Поле не равно значению.
+  NEGATION = 1;
+  // Поле больше, чем
+  GREATER_THAN = 2;
+  // Поле больше или равно значению.
+  GREATER_THAN_EQUALITY = 3;
+  // Поле меньше, чем значение.
+  LESS_THAN = 4;
+  // Поле меньше или равно значению.
+  LESS_THAN_EQUALITY = 5;
+  // Поле входит в несколько значений, значения передаются через запятую, например: price==15,346,765,8794
+  IN = 6;
+  // Поле не входит в несколько значений, значения передаются через запятую, например: price==15,346,765,8794
+  NOT_IN = 7;
+}
+
+message WaterfallResponse {
+  repeated Lot lots = 1;
+}
+
+message Lot {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
+  string price = 3;
+  // Пока тут не уверена, но нужно для того, чтобы потом передать для сортировки.
+  int64 date = 4;
+  // Отформатированный текст, когда было опубликован объявление. Пример: 15 января 2022
+  string date_of_publication = 5;
+  int64 photo_id = 6;
+  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
+  bool is_favorite = 7;
+}

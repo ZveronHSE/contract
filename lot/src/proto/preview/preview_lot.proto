@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package ru.zveron.contract.lot.preview;
 
-import "model/data_lot.proto";
-
 option java_package = "ru.zveron.contract.lot.preview";
 option java_outer_classname = "PreviewLotProto";
 option java_multiple_files = true;
@@ -43,13 +41,6 @@ message Statistics {
   int32 favorite = 2;
 }
 
-message Parameter {
-  // Название параметра
-  string name = 1;
-  // Значение параметра
-  string value = 2;
-}
-
 message Seller {
   int64 id = 1;
   string name = 2;
@@ -77,4 +68,39 @@ message LinksToContacts {
   optional string vk = 3;
   // Ссылка на почту для создания письма (emailto:..)
   optional string email = 4;
+}
+
+
+message WaysOfCommunicating {
+  bool phone = 1;
+  bool facebook = 2;
+  bool vk = 3;
+  bool email = 4;
+  bool chat = 5;
+}
+
+enum Gender {
+  FEMALE = 0;
+  MALE = 1;
+  METIS = 2;
+}
+
+message Address {
+  string address = 1;
+  double longitude = 2;
+  double latitude = 3;
+}
+
+
+message Parameter {
+  // Название параметра
+  string name = 1;
+  // Значение параметра
+  string value = 2;
+}
+
+message LotPhoto {
+  int64 id = 1;
+  // Порядок фотографии
+  int32 order = 2;
 }

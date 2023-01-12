@@ -5,6 +5,7 @@ option java_package = "ru.zveron.contract.lot.waterfall";
 option java_outer_classname = "WaterfallLotProto";
 option java_multiple_files = true;
 
+import "google/protobuf/timestamp.proto";
 
 message WaterfallRequest {
   // Количество элементов запрашиваемых на страницу
@@ -97,8 +98,8 @@ message Lot {
   string title = 2;
   // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
   string price = 3;
-  // Пока тут не уверена, но нужно для того, чтобы потом передать для сортировки.
-  int64 date = 4;
+  // Пока тут не уверена по типу, но нужно для того, чтобы потом передать для сортировки.
+  google.protobuf.Timestamp date = 4;
   // Отформатированный текст, когда было опубликован объявление. Пример: 15 января 2022
   string date_of_publication = 5;
   int64 photo_id = 6;

@@ -1,28 +1,85 @@
 syntax = "proto3";
-import "model/data_lot.proto";
 
 package ru.zveron.contract.lot.manage;
 
 option java_package = "ru.zveron.contract.lot.manage";
-option java_outer_classname = "CreateLotProto";
+option java_outer_classname = "ManageLotProto";
 option java_multiple_files = true;
 
-// - Request/Response для создания объявления и получение результата
-// - Request/Response для редактирования объявления
-// - request/response для закрытия объявления
-
-message PreviewLotResponse {
-  // ID объявления
+message CreateLotRequest {
   string title = 1;
   repeated LotPhoto photos = 2;
-  // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
-  optional Gender gender = 3;
-  Address address = 4;
   // Заданные параметры объявления
-  repeated Parameter parameters = 5;
-  string description = 6;
-  string price = 7;
-  WaysOfCommunicating ways_of_communicating = 8;
+  repeated Parameter parameters = 3;
+  string description = 4;
+  string price = 5;
+  WaysOfCommunicating ways_of_communicating = 6;
+  // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
+  optional Gender gender = 7;
+  Address address = 8;
   int32 lot_form_id = 9;
   int32 category_id = 10;
+}
+
+message EditLotRequest {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  repeated LotPhoto photos = 3;
+  // Заданные параметры объявления
+  repeated Parameter parameters = 4;
+  string description = 5;
+  string price = 6;
+  WaysOfCommunicating ways_of_communicating = 7;
+}
+
+message CloseLotRequest {
+  // ID объявления
+  int64 id = 1;
+  ClosingLotReason closing_lot_reason = 2;
+  // Идентификатор покупателя, если объявление было продано на этом сайте
+  optional int64 customer_id = 3;
+}
+
+enum ClosingLotReason {
+  // Продал на этом сайте
+  SOLD = 0;
+  // Продал в другом месте
+  SOLD_SOMEWHERE = 1;
+  // Продажа неактуальна
+  IRRELEVANT = 2;
+}
+
+message WaysOfCommunicating {
+  bool phone = 1;
+  bool facebook = 2;
+  bool vk = 3;
+  bool email = 4;
+  bool chat = 5;
+}
+
+enum Gender {
+  FEMALE = 0;
+  MALE = 1;
+  METIS = 2;
+}
+
+message Address {
+  string address = 1;
+  double longitude = 2;
+  double latitude = 3;
+}
+
+
+message Parameter {
+  // Название параметра
+  string name = 1;
+  // Значение параметра
+  string value = 2;
+}
+
+message LotPhoto {
+  int64 id = 1;
+  // Порядок фотографии
+  int32 order = 2;
 }

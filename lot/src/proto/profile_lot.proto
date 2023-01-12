@@ -1,13 +1,16 @@
 syntax = "proto3";
-package ru.zveron.contract.lot.profile;
+package ru.zveron.contract.lot;
 
-option java_package = "ru.zveron.contract.lot.profile";
-option java_outer_classname = "ProfileLotProto";
+option java_package = "ru.zveron.contract.lot";
+option java_outer_classname = "LotProto";
 option java_multiple_files = true;
 
 service LotService {
   // Получить список объявлений у конкретного пользователя.
   rpc getLotsBySellerId(ProfileLotsRequest) returns (ProfileLotsResponse);
+
+  // Получить по списку айдишников объявления подробную информацию объявления.
+  rpc getLotsById(LotsIdRequest) returns (LotsIdResponse);
 }
 
 message ProfileLotsRequest {
@@ -17,6 +20,14 @@ message ProfileLotsRequest {
 message ProfileLotsResponse {
   repeated Lot activate_lots = 1;
   repeated Lot inactivate_lots = 2;
+}
+
+message LotsIdRequest {
+  repeated int64 lot_ids = 1;
+}
+
+message LotsIdResponse {
+  repeated Lot lots = 1;
 }
 
 message Lot {

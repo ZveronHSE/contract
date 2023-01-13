@@ -5,16 +5,18 @@ option java_package = "ru.zveron.contract.lot";
 option java_outer_classname = "LotProto";
 option java_multiple_files = true;
 
+import "model_lot.proto";
+
 service LotService {
   // Получить список объявлений у конкретного пользователя.
   rpc getLotsBySellerId(ProfileLotsRequest) returns (ProfileLotsResponse);
 
-  // Получить по списку айдишников объявления подробную информацию объявления.
+  // Получить по списку айдишников объявления превью объявлений.
   rpc getLotsById(LotsIdRequest) returns (LotsIdResponse);
 }
 
 message ProfileLotsRequest {
-  int32 seller_id = 1;
+  int32 id = 1;
 }
 
 message ProfileLotsResponse {
@@ -28,17 +30,4 @@ message LotsIdRequest {
 
 message LotsIdResponse {
   repeated Lot lots = 1;
-}
-
-message Lot {
-  // ID объявления
-  int64 id = 1;
-  string title = 2;
-  // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
-  string price = 3;
-  // Отформатированный текст, когда было опубликован объявление. Пример: 15 января 2022
-  string date_of_publication = 4;
-  int64 photo_id = 5;
-  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
-  optional bool is_favorite = 6;
 }

@@ -2,13 +2,16 @@ syntax = "proto3";
 
 package ru.zveron.contract.lot.manage;
 
+import "model_lot.proto";
+
 option java_package = "ru.zveron.contract.lot.manage";
 option java_outer_classname = "ManageLotProto";
 option java_multiple_files = true;
 
+// Path /api/lot/create, ответ будет в виде CardLot
 message CreateLotRequest {
   string title = 1;
-  repeated LotPhoto photos = 2;
+  repeated Photo photos = 2;
   // Заданные параметры объявления
   repeated Parameter parameters = 3;
   string description = 4;
@@ -16,16 +19,17 @@ message CreateLotRequest {
   WaysOfCommunicating ways_of_communicating = 6;
   // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
   optional Gender gender = 7;
-  Address address = 8;
+  CreateAddress address = 8;
   int32 lot_form_id = 9;
   int32 category_id = 10;
 }
 
+// Path /api/lot/edit, ответ будет в виде CardLot
 message EditLotRequest {
   // ID объявления
   int64 id = 1;
   string title = 2;
-  repeated LotPhoto photos = 3;
+  repeated Photo photos = 3;
   // Заданные параметры объявления
   repeated Parameter parameters = 4;
   string description = 5;
@@ -33,6 +37,7 @@ message EditLotRequest {
   WaysOfCommunicating ways_of_communicating = 7;
 }
 
+// Path /api/lot/close, ответ будет пустым
 message CloseLotRequest {
   // ID объявления
   int64 id = 1;
@@ -50,36 +55,12 @@ enum ClosingLotReason {
   IRRELEVANT = 2;
 }
 
-message WaysOfCommunicating {
-  bool phone = 1;
-  bool facebook = 2;
-  bool vk = 3;
-  bool email = 4;
-  bool chat = 5;
-}
-
-enum Gender {
-  FEMALE = 0;
-  MALE = 1;
-  METIS = 2;
-}
-
-message Address {
-  string address = 1;
-  double longitude = 2;
-  double latitude = 3;
-}
-
-
-message Parameter {
-  // Название параметра
-  string name = 1;
-  // Значение параметра
-  string value = 2;
-}
-
-message LotPhoto {
-  int64 id = 1;
-  // Порядок фотографии
-  int32 order = 2;
+message CreateAddress {
+  optional string region = 1;
+  optional string district = 2;
+  optional string town = 3;
+  optional string street = 4;
+  optional string house = 5;
+  double longitude = 6;
+  double latitude = 7;
 }

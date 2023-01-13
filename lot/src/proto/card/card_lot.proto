@@ -67,10 +67,8 @@ message Contact {
 message LinksToContacts {
   // Номер телефона в формате +79994443322
   optional string phone = 1;
-  // Ссылка на профиль в ФБ
-  optional string facebook = 2;
   // Ссылка на профиль в ВК
-  optional string vk = 3;
+  optional string vk = 2;
   // Ссылка на почту для создания письма (emailto:..)
-  optional string email = 4;
+  optional string email = 3;
 }

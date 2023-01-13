@@ -3,6 +3,7 @@ syntax = "proto3";
 package ru.zveron.contract.lot.waterfall;
 
 import "google/protobuf/timestamp.proto";
+import "model_lot.proto";
 
 option java_package = "ru.zveron.contract.lot.waterfall";
 option java_outer_classname = "WaterfallLotProto";
@@ -91,18 +92,19 @@ enum Operation {
 }
 
 message WaterfallResponse {
-  repeated Lot lots = 1;
+  repeated WaterfallLot lots = 1;
 }
 
-message Lot {
-  // ID объявления
-  int64 id = 1;
-  string title = 2;
-  Price price = 3;
-  Date date = 4;
-  int64 photo_id = 5;
-  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
-  bool is_favorite = 6;
+message WaterfallLot {
+  Lot lot = 1;
+  // Данные, необходимые для сортировки и работы водопада
+  DataFilter data_filter = 2;
+}
+
+message DataFilter {
+  int32 price = 1;
+  // Пока тут не уверена по типу
+  google.protobuf.Timestamp date = 2;
 }
 
 message Price {

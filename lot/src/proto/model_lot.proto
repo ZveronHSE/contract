@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package ru.zveron.contract.lot;
+
+option java_package = "ru.zveron.contract.lot";
+option java_outer_classname = "ModelLotProto";
+option java_multiple_files = true;
+
+message Lot {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
+  string price = 3;
+  // Отформатированный текст, когда было опубликован объявление. Пример: 15 января 2022
+  string date_of_publication = 4;
+  int64 photo_id = 5;
+  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
+  bool is_favorite = 6;
+}
+
+message WaysOfCommunicating {
+  bool phone = 1;
+  bool vk = 2;
+  bool email = 3;
+  bool chat = 4;
+}
+
+enum Gender {
+  FEMALE = 0;
+  MALE = 1;
+  METIS = 2;
+}
+
+message Address {
+  // Отформатированный вид адреса
+  string address = 1;
+  double longitude = 2;
+  double latitude = 3;
+}
+
+message Parameter {
+  // Название параметра
+  string name = 1;
+  // Значение параметра
+  string value = 2;
+}
+
+message Photo {
+  int64 id = 1;
+  // Порядок фотографии
+  int32 order = 2;
+}

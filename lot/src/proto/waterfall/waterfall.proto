@@ -21,25 +21,30 @@ message WaterfallRequest {
   oneof sort {
     SortByDate sort_by_date = 4;
     SortByPrice sort_by_price = 5;
-    // Используется только для первой страницы, там и не требуется сортировка!
-    NoSort no_sort = 6;
   }
 }
 
 message SortByDate {
-  // Идентификатор последнего объявления, который был на прошлой странице.
-  int32 lot_id = 1;
-  // Дата создания последнего объявления, который был на прошлой странице.
-  google.protobuf.Timestamp date = 2;
-  TypeSort type_sort = 3;
+  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
+  message LastLot {
+    int64 id = 1;
+    // Дата создания
+    google.protobuf.Timestamp date = 2;
+  }
+
+  TypeSort type_sort = 1;
+  optional LastLot last_lot = 2;
 }
 
 message SortByPrice {
-  // Идентификатор последнего объявления, который был на прошлой странице.
-  int32 lot_id = 1;
-  // Цена последнего объявления, который был на прошлой странице.
-  int32 price = 2;
-  TypeSort type_sort = 3;
+  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
+  message LastLot {
+    int64 id = 1;
+    int32 price = 2;
+  }
+
+  TypeSort type_sort = 1;
+  optional LastLot last_lot = 2;
 }
 
 enum TypeSort {
@@ -47,9 +52,6 @@ enum TypeSort {
   ASC = 0;
   // Сортировка по убыванию
   DESC = 1;
-}
-
-message NoSort {
 }
 
 message Filter {

@@ -15,12 +15,16 @@ message WaterfallRequest {
   int32 page_size = 1;
   // По какому слову искать в объявлениях, например, по "собака"
   optional string query = 2;
-  // Фильтровать по параметрам.
-  repeated Filter filters = 3;
+  // По какому категорию отбирать объявления (учитываются и все дочерние категории)
+  optional int32 category_id = 3;
+  // Фильтровать по различным полям объявления, кроме параметров. (например, цена, дата и тд)
+  repeated Filter filters = 4;
+  // Фильтровать по параметрам объявления, если они заданы
+  repeated Parameter parameters = 5;
   // По какому признаку нужно сортировать объявления
   oneof sort {
-    SortByDate sort_by_date = 4;
-    SortByPrice sort_by_price = 5;
+    SortByDate sort_by_date = 6;
+    SortByPrice sort_by_price = 7;
   }
 }
 
@@ -68,10 +72,6 @@ enum Field {
   DATE_CREATION = 2;
   // Гендер у объявления, если продают животного.
   GENDER = 3;
-  // Категория
-  CATEGORY_ID = 4;
-  // Параметры у объявления
-  PARAMETER_ID = 5;
 }
 
 enum Operation {

@@ -8,33 +8,18 @@ option java_multiple_files = true;
 service ApigatewayService{
 
   //запрос из вне в шлюз
-  rpc ReceiveServiceCall(ApigatewayRequest) returns (ApigatewayResponse);
-
-  //запрос из шлюза в один из сервисов
-  rpc CallService(ServiceRequest) returns (ServiceResponse);
+  rpc CallApiGateway(ApiGatewayRequest) returns (ApigatewayResponse);
 }
 
 
-message ApigatewayRequest{
+message ApiGatewayRequest{
   //путь запроса в метод сервиса по формату service:method
-  string destination = 1;
-
-  string refresh_token = 2;
-
-  string access_token = 3;
-  //запрос в apigateway
-  bytes request_body = 4;
-}
-
-message ApigatewayResponse{
-  bytes response_body = 1;
-}
-
-message ServiceRequest{
   string method_alias = 1;
+
+  //запрос в apigateway
   bytes request_body = 2;
 }
 
-message ServiceResponse{
+message ApigatewayResponse{
   bytes response_body = 1;
 }

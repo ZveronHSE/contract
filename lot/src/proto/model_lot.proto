@@ -40,10 +40,11 @@ message Address {
 }
 
 message Parameter {
-  // Название параметра
-  string name = 1;
-  // Значение параметра
-  string value = 2;
+  int32 id = 1;
+  // Название
+  string name = 2;
+  // Значение
+  string value = 3;
 }
 
 message Photo {

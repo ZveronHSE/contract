@@ -87,8 +87,8 @@ message GetProfilePageResponse {
   double rating = 6;
   int32 review_number = 7;
   string address = 8;
-  LotSummary active_lots = 9;
-  LotSummary closed_lots = 10;
+  repeated LotSummary active_lots = 9;
+  repeated LotSummary closed_lots = 10;
   google.protobuf.Timestamp last_activity = 11;
 }
 

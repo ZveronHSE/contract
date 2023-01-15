@@ -95,8 +95,8 @@ message GetProfilePageResponse {
 message LotSummary {
   int64 id = 1;
   string title = 2;
-  int32 price = 3;
-  google.protobuf.Timestamp publication_date = 4;
+  string price_formatted = 3;
+  string publication_date_formatted = 4;
   LotStatus status = 5;
   int64 first_image = 6;
   bool is_favorite = 7;

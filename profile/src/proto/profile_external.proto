@@ -27,10 +27,11 @@ message GetProfileInfoRequest {
 // Alias: setProfileInfo
 // Response: Empty
 message SetProfileInfoRequest {
-  string name = 1;
-  string surname = 2;
-  int64 image_id = 3;
-  Address address = 4;
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  int64 image_id = 4;
+  Address address = 5;
 }
 
 // Получение настроек профиля
@@ -44,8 +45,9 @@ message GetSettingsRequest {
 // Alias: setSettings
 // Response: Empty
 message SetSettingsRequest {
-  Channels waysOfCommunication = 1;
-  Address address = 2;
+  int64 id = 1;
+  Channels waysOfCommunication = 2;
+  Address address = 3;
 }
 
 // Получение предпочительных способов связи (для создания объявлений)

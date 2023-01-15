@@ -1,0 +1,126 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "model/communication.proto";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "ProfileGrpcExternal";
+option java_multiple_files = true;
+
+// Получение профиля, как страницы в маркетплейсе (агрегируем данные из разных источников)
+// Alias: getProfilePage
+// Response: GetProfilePageResponse
+message GetProfilePageRequest {
+  int64 requested_profile_id = 1;
+  int64 authorized_profile_id = 2;
+}
+
+// Получение профиля, как страницы в маркетплейсе, для его владельца
+// Alias: getProfileInfo
+// Response: GetProfileInfoResponse
+message GetProfileInfoRequest {
+  int64 id = 1;
+}
+
+// Редактирование профиля, как страницы в маркетплейсе, владельцем
+// Alias: setProfileInfo
+// Response: Empty
+message SetProfileInfoRequest {
+  string name = 1;
+  string surname = 2;
+  int64 image_id = 3;
+  Address address = 4;
+}
+
+// Получение настроек профиля
+// Alias: getSettings
+// Response: GetSettingsResponse
+message GetSettingsRequest {
+  int64 id = 1;
+}
+
+// Изменение настроект профиля
+// Alias: setSettings
+// Response: Empty
+message SetSettingsRequest {
+  Channels waysOfCommunication = 1;
+  Address address = 2;
+}
+
+// Получение предпочительных способов связи (для создания объявлений)
+// Alias: getWaysOfCommunication
+// Response: PreferredWaysOfCommunication
+message GetWaysOfCommunicationRequest {
+  int64 id = 1;
+}
+
+// Получение привязанных к профилю способов связи. Доступно для владельца профиля
+// Alias: getLinksToContacts
+// Response: LinksToContacts
+message GetLinksToContactsRequest {
+  int64 id = 1;
+}
+
+// Полное удаление профиля без возможности восстановления
+// Alias: deleteProfile
+// Response: Empty
+message DeleteProfileRequest {
+  int64 id = 1;
+}
+
+message GetProfileInfoResponse {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  int64 image_id = 4;
+  double rating = 5;
+  Address address = 6;
+}
+
+message GetProfilePageResponse {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  int64 image_id = 4;
+  Contacts contacts = 5;
+  double rating = 6;
+  int32 review_number = 7;
+  string address = 8;
+  LotSummary active_lots = 9;
+  LotSummary closed_lots = 10;
+  google.protobuf.Timestamp last_activity = 11;
+}
+
+message LotSummary {
+  int64 id = 1;
+  string title = 2;
+  int32 price = 3;
+  google.protobuf.Timestamp publication_date = 4;
+  LotStatus status = 5;
+  int64 first_image = 6;
+  bool is_favorite = 7;
+}
+
+enum LotStatus {
+  ACTIVE = 0;
+  CLOSED = 1;
+}
+
+message Address {
+  string region = 1;
+  string town = 2;
+  double longitude = 3;
+  double latitude = 4;
+}
+
+message GetSettingsResponse {
+  bool has_password = 1;
+  Channels channels = 2;
+  Address address = 3;
+}
+
+message Contacts {
+  Channels channels = 1;
+  Links links = 2;
+}

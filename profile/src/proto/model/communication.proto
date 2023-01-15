@@ -1,0 +1,24 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+package ru.zveron;
+
+option java_package = "ru.zveron";
+option java_outer_classname = "ProfileModelCommunication";
+option java_multiple_files = true;
+
+message Channels {
+  bool phone = 1;
+  bool vk = 2;
+  bool email = 3;
+  bool chat = 4;
+}
+
+message Links {
+  string phone = 1;
+  string vk_ref = 2;
+  // Не гугловая почта (получена при авторизации через vk)
+  string email = 3;
+  // Именно гугловая почта (получена при авторизации через гугл)
+  string gmail = 4;
+}

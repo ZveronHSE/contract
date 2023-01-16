@@ -46,7 +46,7 @@ message GetSettingsRequest {
 // Response: Empty
 message SetSettingsRequest {
   int64 id = 1;
-  Channels waysOfCommunication = 2;
+  repeated ChannelType channels = 2;
   Address address = 3;
 }
 
@@ -118,11 +118,11 @@ message Address {
 
 message GetSettingsResponse {
   bool has_password = 1;
-  Channels channels = 2;
+  repeated ChannelType channels = 2;
   Address address = 3;
 }
 
 message Contacts {
-  Channels channels = 1;
+  repeated ChannelType channels = 1;
   Links links = 2;
 }

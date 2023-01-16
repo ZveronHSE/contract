@@ -28,9 +28,9 @@ message CardLot {
   // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
   string price = 8;
   // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
-  bool is_favorite = 9;
+  bool favorite = 9;
   // Является ли это объявление собственным, и если да, то нужно будет скрыть кнопку "Избранное" и отображать кнопку "Редактировать".
-  bool is_own = 10;
+  bool own = 10;
   // Может ли пользователь добавлять отзыв на это объявление, если да, то отображать кнопку.
   bool can_add_review = 11;
   Contact contact = 12;
@@ -58,13 +58,13 @@ message Seller {
 
 message Contact {
   // Какие способы связи были выбраны.
-  WaysOfCommunicating ways_of_communicating = 1;
+  CommunicationChannel communication_channel = 1;
   // Ссылки для выбранных способов связи.
-  LinksToContacts links_to_contacts = 2;
+  ChannelLink channel_link = 2;
 }
 
-// Отображается информация про тех или иных способах только в тех случаях, когда они были выбраны в WaysOfCommunicating
-message LinksToContacts {
+// Отображается информация про тех или иных способах только в тех случаях, когда они были выбраны в CommunicationChannel
+message ChannelLink {
   // Номер телефона в формате +79994443322
   optional string phone = 1;
   // Ссылка на профиль в ВК

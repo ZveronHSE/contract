@@ -16,10 +16,10 @@ message CreateLotRequest {
   repeated Parameter parameters = 3;
   string description = 4;
   string price = 5;
-  WaysOfCommunicating ways_of_communicating = 6;
+  CommunicationChannel communication_channel = 6;
   // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
   optional Gender gender = 7;
-  CreateAddress address = 8;
+  FullAddress address = 8;
   int32 lot_form_id = 9;
   int32 category_id = 10;
 }
@@ -34,7 +34,7 @@ message EditLotRequest {
   repeated Parameter parameters = 4;
   string description = 5;
   string price = 6;
-  WaysOfCommunicating ways_of_communicating = 7;
+  CommunicationChannel communication_channel = 7;
 }
 
 // Path /api/lot/close, ответ будет пустым
@@ -50,12 +50,12 @@ enum ClosingLotReason {
   // Продал на этом сайте
   SOLD = 0;
   // Продал в другом месте
-  SOLD_SOMEWHERE = 1;
+  SOLD_EXTERNAL = 1;
   // Продажа неактуальна
   IRRELEVANT = 2;
 }
 
-message CreateAddress {
+message FullAddress {
   optional string region = 1;
   optional string district = 2;
   optional string town = 3;

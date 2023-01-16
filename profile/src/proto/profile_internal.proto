@@ -41,7 +41,7 @@ message GetProfileResponse {
   string name = 2;
   string surname = 3;
   int64 image_id = 4;
-  Channels channels = 5;
+  repeated ChannelType channels = 5;
   int64 address_id = 6;
 }
 
@@ -54,7 +54,7 @@ message GetProfileWithContactsResponse {
   string name = 2;
   string surname = 3;
   int64 image_id = 4;
-  Channels channels = 5;
+  repeated ChannelType channels = 5;
   Links links = 6;
   int64 address_id = 7;
 }
@@ -64,6 +64,6 @@ message GetProfileWithContactsResponse {
 // Сервис перезапишет информацию, указанную в links_to_contacts, только для отмеченного способа связи
 message UpdateContactsRequest {
   int64 profile_id = 1;
-  Channels channels = 2;
+  ChannelType type = 2;
   Links links = 3;
 }

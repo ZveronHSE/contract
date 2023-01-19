@@ -8,6 +8,8 @@ option java_multiple_files = true;
 service CategoryService {
   // Получить список подкатегорий для категории
   rpc getChild(CategoryRequest) returns(CategoryResponse);
+  // Получить всю семью для категории, то есть если A->B->C, то вернет A, B, C
+  rpc getCategoryTree(CategoryRequest) returns (CategoryResponse);
 }
 
 message CategoryRequest {

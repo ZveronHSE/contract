@@ -8,7 +8,7 @@ option java_package = "ru.zveron";
 option java_outer_classname = "ProfileGrpcInternal";
 option java_multiple_files = true;
 
-service ProfileService {
+service ProfileServiceInternal {
 
   // Создание профиля пользователя
   rpc CreateProfile(CreateProfileRequest) returns(google.protobuf.Empty);

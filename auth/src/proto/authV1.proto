@@ -1,7 +1,7 @@
 syntax = "proto3";
-package ru.zveron.contract;
+package ru.zveron;
 
-option java_package = "ru.zveron.contract";
+option java_package = "ru.zveron.auth";
 option java_outer_classname = "AuthProto";
 option java_multiple_files = true;
 

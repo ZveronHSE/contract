@@ -23,6 +23,14 @@ service AuthService {
 
   //последний шаг логина по телефону, если пользователя еще не существует и создаем новый аккаунт
   rpc RegisterByPhone (PhoneRegisterRequest) returns (LoginResponse);
+
+  //запрос для верификации текущего токена доступа, передается из апигея в сервис авторизации
+  //потому токены можно передать в метадате
+  rpc VerifyToken (VerifyMobileTokenRequest) returns (VerifyMobileTokenResponse);
+
+  //запрос на получение новых токенов, можно их передавать в шлюз в метадате, оттуда шлюз в теле
+  //их в сервис авторизации потащит
+  rpc IssueNewTokens (IssueNewTokensRequest) returns (IssueNewTokensResponse);
 }
 
 //Запросы
@@ -38,18 +46,30 @@ message LoginByPasswordRequest{
 
 message PhoneLoginInitRequest{
   string phone_number = 1;
+  string device_fp = 2;
 }
 
 message PhoneLoginVerifyRequest{
   string code = 1;
   string session_id = 2;
+  string device_fp = 3;
 }
 
 message PhoneRegisterRequest{
   string session_id = 1;
   bytes password = 2;
   string name = 3;
+  string device_fp = 4;
 }
+
+message VerifyMobileTokenRequest{
+  string access_token = 1;
+}
+
+message IssueNewTokensRequest{
+  string refresh_token = 1;
+}
+
 
 //ответы
 message LoginResponse{
@@ -65,6 +85,15 @@ message PhoneLoginVerifyResponse{
   MobileToken mobile_token = 1;
   string session_id = 2;
   string auth_flow_type = 3;
+}
+
+message VerifyMobileTokenResponse{
+  bool is_authenticated = 1;
+}
+
+message IssueNewTokensResponse{
+  string access_token = 1;
+  string refresh_token = 2;
 }
 
 //вспомогательная структура

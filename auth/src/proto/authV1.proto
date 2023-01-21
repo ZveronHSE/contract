@@ -11,7 +11,7 @@ service AuthService {
   rpc LoginBySocial (LoginBySocialRequest) returns (LoginResponse);
 
   //логин по паролю и телефону
-  rpc LoginByPassword (LoginByPassword) returns (LoginResponse);
+  rpc LoginByPassword (LoginByPasswordRequest) returns (LoginResponse);
 
   //попытка логина только по телефону, начальный этап, высылаем запрос в сторонний сервис
   //на отправку смс/звонка для верификации
@@ -31,7 +31,7 @@ message LoginBySocialRequest{
   string auth_provider = 2;
 }
 
-message LoginByPassword{
+message LoginByPasswordRequest{
   string phone_number = 1;
   bytes password = 2;
 }

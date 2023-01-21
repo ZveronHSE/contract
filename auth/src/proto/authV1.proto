@@ -1,0 +1,74 @@
+syntax = "proto3";
+package ru.zveron.contract;
+
+option java_package = "ru.zveron.contract";
+option java_outer_classname = "AuthProto";
+option java_multiple_files = true;
+
+service AuthService {
+
+  //логин через соц сеть
+  rpc LoginBySocial (LoginBySocialRequest) returns (LoginResponse);
+
+  //логин по паролю и телефону
+  rpc LoginByPassword (LoginByPassword) returns (LoginResponse);
+
+  //попытка логина только по телефону, начальный этап, высылаем запрос в сторонний сервис
+  //на отправку смс/звонка для верификации
+  rpc PhoneLoginInit (PhoneLoginInitRequest) returns (PhoneLoginInitResponse);
+
+  //попытка логина только по телефону, второй этап, пробуем провалидировать пришедший код
+  //если пользователь уже есть, возвращаем токены и флаг, что флоу логина
+  rpc PhoneLoginVerify (PhoneLoginVerifyRequest) returns (PhoneLoginVerifyResponse);
+
+  //последний шаг логина по телефону, если пользователя еще не существует и создаем новый аккаунт
+  rpc RegisterByPhone (PhoneRegisterRequest) returns (LoginResponse);
+}
+
+//Запросы
+message LoginBySocialRequest{
+  string token = 1;
+  string auth_provider = 2;
+}
+
+message LoginByPassword{
+  string phone_number = 1;
+  bytes password = 2;
+}
+
+message PhoneLoginInitRequest{
+  string phone_number = 1;
+}
+
+message PhoneLoginVerifyRequest{
+  string code = 1;
+  string session_id = 2;
+}
+
+message PhoneRegisterRequest{
+  string session_id = 1;
+  bytes password = 2;
+  string name = 3;
+}
+
+//ответы
+message LoginResponse{
+  MobileToken mobile_token = 1;
+  string account_status = 2;
+}
+
+message PhoneLoginInitResponse{
+  string session_id = 1;
+}
+
+message PhoneLoginVerifyResponse{
+  MobileToken mobile_token = 1;
+  string session_id = 2;
+  string auth_flow_type = 3;
+}
+
+//вспомогательная структура
+message MobileToken{
+  string refresh_token = 1;
+  string access_token = 2;
+}

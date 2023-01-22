@@ -26,6 +26,8 @@ message ProfileLotsResponse {
 
 message LotsIdRequest {
   repeated int64 lot_ids = 1;
+  // Если не указать, то не будет проверки на избранное и по умолчанию для всех объявлений будет false
+  optional int64 user_id = 2;
 }
 
 message LotsIdResponse {

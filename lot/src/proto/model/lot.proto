@@ -16,7 +16,7 @@ message Lot {
   string publication_date = 4;
   int64 photo_id = 5;
   // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
-  bool is_favorite = 6;
+  bool favorite = 6;
 }
 
 enum CommunicationChannel {

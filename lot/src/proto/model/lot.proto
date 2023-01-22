@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package ru.zveron.contract.lot;
+package ru.zveron.contract.lot.model;
 
-option java_package = "ru.zveron.contract.lot";
-option java_outer_classname = "ModelLotProto";
+option java_package = "ru.zveron.contract.lot.model";
+option java_outer_classname = "LotProto";
 option java_multiple_files = true;
 
 message Lot {
@@ -19,11 +19,11 @@ message Lot {
   bool is_favorite = 6;
 }
 
-message CommunicationChannel {
-  bool phone = 1;
-  bool vk = 2;
-  bool email = 3;
-  bool chat = 4;
+enum CommunicationChannel {
+  PHONE = 0;
+  VK = 1;
+  EMAIL = 2;
+  CHAT = 3;
 }
 
 enum Gender {

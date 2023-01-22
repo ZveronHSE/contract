@@ -2,12 +2,12 @@ syntax = "proto3";
 package ru.zveron.contract.lot;
 
 option java_package = "ru.zveron.contract.lot";
-option java_outer_classname = "LotProto";
+option java_outer_classname = "LotInternalProto";
 option java_multiple_files = true;
 
-import "model_lot.proto";
+import "model/lot.proto";
 
-service LotService {
+service LotInternalService {
   // Получить список объявлений у конкретного пользователя.
   rpc getLotsBySellerId(ProfileLotsRequest) returns (ProfileLotsResponse);
 
@@ -20,8 +20,8 @@ message ProfileLotsRequest {
 }
 
 message ProfileLotsResponse {
-  repeated Lot activate_lots = 1;
-  repeated Lot inactivate_lots = 2;
+  repeated model.Lot activate_lots = 1;
+  repeated model.Lot inactivate_lots = 2;
 }
 
 message LotsIdRequest {
@@ -29,5 +29,5 @@ message LotsIdRequest {
 }
 
 message LotsIdResponse {
-  repeated Lot lots = 1;
+  repeated model.Lot lots = 1;
 }

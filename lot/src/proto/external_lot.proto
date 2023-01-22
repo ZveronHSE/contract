@@ -1,0 +1,250 @@
+syntax = "proto3";
+package ru.zveron.contract.lot;
+
+option java_package = "ru.zveron.contract.lot";
+option java_outer_classname = "LotExternalProto";
+option java_multiple_files = true;
+
+import "model/lot.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service LotExternalProtoService {
+  // Получить список объявлений для ленты
+  rpc GetWaterfall(WaterfallRequest) returns (WaterfallResponse);
+
+  rpc CreateLot(CreateLotRequest) returns (CardLot);
+
+  rpc EditLot(EditLotRequest) returns (CardLot);
+
+  rpc CloseLot(CloseLotRequest) returns (google.protobuf.Empty);
+
+  // Получить информацию про объявление
+  rpc GetCardLot(CardLotRequest) returns (CardLot);
+}
+
+
+message WaterfallRequest {
+  // Количество элементов запрашиваемых на страницу
+  int32 page_size = 1;
+  // По какому слову искать в объявлениях, например, по "собака"
+  optional string query = 2;
+  // По какому категорию отбирать объявления (учитываются и все дочерние категории)
+  optional int32 category_id = 3;
+  // Фильтровать по различным полям объявления, кроме параметров. (например, цена, дата и тд)
+  repeated Filter filters = 4;
+  // Фильтровать по параметрам объявления, если они заданы
+  repeated model.Parameter parameters = 5;
+  // По какому признаку нужно сортировать объявления
+  oneof sort {
+    SortByDate sort_by_date = 6;
+    SortByPrice sort_by_price = 7;
+  }
+}
+
+message SortByDate {
+  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
+  message LastLot {
+    int64 id = 1;
+    // Дата создания
+    google.protobuf.Timestamp date = 2;
+  }
+
+  TypeSort type_sort = 1;
+  optional LastLot last_lot = 2;
+}
+
+message SortByPrice {
+  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
+  message LastLot {
+    int64 id = 1;
+    int32 price = 2;
+  }
+
+  TypeSort type_sort = 1;
+  optional LastLot last_lot = 2;
+}
+
+enum TypeSort {
+  // Сортировка по возрастанию
+  ASC = 0;
+  // Сортировка по убыванию
+  DESC = 1;
+}
+
+message Filter {
+  Field field = 1;
+  Operation operation = 2;
+  string value = 3;
+}
+
+enum Field {
+  PRICE = 0;
+  // Тип объявления
+  LOT_FORM_ID = 1;
+  // Когда создано объявление
+  DATE_CREATION = 2;
+  // Гендер у объявления, если продают животного.
+  GENDER = 3;
+}
+
+enum Operation {
+  // Поле равно значению.
+  EQUALITY = 0;
+  // Поле не равно значению.
+  NEGATION = 1;
+  // Поле больше, чем
+  GREATER_THAN = 2;
+  // Поле больше или равно значению.
+  GREATER_THAN_EQUALITY = 3;
+  // Поле меньше, чем значение.
+  LESS_THAN = 4;
+  // Поле меньше или равно значению.
+  LESS_THAN_EQUALITY = 5;
+  // Поле входит в несколько значений, значения передаются через запятую, например: price==15,346,765,8794
+  IN = 6;
+  // Поле не входит в несколько значений, значения передаются через запятую, например: price==15,346,765,8794
+  NOT_IN = 7;
+}
+
+message WaterfallResponse {
+  repeated WaterfallLot lots = 1;
+}
+
+message WaterfallLot {
+  model.Lot lot = 1;
+  // Данные последнего объявления, необходимые для сортировки и работы водопада
+  DataFilter data_filter = 2;
+}
+
+message DataFilter {
+  int32 price = 1;
+  // Пока тут не уверена по типу
+  google.protobuf.Timestamp date = 2;
+}
+
+
+message CreateLotRequest {
+  string title = 1;
+  repeated model.Photo photos = 2;
+  // Заданные параметры объявления
+  repeated model.Parameter parameters = 3;
+  string description = 4;
+  string price = 5;
+  // Количество выбранных связей, их может быть 1 или 2.
+  repeated model.CommunicationChannel communication_channel = 6;
+  // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
+  optional model.Gender gender = 7;
+  FullAddress address = 8;
+  int32 lot_form_id = 9;
+  int32 category_id = 10;
+}
+
+
+
+// Path /api/lot/edit, ответ будет в виде CardLot
+message EditLotRequest {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  repeated model.Photo photos = 3;
+  // Заданные параметры объявления
+  repeated model.Parameter parameters = 4;
+  string description = 5;
+  string price = 6;
+  // Количество выбранных связей, их может быть 1 или 2.
+  repeated model.CommunicationChannel communication_channel = 7;
+}
+
+// Path /api/lot/close, ответ будет пустым
+message CloseLotRequest {
+  // ID объявления
+  int64 id = 1;
+  ClosingLotReason closing_lot_reason = 2;
+  // Идентификатор покупателя, если объявление было продано на этом сайте
+  optional int64 customer_id = 3;
+}
+
+enum ClosingLotReason {
+  // Продал на этом сайте
+  SOLD = 0;
+  // Продал в другом месте
+  SOLD_SOMEWHERE = 1;
+  // Продажа неактуальна
+  IRRELEVANT = 2;
+}
+
+message FullAddress {
+  optional string region = 1;
+  optional string district = 2;
+  optional string town = 3;
+  optional string street = 4;
+  optional string house = 5;
+  double longitude = 6;
+  double latitude = 7;
+}
+
+message CardLotRequest {
+  // ID объявления
+  int64 id = 1;
+}
+
+
+message CardLot {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  repeated model.Photo photos = 3;
+  // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
+  optional model.Gender gender = 4;
+  model.Address address = 5;
+  // Заданные параметры объявления
+  repeated model.Parameter parameters = 6;
+  string description = 7;
+  // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
+  string price = 8;
+  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
+  bool favorite = 9;
+  // Является ли это объявление собственным, и если да, то нужно будет скрыть кнопку "Избранное" и отображать кнопку "Редактировать".
+  bool own = 10;
+  // Может ли пользователь добавлять отзыв на это объявление, если да, то отображать кнопку.
+  bool can_add_review = 11;
+  Contact contact = 12;
+  Seller seller = 13;
+}
+
+// Статистика объявления
+message Statistics {
+  // Количество просмотров
+  int32 view = 1;
+  // Количество добавленных в избранное
+  int32 favorite = 2;
+}
+
+message Seller {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  // Рейтинг продавца
+  double rating = 4;
+  // Если сейчас продавец в онлайне, то придет пустая строка, иначе форматированная дата.
+  optional string date_online = 5;
+  model.Photo photo = 6;
+}
+
+message Contact {
+  // Какие способы связи были выбраны.
+  repeated model.CommunicationChannel communication_channel = 1;
+  // Ссылки для выбранных способов связи.
+  ChannelLink channel_link = 2;
+}
+
+// Отображается информация про тех или иных способах только в тех случаях, когда они были выбраны в CommunicationChannel
+message ChannelLink {
+  // Номер телефона в формате +79994443322
+  optional string phone = 1;
+  // Ссылка на профиль в ВК
+  optional string vk = 2;
+  // Ссылка на почту для создания письма (emailto:..)
+  optional string email = 3;
+}

@@ -1,5 +1,5 @@
 syntax = "proto3";
-package ru.zveron.contract;
+package ru.zveron.contract.apigateway;
 
 option java_package = "ru.zveron.contract.apigateway";
 option java_outer_classname = "ApigatewayProto";

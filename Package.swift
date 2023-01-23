@@ -5,6 +5,7 @@ let packageName = "zveron-grpc-swift"
 let productName = "ZveronGRPC"
 
 let addressTargetName = "AddressGRPC"
+let apigatewayTargetName = "ApigatewayGRPC"
 let blacklistTargetName = "BlacklistGRPC"
 let favoritesTargetName = "FavoritesGRPC"
 let parameterTargetName = "ParameterGRPC"
@@ -22,6 +23,7 @@ let package = Package(
             name: productName,
             targets: [
                 addressTargetName,
+                apigatewayTargetName,
                 blacklistTargetName,
                 favoritesTargetName,
                 parameterTargetName,
@@ -31,6 +33,7 @@ let package = Package(
     dependencies: packageDependencies,
     targets: [
         .target(name: addressTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
+        .target(name: apigatewayTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: blacklistTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: favoritesTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: parameterTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),

@@ -18,7 +18,7 @@ plugins {
 
 allprojects {
     group = "ru.zveron"
-    version = "1.0.0"
+    version = "1.0.4"
 
     repositories {
         mavenCentral()
@@ -46,8 +46,8 @@ subprojects {
         }
     }
 
-    val protobufVersion = "3.21.4"
-    val grpcVersion = "1.48.0"
+    val protobufVersion = "3.21.7"
+    val grpcVersion = "1.51.0"
     val grpcKotlinVersion = "1.3.0"
 
     dependencies {

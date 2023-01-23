@@ -11,28 +11,28 @@ option java_multiple_files = true;
 service ProfileServiceExternal {
 
   // Получение профиля, как страницы в маркетплейсе (агрегируем данные из разных источников)
-  rpc getProfilePage(GetProfilePageRequest) returns(GetProfilePageResponse);
+  rpc GetProfilePage(GetProfilePageRequest) returns(GetProfilePageResponse);
 
   // Получение профиля, как страницы в маркетплейсе, для его владельца
-  rpc getProfileInfo(GetProfileInfoRequest) returns(GetProfileInfoResponse);
+  rpc GetProfileInfo(GetProfileInfoRequest) returns(GetProfileInfoResponse);
 
   // Редактирование профиля, как страницы в маркетплейсе, владельцем
-  rpc setProfileInfo(SetProfileInfoRequest) returns(google.protobuf.Empty);
+  rpc SetProfileInfo(SetProfileInfoRequest) returns(google.protobuf.Empty);
 
   // Получение настроек профиля
-  rpc getSettings(GetSettingsRequest) returns(GetSettingsResponse);
+  rpc GetSettings(GetSettingsRequest) returns(GetSettingsResponse);
 
   // Изменение настроект профиля
-  rpc setSettings(SetSettingsRequest) returns(google.protobuf.Empty);
+  rpc SetSettings(SetSettingsRequest) returns(google.protobuf.Empty);
 
   // Получение предпочительных способов связи (для создания объявлений)
-  rpc getChannelTypes(GetChannelTypesRequest) returns(GetChannelTypesResponse);
+  rpc GetChannelTypes(GetChannelTypesRequest) returns(GetChannelTypesResponse);
 
   // Получение способов связи, привязанных к профилю. Доступно для владельца профиля
-  rpc getLinks(GetLinksRequest) returns(Links);
+  rpc GetLinks(GetLinksRequest) returns(Links);
 
   // Полное удаление профиля без возможности восстановления
-  rpc deleteProfile(DeleteProfileRequest) returns(google.protobuf.Empty);
+  rpc DeleteProfile(DeleteProfileRequest) returns(google.protobuf.Empty);
 }
 
 message GetProfilePageRequest {

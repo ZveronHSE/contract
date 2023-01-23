@@ -24,11 +24,13 @@ message Phone {
   string number = 1;
 }
 
-message VKLinks{
-  string ref = 1;
-  string email = 2;
+message VKLinks {
+  string id = 1;
+  string ref = 2;
+  string email = 3;
 }
 
-message Gmail{
-  string email = 1;
+message Gmail {
+  string id = 1;
+  string email = 2;
 }

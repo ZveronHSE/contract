@@ -22,6 +22,9 @@ service ProfileServiceInternal {
   // Обновление способов связи. Метод вызывается когда пользователь добавляет новый способ связи
   // Или удаляет уже существующий.
   rpc UpdateContacts(UpdateContactsRequest) returns(google.protobuf.Empty);
+
+  // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
+  rpc ProfileExistsByLink(ProfileExistsByLinkRequest) returns(ProfileExistsByLinkResponse);
 }
 
 message CreateProfileRequest {
@@ -59,11 +62,22 @@ message GetProfileWithContactsResponse {
   int64 address_id = 7;
 }
 
-// Т.к. за раз изменение происходи только в одном поле,
-// В ways_of_communication необходимо указать, в каком поле произошло изменение (значение true)
-// Сервис перезапишет информацию, указанную в links_to_contacts, только для отмеченного способа связи
 message UpdateContactsRequest {
   int64 profile_id = 1;
+  // Тип способа связи, который был изменен. Только он будет перезаписан сервисом
   ChannelType type = 2;
   Links links = 3;
+}
+
+message ProfileExistsByLinkRequest {
+  ChannelType type = 1;
+  // В случае телефона - номер телефона
+  // В случае соц. сети - id
+  string identifier = 2;
+}
+
+message ProfileExistsByLinkResponse {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
 }

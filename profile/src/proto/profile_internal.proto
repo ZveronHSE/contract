@@ -24,7 +24,7 @@ service ProfileServiceInternal {
   rpc UpdateContacts(UpdateContactsRequest) returns(google.protobuf.Empty);
 
   // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
-  rpc ProfileExistsByLink(ProfileExistsByLinkRequest) returns(ProfileExistsByLinkResponse);
+  rpc GetProfileByChannel(GetProfileByChannelRequest) returns(GetProfileByChannelResponse);
 }
 
 message CreateProfileRequest {
@@ -69,14 +69,14 @@ message UpdateContactsRequest {
   Links links = 3;
 }
 
-message ProfileExistsByLinkRequest {
+message GetProfileByChannelRequest {
   ChannelType type = 1;
   // В случае телефона - номер телефона
   // В случае соц. сети - id
   string identifier = 2;
 }
 
-message ProfileExistsByLinkResponse {
+message GetProfileByChannelResponse {
   int64 id = 1;
   string name = 2;
   string surname = 3;

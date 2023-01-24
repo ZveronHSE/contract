@@ -108,11 +108,8 @@ enum Operation {
 }
 
 message WaterfallResponse {
-  repeated WaterfallLot lots = 1;
-}
+  repeated model.Lot lots = 1;
 
-message WaterfallLot {
-  model.Lot lot = 1;
   // Данные последнего объявления, необходимые для сортировки и работы водопада
   DataFilter data_filter = 2;
 }

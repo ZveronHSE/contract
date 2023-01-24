@@ -17,6 +17,8 @@ message Lot {
   int64 photo_id = 5;
   // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
   bool favorite = 6;
+  // В каком статусе находится объявление
+  Status status = 7;
 }
 
 enum CommunicationChannel {
@@ -30,6 +32,12 @@ enum Gender {
   FEMALE = 0;
   MALE = 1;
   METIS = 2;
+}
+
+enum Status {
+  ACTIVE = 0;
+  CLOSED = 1;
+  CANCELED = 2;
 }
 
 message Address {

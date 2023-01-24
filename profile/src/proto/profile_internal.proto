@@ -28,42 +28,42 @@ service ProfileServiceInternal {
 }
 
 message CreateProfileRequest {
-  int64 auth_account_id = 1;
+  uint64 auth_account_id = 1;
   string name = 2;
   string surname = 3;
   Links links = 4;
-  int64 image_id = 5;
+  uint64 image_id = 5;
 }
 
 message GetProfileRequest {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message GetProfileResponse {
-  int64 id = 1;
+  uint64 id = 1;
   string name = 2;
   string surname = 3;
-  int64 image_id = 4;
+  uint64 image_id = 4;
   repeated ChannelType channels = 5;
   int64 address_id = 6;
 }
 
 message GetProfileWithContactsRequest {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message GetProfileWithContactsResponse {
-  int64 id = 1;
+  uint64 id = 1;
   string name = 2;
   string surname = 3;
-  int64 image_id = 4;
+  uint64 image_id = 4;
   repeated ChannelType channels = 5;
   Links links = 6;
   int64 address_id = 7;
 }
 
 message UpdateContactsRequest {
-  int64 profile_id = 1;
+  uint64 profile_id = 1;
   // Тип способа связи, который был изменен. Только он будет перезаписан сервисом
   ChannelType type = 2;
   Links links = 3;
@@ -77,7 +77,7 @@ message GetProfileByChannelRequest {
 }
 
 message GetProfileByChannelResponse {
-  int64 id = 1;
+  uint64 id = 1;
   string name = 2;
   string surname = 3;
 }

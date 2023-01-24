@@ -7,6 +7,7 @@ let productName = "ZveronGRPC"
 let addressTargetName = "AddressGRPC"
 let blacklistTargetName = "BlacklistGRPC"
 let favoritesTargetName = "FavoritesGRPC"
+let lotTargetName = "LotGRPC"
 let parameterTargetName = "ParameterGRPC"
 
 import PackageDescription
@@ -24,6 +25,7 @@ let package = Package(
                 addressTargetName,
                 blacklistTargetName,
                 favoritesTargetName,
+                lotTargetName,
                 parameterTargetName,
             ]
         )
@@ -33,6 +35,7 @@ let package = Package(
         .target(name: addressTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: blacklistTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: favoritesTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
+        .target(name: lotTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: parameterTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
     ]
 )

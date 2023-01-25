@@ -2,9 +2,8 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "model/communication.proto";
-package ru.zveron;
 
-option java_package = "ru.zveron";
+option java_package = "ru.zveron.contract.profile.internal";
 option java_outer_classname = "ProfileGrpcInternal";
 option java_multiple_files = true;
 

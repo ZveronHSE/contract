@@ -1,9 +1,6 @@
 syntax = "proto3";
-import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
-package ru.zveron;
 
-option java_package = "ru.zveron";
+option java_package = "ru.zveron.contract.profile.model";
 option java_outer_classname = "ProfileModelCommunication";
 option java_multiple_files = true;
 
@@ -15,19 +12,19 @@ enum ChannelType {
 }
 
 message Links {
-  Phone phone = 1;
-  VKLinks vk = 2;
-  Gmail gmail = 3;
+  optional Phone phone = 1;
+  optional Vk vk = 2;
+  optional Gmail gmail = 3;
 }
 
 message Phone {
   string number = 1;
 }
 
-message VKLinks {
+message Vk {
   string id = 1;
   string ref = 2;
-  string email = 3;
+  optional string email = 3;
 }
 
 message Gmail {

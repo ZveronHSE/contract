@@ -2,9 +2,8 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "model/communication.proto";
-package ru.zveron;
 
-option java_package = "ru.zveron";
+option java_package = "ru.zveron.contract.profile.external";
 option java_outer_classname = "ProfileGrpcExternal";
 option java_multiple_files = true;
 
@@ -37,7 +36,7 @@ service ProfileServiceExternal {
 
 message GetProfilePageRequest {
   uint64 requested_profile_id = 1;
-  uint64 authorized_profile_id = 2;
+  optional uint64 authorized_profile_id = 2;
 }
 
 message GetProfileInfoRequest {
@@ -46,10 +45,10 @@ message GetProfileInfoRequest {
 
 message SetProfileInfoRequest {
   uint64 id = 1;
-  string name = 2;
-  string surname = 3;
-  uint64 image_id = 4;
-  Address address = 5;
+  optional string name = 2;
+  optional string surname = 3;
+  optional uint64 image_id = 4;
+  optional Address address = 5;
 }
 
 message GetSettingsRequest {
@@ -58,8 +57,9 @@ message GetSettingsRequest {
 
 message SetSettingsRequest {
   uint64 id = 1;
+  // Optional too
   repeated ChannelType channels = 2;
-  Address address = 3;
+  optional Address address = 3;
 }
 
 message GetChannelTypesRequest {

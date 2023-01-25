@@ -34,7 +34,7 @@ message WaterfallRequest {
   // Фильтровать по различным полям объявления, кроме параметров. (например, цена, дата и тд)
   repeated Filter filters = 4;
   // Фильтровать по параметрам объявления, если они заданы
-  repeated model.Parameter parameters = 5;
+  map<int32, string> parameters = 5;
   // По какому признаку нужно сортировать объявления
   oneof sort {
     SortByDate sort_by_date = 6;
@@ -125,7 +125,7 @@ message CreateLotRequest {
   string title = 1;
   repeated model.Photo photos = 2;
   // Заданные параметры объявления
-  repeated model.Parameter parameters = 3;
+  map<int32, string> parameters = 3;
   string description = 4;
   string price = 5;
   // Количество выбранных связей, их может быть 1 или 2.
@@ -146,7 +146,7 @@ message EditLotRequest {
   string title = 2;
   repeated model.Photo photos = 3;
   // Заданные параметры объявления
-  repeated model.Parameter parameters = 4;
+  map<int32, string> parameters = 4;
   string description = 5;
   string price = 6;
   // Количество выбранных связей, их может быть 1 или 2.

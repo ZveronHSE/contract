@@ -28,8 +28,7 @@ service AuthService {
   //потому токены можно передать в метадате
   rpc VerifyToken (VerifyMobileTokenRequest) returns (VerifyMobileTokenResponse);
 
-  //запрос на получение новых токенов, можно их передавать в шлюз в метадате, оттуда шлюз в теле
-  //их в сервис авторизации потащит
+  //запрос на получение новых токенов
   rpc IssueNewTokens (IssueNewTokensRequest) returns (IssueNewTokensResponse);
 }
 

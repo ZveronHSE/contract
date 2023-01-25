@@ -34,7 +34,7 @@ message WaterfallRequest {
   // Фильтровать по различным полям объявления, кроме параметров. (например, цена, дата и тд)
   repeated Filter filters = 4;
   // Фильтровать по параметрам объявления, если они заданы
-  map<int32, string> parameters = 5;
+  repeated model.Parameter parameters = 5;
   // По какому признаку нужно сортировать объявления
   oneof sort {
     SortByDate sort_by_date = 6;

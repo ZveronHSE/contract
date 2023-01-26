@@ -3,7 +3,9 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "model/communication.proto";
 
-option java_package = "ru.zveron.contract.profile.external";
+package ru.zveron.contract.profile;
+
+option java_package = "ru.zveron.contract.profile";
 option java_outer_classname = "ProfileGrpcExternal";
 option java_multiple_files = true;
 
@@ -28,7 +30,7 @@ service ProfileServiceExternal {
   rpc GetChannelTypes(GetChannelTypesRequest) returns(GetChannelTypesResponse);
 
   // Получение способов связи, привязанных к профилю. Доступно для владельца профиля
-  rpc GetLinks(GetLinksRequest) returns(Links);
+  rpc GetLinks(GetLinksRequest) returns(model.Links);
 
   // Полное удаление профиля без возможности восстановления
   rpc DeleteProfile(DeleteProfileRequest) returns(google.protobuf.Empty);
@@ -58,7 +60,7 @@ message GetSettingsRequest {
 message SetSettingsRequest {
   uint64 id = 1;
   // Optional too
-  repeated ChannelType channels = 2;
+  repeated model.ChannelType channels = 2;
   optional Address address = 3;
 }
 
@@ -113,7 +115,7 @@ enum LotStatus {
 }
 
 message GetChannelTypesResponse {
-  repeated ChannelType channels = 1;
+  repeated model.ChannelType channels = 1;
 }
 
 message Address {
@@ -124,11 +126,11 @@ message Address {
 }
 
 message GetSettingsResponse {
-  repeated ChannelType channels = 2;
+  repeated model.ChannelType channels = 2;
   Address address = 3;
 }
 
 message Contacts {
-  repeated ChannelType channels = 1;
-  Links links = 2;
+  repeated model.ChannelType channels = 1;
+  model.Links links = 2;
 }

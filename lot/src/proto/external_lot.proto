@@ -127,7 +127,7 @@ message CreateLotRequest {
   // Заданные параметры объявления
   map<int32, string> parameters = 3;
   string description = 4;
-  string price = 5;
+  int32 price = 5;
   // Количество выбранных связей, их может быть 1 или 2.
   repeated model.CommunicationChannel communication_channel = 6;
   // Это может отсутствовать, если гендера нет для объявления, например, для товаров.
@@ -148,7 +148,7 @@ message EditLotRequest {
   // Заданные параметры объявления
   map<int32, string> parameters = 4;
   string description = 5;
-  string price = 6;
+  int32 price = 6;
   // Количество выбранных связей, их может быть 1 или 2.
   repeated model.CommunicationChannel communication_channel = 7;
 }

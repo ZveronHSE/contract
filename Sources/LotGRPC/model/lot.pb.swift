@@ -112,6 +112,50 @@ extension Ru_Zveron_Contract_Lot_Model_Gender: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+public enum Ru_Zveron_Contract_Lot_Model_Status: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+  case active // = 0
+  case closed // = 1
+  case canceled // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .active
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .active
+    case 1: self = .closed
+    case 2: self = .canceled
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .active: return 0
+    case .closed: return 1
+    case .canceled: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Ru_Zveron_Contract_Lot_Model_Status: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Ru_Zveron_Contract_Lot_Model_Status] = [
+    .active,
+    .closed,
+    .canceled,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 public struct Ru_Zveron_Contract_Lot_Model_Lot {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -132,6 +176,9 @@ public struct Ru_Zveron_Contract_Lot_Model_Lot {
 
   /// Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
   public var favorite: Bool = false
+
+  /// В каком статусе находится объявление
+  public var status: Ru_Zveron_Contract_Lot_Model_Status = .active
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -191,6 +238,7 @@ public struct Ru_Zveron_Contract_Lot_Model_Photo {
 #if swift(>=5.5) && canImport(_Concurrency)
 extension Ru_Zveron_Contract_Lot_Model_CommunicationChannel: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_Model_Gender: @unchecked Sendable {}
+extension Ru_Zveron_Contract_Lot_Model_Status: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_Model_Lot: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_Model_Address: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_Model_Parameter: @unchecked Sendable {}
@@ -218,6 +266,14 @@ extension Ru_Zveron_Contract_Lot_Model_Gender: SwiftProtobuf._ProtoNameProviding
   ]
 }
 
+extension Ru_Zveron_Contract_Lot_Model_Status: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "ACTIVE"),
+    1: .same(proto: "CLOSED"),
+    2: .same(proto: "CANCELED"),
+  ]
+}
+
 extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Lot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -227,6 +283,7 @@ extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf
     4: .standard(proto: "publication_date"),
     5: .standard(proto: "photo_id"),
     6: .same(proto: "favorite"),
+    7: .same(proto: "status"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -241,6 +298,7 @@ extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf
       case 4: try { try decoder.decodeSingularStringField(value: &self.publicationDate) }()
       case 5: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
       case 6: try { try decoder.decodeSingularBoolField(value: &self.favorite) }()
+      case 7: try { try decoder.decodeSingularEnumField(value: &self.status) }()
       default: break
       }
     }
@@ -265,6 +323,9 @@ extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf
     if self.favorite != false {
       try visitor.visitSingularBoolField(value: self.favorite, fieldNumber: 6)
     }
+    if self.status != .active {
+      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -275,6 +336,7 @@ extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf
     if lhs.publicationDate != rhs.publicationDate {return false}
     if lhs.photoID != rhs.photoID {return false}
     if lhs.favorite != rhs.favorite {return false}
+    if lhs.status != rhs.status {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -441,26 +441,7 @@ public struct Ru_Zveron_Contract_Lot_WaterfallResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var lots: [Ru_Zveron_Contract_Lot_WaterfallLot] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct Ru_Zveron_Contract_Lot_WaterfallLot {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var lot: Ru_Zveron_Contract_Lot_Model_Lot {
-    get {return _lot ?? Ru_Zveron_Contract_Lot_Model_Lot()}
-    set {_lot = newValue}
-  }
-  /// Returns true if `lot` has been explicitly set.
-  public var hasLot: Bool {return self._lot != nil}
-  /// Clears the value of `lot`. Subsequent reads from it will return its default value.
-  public mutating func clearLot() {self._lot = nil}
+  public var lots: [Ru_Zveron_Contract_Lot_Model_Lot] = []
 
   /// Данные последнего объявления, необходимые для сортировки и работы водопада
   public var dataFilter: Ru_Zveron_Contract_Lot_DataFilter {
@@ -476,7 +457,6 @@ public struct Ru_Zveron_Contract_Lot_WaterfallLot {
 
   public init() {}
 
-  fileprivate var _lot: Ru_Zveron_Contract_Lot_Model_Lot? = nil
   fileprivate var _dataFilter: Ru_Zveron_Contract_Lot_DataFilter? = nil
 }
 
@@ -514,11 +494,11 @@ public struct Ru_Zveron_Contract_Lot_CreateLotRequest {
   public var photos: [Ru_Zveron_Contract_Lot_Model_Photo] = []
 
   /// Заданные параметры объявления
-  public var parameters: [Ru_Zveron_Contract_Lot_Model_Parameter] = []
+  public var parameters: Dictionary<Int32,String> = [:]
 
   public var description_p: String = String()
 
-  public var price: String = String()
+  public var price: Int32 = 0
 
   /// Количество выбранных связей, их может быть 1 или 2.
   public var communicationChannel: [Ru_Zveron_Contract_Lot_Model_CommunicationChannel] = []
@@ -568,11 +548,11 @@ public struct Ru_Zveron_Contract_Lot_EditLotRequest {
   public var photos: [Ru_Zveron_Contract_Lot_Model_Photo] = []
 
   /// Заданные параметры объявления
-  public var parameters: [Ru_Zveron_Contract_Lot_Model_Parameter] = []
+  public var parameters: Dictionary<Int32,String> = [:]
 
   public var description_p: String = String()
 
-  public var price: String = String()
+  public var price: Int32 = 0
 
   /// Количество выбранных связей, их может быть 1 или 2.
   public var communicationChannel: [Ru_Zveron_Contract_Lot_Model_CommunicationChannel] = []
@@ -819,31 +799,13 @@ public struct Ru_Zveron_Contract_Lot_Seller {
   /// Рейтинг продавца
   public var rating: Double = 0
 
-  /// Если сейчас продавец в онлайне, то придет пустая строка, иначе форматированная дата.
-  public var dateOnline: String {
-    get {return _dateOnline ?? String()}
-    set {_dateOnline = newValue}
-  }
-  /// Returns true if `dateOnline` has been explicitly set.
-  public var hasDateOnline: Bool {return self._dateOnline != nil}
-  /// Clears the value of `dateOnline`. Subsequent reads from it will return its default value.
-  public mutating func clearDateOnline() {self._dateOnline = nil}
+  public var online: Bool = false
 
-  public var photo: Ru_Zveron_Contract_Lot_Model_Photo {
-    get {return _photo ?? Ru_Zveron_Contract_Lot_Model_Photo()}
-    set {_photo = newValue}
-  }
-  /// Returns true if `photo` has been explicitly set.
-  public var hasPhoto: Bool {return self._photo != nil}
-  /// Clears the value of `photo`. Subsequent reads from it will return its default value.
-  public mutating func clearPhoto() {self._photo = nil}
+  public var photoID: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  fileprivate var _dateOnline: String? = nil
-  fileprivate var _photo: Ru_Zveron_Contract_Lot_Model_Photo? = nil
 }
 
 public struct Ru_Zveron_Contract_Lot_Contact {
@@ -929,7 +891,6 @@ extension Ru_Zveron_Contract_Lot_SortByPrice: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_SortByPrice.LastLot: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_Filter: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_WaterfallResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_WaterfallLot: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_DataFilter: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_CreateLotRequest: @unchecked Sendable {}
 extension Ru_Zveron_Contract_Lot_EditLotRequest: @unchecked Sendable {}
@@ -1296,38 +1257,6 @@ extension Ru_Zveron_Contract_Lot_WaterfallResponse: SwiftProtobuf.Message, Swift
   public static let protoMessageName: String = _protobuf_package + ".WaterfallResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "lots"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.lots) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.lots.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.lots, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_WaterfallResponse, rhs: Ru_Zveron_Contract_Lot_WaterfallResponse) -> Bool {
-    if lhs.lots != rhs.lots {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Ru_Zveron_Contract_Lot_WaterfallLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".WaterfallLot"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "lot"),
     2: .standard(proto: "data_filter"),
   ]
 
@@ -1337,7 +1266,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallLot: SwiftProtobuf.Message, SwiftProto
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._lot) }()
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.lots) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._dataFilter) }()
       default: break
       }
@@ -1349,17 +1278,17 @@ extension Ru_Zveron_Contract_Lot_WaterfallLot: SwiftProtobuf.Message, SwiftProto
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
-    try { if let v = self._lot {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    } }()
+    if !self.lots.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.lots, fieldNumber: 1)
+    }
     try { if let v = self._dataFilter {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_WaterfallLot, rhs: Ru_Zveron_Contract_Lot_WaterfallLot) -> Bool {
-    if lhs._lot != rhs._lot {return false}
+  public static func ==(lhs: Ru_Zveron_Contract_Lot_WaterfallResponse, rhs: Ru_Zveron_Contract_Lot_WaterfallResponse) -> Bool {
+    if lhs.lots != rhs.lots {return false}
     if lhs._dataFilter != rhs._dataFilter {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -1431,9 +1360,9 @@ extension Ru_Zveron_Contract_Lot_CreateLotRequest: SwiftProtobuf.Message, SwiftP
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.title) }()
       case 2: try { try decoder.decodeRepeatedMessageField(value: &self.photos) }()
-      case 3: try { try decoder.decodeRepeatedMessageField(value: &self.parameters) }()
+      case 3: try { try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufString>.self, value: &self.parameters) }()
       case 4: try { try decoder.decodeSingularStringField(value: &self.description_p) }()
-      case 5: try { try decoder.decodeSingularStringField(value: &self.price) }()
+      case 5: try { try decoder.decodeSingularInt32Field(value: &self.price) }()
       case 6: try { try decoder.decodeRepeatedEnumField(value: &self.communicationChannel) }()
       case 7: try { try decoder.decodeSingularEnumField(value: &self._gender) }()
       case 8: try { try decoder.decodeSingularMessageField(value: &self._address) }()
@@ -1456,13 +1385,13 @@ extension Ru_Zveron_Contract_Lot_CreateLotRequest: SwiftProtobuf.Message, SwiftP
       try visitor.visitRepeatedMessageField(value: self.photos, fieldNumber: 2)
     }
     if !self.parameters.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.parameters, fieldNumber: 3)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufString>.self, value: self.parameters, fieldNumber: 3)
     }
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 4)
     }
-    if !self.price.isEmpty {
-      try visitor.visitSingularStringField(value: self.price, fieldNumber: 5)
+    if self.price != 0 {
+      try visitor.visitSingularInt32Field(value: self.price, fieldNumber: 5)
     }
     if !self.communicationChannel.isEmpty {
       try visitor.visitPackedEnumField(value: self.communicationChannel, fieldNumber: 6)
@@ -1519,9 +1448,9 @@ extension Ru_Zveron_Contract_Lot_EditLotRequest: SwiftProtobuf.Message, SwiftPro
       case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.title) }()
       case 3: try { try decoder.decodeRepeatedMessageField(value: &self.photos) }()
-      case 4: try { try decoder.decodeRepeatedMessageField(value: &self.parameters) }()
+      case 4: try { try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufString>.self, value: &self.parameters) }()
       case 5: try { try decoder.decodeSingularStringField(value: &self.description_p) }()
-      case 6: try { try decoder.decodeSingularStringField(value: &self.price) }()
+      case 6: try { try decoder.decodeSingularInt32Field(value: &self.price) }()
       case 7: try { try decoder.decodeRepeatedEnumField(value: &self.communicationChannel) }()
       default: break
       }
@@ -1539,13 +1468,13 @@ extension Ru_Zveron_Contract_Lot_EditLotRequest: SwiftProtobuf.Message, SwiftPro
       try visitor.visitRepeatedMessageField(value: self.photos, fieldNumber: 3)
     }
     if !self.parameters.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.parameters, fieldNumber: 4)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufString>.self, value: self.parameters, fieldNumber: 4)
     }
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 5)
     }
-    if !self.price.isEmpty {
-      try visitor.visitSingularStringField(value: self.price, fieldNumber: 6)
+    if self.price != 0 {
+      try visitor.visitSingularInt32Field(value: self.price, fieldNumber: 6)
     }
     if !self.communicationChannel.isEmpty {
       try visitor.visitPackedEnumField(value: self.communicationChannel, fieldNumber: 7)
@@ -1927,8 +1856,8 @@ extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._M
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
     4: .same(proto: "rating"),
-    5: .standard(proto: "date_online"),
-    6: .same(proto: "photo"),
+    5: .same(proto: "online"),
+    6: .standard(proto: "photo_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1941,18 +1870,14 @@ extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._M
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
       case 4: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
-      case 5: try { try decoder.decodeSingularStringField(value: &self._dateOnline) }()
-      case 6: try { try decoder.decodeSingularMessageField(value: &self._photo) }()
+      case 5: try { try decoder.decodeSingularBoolField(value: &self.online) }()
+      case 6: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every if/case branch local when no optimizations
-    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
-    // https://github.com/apple/swift-protobuf/issues/1182
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
     }
@@ -1965,12 +1890,12 @@ extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._M
     if self.rating != 0 {
       try visitor.visitSingularDoubleField(value: self.rating, fieldNumber: 4)
     }
-    try { if let v = self._dateOnline {
-      try visitor.visitSingularStringField(value: v, fieldNumber: 5)
-    } }()
-    try { if let v = self._photo {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-    } }()
+    if self.online != false {
+      try visitor.visitSingularBoolField(value: self.online, fieldNumber: 5)
+    }
+    if self.photoID != 0 {
+      try visitor.visitSingularInt64Field(value: self.photoID, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1979,8 +1904,8 @@ extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._M
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
     if lhs.rating != rhs.rating {return false}
-    if lhs._dateOnline != rhs._dateOnline {return false}
-    if lhs._photo != rhs._photo {return false}
+    if lhs.online != rhs.online {return false}
+    if lhs.photoID != rhs.photoID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

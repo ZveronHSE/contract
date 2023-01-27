@@ -61,6 +61,7 @@ message GetProfileWithContactsResponse {
   repeated model.ChannelType channels = 5;
   model.Links links = 6;
   int64 address_id = 7;
+  google.protobuf.Timestamp lastSeen = 8;
 }
 
 message UpdateContactsRequest {

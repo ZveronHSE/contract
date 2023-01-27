@@ -6,4 +6,5 @@ include(
     "blacklist",
     "favorites",
     "apigateway",
-)
+    "auth",
+    )

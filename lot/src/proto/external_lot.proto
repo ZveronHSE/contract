@@ -224,8 +224,7 @@ message Seller {
   string surname = 3;
   // Рейтинг продавца
   double rating = 4;
-  // Если сейчас продавец в онлайне, то придет пустая строка, иначе форматированная дата.
-  optional string date_online = 5;
+  bool online = 5;
   int64 photo_id = 6;
 }
 

@@ -5,5 +5,6 @@ include(
     "parameter",
     "blacklist",
     "favorites",
+    "apigateway",
     "auth",
-)
+    )

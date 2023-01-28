@@ -1,6 +1,7 @@
 syntax = "proto3";
 package ru.zveron.contract.category;
 
+option swift_prefix = "";
 option java_package = "ru.zveron.contract.category";
 option java_outer_classname = "CategoryProto";
 option java_multiple_files = true;

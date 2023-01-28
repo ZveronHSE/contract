@@ -26,23 +26,23 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Parameter_ParameterServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `ParameterServiceClient`, then call methods of this protocol to make API calls.
+public protocol ParameterServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: ParameterServiceClientInterceptorFactoryProtocol? { get }
 
   func getParametersByCategory(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterRequest,
+    _ request: ParameterRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Parameter_ParameterRequest, Ru_Zveron_Contract_Parameter_ParameterResponse>
+  ) -> UnaryCall<ParameterRequest, ParameterResponse>
 
   func validateValuesForParameters(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterValueRequest,
+    _ request: ParameterValueRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Parameter_ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
-extension Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol {
+extension ParameterServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.parameter.ParameterService"
   }
@@ -54,11 +54,11 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getParametersByCategory(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterRequest,
+    _ request: ParameterRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Parameter_ParameterRequest, Ru_Zveron_Contract_Parameter_ParameterResponse> {
+  ) -> UnaryCall<ParameterRequest, ParameterResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.getParametersByCategory.path,
+      path: ParameterServiceClientMetadata.Methods.getParametersByCategory.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetParametersByCategoryInterceptors() ?? []
@@ -72,11 +72,11 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func validateValuesForParameters(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterValueRequest,
+    _ request: ParameterValueRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Parameter_ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.validateValuesForParameters.path,
+      path: ParameterServiceClientMetadata.Methods.validateValuesForParameters.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makevalidateValuesForParametersInterceptors() ?? []
@@ -86,20 +86,20 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Parameter_ParameterServiceClient: @unchecked Sendable {}
+extension ParameterServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Parameter_ParameterServiceNIOClient")
-public final class Ru_Zveron_Contract_Parameter_ParameterServiceClient: Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol {
+@available(*, deprecated, renamed: "ParameterServiceNIOClient")
+public final class ParameterServiceClient: ParameterServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: ParameterServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: ParameterServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -113,7 +113,7 @@ public final class Ru_Zveron_Contract_Parameter_ParameterServiceClient: Ru_Zvero
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: ParameterServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -121,10 +121,10 @@ public final class Ru_Zveron_Contract_Parameter_ParameterServiceClient: Ru_Zvero
   }
 }
 
-public struct Ru_Zveron_Contract_Parameter_ParameterServiceNIOClient: Ru_Zveron_Contract_Parameter_ParameterServiceClientProtocol {
+public struct ParameterServiceNIOClient: ParameterServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol?
+  public var interceptors: ParameterServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.parameter.ParameterService service.
   ///
@@ -135,7 +135,7 @@ public struct Ru_Zveron_Contract_Parameter_ParameterServiceNIOClient: Ru_Zveron_
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: ParameterServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -145,37 +145,37 @@ public struct Ru_Zveron_Contract_Parameter_ParameterServiceNIOClient: Ru_Zveron_
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol: GRPCClient {
+public protocol ParameterServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: ParameterServiceClientInterceptorFactoryProtocol? { get }
 
   func makeGetParametersByCategoryCall(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterRequest,
+    _ request: ParameterRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Parameter_ParameterRequest, Ru_Zveron_Contract_Parameter_ParameterResponse>
+  ) -> GRPCAsyncUnaryCall<ParameterRequest, ParameterResponse>
 
   func makeValidateValuesForParametersCall(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterValueRequest,
+    _ request: ParameterValueRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Parameter_ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
+extension ParameterServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.serviceDescriptor
+    return ParameterServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: ParameterServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeGetParametersByCategoryCall(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterRequest,
+    _ request: ParameterRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Parameter_ParameterRequest, Ru_Zveron_Contract_Parameter_ParameterResponse> {
+  ) -> GRPCAsyncUnaryCall<ParameterRequest, ParameterResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.getParametersByCategory.path,
+      path: ParameterServiceClientMetadata.Methods.getParametersByCategory.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetParametersByCategoryInterceptors() ?? []
@@ -183,11 +183,11 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
   }
 
   public func makeValidateValuesForParametersCall(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterValueRequest,
+    _ request: ParameterValueRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Parameter_ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.validateValuesForParameters.path,
+      path: ParameterServiceClientMetadata.Methods.validateValuesForParameters.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makevalidateValuesForParametersInterceptors() ?? []
@@ -196,13 +196,13 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
+extension ParameterServiceAsyncClientProtocol {
   public func getParametersByCategory(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterRequest,
+    _ request: ParameterRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Parameter_ParameterResponse {
+  ) async throws -> ParameterResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.getParametersByCategory.path,
+      path: ParameterServiceClientMetadata.Methods.getParametersByCategory.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetParametersByCategoryInterceptors() ?? []
@@ -210,11 +210,11 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
   }
 
   public func validateValuesForParameters(
-    _ request: Ru_Zveron_Contract_Parameter_ParameterValueRequest,
+    _ request: ParameterValueRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.validateValuesForParameters.path,
+      path: ParameterServiceClientMetadata.Methods.validateValuesForParameters.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makevalidateValuesForParametersInterceptors() ?? []
@@ -223,15 +223,15 @@ extension Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClient: Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClientProtocol {
+public struct ParameterServiceAsyncClient: ParameterServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol?
+  public var interceptors: ParameterServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: ParameterServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -241,22 +241,22 @@ public struct Ru_Zveron_Contract_Parameter_ParameterServiceAsyncClient: Ru_Zvero
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Parameter_ParameterServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol ParameterServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'getParametersByCategory'.
-  func makegetParametersByCategoryInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Parameter_ParameterRequest, Ru_Zveron_Contract_Parameter_ParameterResponse>]
+  func makegetParametersByCategoryInterceptors() -> [ClientInterceptor<ParameterRequest, ParameterResponse>]
 
   /// - Returns: Interceptors to use when invoking 'validateValuesForParameters'.
-  func makevalidateValuesForParametersInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Parameter_ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makevalidateValuesForParametersInterceptors() -> [ClientInterceptor<ParameterValueRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 }
 
-public enum Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata {
+public enum ParameterServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "ParameterService",
     fullName: "ru.zveron.contract.parameter.ParameterService",
     methods: [
-      Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.getParametersByCategory,
-      Ru_Zveron_Contract_Parameter_ParameterServiceClientMetadata.Methods.validateValuesForParameters,
+      ParameterServiceClientMetadata.Methods.getParametersByCategory,
+      ParameterServiceClientMetadata.Methods.validateValuesForParameters,
     ]
   )
 

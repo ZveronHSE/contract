@@ -26,23 +26,23 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Category_CategoryServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Category_CategoryServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `CategoryServiceClient`, then call methods of this protocol to make API calls.
+public protocol CategoryServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: CategoryServiceClientInterceptorFactoryProtocol? { get }
 
   func getChild(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse>
+  ) -> UnaryCall<CategoryRequest, CategoryResponse>
 
   func getCategoryTree(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse>
+  ) -> UnaryCall<CategoryRequest, CategoryResponse>
 }
 
-extension Ru_Zveron_Contract_Category_CategoryServiceClientProtocol {
+extension CategoryServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.category.CategoryService"
   }
@@ -54,11 +54,11 @@ extension Ru_Zveron_Contract_Category_CategoryServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getChild(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse> {
+  ) -> UnaryCall<CategoryRequest, CategoryResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getChild.path,
+      path: CategoryServiceClientMetadata.Methods.getChild.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetChildInterceptors() ?? []
@@ -72,11 +72,11 @@ extension Ru_Zveron_Contract_Category_CategoryServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getCategoryTree(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse> {
+  ) -> UnaryCall<CategoryRequest, CategoryResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getCategoryTree.path,
+      path: CategoryServiceClientMetadata.Methods.getCategoryTree.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetCategoryTreeInterceptors() ?? []
@@ -86,20 +86,20 @@ extension Ru_Zveron_Contract_Category_CategoryServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Category_CategoryServiceClient: @unchecked Sendable {}
+extension CategoryServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Category_CategoryServiceNIOClient")
-public final class Ru_Zveron_Contract_Category_CategoryServiceClient: Ru_Zveron_Contract_Category_CategoryServiceClientProtocol {
+@available(*, deprecated, renamed: "CategoryServiceNIOClient")
+public final class CategoryServiceClient: CategoryServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: CategoryServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: CategoryServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -113,7 +113,7 @@ public final class Ru_Zveron_Contract_Category_CategoryServiceClient: Ru_Zveron_
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: CategoryServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -121,10 +121,10 @@ public final class Ru_Zveron_Contract_Category_CategoryServiceClient: Ru_Zveron_
   }
 }
 
-public struct Ru_Zveron_Contract_Category_CategoryServiceNIOClient: Ru_Zveron_Contract_Category_CategoryServiceClientProtocol {
+public struct CategoryServiceNIOClient: CategoryServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol?
+  public var interceptors: CategoryServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.category.CategoryService service.
   ///
@@ -135,7 +135,7 @@ public struct Ru_Zveron_Contract_Category_CategoryServiceNIOClient: Ru_Zveron_Co
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: CategoryServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -145,37 +145,37 @@ public struct Ru_Zveron_Contract_Category_CategoryServiceNIOClient: Ru_Zveron_Co
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol: GRPCClient {
+public protocol CategoryServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: CategoryServiceClientInterceptorFactoryProtocol? { get }
 
   func makeGetChildCall(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse>
+  ) -> GRPCAsyncUnaryCall<CategoryRequest, CategoryResponse>
 
   func makeGetCategoryTreeCall(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse>
+  ) -> GRPCAsyncUnaryCall<CategoryRequest, CategoryResponse>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
+extension CategoryServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.serviceDescriptor
+    return CategoryServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: CategoryServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeGetChildCall(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse> {
+  ) -> GRPCAsyncUnaryCall<CategoryRequest, CategoryResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getChild.path,
+      path: CategoryServiceClientMetadata.Methods.getChild.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetChildInterceptors() ?? []
@@ -183,11 +183,11 @@ extension Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
   }
 
   public func makeGetCategoryTreeCall(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse> {
+  ) -> GRPCAsyncUnaryCall<CategoryRequest, CategoryResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getCategoryTree.path,
+      path: CategoryServiceClientMetadata.Methods.getCategoryTree.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetCategoryTreeInterceptors() ?? []
@@ -196,13 +196,13 @@ extension Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
+extension CategoryServiceAsyncClientProtocol {
   public func getChild(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Category_CategoryResponse {
+  ) async throws -> CategoryResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getChild.path,
+      path: CategoryServiceClientMetadata.Methods.getChild.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetChildInterceptors() ?? []
@@ -210,11 +210,11 @@ extension Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
   }
 
   public func getCategoryTree(
-    _ request: Ru_Zveron_Contract_Category_CategoryRequest,
+    _ request: CategoryRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Category_CategoryResponse {
+  ) async throws -> CategoryResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getCategoryTree.path,
+      path: CategoryServiceClientMetadata.Methods.getCategoryTree.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetCategoryTreeInterceptors() ?? []
@@ -223,15 +223,15 @@ extension Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Category_CategoryServiceAsyncClient: Ru_Zveron_Contract_Category_CategoryServiceAsyncClientProtocol {
+public struct CategoryServiceAsyncClient: CategoryServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol?
+  public var interceptors: CategoryServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: CategoryServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -241,22 +241,22 @@ public struct Ru_Zveron_Contract_Category_CategoryServiceAsyncClient: Ru_Zveron_
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Category_CategoryServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol CategoryServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'getChild'.
-  func makegetChildInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse>]
+  func makegetChildInterceptors() -> [ClientInterceptor<CategoryRequest, CategoryResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getCategoryTree'.
-  func makegetCategoryTreeInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Category_CategoryRequest, Ru_Zveron_Contract_Category_CategoryResponse>]
+  func makegetCategoryTreeInterceptors() -> [ClientInterceptor<CategoryRequest, CategoryResponse>]
 }
 
-public enum Ru_Zveron_Contract_Category_CategoryServiceClientMetadata {
+public enum CategoryServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "CategoryService",
     fullName: "ru.zveron.contract.category.CategoryService",
     methods: [
-      Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getChild,
-      Ru_Zveron_Contract_Category_CategoryServiceClientMetadata.Methods.getCategoryTree,
+      CategoryServiceClientMetadata.Methods.getChild,
+      CategoryServiceClientMetadata.Methods.getCategoryTree,
     ]
   )
 

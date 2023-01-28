@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 ///complementary data
-public enum Ru_Zveron_Contract_Auth_AuthProvider: SwiftProtobuf.Enum {
+public enum AuthProvider: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case vk // = 0
   case apple // = 1
@@ -57,9 +57,9 @@ public enum Ru_Zveron_Contract_Auth_AuthProvider: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Auth_AuthProvider: CaseIterable {
+extension AuthProvider: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Auth_AuthProvider] = [
+  public static var allCases: [AuthProvider] = [
     .vk,
     .apple,
     .gmail,
@@ -70,21 +70,21 @@ extension Ru_Zveron_Contract_Auth_AuthProvider: CaseIterable {
 #endif  // swift(>=4.2)
 
 ///Запросы
-public struct Ru_Zveron_Contract_Auth_LoginBySocialRequest {
+public struct LoginBySocialRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   public var token: String = String()
 
-  public var authProvider: Ru_Zveron_Contract_Auth_AuthProvider = .vk
+  public var authProvider: AuthProvider = .vk
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_LoginByPasswordRequest {
+public struct LoginByPasswordRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -99,7 +99,7 @@ public struct Ru_Zveron_Contract_Auth_LoginByPasswordRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_PhoneLoginInitRequest {
+public struct PhoneLoginInitRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -114,7 +114,7 @@ public struct Ru_Zveron_Contract_Auth_PhoneLoginInitRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest {
+public struct PhoneLoginVerifyRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -130,7 +130,7 @@ public struct Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_PhoneRegisterRequest {
+public struct PhoneRegisterRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -148,7 +148,7 @@ public struct Ru_Zveron_Contract_Auth_PhoneRegisterRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest {
+public struct VerifyMobileTokenRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -160,7 +160,7 @@ public struct Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_IssueNewTokensRequest {
+public struct IssueNewTokensRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -173,7 +173,7 @@ public struct Ru_Zveron_Contract_Auth_IssueNewTokensRequest {
 }
 
 ///ответы
-public struct Ru_Zveron_Contract_Auth_PhoneLoginInitResponse {
+public struct PhoneLoginInitResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -185,13 +185,13 @@ public struct Ru_Zveron_Contract_Auth_PhoneLoginInitResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse {
+public struct PhoneLoginVerifyResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var mobileToken: Ru_Zveron_Contract_Auth_MobileToken {
-    get {return _mobileToken ?? Ru_Zveron_Contract_Auth_MobileToken()}
+  public var mobileToken: MobileToken {
+    get {return _mobileToken ?? MobileToken()}
     set {_mobileToken = newValue}
   }
   /// Returns true if `mobileToken` has been explicitly set.
@@ -207,10 +207,10 @@ public struct Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse {
 
   public init() {}
 
-  fileprivate var _mobileToken: Ru_Zveron_Contract_Auth_MobileToken? = nil
+  fileprivate var _mobileToken: MobileToken? = nil
 }
 
-public struct Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse {
+public struct VerifyMobileTokenResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -222,13 +222,13 @@ public struct Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Auth_MobileToken {
+public struct MobileToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var refreshToken: Ru_Zveron_Contract_Auth_TimedToken {
-    get {return _refreshToken ?? Ru_Zveron_Contract_Auth_TimedToken()}
+  public var refreshToken: TimedToken {
+    get {return _refreshToken ?? TimedToken()}
     set {_refreshToken = newValue}
   }
   /// Returns true if `refreshToken` has been explicitly set.
@@ -236,8 +236,8 @@ public struct Ru_Zveron_Contract_Auth_MobileToken {
   /// Clears the value of `refreshToken`. Subsequent reads from it will return its default value.
   public mutating func clearRefreshToken() {self._refreshToken = nil}
 
-  public var accessToken: Ru_Zveron_Contract_Auth_TimedToken {
-    get {return _accessToken ?? Ru_Zveron_Contract_Auth_TimedToken()}
+  public var accessToken: TimedToken {
+    get {return _accessToken ?? TimedToken()}
     set {_accessToken = newValue}
   }
   /// Returns true if `accessToken` has been explicitly set.
@@ -249,11 +249,11 @@ public struct Ru_Zveron_Contract_Auth_MobileToken {
 
   public init() {}
 
-  fileprivate var _refreshToken: Ru_Zveron_Contract_Auth_TimedToken? = nil
-  fileprivate var _accessToken: Ru_Zveron_Contract_Auth_TimedToken? = nil
+  fileprivate var _refreshToken: TimedToken? = nil
+  fileprivate var _accessToken: TimedToken? = nil
 }
 
-public struct Ru_Zveron_Contract_Auth_TimedToken {
+public struct TimedToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -277,26 +277,26 @@ public struct Ru_Zveron_Contract_Auth_TimedToken {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Auth_AuthProvider: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_LoginBySocialRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_LoginByPasswordRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_PhoneLoginInitRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_PhoneRegisterRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_IssueNewTokensRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_PhoneLoginInitResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_MobileToken: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Auth_TimedToken: @unchecked Sendable {}
+extension AuthProvider: @unchecked Sendable {}
+extension LoginBySocialRequest: @unchecked Sendable {}
+extension LoginByPasswordRequest: @unchecked Sendable {}
+extension PhoneLoginInitRequest: @unchecked Sendable {}
+extension PhoneLoginVerifyRequest: @unchecked Sendable {}
+extension PhoneRegisterRequest: @unchecked Sendable {}
+extension VerifyMobileTokenRequest: @unchecked Sendable {}
+extension IssueNewTokensRequest: @unchecked Sendable {}
+extension PhoneLoginInitResponse: @unchecked Sendable {}
+extension PhoneLoginVerifyResponse: @unchecked Sendable {}
+extension VerifyMobileTokenResponse: @unchecked Sendable {}
+extension MobileToken: @unchecked Sendable {}
+extension TimedToken: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.auth"
 
-extension Ru_Zveron_Contract_Auth_AuthProvider: SwiftProtobuf._ProtoNameProviding {
+extension AuthProvider: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VK"),
     1: .same(proto: "APPLE"),
@@ -305,7 +305,7 @@ extension Ru_Zveron_Contract_Auth_AuthProvider: SwiftProtobuf._ProtoNameProvidin
   ]
 }
 
-extension Ru_Zveron_Contract_Auth_LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LoginBySocialRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
@@ -335,7 +335,7 @@ extension Ru_Zveron_Contract_Auth_LoginBySocialRequest: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_LoginBySocialRequest, rhs: Ru_Zveron_Contract_Auth_LoginBySocialRequest) -> Bool {
+  public static func ==(lhs: LoginBySocialRequest, rhs: LoginBySocialRequest) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs.authProvider != rhs.authProvider {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -343,7 +343,7 @@ extension Ru_Zveron_Contract_Auth_LoginBySocialRequest: SwiftProtobuf.Message, S
   }
 }
 
-extension Ru_Zveron_Contract_Auth_LoginByPasswordRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension LoginByPasswordRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LoginByPasswordRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "phone_number"),
@@ -373,7 +373,7 @@ extension Ru_Zveron_Contract_Auth_LoginByPasswordRequest: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_LoginByPasswordRequest, rhs: Ru_Zveron_Contract_Auth_LoginByPasswordRequest) -> Bool {
+  public static func ==(lhs: LoginByPasswordRequest, rhs: LoginByPasswordRequest) -> Bool {
     if lhs.phoneNumber != rhs.phoneNumber {return false}
     if lhs.password != rhs.password {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -381,7 +381,7 @@ extension Ru_Zveron_Contract_Auth_LoginByPasswordRequest: SwiftProtobuf.Message,
   }
 }
 
-extension Ru_Zveron_Contract_Auth_PhoneLoginInitRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension PhoneLoginInitRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PhoneLoginInitRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "phone_number"),
@@ -411,7 +411,7 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginInitRequest: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest, rhs: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest) -> Bool {
+  public static func ==(lhs: PhoneLoginInitRequest, rhs: PhoneLoginInitRequest) -> Bool {
     if lhs.phoneNumber != rhs.phoneNumber {return false}
     if lhs.deviceFp != rhs.deviceFp {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -419,7 +419,7 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginInitRequest: SwiftProtobuf.Message, 
   }
 }
 
-extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension PhoneLoginVerifyRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PhoneLoginVerifyRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
@@ -454,7 +454,7 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest, rhs: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest) -> Bool {
+  public static func ==(lhs: PhoneLoginVerifyRequest, rhs: PhoneLoginVerifyRequest) -> Bool {
     if lhs.code != rhs.code {return false}
     if lhs.sessionID != rhs.sessionID {return false}
     if lhs.deviceFp != rhs.deviceFp {return false}
@@ -463,7 +463,7 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest: SwiftProtobuf.Message
   }
 }
 
-extension Ru_Zveron_Contract_Auth_PhoneRegisterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension PhoneRegisterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PhoneRegisterRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "session_id"),
@@ -503,7 +503,7 @@ extension Ru_Zveron_Contract_Auth_PhoneRegisterRequest: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_PhoneRegisterRequest, rhs: Ru_Zveron_Contract_Auth_PhoneRegisterRequest) -> Bool {
+  public static func ==(lhs: PhoneRegisterRequest, rhs: PhoneRegisterRequest) -> Bool {
     if lhs.sessionID != rhs.sessionID {return false}
     if lhs.password != rhs.password {return false}
     if lhs.name != rhs.name {return false}
@@ -513,7 +513,7 @@ extension Ru_Zveron_Contract_Auth_PhoneRegisterRequest: SwiftProtobuf.Message, S
   }
 }
 
-extension Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension VerifyMobileTokenRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".VerifyMobileTokenRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "access_token"),
@@ -538,14 +538,14 @@ extension Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest, rhs: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest) -> Bool {
+  public static func ==(lhs: VerifyMobileTokenRequest, rhs: VerifyMobileTokenRequest) -> Bool {
     if lhs.accessToken != rhs.accessToken {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Auth_IssueNewTokensRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension IssueNewTokensRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IssueNewTokensRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "refresh_token"),
@@ -570,14 +570,14 @@ extension Ru_Zveron_Contract_Auth_IssueNewTokensRequest: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_IssueNewTokensRequest, rhs: Ru_Zveron_Contract_Auth_IssueNewTokensRequest) -> Bool {
+  public static func ==(lhs: IssueNewTokensRequest, rhs: IssueNewTokensRequest) -> Bool {
     if lhs.refreshToken != rhs.refreshToken {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Auth_PhoneLoginInitResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension PhoneLoginInitResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PhoneLoginInitResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "session_id"),
@@ -602,14 +602,14 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginInitResponse: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_PhoneLoginInitResponse, rhs: Ru_Zveron_Contract_Auth_PhoneLoginInitResponse) -> Bool {
+  public static func ==(lhs: PhoneLoginInitResponse, rhs: PhoneLoginInitResponse) -> Bool {
     if lhs.sessionID != rhs.sessionID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PhoneLoginVerifyResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "mobile_token"),
@@ -648,7 +648,7 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse, rhs: Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse) -> Bool {
+  public static func ==(lhs: PhoneLoginVerifyResponse, rhs: PhoneLoginVerifyResponse) -> Bool {
     if lhs._mobileToken != rhs._mobileToken {return false}
     if lhs.sessionID != rhs.sessionID {return false}
     if lhs.isNewUser != rhs.isNewUser {return false}
@@ -657,7 +657,7 @@ extension Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse: SwiftProtobuf.Messag
   }
 }
 
-extension Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension VerifyMobileTokenResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".VerifyMobileTokenResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "is_authenticated"),
@@ -682,14 +682,14 @@ extension Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse, rhs: Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse) -> Bool {
+  public static func ==(lhs: VerifyMobileTokenResponse, rhs: VerifyMobileTokenResponse) -> Bool {
     if lhs.isAuthenticated != rhs.isAuthenticated {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Auth_MobileToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension MobileToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MobileToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "refresh_token"),
@@ -723,7 +723,7 @@ extension Ru_Zveron_Contract_Auth_MobileToken: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_MobileToken, rhs: Ru_Zveron_Contract_Auth_MobileToken) -> Bool {
+  public static func ==(lhs: MobileToken, rhs: MobileToken) -> Bool {
     if lhs._refreshToken != rhs._refreshToken {return false}
     if lhs._accessToken != rhs._accessToken {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -731,7 +731,7 @@ extension Ru_Zveron_Contract_Auth_MobileToken: SwiftProtobuf.Message, SwiftProto
   }
 }
 
-extension Ru_Zveron_Contract_Auth_TimedToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension TimedToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TimedToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
@@ -765,7 +765,7 @@ extension Ru_Zveron_Contract_Auth_TimedToken: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Auth_TimedToken, rhs: Ru_Zveron_Contract_Auth_TimedToken) -> Bool {
+  public static func ==(lhs: TimedToken, rhs: TimedToken) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs._expiration != rhs._expiration {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

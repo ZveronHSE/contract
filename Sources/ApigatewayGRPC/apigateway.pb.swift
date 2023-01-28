@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Ru_Zveron_Contract_Apigateway_ApiGatewayRequest {
+public struct ApiGatewayRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -36,7 +36,7 @@ public struct Ru_Zveron_Contract_Apigateway_ApiGatewayRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Apigateway_ApigatewayResponse {
+public struct ApigatewayResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -49,15 +49,15 @@ public struct Ru_Zveron_Contract_Apigateway_ApigatewayResponse {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Apigateway_ApiGatewayRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Apigateway_ApigatewayResponse: @unchecked Sendable {}
+extension ApiGatewayRequest: @unchecked Sendable {}
+extension ApigatewayResponse: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.apigateway"
 
-extension Ru_Zveron_Contract_Apigateway_ApiGatewayRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ApiGatewayRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ApiGatewayRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "method_alias"),
@@ -87,7 +87,7 @@ extension Ru_Zveron_Contract_Apigateway_ApiGatewayRequest: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest, rhs: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest) -> Bool {
+  public static func ==(lhs: ApiGatewayRequest, rhs: ApiGatewayRequest) -> Bool {
     if lhs.methodAlias != rhs.methodAlias {return false}
     if lhs.requestBody != rhs.requestBody {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -95,7 +95,7 @@ extension Ru_Zveron_Contract_Apigateway_ApiGatewayRequest: SwiftProtobuf.Message
   }
 }
 
-extension Ru_Zveron_Contract_Apigateway_ApigatewayResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ApigatewayResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ApigatewayResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "response_body"),
@@ -120,7 +120,7 @@ extension Ru_Zveron_Contract_Apigateway_ApigatewayResponse: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Apigateway_ApigatewayResponse, rhs: Ru_Zveron_Contract_Apigateway_ApigatewayResponse) -> Bool {
+  public static func ==(lhs: ApigatewayResponse, rhs: ApigatewayResponse) -> Bool {
     if lhs.responseBody != rhs.responseBody {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

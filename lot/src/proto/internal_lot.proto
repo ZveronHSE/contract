@@ -1,0 +1,36 @@
+syntax = "proto3";
+package ru.zveron.contract.lot;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.lot";
+option java_outer_classname = "LotInternalProto";
+option java_multiple_files = true;
+
+import "model/lot.proto";
+
+service LotInternalService {
+  // Получить список объявлений у конкретного пользователя.
+  rpc getLotsBySellerId(ProfileLotsRequest) returns (ProfileLotsResponse);
+
+  // Получить по списку айдишников объявления превью объявлений.
+  rpc getLotsById(LotsIdRequest) returns (LotsIdResponse);
+}
+
+message ProfileLotsRequest {
+  int64 id = 1;
+}
+
+message ProfileLotsResponse {
+  repeated model.Lot activate_lots = 1;
+  repeated model.Lot inactivate_lots = 2;
+}
+
+message LotsIdRequest {
+  repeated int64 lot_ids = 1;
+  // Если не указать, то не будет проверки на избранное и по умолчанию для всех объявлений будет false
+  optional int64 user_id = 2;
+}
+
+message LotsIdResponse {
+  repeated model.Lot lots = 1;
+}

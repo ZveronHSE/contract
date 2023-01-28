@@ -5,6 +5,7 @@ import "model/communication.proto";
 
 package ru.zveron.contract.profile;
 
+option swift_prefix="";
 option java_package = "ru.zveron.contract.profile";
 option java_outer_classname = "ProfileGrpcExternal";
 option java_multiple_files = true;

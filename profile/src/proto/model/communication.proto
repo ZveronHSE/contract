@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package ru.zveron.contract.profile.model;
 
+option swift_prefix="";
 option java_package = "ru.zveron.contract.profile.model";
 option java_outer_classname = "ProfileModelCommunication";
 option java_multiple_files = true;

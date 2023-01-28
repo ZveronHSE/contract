@@ -2,6 +2,7 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 package ru.zveron;
 
+option swift_prefix="";
 option java_package = "ru.zveron";
 option java_outer_classname = "BlacklistCrudGrpc";
 option java_multiple_files = true;

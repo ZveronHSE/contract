@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Ru_Zveron_AddLotToFavoritesRequest {
+public struct AddLotToFavoritesRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -36,7 +36,7 @@ public struct Ru_Zveron_AddLotToFavoritesRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_RemoveLotFromFavoritesRequest {
+public struct RemoveLotFromFavoritesRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -52,7 +52,7 @@ public struct Ru_Zveron_RemoveLotFromFavoritesRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_LotsExistInFavoritesRequest {
+public struct LotsExistInFavoritesRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -68,7 +68,7 @@ public struct Ru_Zveron_LotsExistInFavoritesRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_LotsExistInFavoritesResponse {
+public struct LotsExistInFavoritesResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -81,7 +81,7 @@ public struct Ru_Zveron_LotsExistInFavoritesResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_GetFavoriteLotsRequest {
+public struct GetFavoriteLotsRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -94,20 +94,20 @@ public struct Ru_Zveron_GetFavoriteLotsRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_GetFavoriteLotsResponse {
+public struct GetFavoriteLotsResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Список добавленных в избранное объявлений
-  public var favoriteLots: [Ru_Zveron_FavoriteLot] = []
+  public var favoriteLots: [FavoriteLot] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Ru_Zveron_FavoriteLot {
+public struct FavoriteLot {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -120,7 +120,7 @@ public struct Ru_Zveron_FavoriteLot {
   public init() {}
 }
 
-public struct Ru_Zveron_GetLotCounterRequest {
+public struct GetLotCounterRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -133,7 +133,7 @@ public struct Ru_Zveron_GetLotCounterRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_GetLotCounterResponse {
+public struct GetLotCounterResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -146,7 +146,7 @@ public struct Ru_Zveron_GetLotCounterResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_RemoveAllLotsByOwnerRequest {
+public struct RemoveAllLotsByOwnerRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -159,7 +159,7 @@ public struct Ru_Zveron_RemoveAllLotsByOwnerRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_RemoveAllByFavoriteLotRequest {
+public struct RemoveAllByFavoriteLotRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -173,24 +173,24 @@ public struct Ru_Zveron_RemoveAllByFavoriteLotRequest {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_AddLotToFavoritesRequest: @unchecked Sendable {}
-extension Ru_Zveron_RemoveLotFromFavoritesRequest: @unchecked Sendable {}
-extension Ru_Zveron_LotsExistInFavoritesRequest: @unchecked Sendable {}
-extension Ru_Zveron_LotsExistInFavoritesResponse: @unchecked Sendable {}
-extension Ru_Zveron_GetFavoriteLotsRequest: @unchecked Sendable {}
-extension Ru_Zveron_GetFavoriteLotsResponse: @unchecked Sendable {}
-extension Ru_Zveron_FavoriteLot: @unchecked Sendable {}
-extension Ru_Zveron_GetLotCounterRequest: @unchecked Sendable {}
-extension Ru_Zveron_GetLotCounterResponse: @unchecked Sendable {}
-extension Ru_Zveron_RemoveAllLotsByOwnerRequest: @unchecked Sendable {}
-extension Ru_Zveron_RemoveAllByFavoriteLotRequest: @unchecked Sendable {}
+extension AddLotToFavoritesRequest: @unchecked Sendable {}
+extension RemoveLotFromFavoritesRequest: @unchecked Sendable {}
+extension LotsExistInFavoritesRequest: @unchecked Sendable {}
+extension LotsExistInFavoritesResponse: @unchecked Sendable {}
+extension GetFavoriteLotsRequest: @unchecked Sendable {}
+extension GetFavoriteLotsResponse: @unchecked Sendable {}
+extension FavoriteLot: @unchecked Sendable {}
+extension GetLotCounterRequest: @unchecked Sendable {}
+extension GetLotCounterResponse: @unchecked Sendable {}
+extension RemoveAllLotsByOwnerRequest: @unchecked Sendable {}
+extension RemoveAllByFavoriteLotRequest: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron"
 
-extension Ru_Zveron_AddLotToFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension AddLotToFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddLotToFavoritesRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "favorites_owner_id"),
@@ -220,7 +220,7 @@ extension Ru_Zveron_AddLotToFavoritesRequest: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_AddLotToFavoritesRequest, rhs: Ru_Zveron_AddLotToFavoritesRequest) -> Bool {
+  public static func ==(lhs: AddLotToFavoritesRequest, rhs: AddLotToFavoritesRequest) -> Bool {
     if lhs.favoritesOwnerID != rhs.favoritesOwnerID {return false}
     if lhs.favoriteLotID != rhs.favoriteLotID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -228,7 +228,7 @@ extension Ru_Zveron_AddLotToFavoritesRequest: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Ru_Zveron_RemoveLotFromFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension RemoveLotFromFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RemoveLotFromFavoritesRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "favorites_owner_id"),
@@ -258,7 +258,7 @@ extension Ru_Zveron_RemoveLotFromFavoritesRequest: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_RemoveLotFromFavoritesRequest, rhs: Ru_Zveron_RemoveLotFromFavoritesRequest) -> Bool {
+  public static func ==(lhs: RemoveLotFromFavoritesRequest, rhs: RemoveLotFromFavoritesRequest) -> Bool {
     if lhs.favoritesOwnerID != rhs.favoritesOwnerID {return false}
     if lhs.favoriteLotID != rhs.favoriteLotID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -266,7 +266,7 @@ extension Ru_Zveron_RemoveLotFromFavoritesRequest: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Ru_Zveron_LotsExistInFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension LotsExistInFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LotsExistInFavoritesRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "favorites_owner_id"),
@@ -296,7 +296,7 @@ extension Ru_Zveron_LotsExistInFavoritesRequest: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_LotsExistInFavoritesRequest, rhs: Ru_Zveron_LotsExistInFavoritesRequest) -> Bool {
+  public static func ==(lhs: LotsExistInFavoritesRequest, rhs: LotsExistInFavoritesRequest) -> Bool {
     if lhs.favoritesOwnerID != rhs.favoritesOwnerID {return false}
     if lhs.favoriteLotID != rhs.favoriteLotID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -304,7 +304,7 @@ extension Ru_Zveron_LotsExistInFavoritesRequest: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Ru_Zveron_LotsExistInFavoritesResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension LotsExistInFavoritesResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LotsExistInFavoritesResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "is_exists"),
@@ -329,14 +329,14 @@ extension Ru_Zveron_LotsExistInFavoritesResponse: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_LotsExistInFavoritesResponse, rhs: Ru_Zveron_LotsExistInFavoritesResponse) -> Bool {
+  public static func ==(lhs: LotsExistInFavoritesResponse, rhs: LotsExistInFavoritesResponse) -> Bool {
     if lhs.isExists != rhs.isExists {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_GetFavoriteLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetFavoriteLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetFavoriteLotsRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "favorites_owner_id"),
@@ -361,14 +361,14 @@ extension Ru_Zveron_GetFavoriteLotsRequest: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_GetFavoriteLotsRequest, rhs: Ru_Zveron_GetFavoriteLotsRequest) -> Bool {
+  public static func ==(lhs: GetFavoriteLotsRequest, rhs: GetFavoriteLotsRequest) -> Bool {
     if lhs.favoritesOwnerID != rhs.favoritesOwnerID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_GetFavoriteLotsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetFavoriteLotsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetFavoriteLotsResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "favorite_lots"),
@@ -393,14 +393,14 @@ extension Ru_Zveron_GetFavoriteLotsResponse: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_GetFavoriteLotsResponse, rhs: Ru_Zveron_GetFavoriteLotsResponse) -> Bool {
+  public static func ==(lhs: GetFavoriteLotsResponse, rhs: GetFavoriteLotsResponse) -> Bool {
     if lhs.favoriteLots != rhs.favoriteLots {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_FavoriteLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension FavoriteLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FavoriteLot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -425,14 +425,14 @@ extension Ru_Zveron_FavoriteLot: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_FavoriteLot, rhs: Ru_Zveron_FavoriteLot) -> Bool {
+  public static func ==(lhs: FavoriteLot, rhs: FavoriteLot) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_GetLotCounterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetLotCounterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetLotCounterRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -457,14 +457,14 @@ extension Ru_Zveron_GetLotCounterRequest: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_GetLotCounterRequest, rhs: Ru_Zveron_GetLotCounterRequest) -> Bool {
+  public static func ==(lhs: GetLotCounterRequest, rhs: GetLotCounterRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_GetLotCounterResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetLotCounterResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetLotCounterResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "adds_to_favorites_counter"),
@@ -489,14 +489,14 @@ extension Ru_Zveron_GetLotCounterResponse: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_GetLotCounterResponse, rhs: Ru_Zveron_GetLotCounterResponse) -> Bool {
+  public static func ==(lhs: GetLotCounterResponse, rhs: GetLotCounterResponse) -> Bool {
     if lhs.addsToFavoritesCounter != rhs.addsToFavoritesCounter {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_RemoveAllLotsByOwnerRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension RemoveAllLotsByOwnerRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RemoveAllLotsByOwnerRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -521,14 +521,14 @@ extension Ru_Zveron_RemoveAllLotsByOwnerRequest: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_RemoveAllLotsByOwnerRequest, rhs: Ru_Zveron_RemoveAllLotsByOwnerRequest) -> Bool {
+  public static func ==(lhs: RemoveAllLotsByOwnerRequest, rhs: RemoveAllLotsByOwnerRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_RemoveAllByFavoriteLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension RemoveAllByFavoriteLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RemoveAllByFavoriteLotRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -553,7 +553,7 @@ extension Ru_Zveron_RemoveAllByFavoriteLotRequest: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_RemoveAllByFavoriteLotRequest, rhs: Ru_Zveron_RemoveAllByFavoriteLotRequest) -> Bool {
+  public static func ==(lhs: RemoveAllByFavoriteLotRequest, rhs: RemoveAllByFavoriteLotRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

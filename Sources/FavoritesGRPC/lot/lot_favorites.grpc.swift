@@ -26,48 +26,48 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_LotFavoritesServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_LotFavoritesServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `LotFavoritesServiceClient`, then call methods of this protocol to make API calls.
+public protocol LotFavoritesServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? { get }
 
   func addToFavorites(
-    _ request: Ru_Zveron_AddLotToFavoritesRequest,
+    _ request: AddLotToFavoritesRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func removeFromFavorites(
-    _ request: Ru_Zveron_RemoveLotFromFavoritesRequest,
+    _ request: RemoveLotFromFavoritesRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func existInFavorites(
-    _ request: Ru_Zveron_LotsExistInFavoritesRequest,
+    _ request: LotsExistInFavoritesRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_LotsExistInFavoritesRequest, Ru_Zveron_LotsExistInFavoritesResponse>
+  ) -> UnaryCall<LotsExistInFavoritesRequest, LotsExistInFavoritesResponse>
 
   func getFavoriteLots(
-    _ request: Ru_Zveron_GetFavoriteLotsRequest,
+    _ request: GetFavoriteLotsRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_GetFavoriteLotsRequest, Ru_Zveron_GetFavoriteLotsResponse>
+  ) -> UnaryCall<GetFavoriteLotsRequest, GetFavoriteLotsResponse>
 
   func getCounter(
-    _ request: Ru_Zveron_GetLotCounterRequest,
+    _ request: GetLotCounterRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_GetLotCounterRequest, Ru_Zveron_GetLotCounterResponse>
+  ) -> UnaryCall<GetLotCounterRequest, GetLotCounterResponse>
 
   func removeAllByOwner(
-    _ request: Ru_Zveron_RemoveAllLotsByOwnerRequest,
+    _ request: RemoveAllLotsByOwnerRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func removeAllByFavoriteLot(
-    _ request: Ru_Zveron_RemoveAllByFavoriteLotRequest,
+    _ request: RemoveAllByFavoriteLotRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
-extension Ru_Zveron_LotFavoritesServiceClientProtocol {
+extension LotFavoritesServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.LotFavoritesService"
   }
@@ -79,11 +79,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func addToFavorites(
-    _ request: Ru_Zveron_AddLotToFavoritesRequest,
+    _ request: AddLotToFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.addToFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.addToFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeaddToFavoritesInterceptors() ?? []
@@ -97,11 +97,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func removeFromFavorites(
-    _ request: Ru_Zveron_RemoveLotFromFavoritesRequest,
+    _ request: RemoveLotFromFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeFromFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeFromFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveFromFavoritesInterceptors() ?? []
@@ -115,11 +115,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func existInFavorites(
-    _ request: Ru_Zveron_LotsExistInFavoritesRequest,
+    _ request: LotsExistInFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_LotsExistInFavoritesRequest, Ru_Zveron_LotsExistInFavoritesResponse> {
+  ) -> UnaryCall<LotsExistInFavoritesRequest, LotsExistInFavoritesResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.existInFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.existInFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeexistInFavoritesInterceptors() ?? []
@@ -133,11 +133,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getFavoriteLots(
-    _ request: Ru_Zveron_GetFavoriteLotsRequest,
+    _ request: GetFavoriteLotsRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_GetFavoriteLotsRequest, Ru_Zveron_GetFavoriteLotsResponse> {
+  ) -> UnaryCall<GetFavoriteLotsRequest, GetFavoriteLotsResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getFavoriteLots.path,
+      path: LotFavoritesServiceClientMetadata.Methods.getFavoriteLots.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetFavoriteLotsInterceptors() ?? []
@@ -151,11 +151,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getCounter(
-    _ request: Ru_Zveron_GetLotCounterRequest,
+    _ request: GetLotCounterRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_GetLotCounterRequest, Ru_Zveron_GetLotCounterResponse> {
+  ) -> UnaryCall<GetLotCounterRequest, GetLotCounterResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getCounter.path,
+      path: LotFavoritesServiceClientMetadata.Methods.getCounter.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetCounterInterceptors() ?? []
@@ -169,11 +169,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func removeAllByOwner(
-    _ request: Ru_Zveron_RemoveAllLotsByOwnerRequest,
+    _ request: RemoveAllLotsByOwnerRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByOwner.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeAllByOwner.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveAllByOwnerInterceptors() ?? []
@@ -187,11 +187,11 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func removeAllByFavoriteLot(
-    _ request: Ru_Zveron_RemoveAllByFavoriteLotRequest,
+    _ request: RemoveAllByFavoriteLotRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveAllByFavoriteLotInterceptors() ?? []
@@ -201,20 +201,20 @@ extension Ru_Zveron_LotFavoritesServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_LotFavoritesServiceClient: @unchecked Sendable {}
+extension LotFavoritesServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_LotFavoritesServiceNIOClient")
-public final class Ru_Zveron_LotFavoritesServiceClient: Ru_Zveron_LotFavoritesServiceClientProtocol {
+@available(*, deprecated, renamed: "LotFavoritesServiceNIOClient")
+public final class LotFavoritesServiceClient: LotFavoritesServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -228,7 +228,7 @@ public final class Ru_Zveron_LotFavoritesServiceClient: Ru_Zveron_LotFavoritesSe
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -236,10 +236,10 @@ public final class Ru_Zveron_LotFavoritesServiceClient: Ru_Zveron_LotFavoritesSe
   }
 }
 
-public struct Ru_Zveron_LotFavoritesServiceNIOClient: Ru_Zveron_LotFavoritesServiceClientProtocol {
+public struct LotFavoritesServiceNIOClient: LotFavoritesServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol?
+  public var interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.LotFavoritesService service.
   ///
@@ -250,7 +250,7 @@ public struct Ru_Zveron_LotFavoritesServiceNIOClient: Ru_Zveron_LotFavoritesServ
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -260,62 +260,62 @@ public struct Ru_Zveron_LotFavoritesServiceNIOClient: Ru_Zveron_LotFavoritesServ
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_LotFavoritesServiceAsyncClientProtocol: GRPCClient {
+public protocol LotFavoritesServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? { get }
 
   func makeAddToFavoritesCall(
-    _ request: Ru_Zveron_AddLotToFavoritesRequest,
+    _ request: AddLotToFavoritesRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeRemoveFromFavoritesCall(
-    _ request: Ru_Zveron_RemoveLotFromFavoritesRequest,
+    _ request: RemoveLotFromFavoritesRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeExistInFavoritesCall(
-    _ request: Ru_Zveron_LotsExistInFavoritesRequest,
+    _ request: LotsExistInFavoritesRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_LotsExistInFavoritesRequest, Ru_Zveron_LotsExistInFavoritesResponse>
+  ) -> GRPCAsyncUnaryCall<LotsExistInFavoritesRequest, LotsExistInFavoritesResponse>
 
   func makeGetFavoriteLotsCall(
-    _ request: Ru_Zveron_GetFavoriteLotsRequest,
+    _ request: GetFavoriteLotsRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_GetFavoriteLotsRequest, Ru_Zveron_GetFavoriteLotsResponse>
+  ) -> GRPCAsyncUnaryCall<GetFavoriteLotsRequest, GetFavoriteLotsResponse>
 
   func makeGetCounterCall(
-    _ request: Ru_Zveron_GetLotCounterRequest,
+    _ request: GetLotCounterRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_GetLotCounterRequest, Ru_Zveron_GetLotCounterResponse>
+  ) -> GRPCAsyncUnaryCall<GetLotCounterRequest, GetLotCounterResponse>
 
   func makeRemoveAllByOwnerCall(
-    _ request: Ru_Zveron_RemoveAllLotsByOwnerRequest,
+    _ request: RemoveAllLotsByOwnerRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeRemoveAllByFavoriteLotCall(
-    _ request: Ru_Zveron_RemoveAllByFavoriteLotRequest,
+    _ request: RemoveAllByFavoriteLotRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
+extension LotFavoritesServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_LotFavoritesServiceClientMetadata.serviceDescriptor
+    return LotFavoritesServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeAddToFavoritesCall(
-    _ request: Ru_Zveron_AddLotToFavoritesRequest,
+    _ request: AddLotToFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.addToFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.addToFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeaddToFavoritesInterceptors() ?? []
@@ -323,11 +323,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func makeRemoveFromFavoritesCall(
-    _ request: Ru_Zveron_RemoveLotFromFavoritesRequest,
+    _ request: RemoveLotFromFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeFromFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeFromFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveFromFavoritesInterceptors() ?? []
@@ -335,11 +335,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func makeExistInFavoritesCall(
-    _ request: Ru_Zveron_LotsExistInFavoritesRequest,
+    _ request: LotsExistInFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_LotsExistInFavoritesRequest, Ru_Zveron_LotsExistInFavoritesResponse> {
+  ) -> GRPCAsyncUnaryCall<LotsExistInFavoritesRequest, LotsExistInFavoritesResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.existInFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.existInFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeexistInFavoritesInterceptors() ?? []
@@ -347,11 +347,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func makeGetFavoriteLotsCall(
-    _ request: Ru_Zveron_GetFavoriteLotsRequest,
+    _ request: GetFavoriteLotsRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_GetFavoriteLotsRequest, Ru_Zveron_GetFavoriteLotsResponse> {
+  ) -> GRPCAsyncUnaryCall<GetFavoriteLotsRequest, GetFavoriteLotsResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getFavoriteLots.path,
+      path: LotFavoritesServiceClientMetadata.Methods.getFavoriteLots.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetFavoriteLotsInterceptors() ?? []
@@ -359,11 +359,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func makeGetCounterCall(
-    _ request: Ru_Zveron_GetLotCounterRequest,
+    _ request: GetLotCounterRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_GetLotCounterRequest, Ru_Zveron_GetLotCounterResponse> {
+  ) -> GRPCAsyncUnaryCall<GetLotCounterRequest, GetLotCounterResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getCounter.path,
+      path: LotFavoritesServiceClientMetadata.Methods.getCounter.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetCounterInterceptors() ?? []
@@ -371,11 +371,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func makeRemoveAllByOwnerCall(
-    _ request: Ru_Zveron_RemoveAllLotsByOwnerRequest,
+    _ request: RemoveAllLotsByOwnerRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByOwner.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeAllByOwner.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveAllByOwnerInterceptors() ?? []
@@ -383,11 +383,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func makeRemoveAllByFavoriteLotCall(
-    _ request: Ru_Zveron_RemoveAllByFavoriteLotRequest,
+    _ request: RemoveAllByFavoriteLotRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveAllByFavoriteLotInterceptors() ?? []
@@ -396,13 +396,13 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
+extension LotFavoritesServiceAsyncClientProtocol {
   public func addToFavorites(
-    _ request: Ru_Zveron_AddLotToFavoritesRequest,
+    _ request: AddLotToFavoritesRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.addToFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.addToFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeaddToFavoritesInterceptors() ?? []
@@ -410,11 +410,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func removeFromFavorites(
-    _ request: Ru_Zveron_RemoveLotFromFavoritesRequest,
+    _ request: RemoveLotFromFavoritesRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeFromFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeFromFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveFromFavoritesInterceptors() ?? []
@@ -422,11 +422,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func existInFavorites(
-    _ request: Ru_Zveron_LotsExistInFavoritesRequest,
+    _ request: LotsExistInFavoritesRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_LotsExistInFavoritesResponse {
+  ) async throws -> LotsExistInFavoritesResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.existInFavorites.path,
+      path: LotFavoritesServiceClientMetadata.Methods.existInFavorites.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeexistInFavoritesInterceptors() ?? []
@@ -434,11 +434,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func getFavoriteLots(
-    _ request: Ru_Zveron_GetFavoriteLotsRequest,
+    _ request: GetFavoriteLotsRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_GetFavoriteLotsResponse {
+  ) async throws -> GetFavoriteLotsResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getFavoriteLots.path,
+      path: LotFavoritesServiceClientMetadata.Methods.getFavoriteLots.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetFavoriteLotsInterceptors() ?? []
@@ -446,11 +446,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func getCounter(
-    _ request: Ru_Zveron_GetLotCounterRequest,
+    _ request: GetLotCounterRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_GetLotCounterResponse {
+  ) async throws -> GetLotCounterResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getCounter.path,
+      path: LotFavoritesServiceClientMetadata.Methods.getCounter.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetCounterInterceptors() ?? []
@@ -458,11 +458,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func removeAllByOwner(
-    _ request: Ru_Zveron_RemoveAllLotsByOwnerRequest,
+    _ request: RemoveAllLotsByOwnerRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByOwner.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeAllByOwner.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveAllByOwnerInterceptors() ?? []
@@ -470,11 +470,11 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
   }
 
   public func removeAllByFavoriteLot(
-    _ request: Ru_Zveron_RemoveAllByFavoriteLotRequest,
+    _ request: RemoveAllByFavoriteLotRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot.path,
+      path: LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeremoveAllByFavoriteLotInterceptors() ?? []
@@ -483,15 +483,15 @@ extension Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_LotFavoritesServiceAsyncClient: Ru_Zveron_LotFavoritesServiceAsyncClientProtocol {
+public struct LotFavoritesServiceAsyncClient: LotFavoritesServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol?
+  public var interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotFavoritesServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -501,42 +501,42 @@ public struct Ru_Zveron_LotFavoritesServiceAsyncClient: Ru_Zveron_LotFavoritesSe
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_LotFavoritesServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol LotFavoritesServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'addToFavorites'.
-  func makeaddToFavoritesInterceptors() -> [ClientInterceptor<Ru_Zveron_AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeaddToFavoritesInterceptors() -> [ClientInterceptor<AddLotToFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'removeFromFavorites'.
-  func makeremoveFromFavoritesInterceptors() -> [ClientInterceptor<Ru_Zveron_RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeremoveFromFavoritesInterceptors() -> [ClientInterceptor<RemoveLotFromFavoritesRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'existInFavorites'.
-  func makeexistInFavoritesInterceptors() -> [ClientInterceptor<Ru_Zveron_LotsExistInFavoritesRequest, Ru_Zveron_LotsExistInFavoritesResponse>]
+  func makeexistInFavoritesInterceptors() -> [ClientInterceptor<LotsExistInFavoritesRequest, LotsExistInFavoritesResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getFavoriteLots'.
-  func makegetFavoriteLotsInterceptors() -> [ClientInterceptor<Ru_Zveron_GetFavoriteLotsRequest, Ru_Zveron_GetFavoriteLotsResponse>]
+  func makegetFavoriteLotsInterceptors() -> [ClientInterceptor<GetFavoriteLotsRequest, GetFavoriteLotsResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getCounter'.
-  func makegetCounterInterceptors() -> [ClientInterceptor<Ru_Zveron_GetLotCounterRequest, Ru_Zveron_GetLotCounterResponse>]
+  func makegetCounterInterceptors() -> [ClientInterceptor<GetLotCounterRequest, GetLotCounterResponse>]
 
   /// - Returns: Interceptors to use when invoking 'removeAllByOwner'.
-  func makeremoveAllByOwnerInterceptors() -> [ClientInterceptor<Ru_Zveron_RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeremoveAllByOwnerInterceptors() -> [ClientInterceptor<RemoveAllLotsByOwnerRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'removeAllByFavoriteLot'.
-  func makeremoveAllByFavoriteLotInterceptors() -> [ClientInterceptor<Ru_Zveron_RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeremoveAllByFavoriteLotInterceptors() -> [ClientInterceptor<RemoveAllByFavoriteLotRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 }
 
-public enum Ru_Zveron_LotFavoritesServiceClientMetadata {
+public enum LotFavoritesServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "LotFavoritesService",
     fullName: "ru.zveron.LotFavoritesService",
     methods: [
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.addToFavorites,
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeFromFavorites,
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.existInFavorites,
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getFavoriteLots,
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.getCounter,
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByOwner,
-      Ru_Zveron_LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot,
+      LotFavoritesServiceClientMetadata.Methods.addToFavorites,
+      LotFavoritesServiceClientMetadata.Methods.removeFromFavorites,
+      LotFavoritesServiceClientMetadata.Methods.existInFavorites,
+      LotFavoritesServiceClientMetadata.Methods.getFavoriteLots,
+      LotFavoritesServiceClientMetadata.Methods.getCounter,
+      LotFavoritesServiceClientMetadata.Methods.removeAllByOwner,
+      LotFavoritesServiceClientMetadata.Methods.removeAllByFavoriteLot,
     ]
   )
 

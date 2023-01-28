@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package ru.zveron.contract.profile.model;
+
+option swift_prefix="";
+option java_package = "ru.zveron.contract.profile.model";
+option java_outer_classname = "ProfileModelCommunication";
+option java_multiple_files = true;
+
+enum ChannelType {
+  VK = 0;
+  GOOGLE = 1;
+  PHONE = 2;
+  CHAT = 3;
+}
+
+message Links {
+  optional Phone phone = 1;
+  optional Vk vk = 2;
+  optional Gmail gmail = 3;
+}
+
+message Phone {
+  string number = 1;
+}
+
+message Vk {
+  string id = 1;
+  string ref = 2;
+  optional string email = 3;
+}
+
+message Gmail {
+  string id = 1;
+  string email = 2;
+}

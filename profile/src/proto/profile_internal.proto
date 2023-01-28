@@ -1,0 +1,86 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "model/communication.proto";
+
+package ru.zveron.contract.profile;
+
+option swift_prefix="";
+option java_package = "ru.zveron.contract.profile";
+option java_outer_classname = "ProfileGrpcInternal";
+option java_multiple_files = true;
+
+service ProfileServiceInternal {
+
+  // Создание профиля пользователя
+  rpc CreateProfile(CreateProfileRequest) returns(google.protobuf.Empty);
+
+  // Получение профиля, как сущности, описывающей личные данные,
+  rpc GetProfile(GetProfileRequest) returns(GetProfileResponse);
+
+  // Получение профиля, как сущности, описывающей личные данные + контактная информация (для сервиса объявлений)
+  rpc GetProfileWithContacts(GetProfileWithContactsRequest) returns(GetProfileWithContactsResponse);
+
+  // Обновление способов связи. Метод вызывается когда пользователь добавляет новый способ связи
+  // Или удаляет уже существующий.
+  rpc UpdateContacts(UpdateContactsRequest) returns(google.protobuf.Empty);
+
+  // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
+  rpc GetProfileByChannel(GetProfileByChannelRequest) returns(GetProfileByChannelResponse);
+}
+
+message CreateProfileRequest {
+  uint64 auth_account_id = 1;
+  string name = 2;
+  string surname = 3;
+  model.Links links = 4;
+  uint64 image_id = 5;
+}
+
+message GetProfileRequest {
+  uint64 id = 1;
+}
+
+message GetProfileResponse {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint64 image_id = 4;
+  repeated model.ChannelType channels = 5;
+  int64 address_id = 6;
+}
+
+message GetProfileWithContactsRequest {
+  uint64 id = 1;
+}
+
+message GetProfileWithContactsResponse {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint64 image_id = 4;
+  repeated model.ChannelType channels = 5;
+  model.Links links = 6;
+  int64 address_id = 7;
+  google.protobuf.Timestamp lastSeen = 8;
+}
+
+message UpdateContactsRequest {
+  uint64 profile_id = 1;
+  // Тип способа связи, который был изменен. Только он будет перезаписан сервисом
+  model.ChannelType type = 2;
+  model.Links links = 3;
+}
+
+message GetProfileByChannelRequest {
+  model.ChannelType type = 1;
+  // В случае телефона - номер телефона
+  // В случае соц. сети - id
+  string identifier = 2;
+}
+
+message GetProfileByChannelResponse {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+}

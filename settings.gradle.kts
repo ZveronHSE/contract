@@ -7,4 +7,5 @@ include(
     "favorites",
     "apigateway",
     "auth",
+    "profile",
     )

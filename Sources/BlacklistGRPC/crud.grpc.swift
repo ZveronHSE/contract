@@ -26,43 +26,43 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_BlacklistServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_BlacklistServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `BlacklistServiceClient`, then call methods of this protocol to make API calls.
+public protocol BlacklistServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: BlacklistServiceClientInterceptorFactoryProtocol? { get }
 
   func existInBlacklist(
-    _ request: Ru_Zveron_ExistInBlacklistRequest,
+    _ request: ExistInBlacklistRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_ExistInBlacklistRequest, Ru_Zveron_ExistInBlacklistResponse>
+  ) -> UnaryCall<ExistInBlacklistRequest, ExistInBlacklistResponse>
 
   func getBlacklist(
-    _ request: Ru_Zveron_GetBlacklistRequest,
+    _ request: GetBlacklistRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_GetBlacklistRequest, Ru_Zveron_GetBlacklistResponse>
+  ) -> UnaryCall<GetBlacklistRequest, GetBlacklistResponse>
 
   func addToBlacklist(
-    _ request: Ru_Zveron_AddToBlacklistRequest,
+    _ request: AddToBlacklistRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func deleteFromBlacklist(
-    _ request: Ru_Zveron_DeleteFromBlacklistRequest,
+    _ request: DeleteFromBlacklistRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func deleteAllRecordsWhereUserBlocks(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest,
+    _ request: DeleteAllRecordsWhereUserBlocksRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func deleteAllRecordsWhereUserIsBlocked(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest,
+    _ request: DeleteAllRecordsWhereUserIsBlockedRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
-extension Ru_Zveron_BlacklistServiceClientProtocol {
+extension BlacklistServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.BlacklistService"
   }
@@ -74,11 +74,11 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func existInBlacklist(
-    _ request: Ru_Zveron_ExistInBlacklistRequest,
+    _ request: ExistInBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_ExistInBlacklistRequest, Ru_Zveron_ExistInBlacklistResponse> {
+  ) -> UnaryCall<ExistInBlacklistRequest, ExistInBlacklistResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.existInBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.existInBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeExistInBlacklistInterceptors() ?? []
@@ -92,11 +92,11 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getBlacklist(
-    _ request: Ru_Zveron_GetBlacklistRequest,
+    _ request: GetBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_GetBlacklistRequest, Ru_Zveron_GetBlacklistResponse> {
+  ) -> UnaryCall<GetBlacklistRequest, GetBlacklistResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.getBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.getBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetBlacklistInterceptors() ?? []
@@ -110,11 +110,11 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func addToBlacklist(
-    _ request: Ru_Zveron_AddToBlacklistRequest,
+    _ request: AddToBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.addToBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.addToBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeAddToBlacklistInterceptors() ?? []
@@ -128,11 +128,11 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func deleteFromBlacklist(
-    _ request: Ru_Zveron_DeleteFromBlacklistRequest,
+    _ request: DeleteFromBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteFromBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteFromBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteFromBlacklistInterceptors() ?? []
@@ -146,11 +146,11 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func deleteAllRecordsWhereUserBlocks(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest,
+    _ request: DeleteAllRecordsWhereUserBlocksRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteAllRecordsWhereUserBlocksInterceptors() ?? []
@@ -164,11 +164,11 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func deleteAllRecordsWhereUserIsBlocked(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest,
+    _ request: DeleteAllRecordsWhereUserIsBlockedRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteAllRecordsWhereUserIsBlockedInterceptors() ?? []
@@ -178,20 +178,20 @@ extension Ru_Zveron_BlacklistServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_BlacklistServiceClient: @unchecked Sendable {}
+extension BlacklistServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_BlacklistServiceNIOClient")
-public final class Ru_Zveron_BlacklistServiceClient: Ru_Zveron_BlacklistServiceClientProtocol {
+@available(*, deprecated, renamed: "BlacklistServiceNIOClient")
+public final class BlacklistServiceClient: BlacklistServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: BlacklistServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: BlacklistServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -205,7 +205,7 @@ public final class Ru_Zveron_BlacklistServiceClient: Ru_Zveron_BlacklistServiceC
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: BlacklistServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -213,10 +213,10 @@ public final class Ru_Zveron_BlacklistServiceClient: Ru_Zveron_BlacklistServiceC
   }
 }
 
-public struct Ru_Zveron_BlacklistServiceNIOClient: Ru_Zveron_BlacklistServiceClientProtocol {
+public struct BlacklistServiceNIOClient: BlacklistServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol?
+  public var interceptors: BlacklistServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.BlacklistService service.
   ///
@@ -227,7 +227,7 @@ public struct Ru_Zveron_BlacklistServiceNIOClient: Ru_Zveron_BlacklistServiceCli
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: BlacklistServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -237,57 +237,57 @@ public struct Ru_Zveron_BlacklistServiceNIOClient: Ru_Zveron_BlacklistServiceCli
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_BlacklistServiceAsyncClientProtocol: GRPCClient {
+public protocol BlacklistServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: BlacklistServiceClientInterceptorFactoryProtocol? { get }
 
   func makeExistInBlacklistCall(
-    _ request: Ru_Zveron_ExistInBlacklistRequest,
+    _ request: ExistInBlacklistRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_ExistInBlacklistRequest, Ru_Zveron_ExistInBlacklistResponse>
+  ) -> GRPCAsyncUnaryCall<ExistInBlacklistRequest, ExistInBlacklistResponse>
 
   func makeGetBlacklistCall(
-    _ request: Ru_Zveron_GetBlacklistRequest,
+    _ request: GetBlacklistRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_GetBlacklistRequest, Ru_Zveron_GetBlacklistResponse>
+  ) -> GRPCAsyncUnaryCall<GetBlacklistRequest, GetBlacklistResponse>
 
   func makeAddToBlacklistCall(
-    _ request: Ru_Zveron_AddToBlacklistRequest,
+    _ request: AddToBlacklistRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeDeleteFromBlacklistCall(
-    _ request: Ru_Zveron_DeleteFromBlacklistRequest,
+    _ request: DeleteFromBlacklistRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeDeleteAllRecordsWhereUserBlocksCall(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest,
+    _ request: DeleteAllRecordsWhereUserBlocksRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeDeleteAllRecordsWhereUserIsBlockedCall(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest,
+    _ request: DeleteAllRecordsWhereUserIsBlockedRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
+extension BlacklistServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_BlacklistServiceClientMetadata.serviceDescriptor
+    return BlacklistServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: BlacklistServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeExistInBlacklistCall(
-    _ request: Ru_Zveron_ExistInBlacklistRequest,
+    _ request: ExistInBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_ExistInBlacklistRequest, Ru_Zveron_ExistInBlacklistResponse> {
+  ) -> GRPCAsyncUnaryCall<ExistInBlacklistRequest, ExistInBlacklistResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.existInBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.existInBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeExistInBlacklistInterceptors() ?? []
@@ -295,11 +295,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func makeGetBlacklistCall(
-    _ request: Ru_Zveron_GetBlacklistRequest,
+    _ request: GetBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_GetBlacklistRequest, Ru_Zveron_GetBlacklistResponse> {
+  ) -> GRPCAsyncUnaryCall<GetBlacklistRequest, GetBlacklistResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.getBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.getBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetBlacklistInterceptors() ?? []
@@ -307,11 +307,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func makeAddToBlacklistCall(
-    _ request: Ru_Zveron_AddToBlacklistRequest,
+    _ request: AddToBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.addToBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.addToBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeAddToBlacklistInterceptors() ?? []
@@ -319,11 +319,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func makeDeleteFromBlacklistCall(
-    _ request: Ru_Zveron_DeleteFromBlacklistRequest,
+    _ request: DeleteFromBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteFromBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteFromBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteFromBlacklistInterceptors() ?? []
@@ -331,11 +331,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func makeDeleteAllRecordsWhereUserBlocksCall(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest,
+    _ request: DeleteAllRecordsWhereUserBlocksRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteAllRecordsWhereUserBlocksInterceptors() ?? []
@@ -343,11 +343,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func makeDeleteAllRecordsWhereUserIsBlockedCall(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest,
+    _ request: DeleteAllRecordsWhereUserIsBlockedRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteAllRecordsWhereUserIsBlockedInterceptors() ?? []
@@ -356,13 +356,13 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
+extension BlacklistServiceAsyncClientProtocol {
   public func existInBlacklist(
-    _ request: Ru_Zveron_ExistInBlacklistRequest,
+    _ request: ExistInBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_ExistInBlacklistResponse {
+  ) async throws -> ExistInBlacklistResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.existInBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.existInBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeExistInBlacklistInterceptors() ?? []
@@ -370,11 +370,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func getBlacklist(
-    _ request: Ru_Zveron_GetBlacklistRequest,
+    _ request: GetBlacklistRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_GetBlacklistResponse {
+  ) async throws -> GetBlacklistResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.getBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.getBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetBlacklistInterceptors() ?? []
@@ -382,11 +382,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func addToBlacklist(
-    _ request: Ru_Zveron_AddToBlacklistRequest,
+    _ request: AddToBlacklistRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.addToBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.addToBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeAddToBlacklistInterceptors() ?? []
@@ -394,11 +394,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func deleteFromBlacklist(
-    _ request: Ru_Zveron_DeleteFromBlacklistRequest,
+    _ request: DeleteFromBlacklistRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteFromBlacklist.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteFromBlacklist.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteFromBlacklistInterceptors() ?? []
@@ -406,11 +406,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func deleteAllRecordsWhereUserBlocks(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest,
+    _ request: DeleteAllRecordsWhereUserBlocksRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteAllRecordsWhereUserBlocksInterceptors() ?? []
@@ -418,11 +418,11 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
   }
 
   public func deleteAllRecordsWhereUserIsBlocked(
-    _ request: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest,
+    _ request: DeleteAllRecordsWhereUserIsBlockedRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked.path,
+      path: BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteAllRecordsWhereUserIsBlockedInterceptors() ?? []
@@ -431,15 +431,15 @@ extension Ru_Zveron_BlacklistServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_BlacklistServiceAsyncClient: Ru_Zveron_BlacklistServiceAsyncClientProtocol {
+public struct BlacklistServiceAsyncClient: BlacklistServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol?
+  public var interceptors: BlacklistServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: BlacklistServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -449,38 +449,38 @@ public struct Ru_Zveron_BlacklistServiceAsyncClient: Ru_Zveron_BlacklistServiceA
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_BlacklistServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol BlacklistServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'existInBlacklist'.
-  func makeExistInBlacklistInterceptors() -> [ClientInterceptor<Ru_Zveron_ExistInBlacklistRequest, Ru_Zveron_ExistInBlacklistResponse>]
+  func makeExistInBlacklistInterceptors() -> [ClientInterceptor<ExistInBlacklistRequest, ExistInBlacklistResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getBlacklist'.
-  func makeGetBlacklistInterceptors() -> [ClientInterceptor<Ru_Zveron_GetBlacklistRequest, Ru_Zveron_GetBlacklistResponse>]
+  func makeGetBlacklistInterceptors() -> [ClientInterceptor<GetBlacklistRequest, GetBlacklistResponse>]
 
   /// - Returns: Interceptors to use when invoking 'addToBlacklist'.
-  func makeAddToBlacklistInterceptors() -> [ClientInterceptor<Ru_Zveron_AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeAddToBlacklistInterceptors() -> [ClientInterceptor<AddToBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'deleteFromBlacklist'.
-  func makeDeleteFromBlacklistInterceptors() -> [ClientInterceptor<Ru_Zveron_DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeDeleteFromBlacklistInterceptors() -> [ClientInterceptor<DeleteFromBlacklistRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'deleteAllRecordsWhereUserBlocks'.
-  func makeDeleteAllRecordsWhereUserBlocksInterceptors() -> [ClientInterceptor<Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeDeleteAllRecordsWhereUserBlocksInterceptors() -> [ClientInterceptor<DeleteAllRecordsWhereUserBlocksRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'deleteAllRecordsWhereUserIsBlocked'.
-  func makeDeleteAllRecordsWhereUserIsBlockedInterceptors() -> [ClientInterceptor<Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeDeleteAllRecordsWhereUserIsBlockedInterceptors() -> [ClientInterceptor<DeleteAllRecordsWhereUserIsBlockedRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 }
 
-public enum Ru_Zveron_BlacklistServiceClientMetadata {
+public enum BlacklistServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "BlacklistService",
     fullName: "ru.zveron.BlacklistService",
     methods: [
-      Ru_Zveron_BlacklistServiceClientMetadata.Methods.existInBlacklist,
-      Ru_Zveron_BlacklistServiceClientMetadata.Methods.getBlacklist,
-      Ru_Zveron_BlacklistServiceClientMetadata.Methods.addToBlacklist,
-      Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteFromBlacklist,
-      Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks,
-      Ru_Zveron_BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked,
+      BlacklistServiceClientMetadata.Methods.existInBlacklist,
+      BlacklistServiceClientMetadata.Methods.getBlacklist,
+      BlacklistServiceClientMetadata.Methods.addToBlacklist,
+      BlacklistServiceClientMetadata.Methods.deleteFromBlacklist,
+      BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserBlocks,
+      BlacklistServiceClientMetadata.Methods.deleteAllRecordsWhereUserIsBlocked,
     ]
   )
 

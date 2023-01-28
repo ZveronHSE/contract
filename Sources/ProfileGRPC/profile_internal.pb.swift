@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Ru_Zveron_Contract_Profile_CreateProfileRequest {
+public struct CreateProfileRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -31,8 +31,8 @@ public struct Ru_Zveron_Contract_Profile_CreateProfileRequest {
 
   public var surname: String = String()
 
-  public var links: Ru_Zveron_Contract_Profile_Model_Links {
-    get {return _links ?? Ru_Zveron_Contract_Profile_Model_Links()}
+  public var links: Links {
+    get {return _links ?? Links()}
     set {_links = newValue}
   }
   /// Returns true if `links` has been explicitly set.
@@ -46,10 +46,10 @@ public struct Ru_Zveron_Contract_Profile_CreateProfileRequest {
 
   public init() {}
 
-  fileprivate var _links: Ru_Zveron_Contract_Profile_Model_Links? = nil
+  fileprivate var _links: Links? = nil
 }
 
-public struct Ru_Zveron_Contract_Profile_GetProfileRequest {
+public struct GetProfileRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -61,7 +61,7 @@ public struct Ru_Zveron_Contract_Profile_GetProfileRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Profile_GetProfileResponse {
+public struct GetProfileResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -74,7 +74,7 @@ public struct Ru_Zveron_Contract_Profile_GetProfileResponse {
 
   public var imageID: UInt64 = 0
 
-  public var channels: [Ru_Zveron_Contract_Profile_Model_ChannelType] = []
+  public var channels: [ChannelType] = []
 
   public var addressID: Int64 = 0
 
@@ -83,7 +83,7 @@ public struct Ru_Zveron_Contract_Profile_GetProfileResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest {
+public struct GetProfileWithContactsRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -95,7 +95,7 @@ public struct Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse {
+public struct GetProfileWithContactsResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -108,10 +108,10 @@ public struct Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse {
 
   public var imageID: UInt64 = 0
 
-  public var channels: [Ru_Zveron_Contract_Profile_Model_ChannelType] = []
+  public var channels: [ChannelType] = []
 
-  public var links: Ru_Zveron_Contract_Profile_Model_Links {
-    get {return _links ?? Ru_Zveron_Contract_Profile_Model_Links()}
+  public var links: Links {
+    get {return _links ?? Links()}
     set {_links = newValue}
   }
   /// Returns true if `links` has been explicitly set.
@@ -121,14 +121,24 @@ public struct Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse {
 
   public var addressID: Int64 = 0
 
+  public var lastSeen: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _lastSeen ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_lastSeen = newValue}
+  }
+  /// Returns true if `lastSeen` has been explicitly set.
+  public var hasLastSeen: Bool {return self._lastSeen != nil}
+  /// Clears the value of `lastSeen`. Subsequent reads from it will return its default value.
+  public mutating func clearLastSeen() {self._lastSeen = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _links: Ru_Zveron_Contract_Profile_Model_Links? = nil
+  fileprivate var _links: Links? = nil
+  fileprivate var _lastSeen: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 }
 
-public struct Ru_Zveron_Contract_Profile_UpdateContactsRequest {
+public struct UpdateContactsRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -136,10 +146,10 @@ public struct Ru_Zveron_Contract_Profile_UpdateContactsRequest {
   public var profileID: UInt64 = 0
 
   /// Тип способа связи, который был изменен. Только он будет перезаписан сервисом
-  public var type: Ru_Zveron_Contract_Profile_Model_ChannelType = .vk
+  public var type: ChannelType = .vk
 
-  public var links: Ru_Zveron_Contract_Profile_Model_Links {
-    get {return _links ?? Ru_Zveron_Contract_Profile_Model_Links()}
+  public var links: Links {
+    get {return _links ?? Links()}
     set {_links = newValue}
   }
   /// Returns true if `links` has been explicitly set.
@@ -151,15 +161,15 @@ public struct Ru_Zveron_Contract_Profile_UpdateContactsRequest {
 
   public init() {}
 
-  fileprivate var _links: Ru_Zveron_Contract_Profile_Model_Links? = nil
+  fileprivate var _links: Links? = nil
 }
 
-public struct Ru_Zveron_Contract_Profile_GetProfileByChannelRequest {
+public struct GetProfileByChannelRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var type: Ru_Zveron_Contract_Profile_Model_ChannelType = .vk
+  public var type: ChannelType = .vk
 
   /// В случае телефона - номер телефона
   /// В случае соц. сети - id
@@ -170,7 +180,7 @@ public struct Ru_Zveron_Contract_Profile_GetProfileByChannelRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Profile_GetProfileByChannelResponse {
+public struct GetProfileByChannelResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -187,21 +197,21 @@ public struct Ru_Zveron_Contract_Profile_GetProfileByChannelResponse {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Profile_CreateProfileRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_GetProfileRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_GetProfileResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_UpdateContactsRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_GetProfileByChannelRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_GetProfileByChannelResponse: @unchecked Sendable {}
+extension CreateProfileRequest: @unchecked Sendable {}
+extension GetProfileRequest: @unchecked Sendable {}
+extension GetProfileResponse: @unchecked Sendable {}
+extension GetProfileWithContactsRequest: @unchecked Sendable {}
+extension GetProfileWithContactsResponse: @unchecked Sendable {}
+extension UpdateContactsRequest: @unchecked Sendable {}
+extension GetProfileByChannelRequest: @unchecked Sendable {}
+extension GetProfileByChannelResponse: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.profile"
 
-extension Ru_Zveron_Contract_Profile_CreateProfileRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension CreateProfileRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreateProfileRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "auth_account_id"),
@@ -250,7 +260,7 @@ extension Ru_Zveron_Contract_Profile_CreateProfileRequest: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_CreateProfileRequest, rhs: Ru_Zveron_Contract_Profile_CreateProfileRequest) -> Bool {
+  public static func ==(lhs: CreateProfileRequest, rhs: CreateProfileRequest) -> Bool {
     if lhs.authAccountID != rhs.authAccountID {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
@@ -261,7 +271,7 @@ extension Ru_Zveron_Contract_Profile_CreateProfileRequest: SwiftProtobuf.Message
   }
 }
 
-extension Ru_Zveron_Contract_Profile_GetProfileRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetProfileRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfileRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -286,14 +296,14 @@ extension Ru_Zveron_Contract_Profile_GetProfileRequest: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_GetProfileRequest, rhs: Ru_Zveron_Contract_Profile_GetProfileRequest) -> Bool {
+  public static func ==(lhs: GetProfileRequest, rhs: GetProfileRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Profile_GetProfileResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetProfileResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfileResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -343,7 +353,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileResponse: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_GetProfileResponse, rhs: Ru_Zveron_Contract_Profile_GetProfileResponse) -> Bool {
+  public static func ==(lhs: GetProfileResponse, rhs: GetProfileResponse) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
@@ -355,7 +365,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileResponse: SwiftProtobuf.Message, 
   }
 }
 
-extension Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetProfileWithContactsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfileWithContactsRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -380,14 +390,14 @@ extension Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest, rhs: Ru_Zveron_Contract_Profile_GetProfileWithContactsRequest) -> Bool {
+  public static func ==(lhs: GetProfileWithContactsRequest, rhs: GetProfileWithContactsRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetProfileWithContactsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfileWithContactsResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -397,6 +407,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse: SwiftProtob
     5: .same(proto: "channels"),
     6: .same(proto: "links"),
     7: .standard(proto: "address_id"),
+    8: .same(proto: "lastSeen"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -412,6 +423,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse: SwiftProtob
       case 5: try { try decoder.decodeRepeatedEnumField(value: &self.channels) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._links) }()
       case 7: try { try decoder.decodeSingularInt64Field(value: &self.addressID) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._lastSeen) }()
       default: break
       }
     }
@@ -443,10 +455,13 @@ extension Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse: SwiftProtob
     if self.addressID != 0 {
       try visitor.visitSingularInt64Field(value: self.addressID, fieldNumber: 7)
     }
+    try { if let v = self._lastSeen {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse, rhs: Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse) -> Bool {
+  public static func ==(lhs: GetProfileWithContactsResponse, rhs: GetProfileWithContactsResponse) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
@@ -454,12 +469,13 @@ extension Ru_Zveron_Contract_Profile_GetProfileWithContactsResponse: SwiftProtob
     if lhs.channels != rhs.channels {return false}
     if lhs._links != rhs._links {return false}
     if lhs.addressID != rhs.addressID {return false}
+    if lhs._lastSeen != rhs._lastSeen {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Profile_UpdateContactsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension UpdateContactsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UpdateContactsRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "profile_id"),
@@ -498,7 +514,7 @@ extension Ru_Zveron_Contract_Profile_UpdateContactsRequest: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_UpdateContactsRequest, rhs: Ru_Zveron_Contract_Profile_UpdateContactsRequest) -> Bool {
+  public static func ==(lhs: UpdateContactsRequest, rhs: UpdateContactsRequest) -> Bool {
     if lhs.profileID != rhs.profileID {return false}
     if lhs.type != rhs.type {return false}
     if lhs._links != rhs._links {return false}
@@ -507,7 +523,7 @@ extension Ru_Zveron_Contract_Profile_UpdateContactsRequest: SwiftProtobuf.Messag
   }
 }
 
-extension Ru_Zveron_Contract_Profile_GetProfileByChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetProfileByChannelRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfileByChannelRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
@@ -537,7 +553,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileByChannelRequest: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_GetProfileByChannelRequest, rhs: Ru_Zveron_Contract_Profile_GetProfileByChannelRequest) -> Bool {
+  public static func ==(lhs: GetProfileByChannelRequest, rhs: GetProfileByChannelRequest) -> Bool {
     if lhs.type != rhs.type {return false}
     if lhs.identifier != rhs.identifier {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -545,7 +561,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileByChannelRequest: SwiftProtobuf.M
   }
 }
 
-extension Ru_Zveron_Contract_Profile_GetProfileByChannelResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetProfileByChannelResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfileByChannelResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -580,7 +596,7 @@ extension Ru_Zveron_Contract_Profile_GetProfileByChannelResponse: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_GetProfileByChannelResponse, rhs: Ru_Zveron_Contract_Profile_GetProfileByChannelResponse) -> Bool {
+  public static func ==(lhs: GetProfileByChannelResponse, rhs: GetProfileByChannelResponse) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Ru_Zveron_Contract_Profile_Model_ChannelType: SwiftProtobuf.Enum {
+public enum ChannelType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case vk // = 0
   case google // = 1
@@ -56,9 +56,9 @@ public enum Ru_Zveron_Contract_Profile_Model_ChannelType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Profile_Model_ChannelType: CaseIterable {
+extension ChannelType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Profile_Model_ChannelType] = [
+  public static var allCases: [ChannelType] = [
     .vk,
     .google,
     .phone,
@@ -68,13 +68,13 @@ extension Ru_Zveron_Contract_Profile_Model_ChannelType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public struct Ru_Zveron_Contract_Profile_Model_Links {
+public struct Links {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var phone: Ru_Zveron_Contract_Profile_Model_Phone {
-    get {return _phone ?? Ru_Zveron_Contract_Profile_Model_Phone()}
+  public var phone: Phone {
+    get {return _phone ?? Phone()}
     set {_phone = newValue}
   }
   /// Returns true if `phone` has been explicitly set.
@@ -82,8 +82,8 @@ public struct Ru_Zveron_Contract_Profile_Model_Links {
   /// Clears the value of `phone`. Subsequent reads from it will return its default value.
   public mutating func clearPhone() {self._phone = nil}
 
-  public var vk: Ru_Zveron_Contract_Profile_Model_Vk {
-    get {return _vk ?? Ru_Zveron_Contract_Profile_Model_Vk()}
+  public var vk: Vk {
+    get {return _vk ?? Vk()}
     set {_vk = newValue}
   }
   /// Returns true if `vk` has been explicitly set.
@@ -91,8 +91,8 @@ public struct Ru_Zveron_Contract_Profile_Model_Links {
   /// Clears the value of `vk`. Subsequent reads from it will return its default value.
   public mutating func clearVk() {self._vk = nil}
 
-  public var gmail: Ru_Zveron_Contract_Profile_Model_Gmail {
-    get {return _gmail ?? Ru_Zveron_Contract_Profile_Model_Gmail()}
+  public var gmail: Gmail {
+    get {return _gmail ?? Gmail()}
     set {_gmail = newValue}
   }
   /// Returns true if `gmail` has been explicitly set.
@@ -104,12 +104,12 @@ public struct Ru_Zveron_Contract_Profile_Model_Links {
 
   public init() {}
 
-  fileprivate var _phone: Ru_Zveron_Contract_Profile_Model_Phone? = nil
-  fileprivate var _vk: Ru_Zveron_Contract_Profile_Model_Vk? = nil
-  fileprivate var _gmail: Ru_Zveron_Contract_Profile_Model_Gmail? = nil
+  fileprivate var _phone: Phone? = nil
+  fileprivate var _vk: Vk? = nil
+  fileprivate var _gmail: Gmail? = nil
 }
 
-public struct Ru_Zveron_Contract_Profile_Model_Phone {
+public struct Phone {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -121,7 +121,7 @@ public struct Ru_Zveron_Contract_Profile_Model_Phone {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Profile_Model_Vk {
+public struct Vk {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -146,7 +146,7 @@ public struct Ru_Zveron_Contract_Profile_Model_Vk {
   fileprivate var _email: String? = nil
 }
 
-public struct Ru_Zveron_Contract_Profile_Model_Gmail {
+public struct Gmail {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -161,18 +161,18 @@ public struct Ru_Zveron_Contract_Profile_Model_Gmail {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Profile_Model_ChannelType: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_Model_Links: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_Model_Phone: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_Model_Vk: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Profile_Model_Gmail: @unchecked Sendable {}
+extension ChannelType: @unchecked Sendable {}
+extension Links: @unchecked Sendable {}
+extension Phone: @unchecked Sendable {}
+extension Vk: @unchecked Sendable {}
+extension Gmail: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.profile.model"
 
-extension Ru_Zveron_Contract_Profile_Model_ChannelType: SwiftProtobuf._ProtoNameProviding {
+extension ChannelType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VK"),
     1: .same(proto: "GOOGLE"),
@@ -181,7 +181,7 @@ extension Ru_Zveron_Contract_Profile_Model_ChannelType: SwiftProtobuf._ProtoName
   ]
 }
 
-extension Ru_Zveron_Contract_Profile_Model_Links: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Links: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Links"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "phone"),
@@ -220,7 +220,7 @@ extension Ru_Zveron_Contract_Profile_Model_Links: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_Model_Links, rhs: Ru_Zveron_Contract_Profile_Model_Links) -> Bool {
+  public static func ==(lhs: Links, rhs: Links) -> Bool {
     if lhs._phone != rhs._phone {return false}
     if lhs._vk != rhs._vk {return false}
     if lhs._gmail != rhs._gmail {return false}
@@ -229,7 +229,7 @@ extension Ru_Zveron_Contract_Profile_Model_Links: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Ru_Zveron_Contract_Profile_Model_Phone: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Phone: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Phone"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "number"),
@@ -254,14 +254,14 @@ extension Ru_Zveron_Contract_Profile_Model_Phone: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_Model_Phone, rhs: Ru_Zveron_Contract_Profile_Model_Phone) -> Bool {
+  public static func ==(lhs: Phone, rhs: Phone) -> Bool {
     if lhs.number != rhs.number {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Profile_Model_Vk: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Vk: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Vk"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -300,7 +300,7 @@ extension Ru_Zveron_Contract_Profile_Model_Vk: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_Model_Vk, rhs: Ru_Zveron_Contract_Profile_Model_Vk) -> Bool {
+  public static func ==(lhs: Vk, rhs: Vk) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.ref != rhs.ref {return false}
     if lhs._email != rhs._email {return false}
@@ -309,7 +309,7 @@ extension Ru_Zveron_Contract_Profile_Model_Vk: SwiftProtobuf.Message, SwiftProto
   }
 }
 
-extension Ru_Zveron_Contract_Profile_Model_Gmail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Gmail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Gmail"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -339,7 +339,7 @@ extension Ru_Zveron_Contract_Profile_Model_Gmail: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Profile_Model_Gmail, rhs: Ru_Zveron_Contract_Profile_Model_Gmail) -> Bool {
+  public static func ==(lhs: Gmail, rhs: Gmail) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.email != rhs.email {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

@@ -26,53 +26,53 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Profile_ProfileServiceExternalClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol: GRPCClient {
+/// Usage: instantiate `ProfileServiceExternalClient`, then call methods of this protocol to make API calls.
+public protocol ProfileServiceExternalClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? { get }
+  var interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? { get }
 
   func getProfilePage(
-    _ request: Ru_Zveron_Contract_Profile_GetProfilePageRequest,
+    _ request: GetProfilePageRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetProfilePageRequest, Ru_Zveron_Contract_Profile_GetProfilePageResponse>
+  ) -> UnaryCall<GetProfilePageRequest, GetProfilePageResponse>
 
   func getProfileInfo(
-    _ request: Ru_Zveron_Contract_Profile_GetProfileInfoRequest,
+    _ request: GetProfileInfoRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetProfileInfoRequest, Ru_Zveron_Contract_Profile_GetProfileInfoResponse>
+  ) -> UnaryCall<GetProfileInfoRequest, GetProfileInfoResponse>
 
   func setProfileInfo(
-    _ request: Ru_Zveron_Contract_Profile_SetProfileInfoRequest,
+    _ request: SetProfileInfoRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func getSettings(
-    _ request: Ru_Zveron_Contract_Profile_GetSettingsRequest,
+    _ request: GetSettingsRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetSettingsRequest, Ru_Zveron_Contract_Profile_GetSettingsResponse>
+  ) -> UnaryCall<GetSettingsRequest, GetSettingsResponse>
 
   func setSettings(
-    _ request: Ru_Zveron_Contract_Profile_SetSettingsRequest,
+    _ request: SetSettingsRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func getChannelTypes(
-    _ request: Ru_Zveron_Contract_Profile_GetChannelTypesRequest,
+    _ request: GetChannelTypesRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetChannelTypesRequest, Ru_Zveron_Contract_Profile_GetChannelTypesResponse>
+  ) -> UnaryCall<GetChannelTypesRequest, GetChannelTypesResponse>
 
   func getLinks(
-    _ request: Ru_Zveron_Contract_Profile_GetLinksRequest,
+    _ request: GetLinksRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetLinksRequest, Ru_Zveron_Contract_Profile_Model_Links>
+  ) -> UnaryCall<GetLinksRequest, Links>
 
   func deleteProfile(
-    _ request: Ru_Zveron_Contract_Profile_DeleteProfileRequest,
+    _ request: DeleteProfileRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
-extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
+extension ProfileServiceExternalClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.profile.ProfileServiceExternal"
   }
@@ -84,11 +84,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getProfilePage(
-    _ request: Ru_Zveron_Contract_Profile_GetProfilePageRequest,
+    _ request: GetProfilePageRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetProfilePageRequest, Ru_Zveron_Contract_Profile_GetProfilePageResponse> {
+  ) -> UnaryCall<GetProfilePageRequest, GetProfilePageResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfilePage.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getProfilePage.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetProfilePageInterceptors() ?? []
@@ -102,11 +102,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getProfileInfo(
-    _ request: Ru_Zveron_Contract_Profile_GetProfileInfoRequest,
+    _ request: GetProfileInfoRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetProfileInfoRequest, Ru_Zveron_Contract_Profile_GetProfileInfoResponse> {
+  ) -> UnaryCall<GetProfileInfoRequest, GetProfileInfoResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetProfileInfoInterceptors() ?? []
@@ -120,11 +120,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func setProfileInfo(
-    _ request: Ru_Zveron_Contract_Profile_SetProfileInfoRequest,
+    _ request: SetProfileInfoRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setProfileInfo.path,
+      path: ProfileServiceExternalClientMetadata.Methods.setProfileInfo.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetProfileInfoInterceptors() ?? []
@@ -138,11 +138,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getSettings(
-    _ request: Ru_Zveron_Contract_Profile_GetSettingsRequest,
+    _ request: GetSettingsRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetSettingsRequest, Ru_Zveron_Contract_Profile_GetSettingsResponse> {
+  ) -> UnaryCall<GetSettingsRequest, GetSettingsResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getSettings.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getSettings.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetSettingsInterceptors() ?? []
@@ -156,11 +156,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func setSettings(
-    _ request: Ru_Zveron_Contract_Profile_SetSettingsRequest,
+    _ request: SetSettingsRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setSettings.path,
+      path: ProfileServiceExternalClientMetadata.Methods.setSettings.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetSettingsInterceptors() ?? []
@@ -174,11 +174,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getChannelTypes(
-    _ request: Ru_Zveron_Contract_Profile_GetChannelTypesRequest,
+    _ request: GetChannelTypesRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetChannelTypesRequest, Ru_Zveron_Contract_Profile_GetChannelTypesResponse> {
+  ) -> UnaryCall<GetChannelTypesRequest, GetChannelTypesResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetChannelTypesInterceptors() ?? []
@@ -192,11 +192,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getLinks(
-    _ request: Ru_Zveron_Contract_Profile_GetLinksRequest,
+    _ request: GetLinksRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_GetLinksRequest, Ru_Zveron_Contract_Profile_Model_Links> {
+  ) -> UnaryCall<GetLinksRequest, Links> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getLinks.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getLinks.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetLinksInterceptors() ?? []
@@ -210,11 +210,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func deleteProfile(
-    _ request: Ru_Zveron_Contract_Profile_DeleteProfileRequest,
+    _ request: DeleteProfileRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Profile_DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
+      path: ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteProfileInterceptors() ?? []
@@ -224,20 +224,20 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Profile_ProfileServiceExternalClient: @unchecked Sendable {}
+extension ProfileServiceExternalClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Profile_ProfileServiceExternalNIOClient")
-public final class Ru_Zveron_Contract_Profile_ProfileServiceExternalClient: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
+@available(*, deprecated, renamed: "ProfileServiceExternalNIOClient")
+public final class ProfileServiceExternalClient: ProfileServiceExternalClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol?
+  private var _interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? {
+  public var interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -251,7 +251,7 @@ public final class Ru_Zveron_Contract_Profile_ProfileServiceExternalClient: Ru_Z
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? = nil
+    interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -259,10 +259,10 @@ public final class Ru_Zveron_Contract_Profile_ProfileServiceExternalClient: Ru_Z
   }
 }
 
-public struct Ru_Zveron_Contract_Profile_ProfileServiceExternalNIOClient: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientProtocol {
+public struct ProfileServiceExternalNIOClient: ProfileServiceExternalClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol?
+  public var interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.profile.ProfileServiceExternal service.
   ///
@@ -273,7 +273,7 @@ public struct Ru_Zveron_Contract_Profile_ProfileServiceExternalNIOClient: Ru_Zve
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? = nil
+    interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -283,67 +283,67 @@ public struct Ru_Zveron_Contract_Profile_ProfileServiceExternalNIOClient: Ru_Zve
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol: GRPCClient {
+public protocol ProfileServiceExternalAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? { get }
+  var interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? { get }
 
   func makeGetProfilePageCall(
-    _ request: Ru_Zveron_Contract_Profile_GetProfilePageRequest,
+    _ request: GetProfilePageRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetProfilePageRequest, Ru_Zveron_Contract_Profile_GetProfilePageResponse>
+  ) -> GRPCAsyncUnaryCall<GetProfilePageRequest, GetProfilePageResponse>
 
   func makeGetProfileInfoCall(
-    _ request: Ru_Zveron_Contract_Profile_GetProfileInfoRequest,
+    _ request: GetProfileInfoRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetProfileInfoRequest, Ru_Zveron_Contract_Profile_GetProfileInfoResponse>
+  ) -> GRPCAsyncUnaryCall<GetProfileInfoRequest, GetProfileInfoResponse>
 
   func makeSetProfileInfoCall(
-    _ request: Ru_Zveron_Contract_Profile_SetProfileInfoRequest,
+    _ request: SetProfileInfoRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeGetSettingsCall(
-    _ request: Ru_Zveron_Contract_Profile_GetSettingsRequest,
+    _ request: GetSettingsRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetSettingsRequest, Ru_Zveron_Contract_Profile_GetSettingsResponse>
+  ) -> GRPCAsyncUnaryCall<GetSettingsRequest, GetSettingsResponse>
 
   func makeSetSettingsCall(
-    _ request: Ru_Zveron_Contract_Profile_SetSettingsRequest,
+    _ request: SetSettingsRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeGetChannelTypesCall(
-    _ request: Ru_Zveron_Contract_Profile_GetChannelTypesRequest,
+    _ request: GetChannelTypesRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetChannelTypesRequest, Ru_Zveron_Contract_Profile_GetChannelTypesResponse>
+  ) -> GRPCAsyncUnaryCall<GetChannelTypesRequest, GetChannelTypesResponse>
 
   func makeGetLinksCall(
-    _ request: Ru_Zveron_Contract_Profile_GetLinksRequest,
+    _ request: GetLinksRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetLinksRequest, Ru_Zveron_Contract_Profile_Model_Links>
+  ) -> GRPCAsyncUnaryCall<GetLinksRequest, Links>
 
   func makeDeleteProfileCall(
-    _ request: Ru_Zveron_Contract_Profile_DeleteProfileRequest,
+    _ request: DeleteProfileRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
+extension ProfileServiceExternalAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.serviceDescriptor
+    return ProfileServiceExternalClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? {
+  public var interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeGetProfilePageCall(
-    _ request: Ru_Zveron_Contract_Profile_GetProfilePageRequest,
+    _ request: GetProfilePageRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetProfilePageRequest, Ru_Zveron_Contract_Profile_GetProfilePageResponse> {
+  ) -> GRPCAsyncUnaryCall<GetProfilePageRequest, GetProfilePageResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfilePage.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getProfilePage.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetProfilePageInterceptors() ?? []
@@ -351,11 +351,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetProfileInfoCall(
-    _ request: Ru_Zveron_Contract_Profile_GetProfileInfoRequest,
+    _ request: GetProfileInfoRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetProfileInfoRequest, Ru_Zveron_Contract_Profile_GetProfileInfoResponse> {
+  ) -> GRPCAsyncUnaryCall<GetProfileInfoRequest, GetProfileInfoResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetProfileInfoInterceptors() ?? []
@@ -363,11 +363,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeSetProfileInfoCall(
-    _ request: Ru_Zveron_Contract_Profile_SetProfileInfoRequest,
+    _ request: SetProfileInfoRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setProfileInfo.path,
+      path: ProfileServiceExternalClientMetadata.Methods.setProfileInfo.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetProfileInfoInterceptors() ?? []
@@ -375,11 +375,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetSettingsCall(
-    _ request: Ru_Zveron_Contract_Profile_GetSettingsRequest,
+    _ request: GetSettingsRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetSettingsRequest, Ru_Zveron_Contract_Profile_GetSettingsResponse> {
+  ) -> GRPCAsyncUnaryCall<GetSettingsRequest, GetSettingsResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getSettings.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getSettings.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetSettingsInterceptors() ?? []
@@ -387,11 +387,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeSetSettingsCall(
-    _ request: Ru_Zveron_Contract_Profile_SetSettingsRequest,
+    _ request: SetSettingsRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setSettings.path,
+      path: ProfileServiceExternalClientMetadata.Methods.setSettings.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetSettingsInterceptors() ?? []
@@ -399,11 +399,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetChannelTypesCall(
-    _ request: Ru_Zveron_Contract_Profile_GetChannelTypesRequest,
+    _ request: GetChannelTypesRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetChannelTypesRequest, Ru_Zveron_Contract_Profile_GetChannelTypesResponse> {
+  ) -> GRPCAsyncUnaryCall<GetChannelTypesRequest, GetChannelTypesResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetChannelTypesInterceptors() ?? []
@@ -411,11 +411,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetLinksCall(
-    _ request: Ru_Zveron_Contract_Profile_GetLinksRequest,
+    _ request: GetLinksRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_GetLinksRequest, Ru_Zveron_Contract_Profile_Model_Links> {
+  ) -> GRPCAsyncUnaryCall<GetLinksRequest, Links> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getLinks.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getLinks.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetLinksInterceptors() ?? []
@@ -423,11 +423,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeDeleteProfileCall(
-    _ request: Ru_Zveron_Contract_Profile_DeleteProfileRequest,
+    _ request: DeleteProfileRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Profile_DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
+      path: ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteProfileInterceptors() ?? []
@@ -436,13 +436,13 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
+extension ProfileServiceExternalAsyncClientProtocol {
   public func getProfilePage(
-    _ request: Ru_Zveron_Contract_Profile_GetProfilePageRequest,
+    _ request: GetProfilePageRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Profile_GetProfilePageResponse {
+  ) async throws -> GetProfilePageResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfilePage.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getProfilePage.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetProfilePageInterceptors() ?? []
@@ -450,11 +450,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getProfileInfo(
-    _ request: Ru_Zveron_Contract_Profile_GetProfileInfoRequest,
+    _ request: GetProfileInfoRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Profile_GetProfileInfoResponse {
+  ) async throws -> GetProfileInfoResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetProfileInfoInterceptors() ?? []
@@ -462,11 +462,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func setProfileInfo(
-    _ request: Ru_Zveron_Contract_Profile_SetProfileInfoRequest,
+    _ request: SetProfileInfoRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setProfileInfo.path,
+      path: ProfileServiceExternalClientMetadata.Methods.setProfileInfo.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetProfileInfoInterceptors() ?? []
@@ -474,11 +474,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getSettings(
-    _ request: Ru_Zveron_Contract_Profile_GetSettingsRequest,
+    _ request: GetSettingsRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Profile_GetSettingsResponse {
+  ) async throws -> GetSettingsResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getSettings.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getSettings.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetSettingsInterceptors() ?? []
@@ -486,11 +486,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func setSettings(
-    _ request: Ru_Zveron_Contract_Profile_SetSettingsRequest,
+    _ request: SetSettingsRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setSettings.path,
+      path: ProfileServiceExternalClientMetadata.Methods.setSettings.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetSettingsInterceptors() ?? []
@@ -498,11 +498,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getChannelTypes(
-    _ request: Ru_Zveron_Contract_Profile_GetChannelTypesRequest,
+    _ request: GetChannelTypesRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Profile_GetChannelTypesResponse {
+  ) async throws -> GetChannelTypesResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetChannelTypesInterceptors() ?? []
@@ -510,11 +510,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getLinks(
-    _ request: Ru_Zveron_Contract_Profile_GetLinksRequest,
+    _ request: GetLinksRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Profile_Model_Links {
+  ) async throws -> Links {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getLinks.path,
+      path: ProfileServiceExternalClientMetadata.Methods.getLinks.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetLinksInterceptors() ?? []
@@ -522,11 +522,11 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func deleteProfile(
-    _ request: Ru_Zveron_Contract_Profile_DeleteProfileRequest,
+    _ request: DeleteProfileRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
+      path: ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeDeleteProfileInterceptors() ?? []
@@ -535,15 +535,15 @@ extension Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClient: Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClientProtocol {
+public struct ProfileServiceExternalAsyncClient: ProfileServiceExternalAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol?
+  public var interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol? = nil
+    interceptors: ProfileServiceExternalClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -553,46 +553,46 @@ public struct Ru_Zveron_Contract_Profile_ProfileServiceExternalAsyncClient: Ru_Z
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Profile_ProfileServiceExternalClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol ProfileServiceExternalClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'getProfilePage'.
-  func makeGetProfilePageInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_GetProfilePageRequest, Ru_Zveron_Contract_Profile_GetProfilePageResponse>]
+  func makeGetProfilePageInterceptors() -> [ClientInterceptor<GetProfilePageRequest, GetProfilePageResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getProfileInfo'.
-  func makeGetProfileInfoInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_GetProfileInfoRequest, Ru_Zveron_Contract_Profile_GetProfileInfoResponse>]
+  func makeGetProfileInfoInterceptors() -> [ClientInterceptor<GetProfileInfoRequest, GetProfileInfoResponse>]
 
   /// - Returns: Interceptors to use when invoking 'setProfileInfo'.
-  func makeSetProfileInfoInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeSetProfileInfoInterceptors() -> [ClientInterceptor<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'getSettings'.
-  func makeGetSettingsInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_GetSettingsRequest, Ru_Zveron_Contract_Profile_GetSettingsResponse>]
+  func makeGetSettingsInterceptors() -> [ClientInterceptor<GetSettingsRequest, GetSettingsResponse>]
 
   /// - Returns: Interceptors to use when invoking 'setSettings'.
-  func makeSetSettingsInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeSetSettingsInterceptors() -> [ClientInterceptor<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'getChannelTypes'.
-  func makeGetChannelTypesInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_GetChannelTypesRequest, Ru_Zveron_Contract_Profile_GetChannelTypesResponse>]
+  func makeGetChannelTypesInterceptors() -> [ClientInterceptor<GetChannelTypesRequest, GetChannelTypesResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getLinks'.
-  func makeGetLinksInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_GetLinksRequest, Ru_Zveron_Contract_Profile_Model_Links>]
+  func makeGetLinksInterceptors() -> [ClientInterceptor<GetLinksRequest, Links>]
 
   /// - Returns: Interceptors to use when invoking 'deleteProfile'.
-  func makeDeleteProfileInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Profile_DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeDeleteProfileInterceptors() -> [ClientInterceptor<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 }
 
-public enum Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata {
+public enum ProfileServiceExternalClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "ProfileServiceExternal",
     fullName: "ru.zveron.contract.profile.ProfileServiceExternal",
     methods: [
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfilePage,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getProfileInfo,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setProfileInfo,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getSettings,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.setSettings,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getChannelTypes,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.getLinks,
-      Ru_Zveron_Contract_Profile_ProfileServiceExternalClientMetadata.Methods.deleteProfile,
+      ProfileServiceExternalClientMetadata.Methods.getProfilePage,
+      ProfileServiceExternalClientMetadata.Methods.getProfileInfo,
+      ProfileServiceExternalClientMetadata.Methods.setProfileInfo,
+      ProfileServiceExternalClientMetadata.Methods.getSettings,
+      ProfileServiceExternalClientMetadata.Methods.setSettings,
+      ProfileServiceExternalClientMetadata.Methods.getChannelTypes,
+      ProfileServiceExternalClientMetadata.Methods.getLinks,
+      ProfileServiceExternalClientMetadata.Methods.deleteProfile,
     ]
   )
 

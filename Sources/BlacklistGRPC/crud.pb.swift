@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Ru_Zveron_ExistInBlacklistRequest {
+public struct ExistInBlacklistRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -35,7 +35,7 @@ public struct Ru_Zveron_ExistInBlacklistRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_ExistInBlacklistResponse {
+public struct ExistInBlacklistResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -47,7 +47,7 @@ public struct Ru_Zveron_ExistInBlacklistResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_GetBlacklistRequest {
+public struct GetBlacklistRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -60,19 +60,19 @@ public struct Ru_Zveron_GetBlacklistRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_GetBlacklistResponse {
+public struct GetBlacklistResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var blacklistUsers: [Ru_Zveron_BlacklistUser] = []
+  public var blacklistUsers: [BlacklistUser] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Ru_Zveron_BlacklistUser {
+public struct BlacklistUser {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -84,7 +84,7 @@ public struct Ru_Zveron_BlacklistUser {
   public init() {}
 }
 
-public struct Ru_Zveron_AddToBlacklistRequest {
+public struct AddToBlacklistRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -100,7 +100,7 @@ public struct Ru_Zveron_AddToBlacklistRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_DeleteFromBlacklistRequest {
+public struct DeleteFromBlacklistRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -116,7 +116,7 @@ public struct Ru_Zveron_DeleteFromBlacklistRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest {
+public struct DeleteAllRecordsWhereUserBlocksRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -129,7 +129,7 @@ public struct Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest {
+public struct DeleteAllRecordsWhereUserIsBlockedRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -143,22 +143,22 @@ public struct Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_ExistInBlacklistRequest: @unchecked Sendable {}
-extension Ru_Zveron_ExistInBlacklistResponse: @unchecked Sendable {}
-extension Ru_Zveron_GetBlacklistRequest: @unchecked Sendable {}
-extension Ru_Zveron_GetBlacklistResponse: @unchecked Sendable {}
-extension Ru_Zveron_BlacklistUser: @unchecked Sendable {}
-extension Ru_Zveron_AddToBlacklistRequest: @unchecked Sendable {}
-extension Ru_Zveron_DeleteFromBlacklistRequest: @unchecked Sendable {}
-extension Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest: @unchecked Sendable {}
-extension Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest: @unchecked Sendable {}
+extension ExistInBlacklistRequest: @unchecked Sendable {}
+extension ExistInBlacklistResponse: @unchecked Sendable {}
+extension GetBlacklistRequest: @unchecked Sendable {}
+extension GetBlacklistResponse: @unchecked Sendable {}
+extension BlacklistUser: @unchecked Sendable {}
+extension AddToBlacklistRequest: @unchecked Sendable {}
+extension DeleteFromBlacklistRequest: @unchecked Sendable {}
+extension DeleteAllRecordsWhereUserBlocksRequest: @unchecked Sendable {}
+extension DeleteAllRecordsWhereUserIsBlockedRequest: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron"
 
-extension Ru_Zveron_ExistInBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ExistInBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ExistInBlacklistRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "owner_id"),
@@ -188,7 +188,7 @@ extension Ru_Zveron_ExistInBlacklistRequest: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_ExistInBlacklistRequest, rhs: Ru_Zveron_ExistInBlacklistRequest) -> Bool {
+  public static func ==(lhs: ExistInBlacklistRequest, rhs: ExistInBlacklistRequest) -> Bool {
     if lhs.ownerID != rhs.ownerID {return false}
     if lhs.targetUserID != rhs.targetUserID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -196,7 +196,7 @@ extension Ru_Zveron_ExistInBlacklistRequest: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Ru_Zveron_ExistInBlacklistResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ExistInBlacklistResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ExistInBlacklistResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "exists"),
@@ -221,14 +221,14 @@ extension Ru_Zveron_ExistInBlacklistResponse: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_ExistInBlacklistResponse, rhs: Ru_Zveron_ExistInBlacklistResponse) -> Bool {
+  public static func ==(lhs: ExistInBlacklistResponse, rhs: ExistInBlacklistResponse) -> Bool {
     if lhs.exists != rhs.exists {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_GetBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetBlacklistRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -253,14 +253,14 @@ extension Ru_Zveron_GetBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_GetBlacklistRequest, rhs: Ru_Zveron_GetBlacklistRequest) -> Bool {
+  public static func ==(lhs: GetBlacklistRequest, rhs: GetBlacklistRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_GetBlacklistResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension GetBlacklistResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetBlacklistResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "blacklist_users"),
@@ -285,14 +285,14 @@ extension Ru_Zveron_GetBlacklistResponse: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_GetBlacklistResponse, rhs: Ru_Zveron_GetBlacklistResponse) -> Bool {
+  public static func ==(lhs: GetBlacklistResponse, rhs: GetBlacklistResponse) -> Bool {
     if lhs.blacklistUsers != rhs.blacklistUsers {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_BlacklistUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension BlacklistUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BlacklistUser"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -317,14 +317,14 @@ extension Ru_Zveron_BlacklistUser: SwiftProtobuf.Message, SwiftProtobuf._Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_BlacklistUser, rhs: Ru_Zveron_BlacklistUser) -> Bool {
+  public static func ==(lhs: BlacklistUser, rhs: BlacklistUser) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddToBlacklistRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "owner_id"),
@@ -354,7 +354,7 @@ extension Ru_Zveron_AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_AddToBlacklistRequest, rhs: Ru_Zveron_AddToBlacklistRequest) -> Bool {
+  public static func ==(lhs: AddToBlacklistRequest, rhs: AddToBlacklistRequest) -> Bool {
     if lhs.ownerID != rhs.ownerID {return false}
     if lhs.targetUserID != rhs.targetUserID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -362,7 +362,7 @@ extension Ru_Zveron_AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf.
   }
 }
 
-extension Ru_Zveron_DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeleteFromBlacklistRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "owner_id"),
@@ -392,7 +392,7 @@ extension Ru_Zveron_DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_DeleteFromBlacklistRequest, rhs: Ru_Zveron_DeleteFromBlacklistRequest) -> Bool {
+  public static func ==(lhs: DeleteFromBlacklistRequest, rhs: DeleteFromBlacklistRequest) -> Bool {
     if lhs.ownerID != rhs.ownerID {return false}
     if lhs.deletedUserID != rhs.deletedUserID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -400,7 +400,7 @@ extension Ru_Zveron_DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProt
   }
 }
 
-extension Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension DeleteAllRecordsWhereUserBlocksRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeleteAllRecordsWhereUserBlocksRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "owner_id"),
@@ -425,14 +425,14 @@ extension Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest, rhs: Ru_Zveron_DeleteAllRecordsWhereUserBlocksRequest) -> Bool {
+  public static func ==(lhs: DeleteAllRecordsWhereUserBlocksRequest, rhs: DeleteAllRecordsWhereUserBlocksRequest) -> Bool {
     if lhs.ownerID != rhs.ownerID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension DeleteAllRecordsWhereUserIsBlockedRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeleteAllRecordsWhereUserIsBlockedRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "deleted_user_id"),
@@ -457,7 +457,7 @@ extension Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest, rhs: Ru_Zveron_DeleteAllRecordsWhereUserIsBlockedRequest) -> Bool {
+  public static func ==(lhs: DeleteAllRecordsWhereUserIsBlockedRequest, rhs: DeleteAllRecordsWhereUserIsBlockedRequest) -> Bool {
     if lhs.deletedUserID != rhs.deletedUserID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

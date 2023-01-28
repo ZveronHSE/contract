@@ -67,9 +67,9 @@ public protocol AuthServiceClientProtocol: GRPCClient {
   ) -> UnaryCall<IssueNewTokensRequest, MobileToken>
 
   func issueNewAccessToken(
-    _ request: IssueNewTokensRequest,
+    _ request: IssueNewAccessTokenRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<IssueNewTokensRequest, TimedToken>
+  ) -> UnaryCall<IssueNewAccessTokenRequest, TimedToken>
 }
 
 extension AuthServiceClientProtocol {
@@ -213,9 +213,9 @@ extension AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func issueNewAccessToken(
-    _ request: IssueNewTokensRequest,
+    _ request: IssueNewAccessTokenRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<IssueNewTokensRequest, TimedToken> {
+  ) -> UnaryCall<IssueNewAccessTokenRequest, TimedToken> {
     return self.makeUnaryCall(
       path: AuthServiceClientMetadata.Methods.issueNewAccessToken.path,
       request: request,
@@ -326,9 +326,9 @@ public protocol AuthServiceAsyncClientProtocol: GRPCClient {
   ) -> GRPCAsyncUnaryCall<IssueNewTokensRequest, MobileToken>
 
   func makeIssueNewAccessTokenCall(
-    _ request: IssueNewTokensRequest,
+    _ request: IssueNewAccessTokenRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<IssueNewTokensRequest, TimedToken>
+  ) -> GRPCAsyncUnaryCall<IssueNewAccessTokenRequest, TimedToken>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -426,9 +426,9 @@ extension AuthServiceAsyncClientProtocol {
   }
 
   public func makeIssueNewAccessTokenCall(
-    _ request: IssueNewTokensRequest,
+    _ request: IssueNewAccessTokenRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<IssueNewTokensRequest, TimedToken> {
+  ) -> GRPCAsyncUnaryCall<IssueNewAccessTokenRequest, TimedToken> {
     return self.makeAsyncUnaryCall(
       path: AuthServiceClientMetadata.Methods.issueNewAccessToken.path,
       request: request,
@@ -525,7 +525,7 @@ extension AuthServiceAsyncClientProtocol {
   }
 
   public func issueNewAccessToken(
-    _ request: IssueNewTokensRequest,
+    _ request: IssueNewAccessTokenRequest,
     callOptions: CallOptions? = nil
   ) async throws -> TimedToken {
     return try await self.performAsyncUnaryCall(
@@ -580,7 +580,7 @@ public protocol AuthServiceClientInterceptorFactoryProtocol: GRPCSendable {
   func makeIssueNewTokensInterceptors() -> [ClientInterceptor<IssueNewTokensRequest, MobileToken>]
 
   /// - Returns: Interceptors to use when invoking 'issueNewAccessToken'.
-  func makeIssueNewAccessTokenInterceptors() -> [ClientInterceptor<IssueNewTokensRequest, TimedToken>]
+  func makeIssueNewAccessTokenInterceptors() -> [ClientInterceptor<IssueNewAccessTokenRequest, TimedToken>]
 }
 
 public enum AuthServiceClientMetadata {

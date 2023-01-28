@@ -36,7 +36,7 @@ service AuthService {
   rpc IssueNewTokens (IssueNewTokensRequest) returns (MobileToken);
 
   //запрос на получение нового access токена
-  rpc IssueNewAccessToken (IssueNewTokensRequest) returns (TimedToken);
+  rpc IssueNewAccessToken (IssueNewAccessTokenRequest) returns (TimedToken);
 }
 
 
@@ -77,6 +77,11 @@ message VerifyMobileTokenRequest{
 }
 
 message IssueNewTokensRequest{
+  string refresh_token = 1;
+  string device_fp = 2;
+}
+
+message IssueNewAccessTokenRequest{
   string refresh_token = 1;
   string device_fp = 2;
 }

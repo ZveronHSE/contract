@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package ru.zveron.contract.lot.model;
 
+option swift_prefix = "";
 option java_package = "ru.zveron.contract.lot.model";
 option java_outer_classname = "LotProto";
 option java_multiple_files = true;

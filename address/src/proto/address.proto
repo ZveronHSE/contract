@@ -1,6 +1,7 @@
 syntax = "proto3";
 package ru.zveron.contract;
 
+option swift_prefix = "";
 option java_package = "ru.zveron.contract";
 option java_outer_classname = "AddressProto";
 option java_multiple_files = true;

@@ -26,23 +26,23 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Lot_LotInternalServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `LotInternalServiceClient`, then call methods of this protocol to make API calls.
+public protocol LotInternalServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: LotInternalServiceClientInterceptorFactoryProtocol? { get }
 
   func getLotsBySellerId(
-    _ request: Ru_Zveron_Contract_Lot_ProfileLotsRequest,
+    _ request: ProfileLotsRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_ProfileLotsRequest, Ru_Zveron_Contract_Lot_ProfileLotsResponse>
+  ) -> UnaryCall<ProfileLotsRequest, ProfileLotsResponse>
 
   func getLotsById(
-    _ request: Ru_Zveron_Contract_Lot_LotsIdRequest,
+    _ request: LotsIdRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_LotsIdRequest, Ru_Zveron_Contract_Lot_LotsIdResponse>
+  ) -> UnaryCall<LotsIdRequest, LotsIdResponse>
 }
 
-extension Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol {
+extension LotInternalServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.lot.LotInternalService"
   }
@@ -54,11 +54,11 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getLotsBySellerId(
-    _ request: Ru_Zveron_Contract_Lot_ProfileLotsRequest,
+    _ request: ProfileLotsRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_ProfileLotsRequest, Ru_Zveron_Contract_Lot_ProfileLotsResponse> {
+  ) -> UnaryCall<ProfileLotsRequest, ProfileLotsResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsBySellerId.path,
+      path: LotInternalServiceClientMetadata.Methods.getLotsBySellerId.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetLotsBySellerIdInterceptors() ?? []
@@ -72,11 +72,11 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getLotsById(
-    _ request: Ru_Zveron_Contract_Lot_LotsIdRequest,
+    _ request: LotsIdRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_LotsIdRequest, Ru_Zveron_Contract_Lot_LotsIdResponse> {
+  ) -> UnaryCall<LotsIdRequest, LotsIdResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsById.path,
+      path: LotInternalServiceClientMetadata.Methods.getLotsById.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetLotsByIdInterceptors() ?? []
@@ -86,20 +86,20 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Lot_LotInternalServiceClient: @unchecked Sendable {}
+extension LotInternalServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Lot_LotInternalServiceNIOClient")
-public final class Ru_Zveron_Contract_Lot_LotInternalServiceClient: Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol {
+@available(*, deprecated, renamed: "LotInternalServiceNIOClient")
+public final class LotInternalServiceClient: LotInternalServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: LotInternalServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: LotInternalServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -113,7 +113,7 @@ public final class Ru_Zveron_Contract_Lot_LotInternalServiceClient: Ru_Zveron_Co
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotInternalServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -121,10 +121,10 @@ public final class Ru_Zveron_Contract_Lot_LotInternalServiceClient: Ru_Zveron_Co
   }
 }
 
-public struct Ru_Zveron_Contract_Lot_LotInternalServiceNIOClient: Ru_Zveron_Contract_Lot_LotInternalServiceClientProtocol {
+public struct LotInternalServiceNIOClient: LotInternalServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol?
+  public var interceptors: LotInternalServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.lot.LotInternalService service.
   ///
@@ -135,7 +135,7 @@ public struct Ru_Zveron_Contract_Lot_LotInternalServiceNIOClient: Ru_Zveron_Cont
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotInternalServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -145,37 +145,37 @@ public struct Ru_Zveron_Contract_Lot_LotInternalServiceNIOClient: Ru_Zveron_Cont
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol: GRPCClient {
+public protocol LotInternalServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: LotInternalServiceClientInterceptorFactoryProtocol? { get }
 
   func makeGetLotsBySellerIDCall(
-    _ request: Ru_Zveron_Contract_Lot_ProfileLotsRequest,
+    _ request: ProfileLotsRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_ProfileLotsRequest, Ru_Zveron_Contract_Lot_ProfileLotsResponse>
+  ) -> GRPCAsyncUnaryCall<ProfileLotsRequest, ProfileLotsResponse>
 
   func makeGetLotsByIDCall(
-    _ request: Ru_Zveron_Contract_Lot_LotsIdRequest,
+    _ request: LotsIdRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_LotsIdRequest, Ru_Zveron_Contract_Lot_LotsIdResponse>
+  ) -> GRPCAsyncUnaryCall<LotsIdRequest, LotsIdResponse>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
+extension LotInternalServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.serviceDescriptor
+    return LotInternalServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: LotInternalServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeGetLotsBySellerIDCall(
-    _ request: Ru_Zveron_Contract_Lot_ProfileLotsRequest,
+    _ request: ProfileLotsRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_ProfileLotsRequest, Ru_Zveron_Contract_Lot_ProfileLotsResponse> {
+  ) -> GRPCAsyncUnaryCall<ProfileLotsRequest, ProfileLotsResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsBySellerId.path,
+      path: LotInternalServiceClientMetadata.Methods.getLotsBySellerId.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetLotsBySellerIdInterceptors() ?? []
@@ -183,11 +183,11 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
   }
 
   public func makeGetLotsByIDCall(
-    _ request: Ru_Zveron_Contract_Lot_LotsIdRequest,
+    _ request: LotsIdRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_LotsIdRequest, Ru_Zveron_Contract_Lot_LotsIdResponse> {
+  ) -> GRPCAsyncUnaryCall<LotsIdRequest, LotsIdResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsById.path,
+      path: LotInternalServiceClientMetadata.Methods.getLotsById.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetLotsByIdInterceptors() ?? []
@@ -196,13 +196,13 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
+extension LotInternalServiceAsyncClientProtocol {
   public func getLotsBySellerId(
-    _ request: Ru_Zveron_Contract_Lot_ProfileLotsRequest,
+    _ request: ProfileLotsRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Lot_ProfileLotsResponse {
+  ) async throws -> ProfileLotsResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsBySellerId.path,
+      path: LotInternalServiceClientMetadata.Methods.getLotsBySellerId.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetLotsBySellerIdInterceptors() ?? []
@@ -210,11 +210,11 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
   }
 
   public func getLotsById(
-    _ request: Ru_Zveron_Contract_Lot_LotsIdRequest,
+    _ request: LotsIdRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Lot_LotsIdResponse {
+  ) async throws -> LotsIdResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsById.path,
+      path: LotInternalServiceClientMetadata.Methods.getLotsById.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetLotsByIdInterceptors() ?? []
@@ -223,15 +223,15 @@ extension Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClient: Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClientProtocol {
+public struct LotInternalServiceAsyncClient: LotInternalServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol?
+  public var interceptors: LotInternalServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotInternalServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -241,22 +241,22 @@ public struct Ru_Zveron_Contract_Lot_LotInternalServiceAsyncClient: Ru_Zveron_Co
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Lot_LotInternalServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol LotInternalServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'getLotsBySellerId'.
-  func makegetLotsBySellerIdInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_ProfileLotsRequest, Ru_Zveron_Contract_Lot_ProfileLotsResponse>]
+  func makegetLotsBySellerIdInterceptors() -> [ClientInterceptor<ProfileLotsRequest, ProfileLotsResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getLotsById'.
-  func makegetLotsByIdInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_LotsIdRequest, Ru_Zveron_Contract_Lot_LotsIdResponse>]
+  func makegetLotsByIdInterceptors() -> [ClientInterceptor<LotsIdRequest, LotsIdResponse>]
 }
 
-public enum Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata {
+public enum LotInternalServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "LotInternalService",
     fullName: "ru.zveron.contract.lot.LotInternalService",
     methods: [
-      Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsBySellerId,
-      Ru_Zveron_Contract_Lot_LotInternalServiceClientMetadata.Methods.getLotsById,
+      LotInternalServiceClientMetadata.Methods.getLotsBySellerId,
+      LotInternalServiceClientMetadata.Methods.getLotsById,
     ]
   )
 

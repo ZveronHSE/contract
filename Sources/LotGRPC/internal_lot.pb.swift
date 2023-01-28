@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Ru_Zveron_Contract_Lot_ProfileLotsRequest {
+public struct ProfileLotsRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -32,21 +32,21 @@ public struct Ru_Zveron_Contract_Lot_ProfileLotsRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_ProfileLotsResponse {
+public struct ProfileLotsResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var activateLots: [Ru_Zveron_Contract_Lot_Model_Lot] = []
+  public var activateLots: [Lot] = []
 
-  public var inactivateLots: [Ru_Zveron_Contract_Lot_Model_Lot] = []
+  public var inactivateLots: [Lot] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_LotsIdRequest {
+public struct LotsIdRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -70,12 +70,12 @@ public struct Ru_Zveron_Contract_Lot_LotsIdRequest {
   fileprivate var _userID: Int64? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_LotsIdResponse {
+public struct LotsIdResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var lots: [Ru_Zveron_Contract_Lot_Model_Lot] = []
+  public var lots: [Lot] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -83,17 +83,17 @@ public struct Ru_Zveron_Contract_Lot_LotsIdResponse {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Lot_ProfileLotsRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_ProfileLotsResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_LotsIdRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_LotsIdResponse: @unchecked Sendable {}
+extension ProfileLotsRequest: @unchecked Sendable {}
+extension ProfileLotsResponse: @unchecked Sendable {}
+extension LotsIdRequest: @unchecked Sendable {}
+extension LotsIdResponse: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.lot"
 
-extension Ru_Zveron_Contract_Lot_ProfileLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ProfileLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ProfileLotsRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -118,14 +118,14 @@ extension Ru_Zveron_Contract_Lot_ProfileLotsRequest: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_ProfileLotsRequest, rhs: Ru_Zveron_Contract_Lot_ProfileLotsRequest) -> Bool {
+  public static func ==(lhs: ProfileLotsRequest, rhs: ProfileLotsRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Lot_ProfileLotsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ProfileLotsResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ProfileLotsResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "activate_lots"),
@@ -155,7 +155,7 @@ extension Ru_Zveron_Contract_Lot_ProfileLotsResponse: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_ProfileLotsResponse, rhs: Ru_Zveron_Contract_Lot_ProfileLotsResponse) -> Bool {
+  public static func ==(lhs: ProfileLotsResponse, rhs: ProfileLotsResponse) -> Bool {
     if lhs.activateLots != rhs.activateLots {return false}
     if lhs.inactivateLots != rhs.inactivateLots {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -163,7 +163,7 @@ extension Ru_Zveron_Contract_Lot_ProfileLotsResponse: SwiftProtobuf.Message, Swi
   }
 }
 
-extension Ru_Zveron_Contract_Lot_LotsIdRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension LotsIdRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LotsIdRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "lot_ids"),
@@ -197,7 +197,7 @@ extension Ru_Zveron_Contract_Lot_LotsIdRequest: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_LotsIdRequest, rhs: Ru_Zveron_Contract_Lot_LotsIdRequest) -> Bool {
+  public static func ==(lhs: LotsIdRequest, rhs: LotsIdRequest) -> Bool {
     if lhs.lotIds != rhs.lotIds {return false}
     if lhs._userID != rhs._userID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -205,7 +205,7 @@ extension Ru_Zveron_Contract_Lot_LotsIdRequest: SwiftProtobuf.Message, SwiftProt
   }
 }
 
-extension Ru_Zveron_Contract_Lot_LotsIdResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension LotsIdResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LotsIdResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "lots"),
@@ -230,7 +230,7 @@ extension Ru_Zveron_Contract_Lot_LotsIdResponse: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_LotsIdResponse, rhs: Ru_Zveron_Contract_Lot_LotsIdResponse) -> Bool {
+  public static func ==(lhs: LotsIdResponse, rhs: LotsIdResponse) -> Bool {
     if lhs.lots != rhs.lots {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

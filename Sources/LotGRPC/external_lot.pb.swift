@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Ru_Zveron_Contract_Lot_TypeSort: SwiftProtobuf.Enum {
+public enum TypeSort: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Сортировка по возрастанию
@@ -54,9 +54,9 @@ public enum Ru_Zveron_Contract_Lot_TypeSort: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_TypeSort: CaseIterable {
+extension TypeSort: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_TypeSort] = [
+  public static var allCases: [TypeSort] = [
     .asc,
     .desc,
   ]
@@ -64,7 +64,7 @@ extension Ru_Zveron_Contract_Lot_TypeSort: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public enum Ru_Zveron_Contract_Lot_Field: SwiftProtobuf.Enum {
+public enum Field: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case price // = 0
 
@@ -106,9 +106,9 @@ public enum Ru_Zveron_Contract_Lot_Field: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_Field: CaseIterable {
+extension Field: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_Field] = [
+  public static var allCases: [Field] = [
     .price,
     .lotFormID,
     .dateCreation,
@@ -118,7 +118,7 @@ extension Ru_Zveron_Contract_Lot_Field: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public enum Ru_Zveron_Contract_Lot_Operation: SwiftProtobuf.Enum {
+public enum Operation: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Поле равно значению.
@@ -182,9 +182,9 @@ public enum Ru_Zveron_Contract_Lot_Operation: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_Operation: CaseIterable {
+extension Operation: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_Operation] = [
+  public static var allCases: [Operation] = [
     .equality,
     .negation,
     .greaterThan,
@@ -198,7 +198,7 @@ extension Ru_Zveron_Contract_Lot_Operation: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public enum Ru_Zveron_Contract_Lot_ClosingLotReason: SwiftProtobuf.Enum {
+public enum ClosingLotReason: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Продал на этом сайте
@@ -237,9 +237,9 @@ public enum Ru_Zveron_Contract_Lot_ClosingLotReason: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_ClosingLotReason: CaseIterable {
+extension ClosingLotReason: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_ClosingLotReason] = [
+  public static var allCases: [ClosingLotReason] = [
     .sold,
     .soldSomewhere,
     .irrelevant,
@@ -248,7 +248,7 @@ extension Ru_Zveron_Contract_Lot_ClosingLotReason: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public struct Ru_Zveron_Contract_Lot_WaterfallRequest {
+public struct WaterfallRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -277,26 +277,26 @@ public struct Ru_Zveron_Contract_Lot_WaterfallRequest {
   public mutating func clearCategoryID() {self._categoryID = nil}
 
   /// Фильтровать по различным полям объявления, кроме параметров. (например, цена, дата и тд)
-  public var filters: [Ru_Zveron_Contract_Lot_Filter] = []
+  public var filters: [Filter] = []
 
   /// Фильтровать по параметрам объявления, если они заданы
-  public var parameters: [Ru_Zveron_Contract_Lot_Model_Parameter] = []
+  public var parameters: [Parameter] = []
 
   /// По какому признаку нужно сортировать объявления
-  public var sort: Ru_Zveron_Contract_Lot_WaterfallRequest.OneOf_Sort? = nil
+  public var sort: WaterfallRequest.OneOf_Sort? = nil
 
-  public var sortByDate: Ru_Zveron_Contract_Lot_SortByDate {
+  public var sortByDate: SortByDate {
     get {
       if case .sortByDate(let v)? = sort {return v}
-      return Ru_Zveron_Contract_Lot_SortByDate()
+      return SortByDate()
     }
     set {sort = .sortByDate(newValue)}
   }
 
-  public var sortByPrice: Ru_Zveron_Contract_Lot_SortByPrice {
+  public var sortByPrice: SortByPrice {
     get {
       if case .sortByPrice(let v)? = sort {return v}
-      return Ru_Zveron_Contract_Lot_SortByPrice()
+      return SortByPrice()
     }
     set {sort = .sortByPrice(newValue)}
   }
@@ -305,11 +305,11 @@ public struct Ru_Zveron_Contract_Lot_WaterfallRequest {
 
   /// По какому признаку нужно сортировать объявления
   public enum OneOf_Sort: Equatable {
-    case sortByDate(Ru_Zveron_Contract_Lot_SortByDate)
-    case sortByPrice(Ru_Zveron_Contract_Lot_SortByPrice)
+    case sortByDate(SortByDate)
+    case sortByPrice(SortByPrice)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Ru_Zveron_Contract_Lot_WaterfallRequest.OneOf_Sort, rhs: Ru_Zveron_Contract_Lot_WaterfallRequest.OneOf_Sort) -> Bool {
+    public static func ==(lhs: WaterfallRequest.OneOf_Sort, rhs: WaterfallRequest.OneOf_Sort) -> Bool {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
@@ -334,15 +334,15 @@ public struct Ru_Zveron_Contract_Lot_WaterfallRequest {
   fileprivate var _categoryID: Int32? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_SortByDate {
+public struct SortByDate {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var typeSort: Ru_Zveron_Contract_Lot_TypeSort = .asc
+  public var typeSort: TypeSort = .asc
 
-  public var lastLot: Ru_Zveron_Contract_Lot_SortByDate.LastLot {
-    get {return _lastLot ?? Ru_Zveron_Contract_Lot_SortByDate.LastLot()}
+  public var lastLot: SortByDate.LastLot {
+    get {return _lastLot ?? SortByDate.LastLot()}
     set {_lastLot = newValue}
   }
   /// Returns true if `lastLot` has been explicitly set.
@@ -379,18 +379,18 @@ public struct Ru_Zveron_Contract_Lot_SortByDate {
 
   public init() {}
 
-  fileprivate var _lastLot: Ru_Zveron_Contract_Lot_SortByDate.LastLot? = nil
+  fileprivate var _lastLot: SortByDate.LastLot? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_SortByPrice {
+public struct SortByPrice {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var typeSort: Ru_Zveron_Contract_Lot_TypeSort = .asc
+  public var typeSort: TypeSort = .asc
 
-  public var lastLot: Ru_Zveron_Contract_Lot_SortByPrice.LastLot {
-    get {return _lastLot ?? Ru_Zveron_Contract_Lot_SortByPrice.LastLot()}
+  public var lastLot: SortByPrice.LastLot {
+    get {return _lastLot ?? SortByPrice.LastLot()}
     set {_lastLot = newValue}
   }
   /// Returns true if `lastLot` has been explicitly set.
@@ -417,17 +417,17 @@ public struct Ru_Zveron_Contract_Lot_SortByPrice {
 
   public init() {}
 
-  fileprivate var _lastLot: Ru_Zveron_Contract_Lot_SortByPrice.LastLot? = nil
+  fileprivate var _lastLot: SortByPrice.LastLot? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_Filter {
+public struct Filter {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var field: Ru_Zveron_Contract_Lot_Field = .price
+  public var field: Field = .price
 
-  public var operation: Ru_Zveron_Contract_Lot_Operation = .equality
+  public var operation: Operation = .equality
 
   public var value: String = String()
 
@@ -436,16 +436,16 @@ public struct Ru_Zveron_Contract_Lot_Filter {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_WaterfallResponse {
+public struct WaterfallResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var lots: [Ru_Zveron_Contract_Lot_Model_Lot] = []
+  public var lots: [Lot] = []
 
   /// Данные последнего объявления, необходимые для сортировки и работы водопада
-  public var dataFilter: Ru_Zveron_Contract_Lot_DataFilter {
-    get {return _dataFilter ?? Ru_Zveron_Contract_Lot_DataFilter()}
+  public var dataFilter: DataFilter {
+    get {return _dataFilter ?? DataFilter()}
     set {_dataFilter = newValue}
   }
   /// Returns true if `dataFilter` has been explicitly set.
@@ -457,10 +457,10 @@ public struct Ru_Zveron_Contract_Lot_WaterfallResponse {
 
   public init() {}
 
-  fileprivate var _dataFilter: Ru_Zveron_Contract_Lot_DataFilter? = nil
+  fileprivate var _dataFilter: DataFilter? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_DataFilter {
+public struct DataFilter {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -484,14 +484,14 @@ public struct Ru_Zveron_Contract_Lot_DataFilter {
   fileprivate var _date: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_CreateLotRequest {
+public struct CreateLotRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   public var title: String = String()
 
-  public var photos: [Ru_Zveron_Contract_Lot_Model_Photo] = []
+  public var photos: [Photo] = []
 
   /// Заданные параметры объявления
   public var parameters: Dictionary<Int32,String> = [:]
@@ -501,10 +501,10 @@ public struct Ru_Zveron_Contract_Lot_CreateLotRequest {
   public var price: Int32 = 0
 
   /// Количество выбранных связей, их может быть 1 или 2.
-  public var communicationChannel: [Ru_Zveron_Contract_Lot_Model_CommunicationChannel] = []
+  public var communicationChannel: [CommunicationChannel] = []
 
   /// Это может отсутствовать, если гендера нет для объявления, например, для товаров.
-  public var gender: Ru_Zveron_Contract_Lot_Model_Gender {
+  public var gender: Gender {
     get {return _gender ?? .female}
     set {_gender = newValue}
   }
@@ -513,8 +513,8 @@ public struct Ru_Zveron_Contract_Lot_CreateLotRequest {
   /// Clears the value of `gender`. Subsequent reads from it will return its default value.
   public mutating func clearGender() {self._gender = nil}
 
-  public var address: Ru_Zveron_Contract_Lot_FullAddress {
-    get {return _address ?? Ru_Zveron_Contract_Lot_FullAddress()}
+  public var address: FullAddress {
+    get {return _address ?? FullAddress()}
     set {_address = newValue}
   }
   /// Returns true if `address` has been explicitly set.
@@ -530,12 +530,12 @@ public struct Ru_Zveron_Contract_Lot_CreateLotRequest {
 
   public init() {}
 
-  fileprivate var _gender: Ru_Zveron_Contract_Lot_Model_Gender? = nil
-  fileprivate var _address: Ru_Zveron_Contract_Lot_FullAddress? = nil
+  fileprivate var _gender: Gender? = nil
+  fileprivate var _address: FullAddress? = nil
 }
 
 /// Path /api/lot/edit, ответ будет в виде CardLot
-public struct Ru_Zveron_Contract_Lot_EditLotRequest {
+public struct EditLotRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -545,7 +545,7 @@ public struct Ru_Zveron_Contract_Lot_EditLotRequest {
 
   public var title: String = String()
 
-  public var photos: [Ru_Zveron_Contract_Lot_Model_Photo] = []
+  public var photos: [Photo] = []
 
   /// Заданные параметры объявления
   public var parameters: Dictionary<Int32,String> = [:]
@@ -555,7 +555,7 @@ public struct Ru_Zveron_Contract_Lot_EditLotRequest {
   public var price: Int32 = 0
 
   /// Количество выбранных связей, их может быть 1 или 2.
-  public var communicationChannel: [Ru_Zveron_Contract_Lot_Model_CommunicationChannel] = []
+  public var communicationChannel: [CommunicationChannel] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -563,7 +563,7 @@ public struct Ru_Zveron_Contract_Lot_EditLotRequest {
 }
 
 /// Path /api/lot/close, ответ будет пустым
-public struct Ru_Zveron_Contract_Lot_CloseLotRequest {
+public struct CloseLotRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -571,7 +571,7 @@ public struct Ru_Zveron_Contract_Lot_CloseLotRequest {
   /// ID объявления
   public var id: Int64 = 0
 
-  public var closingLotReason: Ru_Zveron_Contract_Lot_ClosingLotReason = .sold
+  public var closingLotReason: ClosingLotReason = .sold
 
   /// Идентификатор покупателя, если объявление было продано на этом сайте
   public var customerID: Int64 {
@@ -590,7 +590,7 @@ public struct Ru_Zveron_Contract_Lot_CloseLotRequest {
   fileprivate var _customerID: Int64? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_FullAddress {
+public struct FullAddress {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -655,7 +655,7 @@ public struct Ru_Zveron_Contract_Lot_FullAddress {
   fileprivate var _house: String? = nil
 }
 
-public struct Ru_Zveron_Contract_Lot_CardLotRequest {
+public struct CardLotRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -668,7 +668,7 @@ public struct Ru_Zveron_Contract_Lot_CardLotRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_CardLot {
+public struct CardLot {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -684,13 +684,13 @@ public struct Ru_Zveron_Contract_Lot_CardLot {
     set {_uniqueStorage()._title = newValue}
   }
 
-  public var photos: [Ru_Zveron_Contract_Lot_Model_Photo] {
+  public var photos: [Photo] {
     get {return _storage._photos}
     set {_uniqueStorage()._photos = newValue}
   }
 
   /// Это может отсутствовать, если гендера нет для объявления, например, для товаров.
-  public var gender: Ru_Zveron_Contract_Lot_Model_Gender {
+  public var gender: Gender {
     get {return _storage._gender ?? .female}
     set {_uniqueStorage()._gender = newValue}
   }
@@ -699,8 +699,8 @@ public struct Ru_Zveron_Contract_Lot_CardLot {
   /// Clears the value of `gender`. Subsequent reads from it will return its default value.
   public mutating func clearGender() {_uniqueStorage()._gender = nil}
 
-  public var address: Ru_Zveron_Contract_Lot_Model_Address {
-    get {return _storage._address ?? Ru_Zveron_Contract_Lot_Model_Address()}
+  public var address: Address {
+    get {return _storage._address ?? Address()}
     set {_uniqueStorage()._address = newValue}
   }
   /// Returns true if `address` has been explicitly set.
@@ -709,7 +709,7 @@ public struct Ru_Zveron_Contract_Lot_CardLot {
   public mutating func clearAddress() {_uniqueStorage()._address = nil}
 
   /// Заданные параметры объявления
-  public var parameters: [Ru_Zveron_Contract_Lot_Model_Parameter] {
+  public var parameters: [Parameter] {
     get {return _storage._parameters}
     set {_uniqueStorage()._parameters = newValue}
   }
@@ -743,8 +743,8 @@ public struct Ru_Zveron_Contract_Lot_CardLot {
     set {_uniqueStorage()._canAddReview = newValue}
   }
 
-  public var contact: Ru_Zveron_Contract_Lot_Contact {
-    get {return _storage._contact ?? Ru_Zveron_Contract_Lot_Contact()}
+  public var contact: Contact {
+    get {return _storage._contact ?? Contact()}
     set {_uniqueStorage()._contact = newValue}
   }
   /// Returns true if `contact` has been explicitly set.
@@ -752,8 +752,8 @@ public struct Ru_Zveron_Contract_Lot_CardLot {
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
   public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
-  public var seller: Ru_Zveron_Contract_Lot_Seller {
-    get {return _storage._seller ?? Ru_Zveron_Contract_Lot_Seller()}
+  public var seller: Seller {
+    get {return _storage._seller ?? Seller()}
     set {_uniqueStorage()._seller = newValue}
   }
   /// Returns true if `seller` has been explicitly set.
@@ -769,7 +769,7 @@ public struct Ru_Zveron_Contract_Lot_CardLot {
 }
 
 /// Статистика объявления
-public struct Ru_Zveron_Contract_Lot_Statistics {
+public struct Statistics {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -785,7 +785,7 @@ public struct Ru_Zveron_Contract_Lot_Statistics {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_Seller {
+public struct Seller {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -808,17 +808,17 @@ public struct Ru_Zveron_Contract_Lot_Seller {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_Contact {
+public struct Contact {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Какие способы связи были выбраны.
-  public var communicationChannel: [Ru_Zveron_Contract_Lot_Model_CommunicationChannel] = []
+  public var communicationChannel: [CommunicationChannel] = []
 
   /// Ссылки для выбранных способов связи.
-  public var channelLink: Ru_Zveron_Contract_Lot_ChannelLink {
-    get {return _channelLink ?? Ru_Zveron_Contract_Lot_ChannelLink()}
+  public var channelLink: ChannelLink {
+    get {return _channelLink ?? ChannelLink()}
     set {_channelLink = newValue}
   }
   /// Returns true if `channelLink` has been explicitly set.
@@ -830,11 +830,11 @@ public struct Ru_Zveron_Contract_Lot_Contact {
 
   public init() {}
 
-  fileprivate var _channelLink: Ru_Zveron_Contract_Lot_ChannelLink? = nil
+  fileprivate var _channelLink: ChannelLink? = nil
 }
 
 /// Отображается информация про тех или иных способах только в тех случаях, когда они были выбраны в CommunicationChannel
-public struct Ru_Zveron_Contract_Lot_ChannelLink {
+public struct ChannelLink {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -879,43 +879,43 @@ public struct Ru_Zveron_Contract_Lot_ChannelLink {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Lot_TypeSort: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Field: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Operation: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_ClosingLotReason: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_WaterfallRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_WaterfallRequest.OneOf_Sort: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_SortByDate: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_SortByDate.LastLot: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_SortByPrice: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_SortByPrice.LastLot: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Filter: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_WaterfallResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_DataFilter: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_CreateLotRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_EditLotRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_CloseLotRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_FullAddress: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_CardLotRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_CardLot: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Statistics: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Seller: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Contact: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_ChannelLink: @unchecked Sendable {}
+extension TypeSort: @unchecked Sendable {}
+extension Field: @unchecked Sendable {}
+extension Operation: @unchecked Sendable {}
+extension ClosingLotReason: @unchecked Sendable {}
+extension WaterfallRequest: @unchecked Sendable {}
+extension WaterfallRequest.OneOf_Sort: @unchecked Sendable {}
+extension SortByDate: @unchecked Sendable {}
+extension SortByDate.LastLot: @unchecked Sendable {}
+extension SortByPrice: @unchecked Sendable {}
+extension SortByPrice.LastLot: @unchecked Sendable {}
+extension Filter: @unchecked Sendable {}
+extension WaterfallResponse: @unchecked Sendable {}
+extension DataFilter: @unchecked Sendable {}
+extension CreateLotRequest: @unchecked Sendable {}
+extension EditLotRequest: @unchecked Sendable {}
+extension CloseLotRequest: @unchecked Sendable {}
+extension FullAddress: @unchecked Sendable {}
+extension CardLotRequest: @unchecked Sendable {}
+extension CardLot: @unchecked Sendable {}
+extension Statistics: @unchecked Sendable {}
+extension Seller: @unchecked Sendable {}
+extension Contact: @unchecked Sendable {}
+extension ChannelLink: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.lot"
 
-extension Ru_Zveron_Contract_Lot_TypeSort: SwiftProtobuf._ProtoNameProviding {
+extension TypeSort: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ASC"),
     1: .same(proto: "DESC"),
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_Field: SwiftProtobuf._ProtoNameProviding {
+extension Field: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PRICE"),
     1: .same(proto: "LOT_FORM_ID"),
@@ -924,7 +924,7 @@ extension Ru_Zveron_Contract_Lot_Field: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_Operation: SwiftProtobuf._ProtoNameProviding {
+extension Operation: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "EQUALITY"),
     1: .same(proto: "NEGATION"),
@@ -937,7 +937,7 @@ extension Ru_Zveron_Contract_Lot_Operation: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_ClosingLotReason: SwiftProtobuf._ProtoNameProviding {
+extension ClosingLotReason: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "SOLD"),
     1: .same(proto: "SOLD_SOMEWHERE"),
@@ -945,7 +945,7 @@ extension Ru_Zveron_Contract_Lot_ClosingLotReason: SwiftProtobuf._ProtoNameProvi
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".WaterfallRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "page_size"),
@@ -969,7 +969,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallRequest: SwiftProtobuf.Message, SwiftP
       case 4: try { try decoder.decodeRepeatedMessageField(value: &self.filters) }()
       case 5: try { try decoder.decodeRepeatedMessageField(value: &self.parameters) }()
       case 6: try {
-        var v: Ru_Zveron_Contract_Lot_SortByDate?
+        var v: SortByDate?
         var hadOneofValue = false
         if let current = self.sort {
           hadOneofValue = true
@@ -982,7 +982,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallRequest: SwiftProtobuf.Message, SwiftP
         }
       }()
       case 7: try {
-        var v: Ru_Zveron_Contract_Lot_SortByPrice?
+        var v: SortByPrice?
         var hadOneofValue = false
         if let current = self.sort {
           hadOneofValue = true
@@ -1033,7 +1033,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallRequest: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_WaterfallRequest, rhs: Ru_Zveron_Contract_Lot_WaterfallRequest) -> Bool {
+  public static func ==(lhs: WaterfallRequest, rhs: WaterfallRequest) -> Bool {
     if lhs.pageSize != rhs.pageSize {return false}
     if lhs._query != rhs._query {return false}
     if lhs._categoryID != rhs._categoryID {return false}
@@ -1045,7 +1045,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallRequest: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Ru_Zveron_Contract_Lot_SortByDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension SortByDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SortByDate"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "type_sort"),
@@ -1079,7 +1079,7 @@ extension Ru_Zveron_Contract_Lot_SortByDate: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_SortByDate, rhs: Ru_Zveron_Contract_Lot_SortByDate) -> Bool {
+  public static func ==(lhs: SortByDate, rhs: SortByDate) -> Bool {
     if lhs.typeSort != rhs.typeSort {return false}
     if lhs._lastLot != rhs._lastLot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1087,8 +1087,8 @@ extension Ru_Zveron_Contract_Lot_SortByDate: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Ru_Zveron_Contract_Lot_SortByDate.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Ru_Zveron_Contract_Lot_SortByDate.protoMessageName + ".LastLot"
+extension SortByDate.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = SortByDate.protoMessageName + ".LastLot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "date"),
@@ -1121,7 +1121,7 @@ extension Ru_Zveron_Contract_Lot_SortByDate.LastLot: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_SortByDate.LastLot, rhs: Ru_Zveron_Contract_Lot_SortByDate.LastLot) -> Bool {
+  public static func ==(lhs: SortByDate.LastLot, rhs: SortByDate.LastLot) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs._date != rhs._date {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1129,7 +1129,7 @@ extension Ru_Zveron_Contract_Lot_SortByDate.LastLot: SwiftProtobuf.Message, Swif
   }
 }
 
-extension Ru_Zveron_Contract_Lot_SortByPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension SortByPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SortByPrice"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "type_sort"),
@@ -1163,7 +1163,7 @@ extension Ru_Zveron_Contract_Lot_SortByPrice: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_SortByPrice, rhs: Ru_Zveron_Contract_Lot_SortByPrice) -> Bool {
+  public static func ==(lhs: SortByPrice, rhs: SortByPrice) -> Bool {
     if lhs.typeSort != rhs.typeSort {return false}
     if lhs._lastLot != rhs._lastLot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1171,8 +1171,8 @@ extension Ru_Zveron_Contract_Lot_SortByPrice: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Ru_Zveron_Contract_Lot_SortByPrice.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Ru_Zveron_Contract_Lot_SortByPrice.protoMessageName + ".LastLot"
+extension SortByPrice.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = SortByPrice.protoMessageName + ".LastLot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "price"),
@@ -1201,7 +1201,7 @@ extension Ru_Zveron_Contract_Lot_SortByPrice.LastLot: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_SortByPrice.LastLot, rhs: Ru_Zveron_Contract_Lot_SortByPrice.LastLot) -> Bool {
+  public static func ==(lhs: SortByPrice.LastLot, rhs: SortByPrice.LastLot) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.price != rhs.price {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1209,7 +1209,7 @@ extension Ru_Zveron_Contract_Lot_SortByPrice.LastLot: SwiftProtobuf.Message, Swi
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Filter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Filter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Filter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "field"),
@@ -1244,7 +1244,7 @@ extension Ru_Zveron_Contract_Lot_Filter: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Filter, rhs: Ru_Zveron_Contract_Lot_Filter) -> Bool {
+  public static func ==(lhs: Filter, rhs: Filter) -> Bool {
     if lhs.field != rhs.field {return false}
     if lhs.operation != rhs.operation {return false}
     if lhs.value != rhs.value {return false}
@@ -1253,7 +1253,7 @@ extension Ru_Zveron_Contract_Lot_Filter: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 }
 
-extension Ru_Zveron_Contract_Lot_WaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension WaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".WaterfallResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "lots"),
@@ -1287,7 +1287,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallResponse: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_WaterfallResponse, rhs: Ru_Zveron_Contract_Lot_WaterfallResponse) -> Bool {
+  public static func ==(lhs: WaterfallResponse, rhs: WaterfallResponse) -> Bool {
     if lhs.lots != rhs.lots {return false}
     if lhs._dataFilter != rhs._dataFilter {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1295,7 +1295,7 @@ extension Ru_Zveron_Contract_Lot_WaterfallResponse: SwiftProtobuf.Message, Swift
   }
 }
 
-extension Ru_Zveron_Contract_Lot_DataFilter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension DataFilter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DataFilter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "price"),
@@ -1329,7 +1329,7 @@ extension Ru_Zveron_Contract_Lot_DataFilter: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_DataFilter, rhs: Ru_Zveron_Contract_Lot_DataFilter) -> Bool {
+  public static func ==(lhs: DataFilter, rhs: DataFilter) -> Bool {
     if lhs.price != rhs.price {return false}
     if lhs._date != rhs._date {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1337,7 +1337,7 @@ extension Ru_Zveron_Contract_Lot_DataFilter: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Ru_Zveron_Contract_Lot_CreateLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension CreateLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreateLotRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "title"),
@@ -1411,7 +1411,7 @@ extension Ru_Zveron_Contract_Lot_CreateLotRequest: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_CreateLotRequest, rhs: Ru_Zveron_Contract_Lot_CreateLotRequest) -> Bool {
+  public static func ==(lhs: CreateLotRequest, rhs: CreateLotRequest) -> Bool {
     if lhs.title != rhs.title {return false}
     if lhs.photos != rhs.photos {return false}
     if lhs.parameters != rhs.parameters {return false}
@@ -1427,7 +1427,7 @@ extension Ru_Zveron_Contract_Lot_CreateLotRequest: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Ru_Zveron_Contract_Lot_EditLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension EditLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EditLotRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -1482,7 +1482,7 @@ extension Ru_Zveron_Contract_Lot_EditLotRequest: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_EditLotRequest, rhs: Ru_Zveron_Contract_Lot_EditLotRequest) -> Bool {
+  public static func ==(lhs: EditLotRequest, rhs: EditLotRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.title != rhs.title {return false}
     if lhs.photos != rhs.photos {return false}
@@ -1495,7 +1495,7 @@ extension Ru_Zveron_Contract_Lot_EditLotRequest: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Ru_Zveron_Contract_Lot_CloseLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension CloseLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CloseLotRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -1534,7 +1534,7 @@ extension Ru_Zveron_Contract_Lot_CloseLotRequest: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_CloseLotRequest, rhs: Ru_Zveron_Contract_Lot_CloseLotRequest) -> Bool {
+  public static func ==(lhs: CloseLotRequest, rhs: CloseLotRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.closingLotReason != rhs.closingLotReason {return false}
     if lhs._customerID != rhs._customerID {return false}
@@ -1543,7 +1543,7 @@ extension Ru_Zveron_Contract_Lot_CloseLotRequest: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Ru_Zveron_Contract_Lot_FullAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension FullAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FullAddress"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "region"),
@@ -1602,7 +1602,7 @@ extension Ru_Zveron_Contract_Lot_FullAddress: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_FullAddress, rhs: Ru_Zveron_Contract_Lot_FullAddress) -> Bool {
+  public static func ==(lhs: FullAddress, rhs: FullAddress) -> Bool {
     if lhs._region != rhs._region {return false}
     if lhs._district != rhs._district {return false}
     if lhs._town != rhs._town {return false}
@@ -1615,7 +1615,7 @@ extension Ru_Zveron_Contract_Lot_FullAddress: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Ru_Zveron_Contract_Lot_CardLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension CardLotRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardLotRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -1640,14 +1640,14 @@ extension Ru_Zveron_Contract_Lot_CardLotRequest: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_CardLotRequest, rhs: Ru_Zveron_Contract_Lot_CardLotRequest) -> Bool {
+  public static func ==(lhs: CardLotRequest, rhs: CardLotRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Lot_CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardLot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -1668,17 +1668,17 @@ extension Ru_Zveron_Contract_Lot_CardLot: SwiftProtobuf.Message, SwiftProtobuf._
   fileprivate class _StorageClass {
     var _id: Int64 = 0
     var _title: String = String()
-    var _photos: [Ru_Zveron_Contract_Lot_Model_Photo] = []
-    var _gender: Ru_Zveron_Contract_Lot_Model_Gender? = nil
-    var _address: Ru_Zveron_Contract_Lot_Model_Address? = nil
-    var _parameters: [Ru_Zveron_Contract_Lot_Model_Parameter] = []
+    var _photos: [Photo] = []
+    var _gender: Gender? = nil
+    var _address: Address? = nil
+    var _parameters: [Parameter] = []
     var _description_p: String = String()
     var _price: String = String()
     var _favorite: Bool = false
     var _own: Bool = false
     var _canAddReview: Bool = false
-    var _contact: Ru_Zveron_Contract_Lot_Contact? = nil
-    var _seller: Ru_Zveron_Contract_Lot_Seller? = nil
+    var _contact: Contact? = nil
+    var _seller: Seller? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1784,7 +1784,7 @@ extension Ru_Zveron_Contract_Lot_CardLot: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_CardLot, rhs: Ru_Zveron_Contract_Lot_CardLot) -> Bool {
+  public static func ==(lhs: CardLot, rhs: CardLot) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1811,7 +1811,7 @@ extension Ru_Zveron_Contract_Lot_CardLot: SwiftProtobuf.Message, SwiftProtobuf._
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Statistics: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Statistics: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Statistics"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "view"),
@@ -1841,7 +1841,7 @@ extension Ru_Zveron_Contract_Lot_Statistics: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Statistics, rhs: Ru_Zveron_Contract_Lot_Statistics) -> Bool {
+  public static func ==(lhs: Statistics, rhs: Statistics) -> Bool {
     if lhs.view != rhs.view {return false}
     if lhs.favorite != rhs.favorite {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1849,7 +1849,7 @@ extension Ru_Zveron_Contract_Lot_Statistics: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Seller"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -1899,7 +1899,7 @@ extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Seller, rhs: Ru_Zveron_Contract_Lot_Seller) -> Bool {
+  public static func ==(lhs: Seller, rhs: Seller) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
@@ -1911,7 +1911,7 @@ extension Ru_Zveron_Contract_Lot_Seller: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Contact"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "communication_channel"),
@@ -1945,7 +1945,7 @@ extension Ru_Zveron_Contract_Lot_Contact: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Contact, rhs: Ru_Zveron_Contract_Lot_Contact) -> Bool {
+  public static func ==(lhs: Contact, rhs: Contact) -> Bool {
     if lhs.communicationChannel != rhs.communicationChannel {return false}
     if lhs._channelLink != rhs._channelLink {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1953,7 +1953,7 @@ extension Ru_Zveron_Contract_Lot_Contact: SwiftProtobuf.Message, SwiftProtobuf._
   }
 }
 
-extension Ru_Zveron_Contract_Lot_ChannelLink: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ChannelLink: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ChannelLink"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "phone"),
@@ -1992,7 +1992,7 @@ extension Ru_Zveron_Contract_Lot_ChannelLink: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_ChannelLink, rhs: Ru_Zveron_Contract_Lot_ChannelLink) -> Bool {
+  public static func ==(lhs: ChannelLink, rhs: ChannelLink) -> Bool {
     if lhs._phone != rhs._phone {return false}
     if lhs._vk != rhs._vk {return false}
     if lhs._email != rhs._email {return false}

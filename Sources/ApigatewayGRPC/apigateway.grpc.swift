@@ -26,18 +26,18 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Apigateway_ApigatewayServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `ApigatewayServiceClient`, then call methods of this protocol to make API calls.
+public protocol ApigatewayServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? { get }
 
   func callApiGateway(
-    _ request: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest,
+    _ request: ApiGatewayRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Apigateway_ApiGatewayRequest, Ru_Zveron_Contract_Apigateway_ApigatewayResponse>
+  ) -> UnaryCall<ApiGatewayRequest, ApigatewayResponse>
 }
 
-extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientProtocol {
+extension ApigatewayServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.apigateway.ApigatewayService"
   }
@@ -49,11 +49,11 @@ extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func callApiGateway(
-    _ request: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest,
+    _ request: ApiGatewayRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Apigateway_ApiGatewayRequest, Ru_Zveron_Contract_Apigateway_ApigatewayResponse> {
+  ) -> UnaryCall<ApiGatewayRequest, ApigatewayResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientMetadata.Methods.callApiGateway.path,
+      path: ApigatewayServiceClientMetadata.Methods.callApiGateway.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCallApiGatewayInterceptors() ?? []
@@ -63,20 +63,20 @@ extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceClient: @unchecked Sendable {}
+extension ApigatewayServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Apigateway_ApigatewayServiceNIOClient")
-public final class Ru_Zveron_Contract_Apigateway_ApigatewayServiceClient: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientProtocol {
+@available(*, deprecated, renamed: "ApigatewayServiceNIOClient")
+public final class ApigatewayServiceClient: ApigatewayServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: ApigatewayServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -90,7 +90,7 @@ public final class Ru_Zveron_Contract_Apigateway_ApigatewayServiceClient: Ru_Zve
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -98,10 +98,10 @@ public final class Ru_Zveron_Contract_Apigateway_ApigatewayServiceClient: Ru_Zve
   }
 }
 
-public struct Ru_Zveron_Contract_Apigateway_ApigatewayServiceNIOClient: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientProtocol {
+public struct ApigatewayServiceNIOClient: ApigatewayServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol?
+  public var interceptors: ApigatewayServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.apigateway.ApigatewayService service.
   ///
@@ -112,7 +112,7 @@ public struct Ru_Zveron_Contract_Apigateway_ApigatewayServiceNIOClient: Ru_Zvero
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -122,32 +122,32 @@ public struct Ru_Zveron_Contract_Apigateway_ApigatewayServiceNIOClient: Ru_Zvero
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClientProtocol: GRPCClient {
+public protocol ApigatewayServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? { get }
 
   func makeCallApiGatewayCall(
-    _ request: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest,
+    _ request: ApiGatewayRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Apigateway_ApiGatewayRequest, Ru_Zveron_Contract_Apigateway_ApigatewayResponse>
+  ) -> GRPCAsyncUnaryCall<ApiGatewayRequest, ApigatewayResponse>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClientProtocol {
+extension ApigatewayServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientMetadata.serviceDescriptor
+    return ApigatewayServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeCallApiGatewayCall(
-    _ request: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest,
+    _ request: ApiGatewayRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Apigateway_ApiGatewayRequest, Ru_Zveron_Contract_Apigateway_ApigatewayResponse> {
+  ) -> GRPCAsyncUnaryCall<ApiGatewayRequest, ApigatewayResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientMetadata.Methods.callApiGateway.path,
+      path: ApigatewayServiceClientMetadata.Methods.callApiGateway.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCallApiGatewayInterceptors() ?? []
@@ -156,13 +156,13 @@ extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClientProtocol {
+extension ApigatewayServiceAsyncClientProtocol {
   public func callApiGateway(
-    _ request: Ru_Zveron_Contract_Apigateway_ApiGatewayRequest,
+    _ request: ApiGatewayRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Apigateway_ApigatewayResponse {
+  ) async throws -> ApigatewayResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientMetadata.Methods.callApiGateway.path,
+      path: ApigatewayServiceClientMetadata.Methods.callApiGateway.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCallApiGatewayInterceptors() ?? []
@@ -171,15 +171,15 @@ extension Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClient: Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClientProtocol {
+public struct ApigatewayServiceAsyncClient: ApigatewayServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol?
+  public var interceptors: ApigatewayServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: ApigatewayServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -189,18 +189,18 @@ public struct Ru_Zveron_Contract_Apigateway_ApigatewayServiceAsyncClient: Ru_Zve
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol ApigatewayServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'callApiGateway'.
-  func makeCallApiGatewayInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Apigateway_ApiGatewayRequest, Ru_Zveron_Contract_Apigateway_ApigatewayResponse>]
+  func makeCallApiGatewayInterceptors() -> [ClientInterceptor<ApiGatewayRequest, ApigatewayResponse>]
 }
 
-public enum Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientMetadata {
+public enum ApigatewayServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "ApigatewayService",
     fullName: "ru.zveron.contract.apigateway.ApigatewayService",
     methods: [
-      Ru_Zveron_Contract_Apigateway_ApigatewayServiceClientMetadata.Methods.callApiGateway,
+      ApigatewayServiceClientMetadata.Methods.callApiGateway,
     ]
   )
 

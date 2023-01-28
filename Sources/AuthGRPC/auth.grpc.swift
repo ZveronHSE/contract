@@ -26,48 +26,48 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Auth_AuthServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Auth_AuthServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `AuthServiceClient`, then call methods of this protocol to make API calls.
+public protocol AuthServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: AuthServiceClientInterceptorFactoryProtocol? { get }
 
   func loginBySocial(
-    _ request: Ru_Zveron_Contract_Auth_LoginBySocialRequest,
+    _ request: LoginBySocialRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_LoginBySocialRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> UnaryCall<LoginBySocialRequest, MobileToken>
 
   func loginByPassword(
-    _ request: Ru_Zveron_Contract_Auth_LoginByPasswordRequest,
+    _ request: LoginByPasswordRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_LoginByPasswordRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> UnaryCall<LoginByPasswordRequest, MobileToken>
 
   func phoneLoginInit(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest,
+    _ request: PhoneLoginInitRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginInitRequest, Ru_Zveron_Contract_Auth_PhoneLoginInitResponse>
+  ) -> UnaryCall<PhoneLoginInitRequest, PhoneLoginInitResponse>
 
   func phoneLoginVerify(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest,
+    _ request: PhoneLoginVerifyRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest, Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse>
+  ) -> UnaryCall<PhoneLoginVerifyRequest, PhoneLoginVerifyResponse>
 
   func registerByPhone(
-    _ request: Ru_Zveron_Contract_Auth_PhoneRegisterRequest,
+    _ request: PhoneRegisterRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_PhoneRegisterRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> UnaryCall<PhoneRegisterRequest, MobileToken>
 
   func verifyToken(
-    _ request: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest,
+    _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest, Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse>
+  ) -> UnaryCall<VerifyMobileTokenRequest, VerifyMobileTokenResponse>
 
   func issueNewTokens(
-    _ request: Ru_Zveron_Contract_Auth_IssueNewTokensRequest,
+    _ request: IssueNewTokensRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_IssueNewTokensRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> UnaryCall<IssueNewTokensRequest, MobileToken>
 }
 
-extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
+extension AuthServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.auth.AuthService"
   }
@@ -79,11 +79,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func loginBySocial(
-    _ request: Ru_Zveron_Contract_Auth_LoginBySocialRequest,
+    _ request: LoginBySocialRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_LoginBySocialRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> UnaryCall<LoginBySocialRequest, MobileToken> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginBySocial.path,
+      path: AuthServiceClientMetadata.Methods.loginBySocial.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeLoginBySocialInterceptors() ?? []
@@ -97,11 +97,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func loginByPassword(
-    _ request: Ru_Zveron_Contract_Auth_LoginByPasswordRequest,
+    _ request: LoginByPasswordRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_LoginByPasswordRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> UnaryCall<LoginByPasswordRequest, MobileToken> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginByPassword.path,
+      path: AuthServiceClientMetadata.Methods.loginByPassword.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeLoginByPasswordInterceptors() ?? []
@@ -116,11 +116,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func phoneLoginInit(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest,
+    _ request: PhoneLoginInitRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginInitRequest, Ru_Zveron_Contract_Auth_PhoneLoginInitResponse> {
+  ) -> UnaryCall<PhoneLoginInitRequest, PhoneLoginInitResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginInit.path,
+      path: AuthServiceClientMetadata.Methods.phoneLoginInit.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makePhoneLoginInitInterceptors() ?? []
@@ -135,11 +135,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func phoneLoginVerify(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest,
+    _ request: PhoneLoginVerifyRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest, Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse> {
+  ) -> UnaryCall<PhoneLoginVerifyRequest, PhoneLoginVerifyResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginVerify.path,
+      path: AuthServiceClientMetadata.Methods.phoneLoginVerify.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makePhoneLoginVerifyInterceptors() ?? []
@@ -153,11 +153,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func registerByPhone(
-    _ request: Ru_Zveron_Contract_Auth_PhoneRegisterRequest,
+    _ request: PhoneRegisterRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_PhoneRegisterRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> UnaryCall<PhoneRegisterRequest, MobileToken> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.registerByPhone.path,
+      path: AuthServiceClientMetadata.Methods.registerByPhone.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeRegisterByPhoneInterceptors() ?? []
@@ -172,11 +172,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func verifyToken(
-    _ request: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest,
+    _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest, Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse> {
+  ) -> UnaryCall<VerifyMobileTokenRequest, VerifyMobileTokenResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.verifyToken.path,
+      path: AuthServiceClientMetadata.Methods.verifyToken.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeVerifyTokenInterceptors() ?? []
@@ -190,11 +190,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func issueNewTokens(
-    _ request: Ru_Zveron_Contract_Auth_IssueNewTokensRequest,
+    _ request: IssueNewTokensRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Auth_IssueNewTokensRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> UnaryCall<IssueNewTokensRequest, MobileToken> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.issueNewTokens.path,
+      path: AuthServiceClientMetadata.Methods.issueNewTokens.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeIssueNewTokensInterceptors() ?? []
@@ -204,20 +204,20 @@ extension Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Auth_AuthServiceClient: @unchecked Sendable {}
+extension AuthServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Auth_AuthServiceNIOClient")
-public final class Ru_Zveron_Contract_Auth_AuthServiceClient: Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
+@available(*, deprecated, renamed: "AuthServiceNIOClient")
+public final class AuthServiceClient: AuthServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: AuthServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: AuthServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -231,7 +231,7 @@ public final class Ru_Zveron_Contract_Auth_AuthServiceClient: Ru_Zveron_Contract
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: AuthServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -239,10 +239,10 @@ public final class Ru_Zveron_Contract_Auth_AuthServiceClient: Ru_Zveron_Contract
   }
 }
 
-public struct Ru_Zveron_Contract_Auth_AuthServiceNIOClient: Ru_Zveron_Contract_Auth_AuthServiceClientProtocol {
+public struct AuthServiceNIOClient: AuthServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol?
+  public var interceptors: AuthServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.auth.AuthService service.
   ///
@@ -253,7 +253,7 @@ public struct Ru_Zveron_Contract_Auth_AuthServiceNIOClient: Ru_Zveron_Contract_A
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: AuthServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -263,62 +263,62 @@ public struct Ru_Zveron_Contract_Auth_AuthServiceNIOClient: Ru_Zveron_Contract_A
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol: GRPCClient {
+public protocol AuthServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: AuthServiceClientInterceptorFactoryProtocol? { get }
 
   func makeLoginBySocialCall(
-    _ request: Ru_Zveron_Contract_Auth_LoginBySocialRequest,
+    _ request: LoginBySocialRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_LoginBySocialRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> GRPCAsyncUnaryCall<LoginBySocialRequest, MobileToken>
 
   func makeLoginByPasswordCall(
-    _ request: Ru_Zveron_Contract_Auth_LoginByPasswordRequest,
+    _ request: LoginByPasswordRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_LoginByPasswordRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> GRPCAsyncUnaryCall<LoginByPasswordRequest, MobileToken>
 
   func makePhoneLoginInitCall(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest,
+    _ request: PhoneLoginInitRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginInitRequest, Ru_Zveron_Contract_Auth_PhoneLoginInitResponse>
+  ) -> GRPCAsyncUnaryCall<PhoneLoginInitRequest, PhoneLoginInitResponse>
 
   func makePhoneLoginVerifyCall(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest,
+    _ request: PhoneLoginVerifyRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest, Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse>
+  ) -> GRPCAsyncUnaryCall<PhoneLoginVerifyRequest, PhoneLoginVerifyResponse>
 
   func makeRegisterByPhoneCall(
-    _ request: Ru_Zveron_Contract_Auth_PhoneRegisterRequest,
+    _ request: PhoneRegisterRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_PhoneRegisterRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> GRPCAsyncUnaryCall<PhoneRegisterRequest, MobileToken>
 
   func makeVerifyTokenCall(
-    _ request: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest,
+    _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest, Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse>
+  ) -> GRPCAsyncUnaryCall<VerifyMobileTokenRequest, VerifyMobileTokenResponse>
 
   func makeIssueNewTokensCall(
-    _ request: Ru_Zveron_Contract_Auth_IssueNewTokensRequest,
+    _ request: IssueNewTokensRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_IssueNewTokensRequest, Ru_Zveron_Contract_Auth_MobileToken>
+  ) -> GRPCAsyncUnaryCall<IssueNewTokensRequest, MobileToken>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
+extension AuthServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.serviceDescriptor
+    return AuthServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: AuthServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeLoginBySocialCall(
-    _ request: Ru_Zveron_Contract_Auth_LoginBySocialRequest,
+    _ request: LoginBySocialRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_LoginBySocialRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> GRPCAsyncUnaryCall<LoginBySocialRequest, MobileToken> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginBySocial.path,
+      path: AuthServiceClientMetadata.Methods.loginBySocial.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeLoginBySocialInterceptors() ?? []
@@ -326,11 +326,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func makeLoginByPasswordCall(
-    _ request: Ru_Zveron_Contract_Auth_LoginByPasswordRequest,
+    _ request: LoginByPasswordRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_LoginByPasswordRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> GRPCAsyncUnaryCall<LoginByPasswordRequest, MobileToken> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginByPassword.path,
+      path: AuthServiceClientMetadata.Methods.loginByPassword.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeLoginByPasswordInterceptors() ?? []
@@ -338,11 +338,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func makePhoneLoginInitCall(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest,
+    _ request: PhoneLoginInitRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginInitRequest, Ru_Zveron_Contract_Auth_PhoneLoginInitResponse> {
+  ) -> GRPCAsyncUnaryCall<PhoneLoginInitRequest, PhoneLoginInitResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginInit.path,
+      path: AuthServiceClientMetadata.Methods.phoneLoginInit.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makePhoneLoginInitInterceptors() ?? []
@@ -350,11 +350,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func makePhoneLoginVerifyCall(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest,
+    _ request: PhoneLoginVerifyRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest, Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse> {
+  ) -> GRPCAsyncUnaryCall<PhoneLoginVerifyRequest, PhoneLoginVerifyResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginVerify.path,
+      path: AuthServiceClientMetadata.Methods.phoneLoginVerify.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makePhoneLoginVerifyInterceptors() ?? []
@@ -362,11 +362,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func makeRegisterByPhoneCall(
-    _ request: Ru_Zveron_Contract_Auth_PhoneRegisterRequest,
+    _ request: PhoneRegisterRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_PhoneRegisterRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> GRPCAsyncUnaryCall<PhoneRegisterRequest, MobileToken> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.registerByPhone.path,
+      path: AuthServiceClientMetadata.Methods.registerByPhone.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeRegisterByPhoneInterceptors() ?? []
@@ -374,11 +374,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func makeVerifyTokenCall(
-    _ request: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest,
+    _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest, Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse> {
+  ) -> GRPCAsyncUnaryCall<VerifyMobileTokenRequest, VerifyMobileTokenResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.verifyToken.path,
+      path: AuthServiceClientMetadata.Methods.verifyToken.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeVerifyTokenInterceptors() ?? []
@@ -386,11 +386,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func makeIssueNewTokensCall(
-    _ request: Ru_Zveron_Contract_Auth_IssueNewTokensRequest,
+    _ request: IssueNewTokensRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Auth_IssueNewTokensRequest, Ru_Zveron_Contract_Auth_MobileToken> {
+  ) -> GRPCAsyncUnaryCall<IssueNewTokensRequest, MobileToken> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.issueNewTokens.path,
+      path: AuthServiceClientMetadata.Methods.issueNewTokens.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeIssueNewTokensInterceptors() ?? []
@@ -399,13 +399,13 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
+extension AuthServiceAsyncClientProtocol {
   public func loginBySocial(
-    _ request: Ru_Zveron_Contract_Auth_LoginBySocialRequest,
+    _ request: LoginBySocialRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_MobileToken {
+  ) async throws -> MobileToken {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginBySocial.path,
+      path: AuthServiceClientMetadata.Methods.loginBySocial.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeLoginBySocialInterceptors() ?? []
@@ -413,11 +413,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func loginByPassword(
-    _ request: Ru_Zveron_Contract_Auth_LoginByPasswordRequest,
+    _ request: LoginByPasswordRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_MobileToken {
+  ) async throws -> MobileToken {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginByPassword.path,
+      path: AuthServiceClientMetadata.Methods.loginByPassword.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeLoginByPasswordInterceptors() ?? []
@@ -425,11 +425,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func phoneLoginInit(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginInitRequest,
+    _ request: PhoneLoginInitRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_PhoneLoginInitResponse {
+  ) async throws -> PhoneLoginInitResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginInit.path,
+      path: AuthServiceClientMetadata.Methods.phoneLoginInit.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makePhoneLoginInitInterceptors() ?? []
@@ -437,11 +437,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func phoneLoginVerify(
-    _ request: Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest,
+    _ request: PhoneLoginVerifyRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse {
+  ) async throws -> PhoneLoginVerifyResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginVerify.path,
+      path: AuthServiceClientMetadata.Methods.phoneLoginVerify.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makePhoneLoginVerifyInterceptors() ?? []
@@ -449,11 +449,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func registerByPhone(
-    _ request: Ru_Zveron_Contract_Auth_PhoneRegisterRequest,
+    _ request: PhoneRegisterRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_MobileToken {
+  ) async throws -> MobileToken {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.registerByPhone.path,
+      path: AuthServiceClientMetadata.Methods.registerByPhone.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeRegisterByPhoneInterceptors() ?? []
@@ -461,11 +461,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func verifyToken(
-    _ request: Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest,
+    _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse {
+  ) async throws -> VerifyMobileTokenResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.verifyToken.path,
+      path: AuthServiceClientMetadata.Methods.verifyToken.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeVerifyTokenInterceptors() ?? []
@@ -473,11 +473,11 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
   }
 
   public func issueNewTokens(
-    _ request: Ru_Zveron_Contract_Auth_IssueNewTokensRequest,
+    _ request: IssueNewTokensRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Auth_MobileToken {
+  ) async throws -> MobileToken {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.issueNewTokens.path,
+      path: AuthServiceClientMetadata.Methods.issueNewTokens.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeIssueNewTokensInterceptors() ?? []
@@ -486,15 +486,15 @@ extension Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Auth_AuthServiceAsyncClient: Ru_Zveron_Contract_Auth_AuthServiceAsyncClientProtocol {
+public struct AuthServiceAsyncClient: AuthServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol?
+  public var interceptors: AuthServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: AuthServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -504,42 +504,42 @@ public struct Ru_Zveron_Contract_Auth_AuthServiceAsyncClient: Ru_Zveron_Contract
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Auth_AuthServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol AuthServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'loginBySocial'.
-  func makeLoginBySocialInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_LoginBySocialRequest, Ru_Zveron_Contract_Auth_MobileToken>]
+  func makeLoginBySocialInterceptors() -> [ClientInterceptor<LoginBySocialRequest, MobileToken>]
 
   /// - Returns: Interceptors to use when invoking 'loginByPassword'.
-  func makeLoginByPasswordInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_LoginByPasswordRequest, Ru_Zveron_Contract_Auth_MobileToken>]
+  func makeLoginByPasswordInterceptors() -> [ClientInterceptor<LoginByPasswordRequest, MobileToken>]
 
   /// - Returns: Interceptors to use when invoking 'phoneLoginInit'.
-  func makePhoneLoginInitInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_PhoneLoginInitRequest, Ru_Zveron_Contract_Auth_PhoneLoginInitResponse>]
+  func makePhoneLoginInitInterceptors() -> [ClientInterceptor<PhoneLoginInitRequest, PhoneLoginInitResponse>]
 
   /// - Returns: Interceptors to use when invoking 'phoneLoginVerify'.
-  func makePhoneLoginVerifyInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_PhoneLoginVerifyRequest, Ru_Zveron_Contract_Auth_PhoneLoginVerifyResponse>]
+  func makePhoneLoginVerifyInterceptors() -> [ClientInterceptor<PhoneLoginVerifyRequest, PhoneLoginVerifyResponse>]
 
   /// - Returns: Interceptors to use when invoking 'registerByPhone'.
-  func makeRegisterByPhoneInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_PhoneRegisterRequest, Ru_Zveron_Contract_Auth_MobileToken>]
+  func makeRegisterByPhoneInterceptors() -> [ClientInterceptor<PhoneRegisterRequest, MobileToken>]
 
   /// - Returns: Interceptors to use when invoking 'verifyToken'.
-  func makeVerifyTokenInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_VerifyMobileTokenRequest, Ru_Zveron_Contract_Auth_VerifyMobileTokenResponse>]
+  func makeVerifyTokenInterceptors() -> [ClientInterceptor<VerifyMobileTokenRequest, VerifyMobileTokenResponse>]
 
   /// - Returns: Interceptors to use when invoking 'issueNewTokens'.
-  func makeIssueNewTokensInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Auth_IssueNewTokensRequest, Ru_Zveron_Contract_Auth_MobileToken>]
+  func makeIssueNewTokensInterceptors() -> [ClientInterceptor<IssueNewTokensRequest, MobileToken>]
 }
 
-public enum Ru_Zveron_Contract_Auth_AuthServiceClientMetadata {
+public enum AuthServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "AuthService",
     fullName: "ru.zveron.contract.auth.AuthService",
     methods: [
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginBySocial,
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.loginByPassword,
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginInit,
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.phoneLoginVerify,
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.registerByPhone,
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.verifyToken,
-      Ru_Zveron_Contract_Auth_AuthServiceClientMetadata.Methods.issueNewTokens,
+      AuthServiceClientMetadata.Methods.loginBySocial,
+      AuthServiceClientMetadata.Methods.loginByPassword,
+      AuthServiceClientMetadata.Methods.phoneLoginInit,
+      AuthServiceClientMetadata.Methods.phoneLoginVerify,
+      AuthServiceClientMetadata.Methods.registerByPhone,
+      AuthServiceClientMetadata.Methods.verifyToken,
+      AuthServiceClientMetadata.Methods.issueNewTokens,
     ]
   )
 

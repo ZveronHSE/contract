@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Ru_Zveron_Contract_Lot_Model_CommunicationChannel: SwiftProtobuf.Enum {
+public enum CommunicationChannel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case phone // = 0
   case vk // = 1
@@ -56,9 +56,9 @@ public enum Ru_Zveron_Contract_Lot_Model_CommunicationChannel: SwiftProtobuf.Enu
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_Model_CommunicationChannel: CaseIterable {
+extension CommunicationChannel: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_Model_CommunicationChannel] = [
+  public static var allCases: [CommunicationChannel] = [
     .phone,
     .vk,
     .email,
@@ -68,7 +68,7 @@ extension Ru_Zveron_Contract_Lot_Model_CommunicationChannel: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public enum Ru_Zveron_Contract_Lot_Model_Gender: SwiftProtobuf.Enum {
+public enum Gender: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case female // = 0
   case male // = 1
@@ -101,9 +101,9 @@ public enum Ru_Zveron_Contract_Lot_Model_Gender: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_Model_Gender: CaseIterable {
+extension Gender: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_Model_Gender] = [
+  public static var allCases: [Gender] = [
     .female,
     .male,
     .metis,
@@ -112,7 +112,7 @@ extension Ru_Zveron_Contract_Lot_Model_Gender: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public enum Ru_Zveron_Contract_Lot_Model_Status: SwiftProtobuf.Enum {
+public enum Status: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case active // = 0
   case closed // = 1
@@ -145,9 +145,9 @@ public enum Ru_Zveron_Contract_Lot_Model_Status: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Lot_Model_Status: CaseIterable {
+extension Status: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Lot_Model_Status] = [
+  public static var allCases: [Status] = [
     .active,
     .closed,
     .canceled,
@@ -156,7 +156,7 @@ extension Ru_Zveron_Contract_Lot_Model_Status: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public struct Ru_Zveron_Contract_Lot_Model_Lot {
+public struct Lot {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -178,14 +178,14 @@ public struct Ru_Zveron_Contract_Lot_Model_Lot {
   public var favorite: Bool = false
 
   /// В каком статусе находится объявление
-  public var status: Ru_Zveron_Contract_Lot_Model_Status = .active
+  public var status: Status = .active
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_Model_Address {
+public struct Address {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -202,7 +202,7 @@ public struct Ru_Zveron_Contract_Lot_Model_Address {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_Model_Parameter {
+public struct Parameter {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -220,7 +220,7 @@ public struct Ru_Zveron_Contract_Lot_Model_Parameter {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Lot_Model_Photo {
+public struct Photo {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -236,20 +236,20 @@ public struct Ru_Zveron_Contract_Lot_Model_Photo {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Lot_Model_CommunicationChannel: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Model_Gender: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Model_Status: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Model_Lot: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Model_Address: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Model_Parameter: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Lot_Model_Photo: @unchecked Sendable {}
+extension CommunicationChannel: @unchecked Sendable {}
+extension Gender: @unchecked Sendable {}
+extension Status: @unchecked Sendable {}
+extension Lot: @unchecked Sendable {}
+extension Address: @unchecked Sendable {}
+extension Parameter: @unchecked Sendable {}
+extension Photo: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.lot.model"
 
-extension Ru_Zveron_Contract_Lot_Model_CommunicationChannel: SwiftProtobuf._ProtoNameProviding {
+extension CommunicationChannel: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PHONE"),
     1: .same(proto: "VK"),
@@ -258,7 +258,7 @@ extension Ru_Zveron_Contract_Lot_Model_CommunicationChannel: SwiftProtobuf._Prot
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_Model_Gender: SwiftProtobuf._ProtoNameProviding {
+extension Gender: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "FEMALE"),
     1: .same(proto: "MALE"),
@@ -266,7 +266,7 @@ extension Ru_Zveron_Contract_Lot_Model_Gender: SwiftProtobuf._ProtoNameProviding
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_Model_Status: SwiftProtobuf._ProtoNameProviding {
+extension Status: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ACTIVE"),
     1: .same(proto: "CLOSED"),
@@ -274,7 +274,7 @@ extension Ru_Zveron_Contract_Lot_Model_Status: SwiftProtobuf._ProtoNameProviding
   ]
 }
 
-extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Lot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -329,7 +329,7 @@ extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Model_Lot, rhs: Ru_Zveron_Contract_Lot_Model_Lot) -> Bool {
+  public static func ==(lhs: Lot, rhs: Lot) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.title != rhs.title {return false}
     if lhs.price != rhs.price {return false}
@@ -342,7 +342,7 @@ extension Ru_Zveron_Contract_Lot_Model_Lot: SwiftProtobuf.Message, SwiftProtobuf
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Model_Address: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Address: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Address"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "address"),
@@ -377,7 +377,7 @@ extension Ru_Zveron_Contract_Lot_Model_Address: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Model_Address, rhs: Ru_Zveron_Contract_Lot_Model_Address) -> Bool {
+  public static func ==(lhs: Address, rhs: Address) -> Bool {
     if lhs.address != rhs.address {return false}
     if lhs.longitude != rhs.longitude {return false}
     if lhs.latitude != rhs.latitude {return false}
@@ -386,7 +386,7 @@ extension Ru_Zveron_Contract_Lot_Model_Address: SwiftProtobuf.Message, SwiftProt
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Model_Parameter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Parameter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Parameter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -421,7 +421,7 @@ extension Ru_Zveron_Contract_Lot_Model_Parameter: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Model_Parameter, rhs: Ru_Zveron_Contract_Lot_Model_Parameter) -> Bool {
+  public static func ==(lhs: Parameter, rhs: Parameter) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.value != rhs.value {return false}
@@ -430,7 +430,7 @@ extension Ru_Zveron_Contract_Lot_Model_Parameter: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Ru_Zveron_Contract_Lot_Model_Photo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Photo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Photo"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -460,7 +460,7 @@ extension Ru_Zveron_Contract_Lot_Model_Photo: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Lot_Model_Photo, rhs: Ru_Zveron_Contract_Lot_Model_Photo) -> Bool {
+  public static func ==(lhs: Photo, rhs: Photo) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.order != rhs.order {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

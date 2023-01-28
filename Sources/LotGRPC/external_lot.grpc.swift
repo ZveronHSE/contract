@@ -26,38 +26,38 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_Lot_LotExternalProtoServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `LotExternalProtoServiceClient`, then call methods of this protocol to make API calls.
+public protocol LotExternalProtoServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? { get }
 
   func getWaterfall(
-    _ request: Ru_Zveron_Contract_Lot_WaterfallRequest,
+    _ request: WaterfallRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_WaterfallRequest, Ru_Zveron_Contract_Lot_WaterfallResponse>
+  ) -> UnaryCall<WaterfallRequest, WaterfallResponse>
 
   func createLot(
-    _ request: Ru_Zveron_Contract_Lot_CreateLotRequest,
+    _ request: CreateLotRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_CreateLotRequest, Ru_Zveron_Contract_Lot_CardLot>
+  ) -> UnaryCall<CreateLotRequest, CardLot>
 
   func editLot(
-    _ request: Ru_Zveron_Contract_Lot_EditLotRequest,
+    _ request: EditLotRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_EditLotRequest, Ru_Zveron_Contract_Lot_CardLot>
+  ) -> UnaryCall<EditLotRequest, CardLot>
 
   func closeLot(
-    _ request: Ru_Zveron_Contract_Lot_CloseLotRequest,
+    _ request: CloseLotRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func getCardLot(
-    _ request: Ru_Zveron_Contract_Lot_CardLotRequest,
+    _ request: CardLotRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_CardLotRequest, Ru_Zveron_Contract_Lot_CardLot>
+  ) -> UnaryCall<CardLotRequest, CardLot>
 }
 
-extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
+extension LotExternalProtoServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.lot.LotExternalProtoService"
   }
@@ -69,11 +69,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getWaterfall(
-    _ request: Ru_Zveron_Contract_Lot_WaterfallRequest,
+    _ request: WaterfallRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_WaterfallRequest, Ru_Zveron_Contract_Lot_WaterfallResponse> {
+  ) -> UnaryCall<WaterfallRequest, WaterfallResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getWaterfall.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.getWaterfall.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetWaterfallInterceptors() ?? []
@@ -87,11 +87,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func createLot(
-    _ request: Ru_Zveron_Contract_Lot_CreateLotRequest,
+    _ request: CreateLotRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_CreateLotRequest, Ru_Zveron_Contract_Lot_CardLot> {
+  ) -> UnaryCall<CreateLotRequest, CardLot> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.createLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.createLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCreateLotInterceptors() ?? []
@@ -105,11 +105,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func editLot(
-    _ request: Ru_Zveron_Contract_Lot_EditLotRequest,
+    _ request: EditLotRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_EditLotRequest, Ru_Zveron_Contract_Lot_CardLot> {
+  ) -> UnaryCall<EditLotRequest, CardLot> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.editLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.editLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeEditLotInterceptors() ?? []
@@ -123,11 +123,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func closeLot(
-    _ request: Ru_Zveron_Contract_Lot_CloseLotRequest,
+    _ request: CloseLotRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.closeLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.closeLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCloseLotInterceptors() ?? []
@@ -141,11 +141,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getCardLot(
-    _ request: Ru_Zveron_Contract_Lot_CardLotRequest,
+    _ request: CardLotRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_Lot_CardLotRequest, Ru_Zveron_Contract_Lot_CardLot> {
+  ) -> UnaryCall<CardLotRequest, CardLot> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getCardLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.getCardLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetCardLotInterceptors() ?? []
@@ -155,20 +155,20 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceClient: @unchecked Sendable {}
+extension LotExternalProtoServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_Lot_LotExternalProtoServiceNIOClient")
-public final class Ru_Zveron_Contract_Lot_LotExternalProtoServiceClient: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
+@available(*, deprecated, renamed: "LotExternalProtoServiceNIOClient")
+public final class LotExternalProtoServiceClient: LotExternalProtoServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -182,7 +182,7 @@ public final class Ru_Zveron_Contract_Lot_LotExternalProtoServiceClient: Ru_Zver
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -190,10 +190,10 @@ public final class Ru_Zveron_Contract_Lot_LotExternalProtoServiceClient: Ru_Zver
   }
 }
 
-public struct Ru_Zveron_Contract_Lot_LotExternalProtoServiceNIOClient: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientProtocol {
+public struct LotExternalProtoServiceNIOClient: LotExternalProtoServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol?
+  public var interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.lot.LotExternalProtoService service.
   ///
@@ -204,7 +204,7 @@ public struct Ru_Zveron_Contract_Lot_LotExternalProtoServiceNIOClient: Ru_Zveron
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -214,52 +214,52 @@ public struct Ru_Zveron_Contract_Lot_LotExternalProtoServiceNIOClient: Ru_Zveron
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol: GRPCClient {
+public protocol LotExternalProtoServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? { get }
 
   func makeGetWaterfallCall(
-    _ request: Ru_Zveron_Contract_Lot_WaterfallRequest,
+    _ request: WaterfallRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_WaterfallRequest, Ru_Zveron_Contract_Lot_WaterfallResponse>
+  ) -> GRPCAsyncUnaryCall<WaterfallRequest, WaterfallResponse>
 
   func makeCreateLotCall(
-    _ request: Ru_Zveron_Contract_Lot_CreateLotRequest,
+    _ request: CreateLotRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_CreateLotRequest, Ru_Zveron_Contract_Lot_CardLot>
+  ) -> GRPCAsyncUnaryCall<CreateLotRequest, CardLot>
 
   func makeEditLotCall(
-    _ request: Ru_Zveron_Contract_Lot_EditLotRequest,
+    _ request: EditLotRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_EditLotRequest, Ru_Zveron_Contract_Lot_CardLot>
+  ) -> GRPCAsyncUnaryCall<EditLotRequest, CardLot>
 
   func makeCloseLotCall(
-    _ request: Ru_Zveron_Contract_Lot_CloseLotRequest,
+    _ request: CloseLotRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeGetCardLotCall(
-    _ request: Ru_Zveron_Contract_Lot_CardLotRequest,
+    _ request: CardLotRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_CardLotRequest, Ru_Zveron_Contract_Lot_CardLot>
+  ) -> GRPCAsyncUnaryCall<CardLotRequest, CardLot>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
+extension LotExternalProtoServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.serviceDescriptor
+    return LotExternalProtoServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeGetWaterfallCall(
-    _ request: Ru_Zveron_Contract_Lot_WaterfallRequest,
+    _ request: WaterfallRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_WaterfallRequest, Ru_Zveron_Contract_Lot_WaterfallResponse> {
+  ) -> GRPCAsyncUnaryCall<WaterfallRequest, WaterfallResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getWaterfall.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.getWaterfall.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetWaterfallInterceptors() ?? []
@@ -267,11 +267,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func makeCreateLotCall(
-    _ request: Ru_Zveron_Contract_Lot_CreateLotRequest,
+    _ request: CreateLotRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_CreateLotRequest, Ru_Zveron_Contract_Lot_CardLot> {
+  ) -> GRPCAsyncUnaryCall<CreateLotRequest, CardLot> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.createLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.createLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCreateLotInterceptors() ?? []
@@ -279,11 +279,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func makeEditLotCall(
-    _ request: Ru_Zveron_Contract_Lot_EditLotRequest,
+    _ request: EditLotRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_EditLotRequest, Ru_Zveron_Contract_Lot_CardLot> {
+  ) -> GRPCAsyncUnaryCall<EditLotRequest, CardLot> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.editLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.editLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeEditLotInterceptors() ?? []
@@ -291,11 +291,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func makeCloseLotCall(
-    _ request: Ru_Zveron_Contract_Lot_CloseLotRequest,
+    _ request: CloseLotRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.closeLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.closeLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCloseLotInterceptors() ?? []
@@ -303,11 +303,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func makeGetCardLotCall(
-    _ request: Ru_Zveron_Contract_Lot_CardLotRequest,
+    _ request: CardLotRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_Lot_CardLotRequest, Ru_Zveron_Contract_Lot_CardLot> {
+  ) -> GRPCAsyncUnaryCall<CardLotRequest, CardLot> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getCardLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.getCardLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetCardLotInterceptors() ?? []
@@ -316,13 +316,13 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
+extension LotExternalProtoServiceAsyncClientProtocol {
   public func getWaterfall(
-    _ request: Ru_Zveron_Contract_Lot_WaterfallRequest,
+    _ request: WaterfallRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Lot_WaterfallResponse {
+  ) async throws -> WaterfallResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getWaterfall.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.getWaterfall.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetWaterfallInterceptors() ?? []
@@ -330,11 +330,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func createLot(
-    _ request: Ru_Zveron_Contract_Lot_CreateLotRequest,
+    _ request: CreateLotRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Lot_CardLot {
+  ) async throws -> CardLot {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.createLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.createLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCreateLotInterceptors() ?? []
@@ -342,11 +342,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func editLot(
-    _ request: Ru_Zveron_Contract_Lot_EditLotRequest,
+    _ request: EditLotRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Lot_CardLot {
+  ) async throws -> CardLot {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.editLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.editLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeEditLotInterceptors() ?? []
@@ -354,11 +354,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func closeLot(
-    _ request: Ru_Zveron_Contract_Lot_CloseLotRequest,
+    _ request: CloseLotRequest,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.closeLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.closeLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCloseLotInterceptors() ?? []
@@ -366,11 +366,11 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
   }
 
   public func getCardLot(
-    _ request: Ru_Zveron_Contract_Lot_CardLotRequest,
+    _ request: CardLotRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_Lot_CardLot {
+  ) async throws -> CardLot {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getCardLot.path,
+      path: LotExternalProtoServiceClientMetadata.Methods.getCardLot.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetCardLotInterceptors() ?? []
@@ -379,15 +379,15 @@ extension Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClient: Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClientProtocol {
+public struct LotExternalProtoServiceAsyncClient: LotExternalProtoServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol?
+  public var interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: LotExternalProtoServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -397,34 +397,34 @@ public struct Ru_Zveron_Contract_Lot_LotExternalProtoServiceAsyncClient: Ru_Zver
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol LotExternalProtoServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'getWaterfall'.
-  func makeGetWaterfallInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_WaterfallRequest, Ru_Zveron_Contract_Lot_WaterfallResponse>]
+  func makeGetWaterfallInterceptors() -> [ClientInterceptor<WaterfallRequest, WaterfallResponse>]
 
   /// - Returns: Interceptors to use when invoking 'createLot'.
-  func makeCreateLotInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_CreateLotRequest, Ru_Zveron_Contract_Lot_CardLot>]
+  func makeCreateLotInterceptors() -> [ClientInterceptor<CreateLotRequest, CardLot>]
 
   /// - Returns: Interceptors to use when invoking 'editLot'.
-  func makeEditLotInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_EditLotRequest, Ru_Zveron_Contract_Lot_CardLot>]
+  func makeEditLotInterceptors() -> [ClientInterceptor<EditLotRequest, CardLot>]
 
   /// - Returns: Interceptors to use when invoking 'closeLot'.
-  func makeCloseLotInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeCloseLotInterceptors() -> [ClientInterceptor<CloseLotRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'getCardLot'.
-  func makeGetCardLotInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_Lot_CardLotRequest, Ru_Zveron_Contract_Lot_CardLot>]
+  func makeGetCardLotInterceptors() -> [ClientInterceptor<CardLotRequest, CardLot>]
 }
 
-public enum Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata {
+public enum LotExternalProtoServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "LotExternalProtoService",
     fullName: "ru.zveron.contract.lot.LotExternalProtoService",
     methods: [
-      Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getWaterfall,
-      Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.createLot,
-      Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.editLot,
-      Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.closeLot,
-      Ru_Zveron_Contract_Lot_LotExternalProtoServiceClientMetadata.Methods.getCardLot,
+      LotExternalProtoServiceClientMetadata.Methods.getWaterfall,
+      LotExternalProtoServiceClientMetadata.Methods.createLot,
+      LotExternalProtoServiceClientMetadata.Methods.editLot,
+      LotExternalProtoServiceClientMetadata.Methods.closeLot,
+      LotExternalProtoServiceClientMetadata.Methods.getCardLot,
     ]
   )
 

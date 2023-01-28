@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Ru_Zveron_Contract_AddressRequest {
+public struct AddressRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -44,7 +44,7 @@ public struct Ru_Zveron_Contract_AddressRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_AddressResponse {
+public struct AddressResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -70,7 +70,7 @@ public struct Ru_Zveron_Contract_AddressResponse {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_AddressIdRequest {
+public struct AddressIdRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -83,16 +83,16 @@ public struct Ru_Zveron_Contract_AddressIdRequest {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_AddressRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_AddressResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_AddressIdRequest: @unchecked Sendable {}
+extension AddressRequest: @unchecked Sendable {}
+extension AddressResponse: @unchecked Sendable {}
+extension AddressIdRequest: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract"
 
-extension Ru_Zveron_Contract_AddressRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension AddressRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddressRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "region"),
@@ -147,7 +147,7 @@ extension Ru_Zveron_Contract_AddressRequest: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_AddressRequest, rhs: Ru_Zveron_Contract_AddressRequest) -> Bool {
+  public static func ==(lhs: AddressRequest, rhs: AddressRequest) -> Bool {
     if lhs.region != rhs.region {return false}
     if lhs.district != rhs.district {return false}
     if lhs.town != rhs.town {return false}
@@ -160,7 +160,7 @@ extension Ru_Zveron_Contract_AddressRequest: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Ru_Zveron_Contract_AddressResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension AddressResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddressResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -220,7 +220,7 @@ extension Ru_Zveron_Contract_AddressResponse: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_AddressResponse, rhs: Ru_Zveron_Contract_AddressResponse) -> Bool {
+  public static func ==(lhs: AddressResponse, rhs: AddressResponse) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.region != rhs.region {return false}
     if lhs.district != rhs.district {return false}
@@ -234,7 +234,7 @@ extension Ru_Zveron_Contract_AddressResponse: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Ru_Zveron_Contract_AddressIdRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension AddressIdRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddressIdRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -259,7 +259,7 @@ extension Ru_Zveron_Contract_AddressIdRequest: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_AddressIdRequest, rhs: Ru_Zveron_Contract_AddressIdRequest) -> Bool {
+  public static func ==(lhs: AddressIdRequest, rhs: AddressIdRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

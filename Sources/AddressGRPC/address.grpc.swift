@@ -26,23 +26,23 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Ru_Zveron_Contract_AddressServiceClient`, then call methods of this protocol to make API calls.
-public protocol Ru_Zveron_Contract_AddressServiceClientProtocol: GRPCClient {
+/// Usage: instantiate `AddressServiceClient`, then call methods of this protocol to make API calls.
+public protocol AddressServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: AddressServiceClientInterceptorFactoryProtocol? { get }
 
   func saveAddressIfNotExists(
-    _ request: Ru_Zveron_Contract_AddressRequest,
+    _ request: AddressRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_AddressRequest, Ru_Zveron_Contract_AddressResponse>
+  ) -> UnaryCall<AddressRequest, AddressResponse>
 
   func getAddress(
-    _ request: Ru_Zveron_Contract_AddressIdRequest,
+    _ request: AddressIdRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Ru_Zveron_Contract_AddressIdRequest, Ru_Zveron_Contract_AddressResponse>
+  ) -> UnaryCall<AddressIdRequest, AddressResponse>
 }
 
-extension Ru_Zveron_Contract_AddressServiceClientProtocol {
+extension AddressServiceClientProtocol {
   public var serviceName: String {
     return "ru.zveron.contract.AddressService"
   }
@@ -56,11 +56,11 @@ extension Ru_Zveron_Contract_AddressServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func saveAddressIfNotExists(
-    _ request: Ru_Zveron_Contract_AddressRequest,
+    _ request: AddressRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_AddressRequest, Ru_Zveron_Contract_AddressResponse> {
+  ) -> UnaryCall<AddressRequest, AddressResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.saveAddressIfNotExists.path,
+      path: AddressServiceClientMetadata.Methods.saveAddressIfNotExists.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSaveAddressIfNotExistsInterceptors() ?? []
@@ -75,11 +75,11 @@ extension Ru_Zveron_Contract_AddressServiceClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getAddress(
-    _ request: Ru_Zveron_Contract_AddressIdRequest,
+    _ request: AddressIdRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Ru_Zveron_Contract_AddressIdRequest, Ru_Zveron_Contract_AddressResponse> {
+  ) -> UnaryCall<AddressIdRequest, AddressResponse> {
     return self.makeUnaryCall(
-      path: Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.getAddress.path,
+      path: AddressServiceClientMetadata.Methods.getAddress.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetAddressInterceptors() ?? []
@@ -89,20 +89,20 @@ extension Ru_Zveron_Contract_AddressServiceClientProtocol {
 
 #if compiler(>=5.6)
 @available(*, deprecated)
-extension Ru_Zveron_Contract_AddressServiceClient: @unchecked Sendable {}
+extension AddressServiceClient: @unchecked Sendable {}
 #endif // compiler(>=5.6)
 
-@available(*, deprecated, renamed: "Ru_Zveron_Contract_AddressServiceNIOClient")
-public final class Ru_Zveron_Contract_AddressServiceClient: Ru_Zveron_Contract_AddressServiceClientProtocol {
+@available(*, deprecated, renamed: "AddressServiceNIOClient")
+public final class AddressServiceClient: AddressServiceClientProtocol {
   private let lock = Lock()
   private var _defaultCallOptions: CallOptions
-  private var _interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol?
+  private var _interceptors: AddressServiceClientInterceptorFactoryProtocol?
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions {
     get { self.lock.withLock { return self._defaultCallOptions } }
     set { self.lock.withLockVoid { self._defaultCallOptions = newValue } }
   }
-  public var interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: AddressServiceClientInterceptorFactoryProtocol? {
     get { self.lock.withLock { return self._interceptors } }
     set { self.lock.withLockVoid { self._interceptors = newValue } }
   }
@@ -116,7 +116,7 @@ public final class Ru_Zveron_Contract_AddressServiceClient: Ru_Zveron_Contract_A
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: AddressServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self._defaultCallOptions = defaultCallOptions
@@ -124,10 +124,10 @@ public final class Ru_Zveron_Contract_AddressServiceClient: Ru_Zveron_Contract_A
   }
 }
 
-public struct Ru_Zveron_Contract_AddressServiceNIOClient: Ru_Zveron_Contract_AddressServiceClientProtocol {
+public struct AddressServiceNIOClient: AddressServiceClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol?
+  public var interceptors: AddressServiceClientInterceptorFactoryProtocol?
 
   /// Creates a client for the ru.zveron.contract.AddressService service.
   ///
@@ -138,7 +138,7 @@ public struct Ru_Zveron_Contract_AddressServiceNIOClient: Ru_Zveron_Contract_Add
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: AddressServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -148,37 +148,37 @@ public struct Ru_Zveron_Contract_AddressServiceNIOClient: Ru_Zveron_Contract_Add
 
 #if compiler(>=5.6)
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public protocol Ru_Zveron_Contract_AddressServiceAsyncClientProtocol: GRPCClient {
+public protocol AddressServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
-  var interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? { get }
+  var interceptors: AddressServiceClientInterceptorFactoryProtocol? { get }
 
   func makeSaveAddressIfNotExistsCall(
-    _ request: Ru_Zveron_Contract_AddressRequest,
+    _ request: AddressRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_AddressRequest, Ru_Zveron_Contract_AddressResponse>
+  ) -> GRPCAsyncUnaryCall<AddressRequest, AddressResponse>
 
   func makeGetAddressCall(
-    _ request: Ru_Zveron_Contract_AddressIdRequest,
+    _ request: AddressIdRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_AddressIdRequest, Ru_Zveron_Contract_AddressResponse>
+  ) -> GRPCAsyncUnaryCall<AddressIdRequest, AddressResponse>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
+extension AddressServiceAsyncClientProtocol {
   public static var serviceDescriptor: GRPCServiceDescriptor {
-    return Ru_Zveron_Contract_AddressServiceClientMetadata.serviceDescriptor
+    return AddressServiceClientMetadata.serviceDescriptor
   }
 
-  public var interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? {
+  public var interceptors: AddressServiceClientInterceptorFactoryProtocol? {
     return nil
   }
 
   public func makeSaveAddressIfNotExistsCall(
-    _ request: Ru_Zveron_Contract_AddressRequest,
+    _ request: AddressRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_AddressRequest, Ru_Zveron_Contract_AddressResponse> {
+  ) -> GRPCAsyncUnaryCall<AddressRequest, AddressResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.saveAddressIfNotExists.path,
+      path: AddressServiceClientMetadata.Methods.saveAddressIfNotExists.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSaveAddressIfNotExistsInterceptors() ?? []
@@ -186,11 +186,11 @@ extension Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
   }
 
   public func makeGetAddressCall(
-    _ request: Ru_Zveron_Contract_AddressIdRequest,
+    _ request: AddressIdRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<Ru_Zveron_Contract_AddressIdRequest, Ru_Zveron_Contract_AddressResponse> {
+  ) -> GRPCAsyncUnaryCall<AddressIdRequest, AddressResponse> {
     return self.makeAsyncUnaryCall(
-      path: Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.getAddress.path,
+      path: AddressServiceClientMetadata.Methods.getAddress.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetAddressInterceptors() ?? []
@@ -199,13 +199,13 @@ extension Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-extension Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
+extension AddressServiceAsyncClientProtocol {
   public func saveAddressIfNotExists(
-    _ request: Ru_Zveron_Contract_AddressRequest,
+    _ request: AddressRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_AddressResponse {
+  ) async throws -> AddressResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.saveAddressIfNotExists.path,
+      path: AddressServiceClientMetadata.Methods.saveAddressIfNotExists.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSaveAddressIfNotExistsInterceptors() ?? []
@@ -213,11 +213,11 @@ extension Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
   }
 
   public func getAddress(
-    _ request: Ru_Zveron_Contract_AddressIdRequest,
+    _ request: AddressIdRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> Ru_Zveron_Contract_AddressResponse {
+  ) async throws -> AddressResponse {
     return try await self.performAsyncUnaryCall(
-      path: Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.getAddress.path,
+      path: AddressServiceClientMetadata.Methods.getAddress.path,
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetAddressInterceptors() ?? []
@@ -226,15 +226,15 @@ extension Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
-public struct Ru_Zveron_Contract_AddressServiceAsyncClient: Ru_Zveron_Contract_AddressServiceAsyncClientProtocol {
+public struct AddressServiceAsyncClient: AddressServiceAsyncClientProtocol {
   public var channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol?
+  public var interceptors: AddressServiceClientInterceptorFactoryProtocol?
 
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol? = nil
+    interceptors: AddressServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -244,22 +244,22 @@ public struct Ru_Zveron_Contract_AddressServiceAsyncClient: Ru_Zveron_Contract_A
 
 #endif // compiler(>=5.6)
 
-public protocol Ru_Zveron_Contract_AddressServiceClientInterceptorFactoryProtocol: GRPCSendable {
+public protocol AddressServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'saveAddressIfNotExists'.
-  func makeSaveAddressIfNotExistsInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_AddressRequest, Ru_Zveron_Contract_AddressResponse>]
+  func makeSaveAddressIfNotExistsInterceptors() -> [ClientInterceptor<AddressRequest, AddressResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getAddress'.
-  func makeGetAddressInterceptors() -> [ClientInterceptor<Ru_Zveron_Contract_AddressIdRequest, Ru_Zveron_Contract_AddressResponse>]
+  func makeGetAddressInterceptors() -> [ClientInterceptor<AddressIdRequest, AddressResponse>]
 }
 
-public enum Ru_Zveron_Contract_AddressServiceClientMetadata {
+public enum AddressServiceClientMetadata {
   public static let serviceDescriptor = GRPCServiceDescriptor(
     name: "AddressService",
     fullName: "ru.zveron.contract.AddressService",
     methods: [
-      Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.saveAddressIfNotExists,
-      Ru_Zveron_Contract_AddressServiceClientMetadata.Methods.getAddress,
+      AddressServiceClientMetadata.Methods.saveAddressIfNotExists,
+      AddressServiceClientMetadata.Methods.getAddress,
     ]
   )
 

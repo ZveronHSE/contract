@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Ru_Zveron_Contract_Parameter_Type: SwiftProtobuf.Enum {
+public enum TypeEnum: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case string // = 0
   case date // = 1
@@ -53,9 +53,9 @@ public enum Ru_Zveron_Contract_Parameter_Type: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Ru_Zveron_Contract_Parameter_Type: CaseIterable {
+extension TypeEnum: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Ru_Zveron_Contract_Parameter_Type] = [
+  public static var allCases: [TypeEnum] = [
     .string,
     .date,
     .integer,
@@ -64,7 +64,7 @@ extension Ru_Zveron_Contract_Parameter_Type: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public struct Ru_Zveron_Contract_Parameter_ParameterRequest {
+public struct ParameterRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -80,19 +80,19 @@ public struct Ru_Zveron_Contract_Parameter_ParameterRequest {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Parameter_ParameterResponse {
+public struct ParameterResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var parameters: [Ru_Zveron_Contract_Parameter_Parameter] = []
+  public var parameters: [Parameter] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Parameter_Parameter {
+public struct Parameter {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -103,7 +103,7 @@ public struct Ru_Zveron_Contract_Parameter_Parameter {
   public var name: String = String()
 
   /// Тип значения, который в себе содержит параметр
-  public var type: Ru_Zveron_Contract_Parameter_Type = .string
+  public var type: TypeEnum = .string
 
   /// Обязательное ли значение или нет
   public var isRequired: Bool = false
@@ -116,7 +116,7 @@ public struct Ru_Zveron_Contract_Parameter_Parameter {
   public init() {}
 }
 
-public struct Ru_Zveron_Contract_Parameter_ParameterValueRequest {
+public struct ParameterValueRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -136,18 +136,18 @@ public struct Ru_Zveron_Contract_Parameter_ParameterValueRequest {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension Ru_Zveron_Contract_Parameter_Type: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Parameter_ParameterRequest: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Parameter_ParameterResponse: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Parameter_Parameter: @unchecked Sendable {}
-extension Ru_Zveron_Contract_Parameter_ParameterValueRequest: @unchecked Sendable {}
+extension TypeEnum: @unchecked Sendable {}
+extension ParameterRequest: @unchecked Sendable {}
+extension ParameterResponse: @unchecked Sendable {}
+extension Parameter: @unchecked Sendable {}
+extension ParameterValueRequest: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.parameter"
 
-extension Ru_Zveron_Contract_Parameter_Type: SwiftProtobuf._ProtoNameProviding {
+extension TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "STRING"),
     1: .same(proto: "DATE"),
@@ -155,7 +155,7 @@ extension Ru_Zveron_Contract_Parameter_Type: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Ru_Zveron_Contract_Parameter_ParameterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ParameterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ParameterRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "category_id"),
@@ -185,7 +185,7 @@ extension Ru_Zveron_Contract_Parameter_ParameterRequest: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Parameter_ParameterRequest, rhs: Ru_Zveron_Contract_Parameter_ParameterRequest) -> Bool {
+  public static func ==(lhs: ParameterRequest, rhs: ParameterRequest) -> Bool {
     if lhs.categoryID != rhs.categoryID {return false}
     if lhs.lotFormID != rhs.lotFormID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -193,7 +193,7 @@ extension Ru_Zveron_Contract_Parameter_ParameterRequest: SwiftProtobuf.Message, 
   }
 }
 
-extension Ru_Zveron_Contract_Parameter_ParameterResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ParameterResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ParameterResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "parameters"),
@@ -218,14 +218,14 @@ extension Ru_Zveron_Contract_Parameter_ParameterResponse: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Parameter_ParameterResponse, rhs: Ru_Zveron_Contract_Parameter_ParameterResponse) -> Bool {
+  public static func ==(lhs: ParameterResponse, rhs: ParameterResponse) -> Bool {
     if lhs.parameters != rhs.parameters {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Ru_Zveron_Contract_Parameter_Parameter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Parameter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Parameter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -270,7 +270,7 @@ extension Ru_Zveron_Contract_Parameter_Parameter: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Parameter_Parameter, rhs: Ru_Zveron_Contract_Parameter_Parameter) -> Bool {
+  public static func ==(lhs: Parameter, rhs: Parameter) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.type != rhs.type {return false}
@@ -281,7 +281,7 @@ extension Ru_Zveron_Contract_Parameter_Parameter: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Ru_Zveron_Contract_Parameter_ParameterValueRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension ParameterValueRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ParameterValueRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "category_id"),
@@ -316,7 +316,7 @@ extension Ru_Zveron_Contract_Parameter_ParameterValueRequest: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Ru_Zveron_Contract_Parameter_ParameterValueRequest, rhs: Ru_Zveron_Contract_Parameter_ParameterValueRequest) -> Bool {
+  public static func ==(lhs: ParameterValueRequest, rhs: ParameterValueRequest) -> Bool {
     if lhs.categoryID != rhs.categoryID {return false}
     if lhs.lotFormID != rhs.lotFormID {return false}
     if lhs.parameterValues != rhs.parameterValues {return false}

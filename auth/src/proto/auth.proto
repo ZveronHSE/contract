@@ -68,10 +68,12 @@ message PhoneRegisterRequest{
 
 message VerifyMobileTokenRequest{
   string access_token = 1;
+  string device_fp = 2;
 }
 
 message IssueNewTokensRequest{
   string refresh_token = 1;
+  string device_fp = 2;
 }
 
 

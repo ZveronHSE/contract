@@ -34,6 +34,9 @@ service AuthService {
 
   //запрос на получение новых токенов
   rpc IssueNewTokens (IssueNewTokensRequest) returns (MobileToken);
+
+  //запрос на получение нового access токена
+  rpc IssueNewAccessToken (IssueNewTokensRequest) returns (TimedToken);
 }
 
 

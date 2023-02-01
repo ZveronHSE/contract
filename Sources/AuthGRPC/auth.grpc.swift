@@ -65,11 +65,6 @@ public protocol AuthServiceClientProtocol: GRPCClient {
     _ request: IssueNewTokensRequest,
     callOptions: CallOptions?
   ) -> UnaryCall<IssueNewTokensRequest, MobileToken>
-
-  func issueNewAccessToken(
-    _ request: IssueNewAccessTokenRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<IssueNewAccessTokenRequest, TimedToken>
 }
 
 extension AuthServiceClientProtocol {
@@ -205,24 +200,6 @@ extension AuthServiceClientProtocol {
       interceptors: self.interceptors?.makeIssueNewTokensInterceptors() ?? []
     )
   }
-
-  ///запрос на получение нового access токена
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to IssueNewAccessToken.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func issueNewAccessToken(
-    _ request: IssueNewAccessTokenRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<IssueNewAccessTokenRequest, TimedToken> {
-    return self.makeUnaryCall(
-      path: AuthServiceClientMetadata.Methods.issueNewAccessToken.path,
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeIssueNewAccessTokenInterceptors() ?? []
-    )
-  }
 }
 
 #if compiler(>=5.6)
@@ -324,11 +301,6 @@ public protocol AuthServiceAsyncClientProtocol: GRPCClient {
     _ request: IssueNewTokensRequest,
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<IssueNewTokensRequest, MobileToken>
-
-  func makeIssueNewAccessTokenCall(
-    _ request: IssueNewAccessTokenRequest,
-    callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<IssueNewAccessTokenRequest, TimedToken>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -424,18 +396,6 @@ extension AuthServiceAsyncClientProtocol {
       interceptors: self.interceptors?.makeIssueNewTokensInterceptors() ?? []
     )
   }
-
-  public func makeIssueNewAccessTokenCall(
-    _ request: IssueNewAccessTokenRequest,
-    callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<IssueNewAccessTokenRequest, TimedToken> {
-    return self.makeAsyncUnaryCall(
-      path: AuthServiceClientMetadata.Methods.issueNewAccessToken.path,
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeIssueNewAccessTokenInterceptors() ?? []
-    )
-  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -523,18 +483,6 @@ extension AuthServiceAsyncClientProtocol {
       interceptors: self.interceptors?.makeIssueNewTokensInterceptors() ?? []
     )
   }
-
-  public func issueNewAccessToken(
-    _ request: IssueNewAccessTokenRequest,
-    callOptions: CallOptions? = nil
-  ) async throws -> TimedToken {
-    return try await self.performAsyncUnaryCall(
-      path: AuthServiceClientMetadata.Methods.issueNewAccessToken.path,
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeIssueNewAccessTokenInterceptors() ?? []
-    )
-  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -578,9 +526,6 @@ public protocol AuthServiceClientInterceptorFactoryProtocol: GRPCSendable {
 
   /// - Returns: Interceptors to use when invoking 'issueNewTokens'.
   func makeIssueNewTokensInterceptors() -> [ClientInterceptor<IssueNewTokensRequest, MobileToken>]
-
-  /// - Returns: Interceptors to use when invoking 'issueNewAccessToken'.
-  func makeIssueNewAccessTokenInterceptors() -> [ClientInterceptor<IssueNewAccessTokenRequest, TimedToken>]
 }
 
 public enum AuthServiceClientMetadata {
@@ -595,7 +540,6 @@ public enum AuthServiceClientMetadata {
       AuthServiceClientMetadata.Methods.registerByPhone,
       AuthServiceClientMetadata.Methods.verifyToken,
       AuthServiceClientMetadata.Methods.issueNewTokens,
-      AuthServiceClientMetadata.Methods.issueNewAccessToken,
     ]
   )
 
@@ -639,12 +583,6 @@ public enum AuthServiceClientMetadata {
     public static let issueNewTokens = GRPCMethodDescriptor(
       name: "IssueNewTokens",
       path: "/ru.zveron.contract.auth.AuthService/IssueNewTokens",
-      type: GRPCCallType.unary
-    )
-
-    public static let issueNewAccessToken = GRPCMethodDescriptor(
-      name: "IssueNewAccessToken",
-      path: "/ru.zveron.contract.auth.AuthService/IssueNewAccessToken",
       type: GRPCCallType.unary
     )
   }

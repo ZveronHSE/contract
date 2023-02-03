@@ -167,6 +167,8 @@ public struct IssueNewTokensRequest {
 
   public var refreshToken: String = String()
 
+  public var deviceFp: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -208,18 +210,6 @@ public struct PhoneLoginVerifyResponse {
   public init() {}
 
   fileprivate var _mobileToken: MobileToken? = nil
-}
-
-public struct VerifyMobileTokenResponse {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var isAuthenticated: Bool = false
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
 }
 
 public struct MobileToken {
@@ -287,7 +277,6 @@ extension VerifyMobileTokenRequest: @unchecked Sendable {}
 extension IssueNewTokensRequest: @unchecked Sendable {}
 extension PhoneLoginInitResponse: @unchecked Sendable {}
 extension PhoneLoginVerifyResponse: @unchecked Sendable {}
-extension VerifyMobileTokenResponse: @unchecked Sendable {}
 extension MobileToken: @unchecked Sendable {}
 extension TimedToken: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
@@ -549,6 +538,7 @@ extension IssueNewTokensRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   public static let protoMessageName: String = _protobuf_package + ".IssueNewTokensRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "refresh_token"),
+    2: .standard(proto: "device_fp"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -558,6 +548,7 @@ extension IssueNewTokensRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.refreshToken) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.deviceFp) }()
       default: break
       }
     }
@@ -567,11 +558,15 @@ extension IssueNewTokensRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     if !self.refreshToken.isEmpty {
       try visitor.visitSingularStringField(value: self.refreshToken, fieldNumber: 1)
     }
+    if !self.deviceFp.isEmpty {
+      try visitor.visitSingularStringField(value: self.deviceFp, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: IssueNewTokensRequest, rhs: IssueNewTokensRequest) -> Bool {
     if lhs.refreshToken != rhs.refreshToken {return false}
+    if lhs.deviceFp != rhs.deviceFp {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -652,38 +647,6 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     if lhs._mobileToken != rhs._mobileToken {return false}
     if lhs.sessionID != rhs.sessionID {return false}
     if lhs.isNewUser != rhs.isNewUser {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension VerifyMobileTokenResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".VerifyMobileTokenResponse"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "is_authenticated"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularBoolField(value: &self.isAuthenticated) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.isAuthenticated != false {
-      try visitor.visitSingularBoolField(value: self.isAuthenticated, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: VerifyMobileTokenResponse, rhs: VerifyMobileTokenResponse) -> Bool {
-    if lhs.isAuthenticated != rhs.isAuthenticated {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

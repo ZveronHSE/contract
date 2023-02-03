@@ -1,5 +1,7 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
 package ru.zveron.contract.auth;
 
 option swift_prefix = "";
@@ -28,7 +30,7 @@ service AuthService {
 
   //запрос для верификации текущего токена доступа, передается из апигея в сервис авторизации
   //потому токены можно передать в метадате
-  rpc VerifyToken (VerifyMobileTokenRequest) returns (VerifyMobileTokenResponse);
+  rpc VerifyToken (VerifyMobileTokenRequest) returns (google.protobuf.Empty);
 
   //запрос на получение новых токенов
   rpc IssueNewTokens (IssueNewTokensRequest) returns (MobileToken);
@@ -72,6 +74,7 @@ message VerifyMobileTokenRequest{
 
 message IssueNewTokensRequest{
   string refresh_token = 1;
+  string device_fp = 2;
 }
 
 
@@ -84,10 +87,6 @@ message PhoneLoginVerifyResponse{
   MobileToken mobile_token = 1;
   string session_id = 2;
   bool is_new_user = 3;
-}
-
-message VerifyMobileTokenResponse{
-  bool is_authenticated = 1;
 }
 
 message MobileToken{

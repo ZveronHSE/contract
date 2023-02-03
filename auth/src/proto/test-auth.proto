@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package ru.zveron.contract.auth;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.auth";
+option java_outer_classname = "AuthProto";
+option java_multiple_files = true;
+
+service TestAuthService {
+
+  rpc testAnyAccess(TestRequest) returns (TestRequest);
+
+  rpc testBuyerAccess(TestRequest) returns (TestResponse);
+}
+
+message TestRequest{
+  string name = 1;
+  bool isTrue = 2;
+}
+
+message TestResponse{
+  string response = 1;
+}

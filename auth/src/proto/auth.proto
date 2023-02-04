@@ -30,7 +30,7 @@ service AuthService {
 
   //запрос для верификации текущего токена доступа, передается из апигея в сервис авторизации
   //потому токены можно передать в метадате
-  rpc VerifyToken (VerifyMobileTokenRequest) returns (google.protobuf.Empty);
+  rpc VerifyToken (VerifyMobileTokenRequest) returns (ProfileId);
 
   //запрос на получение новых токенов
   rpc IssueNewTokens (IssueNewTokensRequest) returns (MobileToken);
@@ -97,6 +97,10 @@ message MobileToken{
 message TimedToken{
   string token = 1;
   google.protobuf.Timestamp expiration = 2;
+}
+
+message ProfileId{
+  int64 id = 1;
 }
 
 //complementary data

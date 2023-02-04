@@ -9,7 +9,7 @@ option java_multiple_files = true;
 
 service TestAuthService {
 
-  rpc testAnyAccess(TestRequest) returns (TestRequest);
+  rpc testAnyAccess(TestRequest) returns (TestResponse);
 
   rpc testBuyerAccess(TestRequest) returns (TestResponse);
 }

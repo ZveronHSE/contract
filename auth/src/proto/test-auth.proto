@@ -17,6 +17,7 @@ service TestAuthService {
 message TestRequest{
   string name = 1;
   bool isTrue = 2;
+  int64 profile_id = 3;
 }
 
 message TestResponse{

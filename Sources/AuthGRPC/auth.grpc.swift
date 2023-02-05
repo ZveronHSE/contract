@@ -59,7 +59,7 @@ public protocol AuthServiceClientProtocol: GRPCClient {
   func verifyToken(
     _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<VerifyMobileTokenRequest, ProfileId>
+  ) -> UnaryCall<VerifyMobileTokenRequest, ProfileDto>
 
   func issueNewTokens(
     _ request: IssueNewTokensRequest,
@@ -174,7 +174,7 @@ extension AuthServiceClientProtocol {
   public func verifyToken(
     _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<VerifyMobileTokenRequest, ProfileId> {
+  ) -> UnaryCall<VerifyMobileTokenRequest, ProfileDto> {
     return self.makeUnaryCall(
       path: AuthServiceClientMetadata.Methods.verifyToken.path,
       request: request,
@@ -295,7 +295,7 @@ public protocol AuthServiceAsyncClientProtocol: GRPCClient {
   func makeVerifyTokenCall(
     _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<VerifyMobileTokenRequest, ProfileId>
+  ) -> GRPCAsyncUnaryCall<VerifyMobileTokenRequest, ProfileDto>
 
   func makeIssueNewTokensCall(
     _ request: IssueNewTokensRequest,
@@ -376,7 +376,7 @@ extension AuthServiceAsyncClientProtocol {
   public func makeVerifyTokenCall(
     _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<VerifyMobileTokenRequest, ProfileId> {
+  ) -> GRPCAsyncUnaryCall<VerifyMobileTokenRequest, ProfileDto> {
     return self.makeAsyncUnaryCall(
       path: AuthServiceClientMetadata.Methods.verifyToken.path,
       request: request,
@@ -463,7 +463,7 @@ extension AuthServiceAsyncClientProtocol {
   public func verifyToken(
     _ request: VerifyMobileTokenRequest,
     callOptions: CallOptions? = nil
-  ) async throws -> ProfileId {
+  ) async throws -> ProfileDto {
     return try await self.performAsyncUnaryCall(
       path: AuthServiceClientMetadata.Methods.verifyToken.path,
       request: request,
@@ -522,7 +522,7 @@ public protocol AuthServiceClientInterceptorFactoryProtocol: GRPCSendable {
   func makeRegisterByPhoneInterceptors() -> [ClientInterceptor<PhoneRegisterRequest, MobileToken>]
 
   /// - Returns: Interceptors to use when invoking 'verifyToken'.
-  func makeVerifyTokenInterceptors() -> [ClientInterceptor<VerifyMobileTokenRequest, ProfileId>]
+  func makeVerifyTokenInterceptors() -> [ClientInterceptor<VerifyMobileTokenRequest, ProfileDto>]
 
   /// - Returns: Interceptors to use when invoking 'issueNewTokens'.
   func makeIssueNewTokensInterceptors() -> [ClientInterceptor<IssueNewTokensRequest, MobileToken>]

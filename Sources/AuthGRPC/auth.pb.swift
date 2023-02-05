@@ -192,30 +192,51 @@ public struct PhoneLoginVerifyResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  public var data: PhoneLoginVerifyResponse.OneOf_Data? = nil
+
   public var mobileToken: MobileToken {
-    get {return _mobileToken ?? MobileToken()}
-    set {_mobileToken = newValue}
+    get {
+      if case .mobileToken(let v)? = data {return v}
+      return MobileToken()
+    }
+    set {data = .mobileToken(newValue)}
   }
-  /// Returns true if `mobileToken` has been explicitly set.
-  public var hasMobileToken: Bool {return self._mobileToken != nil}
-  /// Clears the value of `mobileToken`. Subsequent reads from it will return its default value.
-  public mutating func clearMobileToken() {self._mobileToken = nil}
 
   public var sessionID: String {
-    get {return _sessionID ?? String()}
-    set {_sessionID = newValue}
+    get {
+      if case .sessionID(let v)? = data {return v}
+      return String()
+    }
+    set {data = .sessionID(newValue)}
   }
-  /// Returns true if `sessionID` has been explicitly set.
-  public var hasSessionID: Bool {return self._sessionID != nil}
-  /// Clears the value of `sessionID`. Subsequent reads from it will return its default value.
-  public mutating func clearSessionID() {self._sessionID = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public init() {}
+  public enum OneOf_Data: Equatable {
+    case mobileToken(MobileToken)
+    case sessionID(String)
 
-  fileprivate var _mobileToken: MobileToken? = nil
-  fileprivate var _sessionID: String? = nil
+  #if !swift(>=4.1)
+    public static func ==(lhs: PhoneLoginVerifyResponse.OneOf_Data, rhs: PhoneLoginVerifyResponse.OneOf_Data) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch (lhs, rhs) {
+      case (.mobileToken, .mobileToken): return {
+        guard case .mobileToken(let l) = lhs, case .mobileToken(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.sessionID, .sessionID): return {
+        guard case .sessionID(let l) = lhs, case .sessionID(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  public init() {}
 }
 
 public struct MobileToken {
@@ -295,6 +316,7 @@ extension VerifyMobileTokenRequest: @unchecked Sendable {}
 extension IssueNewTokensRequest: @unchecked Sendable {}
 extension PhoneLoginInitResponse: @unchecked Sendable {}
 extension PhoneLoginVerifyResponse: @unchecked Sendable {}
+extension PhoneLoginVerifyResponse.OneOf_Data: @unchecked Sendable {}
 extension MobileToken: @unchecked Sendable {}
 extension TimedToken: @unchecked Sendable {}
 extension ProfileDto: @unchecked Sendable {}
@@ -636,8 +658,27 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._mobileToken) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self._sessionID) }()
+      case 1: try {
+        var v: MobileToken?
+        var hadOneofValue = false
+        if let current = self.data {
+          hadOneofValue = true
+          if case .mobileToken(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.data = .mobileToken(v)
+        }
+      }()
+      case 2: try {
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {
+          if self.data != nil {try decoder.handleConflictingOneOf()}
+          self.data = .sessionID(v)
+        }
+      }()
       default: break
       }
     }
@@ -648,18 +689,22 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
-    try { if let v = self._mobileToken {
+    switch self.data {
+    case .mobileToken?: try {
+      guard case .mobileToken(let v)? = self.data else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    } }()
-    try { if let v = self._sessionID {
+    }()
+    case .sessionID?: try {
+      guard case .sessionID(let v)? = self.data else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 2)
-    } }()
+    }()
+    case nil: break
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: PhoneLoginVerifyResponse, rhs: PhoneLoginVerifyResponse) -> Bool {
-    if lhs._mobileToken != rhs._mobileToken {return false}
-    if lhs._sessionID != rhs._sessionID {return false}
+    if lhs.data != rhs.data {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

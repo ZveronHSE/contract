@@ -210,8 +210,6 @@ public struct PhoneLoginVerifyResponse {
   /// Clears the value of `sessionID`. Subsequent reads from it will return its default value.
   public mutating func clearSessionID() {self._sessionID = nil}
 
-  public var isNewUser: Bool = false
-
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -630,7 +628,6 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "mobile_token"),
     2: .standard(proto: "session_id"),
-    3: .standard(proto: "is_new_user"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -641,7 +638,6 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._mobileToken) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self._sessionID) }()
-      case 3: try { try decoder.decodeSingularBoolField(value: &self.isNewUser) }()
       default: break
       }
     }
@@ -658,16 +654,12 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try { if let v = self._sessionID {
       try visitor.visitSingularStringField(value: v, fieldNumber: 2)
     } }()
-    if self.isNewUser != false {
-      try visitor.visitSingularBoolField(value: self.isNewUser, fieldNumber: 3)
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: PhoneLoginVerifyResponse, rhs: PhoneLoginVerifyResponse) -> Bool {
     if lhs._mobileToken != rhs._mobileToken {return false}
     if lhs._sessionID != rhs._sessionID {return false}
-    if lhs.isNewUser != rhs.isNewUser {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

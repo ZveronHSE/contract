@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function getFiles() {
-find . -name "*.proto" -not -path "./.build/*" -print0 >tmpfile
+find . -name "*.proto" ! -name "*internal*.proto" -not -path "*/build/*" -print0 >tmpfile
 while IFS=  read -r -d $'\0'; do
     protoFiles+=("$REPLY")
 done <tmpfile
@@ -142,10 +142,10 @@ function generatePackageSwift() {
 }
 
 #1. update necessary libraries
-#loadSwiftProtobuf="brew install swift-protobuf"
-#loadGRPCSwift="brew install grpc-swift"
-#loadCoreUtils="brew install coreutils"
-#$loadSwiftProtobuf;$loadGRPCSwift;$loadCoreUtils
+loadSwiftProtobuf="brew install swift-protobuf"
+loadGRPCSwift="brew install grpc-swift"
+loadCoreUtils="brew install coreutils"
+$loadSwiftProtobuf;$loadGRPCSwift;$loadCoreUtils
 
 #2. delete all previous files
 rm -R "Sources"

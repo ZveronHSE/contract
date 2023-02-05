@@ -142,10 +142,10 @@ function generatePackageSwift() {
 }
 
 #1. update necessary libraries
-loadSwiftProtobuf="brew install swift-protobuf"
-loadGRPCSwift="brew install grpc-swift"
-loadCoreUtils="brew install coreutils"
-$loadSwiftProtobuf;$loadGRPCSwift;$loadCoreUtils
+#loadSwiftProtobuf="brew install swift-protobuf"
+#loadGRPCSwift="brew install grpc-swift"
+#loadCoreUtils="brew install coreutils"
+#$loadSwiftProtobuf;$loadGRPCSwift;$loadCoreUtils
 
 #2. delete all previous files
 rm -R "Sources"

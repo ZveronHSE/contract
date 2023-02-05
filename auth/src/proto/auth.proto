@@ -84,7 +84,7 @@ message PhoneLoginInitResponse{
 }
 
 message PhoneLoginVerifyResponse{
-  MobileToken mobile_token = 1;
+  optional MobileToken mobile_token = 1;
   optional string session_id = 2;
   bool is_new_user = 3;
 }

@@ -17,7 +17,10 @@ service LotInternalService {
 }
 
 message ProfileLotsRequest {
-  int64 id = 1;
+  // У какого продавца нужно получать объявления
+  int64 seller_id = 1;
+  // Если пользователь авторизован, то будет возвращаться информация про то, являются ли объявления избранным или нет
+  optional int64 user_id = 2;
 }
 
 message ProfileLotsResponse {

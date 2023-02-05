@@ -201,7 +201,14 @@ public struct PhoneLoginVerifyResponse {
   /// Clears the value of `mobileToken`. Subsequent reads from it will return its default value.
   public mutating func clearMobileToken() {self._mobileToken = nil}
 
-  public var sessionID: String = String()
+  public var sessionID: String {
+    get {return _sessionID ?? String()}
+    set {_sessionID = newValue}
+  }
+  /// Returns true if `sessionID` has been explicitly set.
+  public var hasSessionID: Bool {return self._sessionID != nil}
+  /// Clears the value of `sessionID`. Subsequent reads from it will return its default value.
+  public mutating func clearSessionID() {self._sessionID = nil}
 
   public var isNewUser: Bool = false
 
@@ -210,6 +217,7 @@ public struct PhoneLoginVerifyResponse {
   public init() {}
 
   fileprivate var _mobileToken: MobileToken? = nil
+  fileprivate var _sessionID: String? = nil
 }
 
 public struct MobileToken {
@@ -266,7 +274,7 @@ public struct TimedToken {
   fileprivate var _expiration: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 }
 
-public struct ProfileId {
+public struct ProfileDto {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -291,7 +299,7 @@ extension PhoneLoginInitResponse: @unchecked Sendable {}
 extension PhoneLoginVerifyResponse: @unchecked Sendable {}
 extension MobileToken: @unchecked Sendable {}
 extension TimedToken: @unchecked Sendable {}
-extension ProfileId: @unchecked Sendable {}
+extension ProfileDto: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -632,7 +640,7 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._mobileToken) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.sessionID) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self._sessionID) }()
       case 3: try { try decoder.decodeSingularBoolField(value: &self.isNewUser) }()
       default: break
       }
@@ -647,9 +655,9 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try { if let v = self._mobileToken {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     } }()
-    if !self.sessionID.isEmpty {
-      try visitor.visitSingularStringField(value: self.sessionID, fieldNumber: 2)
-    }
+    try { if let v = self._sessionID {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    } }()
     if self.isNewUser != false {
       try visitor.visitSingularBoolField(value: self.isNewUser, fieldNumber: 3)
     }
@@ -658,7 +666,7 @@ extension PhoneLoginVerifyResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
 
   public static func ==(lhs: PhoneLoginVerifyResponse, rhs: PhoneLoginVerifyResponse) -> Bool {
     if lhs._mobileToken != rhs._mobileToken {return false}
-    if lhs.sessionID != rhs.sessionID {return false}
+    if lhs._sessionID != rhs._sessionID {return false}
     if lhs.isNewUser != rhs.isNewUser {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -749,8 +757,8 @@ extension TimedToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   }
 }
 
-extension ProfileId: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ProfileId"
+extension ProfileDto: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProfileDto"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
@@ -774,7 +782,7 @@ extension ProfileId: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: ProfileId, rhs: ProfileId) -> Bool {
+  public static func ==(lhs: ProfileDto, rhs: ProfileDto) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

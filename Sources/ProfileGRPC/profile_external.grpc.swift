@@ -37,9 +37,9 @@ public protocol ProfileServiceExternalClientProtocol: GRPCClient {
   ) -> UnaryCall<GetProfilePageRequest, GetProfilePageResponse>
 
   func getProfileInfo(
-    _ request: GetProfileInfoRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> UnaryCall<GetProfileInfoRequest, GetProfileInfoResponse>
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetProfileInfoResponse>
 
   func setProfileInfo(
     _ request: SetProfileInfoRequest,
@@ -47,9 +47,9 @@ public protocol ProfileServiceExternalClientProtocol: GRPCClient {
   ) -> UnaryCall<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func getSettings(
-    _ request: GetSettingsRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> UnaryCall<GetSettingsRequest, GetSettingsResponse>
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetSettingsResponse>
 
   func setSettings(
     _ request: SetSettingsRequest,
@@ -57,19 +57,19 @@ public protocol ProfileServiceExternalClientProtocol: GRPCClient {
   ) -> UnaryCall<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func getChannelTypes(
-    _ request: GetChannelTypesRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> UnaryCall<GetChannelTypesRequest, GetChannelTypesResponse>
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetChannelTypesResponse>
 
   func getLinks(
-    _ request: GetLinksRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> UnaryCall<GetLinksRequest, Links>
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, Links>
 
   func deleteProfile(
-    _ request: DeleteProfileRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> UnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
 extension ProfileServiceExternalClientProtocol {
@@ -102,9 +102,9 @@ extension ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getProfileInfo(
-    _ request: GetProfileInfoRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetProfileInfoRequest, GetProfileInfoResponse> {
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetProfileInfoResponse> {
     return self.makeUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
       request: request,
@@ -138,9 +138,9 @@ extension ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getSettings(
-    _ request: GetSettingsRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetSettingsRequest, GetSettingsResponse> {
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetSettingsResponse> {
     return self.makeUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getSettings.path,
       request: request,
@@ -174,9 +174,9 @@ extension ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getChannelTypes(
-    _ request: GetChannelTypesRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetChannelTypesRequest, GetChannelTypesResponse> {
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetChannelTypesResponse> {
     return self.makeUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
       request: request,
@@ -192,9 +192,9 @@ extension ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func getLinks(
-    _ request: GetLinksRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<GetLinksRequest, Links> {
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, Links> {
     return self.makeUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getLinks.path,
       request: request,
@@ -210,9 +210,9 @@ extension ProfileServiceExternalClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func deleteProfile(
-    _ request: DeleteProfileRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> UnaryCall<SwiftProtobuf.Google_Protobuf_Empty, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
       request: request,
@@ -293,9 +293,9 @@ public protocol ProfileServiceExternalAsyncClientProtocol: GRPCClient {
   ) -> GRPCAsyncUnaryCall<GetProfilePageRequest, GetProfilePageResponse>
 
   func makeGetProfileInfoCall(
-    _ request: GetProfileInfoRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<GetProfileInfoRequest, GetProfileInfoResponse>
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetProfileInfoResponse>
 
   func makeSetProfileInfoCall(
     _ request: SetProfileInfoRequest,
@@ -303,9 +303,9 @@ public protocol ProfileServiceExternalAsyncClientProtocol: GRPCClient {
   ) -> GRPCAsyncUnaryCall<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeGetSettingsCall(
-    _ request: GetSettingsRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<GetSettingsRequest, GetSettingsResponse>
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetSettingsResponse>
 
   func makeSetSettingsCall(
     _ request: SetSettingsRequest,
@@ -313,19 +313,19 @@ public protocol ProfileServiceExternalAsyncClientProtocol: GRPCClient {
   ) -> GRPCAsyncUnaryCall<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>
 
   func makeGetChannelTypesCall(
-    _ request: GetChannelTypesRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<GetChannelTypesRequest, GetChannelTypesResponse>
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetChannelTypesResponse>
 
   func makeGetLinksCall(
-    _ request: GetLinksRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<GetLinksRequest, Links>
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, Links>
 
   func makeDeleteProfileCall(
-    _ request: DeleteProfileRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions?
-  ) -> GRPCAsyncUnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, SwiftProtobuf.Google_Protobuf_Empty>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -351,9 +351,9 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetProfileInfoCall(
-    _ request: GetProfileInfoRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<GetProfileInfoRequest, GetProfileInfoResponse> {
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetProfileInfoResponse> {
     return self.makeAsyncUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getProfileInfo.path,
       request: request,
@@ -375,9 +375,9 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetSettingsCall(
-    _ request: GetSettingsRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<GetSettingsRequest, GetSettingsResponse> {
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetSettingsResponse> {
     return self.makeAsyncUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getSettings.path,
       request: request,
@@ -399,9 +399,9 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetChannelTypesCall(
-    _ request: GetChannelTypesRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<GetChannelTypesRequest, GetChannelTypesResponse> {
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, GetChannelTypesResponse> {
     return self.makeAsyncUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getChannelTypes.path,
       request: request,
@@ -411,9 +411,9 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeGetLinksCall(
-    _ request: GetLinksRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<GetLinksRequest, Links> {
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, Links> {
     return self.makeAsyncUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.getLinks.path,
       request: request,
@@ -423,9 +423,9 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func makeDeleteProfileCall(
-    _ request: DeleteProfileRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
-  ) -> GRPCAsyncUnaryCall<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty> {
+  ) -> GRPCAsyncUnaryCall<SwiftProtobuf.Google_Protobuf_Empty, SwiftProtobuf.Google_Protobuf_Empty> {
     return self.makeAsyncUnaryCall(
       path: ProfileServiceExternalClientMetadata.Methods.deleteProfile.path,
       request: request,
@@ -450,7 +450,7 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getProfileInfo(
-    _ request: GetProfileInfoRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
   ) async throws -> GetProfileInfoResponse {
     return try await self.performAsyncUnaryCall(
@@ -474,7 +474,7 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getSettings(
-    _ request: GetSettingsRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
   ) async throws -> GetSettingsResponse {
     return try await self.performAsyncUnaryCall(
@@ -498,7 +498,7 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getChannelTypes(
-    _ request: GetChannelTypesRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
   ) async throws -> GetChannelTypesResponse {
     return try await self.performAsyncUnaryCall(
@@ -510,7 +510,7 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func getLinks(
-    _ request: GetLinksRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
   ) async throws -> Links {
     return try await self.performAsyncUnaryCall(
@@ -522,7 +522,7 @@ extension ProfileServiceExternalAsyncClientProtocol {
   }
 
   public func deleteProfile(
-    _ request: DeleteProfileRequest,
+    _ request: SwiftProtobuf.Google_Protobuf_Empty,
     callOptions: CallOptions? = nil
   ) async throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try await self.performAsyncUnaryCall(
@@ -559,25 +559,25 @@ public protocol ProfileServiceExternalClientInterceptorFactoryProtocol: GRPCSend
   func makeGetProfilePageInterceptors() -> [ClientInterceptor<GetProfilePageRequest, GetProfilePageResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getProfileInfo'.
-  func makeGetProfileInfoInterceptors() -> [ClientInterceptor<GetProfileInfoRequest, GetProfileInfoResponse>]
+  func makeGetProfileInfoInterceptors() -> [ClientInterceptor<SwiftProtobuf.Google_Protobuf_Empty, GetProfileInfoResponse>]
 
   /// - Returns: Interceptors to use when invoking 'setProfileInfo'.
   func makeSetProfileInfoInterceptors() -> [ClientInterceptor<SetProfileInfoRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'getSettings'.
-  func makeGetSettingsInterceptors() -> [ClientInterceptor<GetSettingsRequest, GetSettingsResponse>]
+  func makeGetSettingsInterceptors() -> [ClientInterceptor<SwiftProtobuf.Google_Protobuf_Empty, GetSettingsResponse>]
 
   /// - Returns: Interceptors to use when invoking 'setSettings'.
   func makeSetSettingsInterceptors() -> [ClientInterceptor<SetSettingsRequest, SwiftProtobuf.Google_Protobuf_Empty>]
 
   /// - Returns: Interceptors to use when invoking 'getChannelTypes'.
-  func makeGetChannelTypesInterceptors() -> [ClientInterceptor<GetChannelTypesRequest, GetChannelTypesResponse>]
+  func makeGetChannelTypesInterceptors() -> [ClientInterceptor<SwiftProtobuf.Google_Protobuf_Empty, GetChannelTypesResponse>]
 
   /// - Returns: Interceptors to use when invoking 'getLinks'.
-  func makeGetLinksInterceptors() -> [ClientInterceptor<GetLinksRequest, Links>]
+  func makeGetLinksInterceptors() -> [ClientInterceptor<SwiftProtobuf.Google_Protobuf_Empty, Links>]
 
   /// - Returns: Interceptors to use when invoking 'deleteProfile'.
-  func makeDeleteProfileInterceptors() -> [ClientInterceptor<DeleteProfileRequest, SwiftProtobuf.Google_Protobuf_Empty>]
+  func makeDeleteProfileInterceptors() -> [ClientInterceptor<SwiftProtobuf.Google_Protobuf_Empty, SwiftProtobuf.Google_Protobuf_Empty>]
 }
 
 public enum ProfileServiceExternalClientMetadata {

@@ -5,7 +5,7 @@ import "model/communication.proto";
 
 package ru.zveron.contract.profile;
 
-option swift_prefix="";
+option swift_prefix = "";
 option java_package = "ru.zveron.contract.profile";
 option java_outer_classname = "ProfileGrpcInternal";
 option java_multiple_files = true;
@@ -13,7 +13,7 @@ option java_multiple_files = true;
 service ProfileServiceInternal {
 
   // Создание профиля пользователя
-  rpc CreateProfile(CreateProfileRequest) returns(google.protobuf.Empty);
+  rpc CreateProfile(CreateProfileRequest) returns();
 
   // Получение профиля, как сущности, описывающей личные данные,
   rpc GetProfile(GetProfileRequest) returns(GetProfileResponse);
@@ -30,11 +30,15 @@ service ProfileServiceInternal {
 }
 
 message CreateProfileRequest {
-  uint64 auth_account_id = 1;
+  string password_hash = 1;
   string name = 2;
   string surname = 3;
   model.Links links = 4;
   uint64 image_id = 5;
+}
+
+message CreateProfileResponse {
+  uint64 id = 1;
 }
 
 message GetProfileRequest {

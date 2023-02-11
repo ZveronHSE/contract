@@ -141,6 +141,8 @@ public struct PhoneRegisterRequest {
 
   public var name: String = String()
 
+  public var surname: String = String()
+
   public var deviceFp: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -499,7 +501,8 @@ extension PhoneRegisterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     1: .standard(proto: "session_id"),
     2: .same(proto: "password"),
     3: .same(proto: "name"),
-    4: .standard(proto: "device_fp"),
+    4: .same(proto: "surname"),
+    5: .standard(proto: "device_fp"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -511,7 +514,8 @@ extension PhoneRegisterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       case 1: try { try decoder.decodeSingularStringField(value: &self.sessionID) }()
       case 2: try { try decoder.decodeSingularBytesField(value: &self.password) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.name) }()
-      case 4: try { try decoder.decodeSingularStringField(value: &self.deviceFp) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.surname) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self.deviceFp) }()
       default: break
       }
     }
@@ -527,8 +531,11 @@ extension PhoneRegisterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 3)
     }
+    if !self.surname.isEmpty {
+      try visitor.visitSingularStringField(value: self.surname, fieldNumber: 4)
+    }
     if !self.deviceFp.isEmpty {
-      try visitor.visitSingularStringField(value: self.deviceFp, fieldNumber: 4)
+      try visitor.visitSingularStringField(value: self.deviceFp, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -537,6 +544,7 @@ extension PhoneRegisterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     if lhs.sessionID != rhs.sessionID {return false}
     if lhs.password != rhs.password {return false}
     if lhs.name != rhs.name {return false}
+    if lhs.surname != rhs.surname {return false}
     if lhs.deviceFp != rhs.deviceFp {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

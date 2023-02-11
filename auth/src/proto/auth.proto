@@ -65,7 +65,8 @@ message PhoneRegisterRequest{
   string session_id = 1;
   bytes password = 2;
   string name = 3;
-  string device_fp = 4;
+  string surname = 4;
+  string device_fp = 5;
 }
 
 message VerifyMobileTokenRequest{

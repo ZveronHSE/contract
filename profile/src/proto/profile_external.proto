@@ -41,24 +41,14 @@ message GetProfilePageRequest {
   uint64 requested_profile_id = 1;
 }
 
-message GetProfileInfoRequest {
-  uint64 id = 1;
-}
-
 message SetProfileInfoRequest {
-  uint64 id = 1;
   optional string name = 2;
   optional string surname = 3;
   optional uint64 image_id = 4;
   optional Address address = 5;
 }
 
-message GetSettingsRequest {
-  uint64 id = 1;
-}
-
 message SetSettingsRequest {
-  uint64 id = 1;
   // Optional too
   repeated model.ChannelType channels = 2;
   optional Address address = 3;

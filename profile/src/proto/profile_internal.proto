@@ -13,7 +13,7 @@ option java_multiple_files = true;
 service ProfileServiceInternal {
 
   // Создание профиля пользователя
-  rpc CreateProfile(CreateProfileRequest) returns();
+  rpc CreateProfile(CreateProfileRequest) returns(CreateProfileResponse);
 
   // Получение профиля, как сущности, описывающей личные данные,
   rpc GetProfile(GetProfileRequest) returns(GetProfileResponse);

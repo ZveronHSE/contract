@@ -72,24 +72,10 @@ public struct GetProfilePageRequest {
   public init() {}
 }
 
-public struct GetProfileInfoRequest {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var id: UInt64 = 0
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
 public struct SetProfileInfoRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
-
-  public var id: UInt64 = 0
 
   public var name: String {
     get {return _name ?? String()}
@@ -137,24 +123,10 @@ public struct SetProfileInfoRequest {
   fileprivate var _address: Address? = nil
 }
 
-public struct GetSettingsRequest {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var id: UInt64 = 0
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
 public struct SetSettingsRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
-
-  public var id: UInt64 = 0
 
   /// Optional too
   public var channels: [ChannelType] = []
@@ -384,9 +356,7 @@ public struct Contacts {
 #if swift(>=5.5) && canImport(_Concurrency)
 extension LotStatus: @unchecked Sendable {}
 extension GetProfilePageRequest: @unchecked Sendable {}
-extension GetProfileInfoRequest: @unchecked Sendable {}
 extension SetProfileInfoRequest: @unchecked Sendable {}
-extension GetSettingsRequest: @unchecked Sendable {}
 extension SetSettingsRequest: @unchecked Sendable {}
 extension GetProfileInfoResponse: @unchecked Sendable {}
 extension GetProfilePageResponse: @unchecked Sendable {}
@@ -440,42 +410,9 @@ extension GetProfilePageRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 }
 
-extension GetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetProfileInfoRequest"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularUInt64Field(value: self.id, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: GetProfileInfoRequest, rhs: GetProfileInfoRequest) -> Bool {
-    if lhs.id != rhs.id {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
 extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SetProfileInfoRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
     4: .standard(proto: "image_id"),
@@ -488,7 +425,6 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self._name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self._surname) }()
       case 4: try { try decoder.decodeSingularUInt64Field(value: &self._imageID) }()
@@ -503,9 +439,6 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
-    if self.id != 0 {
-      try visitor.visitSingularUInt64Field(value: self.id, fieldNumber: 1)
-    }
     try { if let v = self._name {
       try visitor.visitSingularStringField(value: v, fieldNumber: 2)
     } }()
@@ -522,7 +455,6 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   public static func ==(lhs: SetProfileInfoRequest, rhs: SetProfileInfoRequest) -> Bool {
-    if lhs.id != rhs.id {return false}
     if lhs._name != rhs._name {return false}
     if lhs._surname != rhs._surname {return false}
     if lhs._imageID != rhs._imageID {return false}
@@ -532,42 +464,9 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 }
 
-extension GetSettingsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetSettingsRequest"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularUInt64Field(value: self.id, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: GetSettingsRequest, rhs: GetSettingsRequest) -> Bool {
-    if lhs.id != rhs.id {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
 extension SetSettingsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SetSettingsRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
     2: .same(proto: "channels"),
     3: .same(proto: "address"),
   ]
@@ -578,7 +477,6 @@ extension SetSettingsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeRepeatedEnumField(value: &self.channels) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._address) }()
       default: break
@@ -591,9 +489,6 @@ extension SetSettingsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
-    if self.id != 0 {
-      try visitor.visitSingularUInt64Field(value: self.id, fieldNumber: 1)
-    }
     if !self.channels.isEmpty {
       try visitor.visitPackedEnumField(value: self.channels, fieldNumber: 2)
     }
@@ -604,7 +499,6 @@ extension SetSettingsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
   }
 
   public static func ==(lhs: SetSettingsRequest, rhs: SetSettingsRequest) -> Bool {
-    if lhs.id != rhs.id {return false}
     if lhs.channels != rhs.channels {return false}
     if lhs._address != rhs._address {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

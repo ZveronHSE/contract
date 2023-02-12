@@ -28,7 +28,7 @@ service ProfileServiceInternal {
   // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
   rpc GetProfileByChannel(GetProfileByChannelRequest) returns(GetProfileByChannelResponse);
 
-  // Проверка существования пары номер телефона + хэш пароля
+  // Проверка существования аккаунта по тлф + валидация хеша пароля
   // Если нет такого телефона или пароль неверен - false в ответе
   rpc VerifyProfileHash(VerifyProfileHashRequest) returns(VerifyProfileHashResponse);
 }

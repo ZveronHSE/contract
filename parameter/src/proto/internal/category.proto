@@ -10,13 +10,13 @@ import "google/protobuf/wrappers.proto";
 
 service CategoryService {
   // Получить всю семью для категории, то есть если A->B->C, то вернет A, B, C
-  rpc getCategoryTree(google.protobuf.Int32Value) returns (CategoryResponse);
+  rpc getCategoryTree(google.protobuf.Int32Value) returns (CategoryTreeResponse);
 
   // Проверка, есть ли у категории еще дети
   rpc categoryHasChildren(google.protobuf.Int32Value) returns (google.protobuf.BoolValue);
 }
 
-message CategoryResponse {
+message CategoryTreeResponse {
   repeated Category categories = 1;
 }
 

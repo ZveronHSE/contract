@@ -1,0 +1,24 @@
+syntax = "proto3";
+package ru.zveron.contract.parameter.internal;
+
+import "google/protobuf/empty.proto";
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.parameter.internal";
+option java_outer_classname = "ParameterProto";
+option java_multiple_files = true;
+
+
+service ParameterService {
+  // Проверка, что пользователь правильно ввел значения для параметров. Если все ок - вернется пустой ответ, иначе ошибка.
+  rpc validateValuesForParameters(ParameterValueRequest) returns (google.protobuf.Empty);
+}
+
+message ParameterValueRequest {
+  // Идентификатор категория.
+  int32 category_id = 1;
+  // Идентификатор типа объявления.
+  int32 lot_form_id = 2;
+  // Значения для каждого параметра по id/string
+  map<int32, string> parameter_values = 3;
+}

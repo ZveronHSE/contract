@@ -47,6 +47,7 @@ message LoginByPasswordRequest{
   //любая форма телефона, код страны + телефон
   string phone_number = 1;
   bytes password = 2;
+  string device_fp = 3;
 }
 
 message PhoneLoginInitRequest{

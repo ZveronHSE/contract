@@ -1,0 +1,26 @@
+syntax = "proto3";
+package ru.zveron.contract.parameter.internal;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.parameter.internal";
+option java_outer_classname = "CategoryProto";
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+
+service CategoryService {
+  // Получить всю семью для категории, то есть если A->B->C, то вернет A, B, C
+  rpc getCategoryTree(google.protobuf.Int32Value) returns (CategoryTreeResponse);
+
+  // Проверка, есть ли у категории еще дети
+  rpc categoryHasChildren(google.protobuf.Int32Value) returns (google.protobuf.BoolValue);
+}
+
+message CategoryTreeResponse {
+  repeated Category categories = 1;
+}
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+}

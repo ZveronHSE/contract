@@ -51,7 +51,12 @@ function createDirectoryAndFile() {
   command1="protoc --swift_opt=Visibility=Public --swift_out=$logicPathToNewProto $(basename $proto)"
   command2="protoc $(basename $proto) --grpc-swift_opt=Visibility=Public,Client=true,Server=false --grpc-swift_out=$logicPathToNewProto"
   $command1
-  $command2
+
+  if [[ $proto == *"apigateway"* ]];
+  then
+       $command2
+  fi
+
   cd "$currentDir"
 }
 

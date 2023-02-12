@@ -1,0 +1,28 @@
+syntax = "proto3";
+package ru.zveron.contract.parameter.external;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.parameter.external";
+option java_outer_classname = "CategoryExternalProto";
+option java_multiple_files = true;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service CategoryExternalService {
+  // Получить список подкатегорий для категории
+  rpc getChildren(google.protobuf.Int32Value) returns(CategoryResponse);
+
+  // Получить главные категории
+  rpc getRoot(google.protobuf.Empty) returns (CategoryResponse);
+}
+
+message CategoryResponse {
+  repeated Category categories = 1;
+}
+
+message Category {
+  int32 id = 1;
+  string name = 2;
+  string image_url = 3;
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package ru.zveron.contract.objectstorage.external;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.object-storage.external";
+option java_outer_classname = "ObjectStorageUploadProto";
+option java_multiple_files = true;
+
+service ObjectStorageUploadService {
+  //uploads an image to yandex cloud storage
+  rpc UploadImage(UploadImageRequest) returns (google.protobuf.Empty);
+
+}
+
+message UploadImageRequest{
+  bytes body = 1;
+  int32 height = 2;
+  int32 width = 3;
+  MimeType mimeType = 4;
+}
+
+message UploadImageResponse{
+  int64 image_id = 1;
+}
+
+enum MimeType{
+  IMAGE_JPEG = 0;
+  IMAGE_PNG = 1;
+}

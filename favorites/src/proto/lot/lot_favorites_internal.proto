@@ -1,24 +1,15 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-package ru.zveron;
+package ru.zveron.favorites.lot;
 
-option swift_prefix="";
+option swift_prefix = "";
 option java_package = "ru.zveron.favorites.lot";
-option java_outer_classname = "LotFavoritesGrpc";
+option java_outer_classname = "LotFavoritesGrpcInternal";
 option java_multiple_files = true;
 
-service LotFavoritesService {
-  // Добавление объявления в избранное пользователя
-  rpc addToFavorites(AddLotToFavoritesRequest) returns(google.protobuf.Empty);
-
-  // Удаление объявления из избранного пользователя
-  rpc removeFromFavorites(RemoveLotFromFavoritesRequest) returns(google.protobuf.Empty);
-
+service LotFavoritesServiceInternal {
   // Проверка на существование объявлений в избранном пользователя
   rpc existInFavorites(LotsExistInFavoritesRequest) returns(LotsExistInFavoritesResponse);
-
-  // Получение списка избранных объявлений пользователя
-  rpc getFavoriteLots(GetFavoriteLotsRequest) returns(GetFavoriteLotsResponse);
 
   // Получение количества добавлений объявления в избранное
   rpc getCounter(GetLotCounterRequest) returns(GetLotCounterResponse);
@@ -28,20 +19,6 @@ service LotFavoritesService {
 
   // Удаление опредленного объявления из всех список избранного
   rpc removeAllByFavoriteLot(RemoveAllByFavoriteLotRequest) returns(google.protobuf.Empty);
-}
-
-message AddLotToFavoritesRequest {
-  // Id владельца списка избранного
-  int64 favorites_owner_id = 1;
-  // Добавляемое в избранное объявление
-  int64 favorite_lot_id = 2;
-}
-
-message RemoveLotFromFavoritesRequest {
-  // Id владельца списка избранного
-  int64 favorites_owner_id = 1;
-  // Удаляемое из избранного объявление
-  int64 favorite_lot_id = 2;
 }
 
 message LotsExistInFavoritesRequest {
@@ -54,21 +31,6 @@ message LotsExistInFavoritesRequest {
 message LotsExistInFavoritesResponse {
   // Содержится ли каждое из объявлений в избранном. Порядок сохраняется
   repeated bool is_exists = 1;
-}
-
-message GetFavoriteLotsRequest {
-  // Id владельца списка избранного
-  int64 favorites_owner_id = 1;
-}
-
-message GetFavoriteLotsResponse {
-  // Список добавленных в избранное объявлений
-  repeated FavoriteLot favorite_lots = 1;
-}
-
-message FavoriteLot {
-  // Идентификатор объявления
-  int64 id = 1;
 }
 
 message GetLotCounterRequest {

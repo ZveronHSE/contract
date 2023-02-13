@@ -1,0 +1,41 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron.favorites.profile;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.favorites.profile";
+option java_outer_classname = "ProfileFavoritesGrpcInternal";
+option java_multiple_files = true;
+
+service ProfileFavoritesServiceInternal {
+  // Проверка на существование профиля в избранном пользователя
+  rpc existsInFavorites(ProfileExistsInFavoritesRequest) returns(ProfileExistsInFavoritesResponse);
+
+  // Удаление всех записей из избранного определенного пользователя
+  rpc removeAllByOwner(RemoveAllProfilesByOwnerRequest) returns(google.protobuf.Empty);
+
+  // Удаление опредленного пользователя из всех список избранного
+  rpc removeAllByFavoriteProfile(RemoveAllByFavoriteProfileRequest) returns(google.protobuf.Empty);
+}
+
+message ProfileExistsInFavoritesRequest {
+  // Id владельца списка избранного
+  int64 favorites_owner_id = 1;
+  // Профиль, наличие которого проверяется в избранном
+  int64 favorite_profile_id = 2;
+}
+
+message ProfileExistsInFavoritesResponse {
+  // Содержится ли профиль в избранном
+  bool is_exists = 1;
+}
+
+message RemoveAllProfilesByOwnerRequest {
+  // Идентификатор профиля
+  int64 id = 1;
+}
+
+message RemoveAllByFavoriteProfileRequest {
+  // Идентификатор профиля
+  int64 id = 1;
+}

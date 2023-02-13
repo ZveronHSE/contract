@@ -9,13 +9,13 @@ option java_multiple_files = true;
 
 service LotFavoritesServiceExternal {
   // Добавление объявления в избранное пользователя
-  rpc addToFavorites(AddLotToFavoritesRequest) returns(google.protobuf.Empty);
+  rpc AddToFavorites(AddLotToFavoritesRequest) returns(google.protobuf.Empty);
 
   // Удаление объявления из избранного пользователя
-  rpc removeFromFavorites(RemoveLotFromFavoritesRequest) returns(google.protobuf.Empty);
+  rpc RemoveFromFavorites(RemoveLotFromFavoritesRequest) returns(google.protobuf.Empty);
 
   // Получение списка избранных объявлений пользователя
-  rpc getFavoriteLots(google.protobuf.Empty) returns(GetFavoriteLotsResponse);
+  rpc GetFavoriteLots(google.protobuf.Empty) returns(GetFavoriteLotsResponse);
 }
 
 message AddLotToFavoritesRequest {

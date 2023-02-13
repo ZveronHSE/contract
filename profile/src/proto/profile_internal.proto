@@ -27,6 +27,9 @@ service ProfileServiceInternal {
 
   // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
   rpc GetProfileByChannel(GetProfileByChannelRequest) returns(GetProfileByChannelResponse);
+
+  // Получение превью страниц пользователя (для избранного)
+  rpc GetProfilesSummary(GetProfilesSummaryRequest) returns(GetProfilesSummaryResponse);
 }
 
 message CreateProfileRequest {
@@ -87,4 +90,20 @@ message GetProfileByChannelResponse {
   uint64 id = 1;
   string name = 2;
   string surname = 3;
+}
+
+message GetProfilesSummaryRequest{
+  repeated uint64 id = 1;
+}
+
+message GetProfilesSummaryResponse {
+  repeated ProfileSummary profiles = 1;
+}
+
+message ProfileSummary {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint64 image_id = 4;
+  int64 address_id = 6;
 }

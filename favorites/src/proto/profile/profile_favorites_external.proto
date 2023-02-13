@@ -9,13 +9,13 @@ option java_multiple_files = true;
 
 service ProfileFavoritesServiceExternal {
   // Добавление профиля в избранное пользователя
-  rpc addToFavorites(AddProfileToFavoritesRequest) returns(google.protobuf.Empty);
+  rpc AddToFavorites(AddProfileToFavoritesRequest) returns(google.protobuf.Empty);
 
   // Удаление профиля из избранного пользователя
-  rpc removeFromFavorites(RemoveProfileFromFavoritesRequest) returns(google.protobuf.Empty);
+  rpc RemoveFromFavorites(RemoveProfileFromFavoritesRequest) returns(google.protobuf.Empty);
 
   // Получение списка избранных профилей пользователя
-  rpc getFavoriteProfiles(GetFavoriteProfilesRequest) returns(GetFavoriteProfilesResponse);
+  rpc GetFavoriteProfiles(GetFavoriteProfilesRequest) returns(GetFavoriteProfilesResponse);
 }
 
 message AddProfileToFavoritesRequest {

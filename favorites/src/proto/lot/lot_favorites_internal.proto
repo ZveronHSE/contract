@@ -9,16 +9,16 @@ option java_multiple_files = true;
 
 service LotFavoritesServiceInternal {
   // Проверка на существование объявлений в избранном пользователя
-  rpc existInFavorites(LotsExistInFavoritesRequest) returns(LotsExistInFavoritesResponse);
+  rpc ExistInFavorites(LotsExistInFavoritesRequest) returns(LotsExistInFavoritesResponse);
 
   // Получение количества добавлений объявления в избранное
-  rpc getCounter(GetLotCounterRequest) returns(GetLotCounterResponse);
+  rpc GetCounter(GetLotCounterRequest) returns(GetLotCounterResponse);
 
   // Удаление всех записей из избранного определенного пользователя
-  rpc removeAllByOwner(RemoveAllLotsByOwnerRequest) returns(google.protobuf.Empty);
+  rpc RemoveAllByOwner(RemoveAllLotsByOwnerRequest) returns(google.protobuf.Empty);
 
   // Удаление опредленного объявления из всех список избранного
-  rpc removeAllByFavoriteLot(RemoveAllByFavoriteLotRequest) returns(google.protobuf.Empty);
+  rpc RemoveAllByFavoriteLot(RemoveAllByFavoriteLotRequest) returns(google.protobuf.Empty);
 }
 
 message LotsExistInFavoritesRequest {

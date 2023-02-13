@@ -9,13 +9,13 @@ option java_multiple_files = true;
 
 service ProfileFavoritesServiceInternal {
   // Проверка на существование профиля в избранном пользователя
-  rpc existsInFavorites(ProfileExistsInFavoritesRequest) returns(ProfileExistsInFavoritesResponse);
+  rpc ExistsInFavorites(ProfileExistsInFavoritesRequest) returns(ProfileExistsInFavoritesResponse);
 
   // Удаление всех записей из избранного определенного пользователя
-  rpc removeAllByOwner(RemoveAllProfilesByOwnerRequest) returns(google.protobuf.Empty);
+  rpc RemoveAllByOwner(RemoveAllProfilesByOwnerRequest) returns(google.protobuf.Empty);
 
   // Удаление опредленного пользователя из всех список избранного
-  rpc removeAllByFavoriteProfile(RemoveAllByFavoriteProfileRequest) returns(google.protobuf.Empty);
+  rpc RemoveAllByFavoriteProfile(RemoveAllByFavoriteProfileRequest) returns(google.protobuf.Empty);
 }
 
 message ProfileExistsInFavoritesRequest {

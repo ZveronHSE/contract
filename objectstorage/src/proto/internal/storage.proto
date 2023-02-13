@@ -4,11 +4,11 @@ import "google/protobuf/empty.proto";
 package ru.zveron.contract.objectstorage.internal;
 
 option swift_prefix = "";
-option java_package = "ru.zveron.contract.object-storage.internal";
-option java_outer_classname = "ObjectStorageGetProto";
+option java_package = "ru.zveron.contract.objectstorage.internal";
+option java_outer_classname = "ObjectStorageProto";
 option java_multiple_files = true;
 
-service ObjectStorageGetService {
+service ObjectStorageService {
   //retrieves image url pointing to the storage
   rpc GetImageUrl(GetImageUrlRequest) returns (GetImageUrlResponse);
 

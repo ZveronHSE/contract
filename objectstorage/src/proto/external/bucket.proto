@@ -1,17 +1,15 @@
 syntax = "proto3";
-import "google/protobuf/empty.proto";
 
 package ru.zveron.contract.objectstorage.external;
 
 option swift_prefix = "";
-option java_package = "ru.zveron.contract.object-storage.external";
-option java_outer_classname = "ObjectStorageUploadProto";
+option java_package = "ru.zveron.contract.objectstorage.external";
+option java_outer_classname = "BucketServiceProto";
 option java_multiple_files = true;
 
-service ObjectStorageUploadService {
+service BucketService {
   //uploads an image to yandex cloud storage
-  rpc UploadImage(UploadImageRequest) returns (google.protobuf.Empty);
-
+  rpc UploadImage(UploadImageRequest) returns (UploadImageResponse);
 }
 
 message UploadImageRequest{
@@ -19,6 +17,7 @@ message UploadImageRequest{
   int32 height = 2;
   int32 width = 3;
   MimeType mimeType = 4;
+  FlowSource flow_source = 5;
 }
 
 message UploadImageResponse{
@@ -28,4 +27,12 @@ message UploadImageResponse{
 enum MimeType{
   IMAGE_JPEG = 0;
   IMAGE_PNG = 1;
+}
+
+//для чего предназначается изображение
+enum FlowSource{
+  ORDER = 0;
+  PROFILE = 1;
+  LOT = 2;
+  CHAT = 3;
 }

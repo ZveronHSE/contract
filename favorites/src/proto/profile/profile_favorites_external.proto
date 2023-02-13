@@ -15,26 +15,15 @@ service ProfileFavoritesServiceExternal {
   rpc RemoveFromFavorites(RemoveProfileFromFavoritesRequest) returns(google.protobuf.Empty);
 
   // Получение списка избранных профилей пользователя
-  rpc GetFavoriteProfiles(GetFavoriteProfilesRequest) returns(GetFavoriteProfilesResponse);
+  rpc GetFavoriteProfiles(google.protobuf.Empty) returns(GetFavoriteProfilesResponse);
 }
 
 message AddProfileToFavoritesRequest {
-  // Id владельца списка избранного
-  int64 favorites_owner_id = 1;
-  // Добавляемый в избранное профиль
-  int64 favorite_profile_id = 2;
+  int64 id = 1;
 }
 
 message RemoveProfileFromFavoritesRequest {
-  // Id владельца списка избранного
-  int64 favorites_owner_id = 1;
-  // Удаляемый из избранного профиль
-  int64 favorite_profile_id = 2;
-}
-
-message GetFavoriteProfilesRequest {
-  // Id владельца списка избранного
-  int64 id = 1;
+  int64 id = 2;
 }
 
 message GetFavoriteProfilesResponse {

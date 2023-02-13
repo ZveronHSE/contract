@@ -25,11 +25,7 @@ public struct AddProfileToFavoritesRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Id владельца списка избранного
-  public var favoritesOwnerID: Int64 = 0
-
-  /// Добавляемый в избранное профиль
-  public var favoriteProfileID: Int64 = 0
+  public var id: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -41,23 +37,6 @@ public struct RemoveProfileFromFavoritesRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Id владельца списка избранного
-  public var favoritesOwnerID: Int64 = 0
-
-  /// Удаляемый из избранного профиль
-  public var favoriteProfileID: Int64 = 0
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct GetFavoriteProfilesRequest {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Id владельца списка избранного
   public var id: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -101,7 +80,6 @@ public struct ProfileSummary {
 #if swift(>=5.5) && canImport(_Concurrency)
 extension AddProfileToFavoritesRequest: @unchecked Sendable {}
 extension RemoveProfileFromFavoritesRequest: @unchecked Sendable {}
-extension GetFavoriteProfilesRequest: @unchecked Sendable {}
 extension GetFavoriteProfilesResponse: @unchecked Sendable {}
 extension ProfileSummary: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
@@ -112,82 +90,6 @@ fileprivate let _protobuf_package = "ru.zveron.favorites.profile"
 
 extension AddProfileToFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddProfileToFavoritesRequest"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "favorites_owner_id"),
-    2: .standard(proto: "favorite_profile_id"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularInt64Field(value: &self.favoritesOwnerID) }()
-      case 2: try { try decoder.decodeSingularInt64Field(value: &self.favoriteProfileID) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.favoritesOwnerID != 0 {
-      try visitor.visitSingularInt64Field(value: self.favoritesOwnerID, fieldNumber: 1)
-    }
-    if self.favoriteProfileID != 0 {
-      try visitor.visitSingularInt64Field(value: self.favoriteProfileID, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: AddProfileToFavoritesRequest, rhs: AddProfileToFavoritesRequest) -> Bool {
-    if lhs.favoritesOwnerID != rhs.favoritesOwnerID {return false}
-    if lhs.favoriteProfileID != rhs.favoriteProfileID {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension RemoveProfileFromFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".RemoveProfileFromFavoritesRequest"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "favorites_owner_id"),
-    2: .standard(proto: "favorite_profile_id"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularInt64Field(value: &self.favoritesOwnerID) }()
-      case 2: try { try decoder.decodeSingularInt64Field(value: &self.favoriteProfileID) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.favoritesOwnerID != 0 {
-      try visitor.visitSingularInt64Field(value: self.favoritesOwnerID, fieldNumber: 1)
-    }
-    if self.favoriteProfileID != 0 {
-      try visitor.visitSingularInt64Field(value: self.favoriteProfileID, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: RemoveProfileFromFavoritesRequest, rhs: RemoveProfileFromFavoritesRequest) -> Bool {
-    if lhs.favoritesOwnerID != rhs.favoritesOwnerID {return false}
-    if lhs.favoriteProfileID != rhs.favoriteProfileID {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension GetFavoriteProfilesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetFavoriteProfilesRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
@@ -211,7 +113,39 @@ extension GetFavoriteProfilesRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: GetFavoriteProfilesRequest, rhs: GetFavoriteProfilesRequest) -> Bool {
+  public static func ==(lhs: AddProfileToFavoritesRequest, rhs: AddProfileToFavoritesRequest) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension RemoveProfileFromFavoritesRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RemoveProfileFromFavoritesRequest"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    2: .same(proto: "id"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 2: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: RemoveProfileFromFavoritesRequest, rhs: RemoveProfileFromFavoritesRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

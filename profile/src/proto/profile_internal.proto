@@ -93,7 +93,7 @@ message GetProfileByChannelResponse {
 }
 
 message GetProfilesSummaryRequest{
-  repeated uint64 id = 1;
+  repeated uint64 ids = 1;
 }
 
 message GetProfilesSummaryResponse {

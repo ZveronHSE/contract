@@ -27,6 +27,10 @@ service ProfileServiceInternal {
 
   // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
   rpc GetProfileByChannel(GetProfileByChannelRequest) returns(GetProfileByChannelResponse);
+
+  // Проверка существования аккаунта по тлф + валидация хеша пароля
+  // Если нет такого телефона или пароль неверен - false в ответе
+  rpc VerifyProfileHash(VerifyProfileHashRequest) returns(VerifyProfileHashResponse);
 }
 
 message CreateProfileRequest {
@@ -38,7 +42,7 @@ message CreateProfileRequest {
 }
 
 message CreateProfileResponse {
-  uint64 id = 1;
+  int64 id = 1;
 }
 
 message GetProfileRequest {
@@ -74,6 +78,15 @@ message UpdateContactsRequest {
   // Тип способа связи, который был изменен. Только он будет перезаписан сервисом
   model.ChannelType type = 2;
   model.Links links = 3;
+}
+
+message VerifyProfileHashRequest {
+  string phone_number = 1;
+  string password_hash = 2;
+}
+
+message VerifyProfileHashResponse{
+  bool is_valid_request = 1;
 }
 
 message GetProfileByChannelRequest {

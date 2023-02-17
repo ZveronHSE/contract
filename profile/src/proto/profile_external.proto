@@ -16,65 +16,42 @@ service ProfileServiceExternal {
   rpc GetProfilePage(GetProfilePageRequest) returns(GetProfilePageResponse);
 
   // Получение профиля, как страницы в маркетплейсе, для его владельца
-  rpc GetProfileInfo(GetProfileInfoRequest) returns(GetProfileInfoResponse);
+  rpc GetProfileInfo(google.protobuf.Empty) returns(GetProfileInfoResponse);
 
   // Редактирование профиля, как страницы в маркетплейсе, владельцем
   rpc SetProfileInfo(SetProfileInfoRequest) returns(google.protobuf.Empty);
 
   // Получение настроек профиля
-  rpc GetSettings(GetSettingsRequest) returns(GetSettingsResponse);
+  rpc GetSettings(google.protobuf.Empty) returns(GetSettingsResponse);
 
   // Изменение настроект профиля
   rpc SetSettings(SetSettingsRequest) returns(google.protobuf.Empty);
 
   // Получение предпочительных способов связи (для создания объявлений)
-  rpc GetChannelTypes(GetChannelTypesRequest) returns(GetChannelTypesResponse);
+  rpc GetChannelTypes(google.protobuf.Empty) returns(GetChannelTypesResponse);
 
   // Получение способов связи, привязанных к профилю. Доступно для владельца профиля
-  rpc GetLinks(GetLinksRequest) returns(model.Links);
+  rpc GetLinks(google.protobuf.Empty) returns(model.Links);
 
   // Полное удаление профиля без возможности восстановления
-  rpc DeleteProfile(DeleteProfileRequest) returns(google.protobuf.Empty);
+  rpc DeleteProfile(google.protobuf.Empty) returns(google.protobuf.Empty);
 }
 
 message GetProfilePageRequest {
   uint64 requested_profile_id = 1;
-  optional uint64 authorized_profile_id = 2;
-}
-
-message GetProfileInfoRequest {
-  uint64 id = 1;
 }
 
 message SetProfileInfoRequest {
-  uint64 id = 1;
   optional string name = 2;
   optional string surname = 3;
   optional uint64 image_id = 4;
   optional Address address = 5;
 }
 
-message GetSettingsRequest {
-  uint64 id = 1;
-}
-
 message SetSettingsRequest {
-  uint64 id = 1;
   // Optional too
   repeated model.ChannelType channels = 2;
   optional Address address = 3;
-}
-
-message GetChannelTypesRequest {
-  uint64 id = 1;
-}
-
-message GetLinksRequest {
-  uint64 id = 1;
-}
-
-message DeleteProfileRequest {
-  uint64 id = 1;
 }
 
 message GetProfileInfoResponse {

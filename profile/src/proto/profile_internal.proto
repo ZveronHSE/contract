@@ -31,6 +31,9 @@ service ProfileServiceInternal {
   // Проверка существования аккаунта по тлф + валидация хеша пароля
   // Если нет такого телефона или пароль неверен - false в ответе
   rpc VerifyProfileHash(VerifyProfileHashRequest) returns(VerifyProfileHashResponse);
+
+  // Получение превью страниц пользователя (для избранного)
+  rpc GetProfilesSummary(GetProfilesSummaryRequest) returns(GetProfilesSummaryResponse);
 }
 
 message CreateProfileRequest {
@@ -42,7 +45,7 @@ message CreateProfileRequest {
 }
 
 message CreateProfileResponse {
-  int64 id = 1;
+  uint64 id = 1;
 }
 
 message GetProfileRequest {
@@ -100,4 +103,20 @@ message GetProfileByChannelResponse {
   uint64 id = 1;
   string name = 2;
   string surname = 3;
+}
+
+message GetProfilesSummaryRequest{
+  repeated uint64 ids = 1;
+}
+
+message GetProfilesSummaryResponse {
+  repeated ProfileSummary profiles = 1;
+}
+
+message ProfileSummary {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint64 image_id = 4;
+  int64 address_id = 6;
 }

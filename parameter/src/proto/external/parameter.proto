@@ -2,6 +2,7 @@ syntax = "proto3";
 package ru.zveron.contract.parameter.external;
 
 import "google/protobuf/wrappers.proto";
+import "model/parameter.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.parameter.external";
@@ -11,7 +12,7 @@ option java_multiple_files = true;
 
 service ParameterExternalService {
   // Получить список параметров для определенной категории и типа объявления.
-  rpc getParameters(ParameterRequest) returns (ParameterResponse);
+  rpc getParameters(ParameterRequest) returns (model.ParameterResponse);
 
   // Получить список типов объявлений по ID рутовой категории
   rpc getLotForms(google.protobuf.Int32Value) returns (LotFormResponse);
@@ -22,28 +23,6 @@ message ParameterRequest {
   int32 category_id = 1;
   // Идентификатор типа объявления.
   int32 lot_form_id = 2;
-}
-
-message ParameterResponse {
-  repeated Parameter parameters = 1;
-}
-
-message Parameter {
-  int32 id = 1;
-  // Название параметра
-  string name = 2;
-  // Тип значения, который в себе содержит параметр
-  Type type = 3;
-  // Обязательное ли значение или нет
-  bool is_required = 4;
-  // Список возможных значений, если они имеются
-  repeated string values = 5;
-}
-
-enum Type {
-  STRING = 0;
-  DATE = 1;
-  INTEGER = 2;
 }
 
 message LotFormResponse {

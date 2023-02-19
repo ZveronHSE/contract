@@ -1,0 +1,29 @@
+syntax = "proto3";
+package ru.zveron.contract.parameter.model;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.parameter.model";
+option java_outer_classname = "ParameterModelProto";
+option java_multiple_files = true;
+
+message ParameterResponse {
+  repeated Parameter parameters = 1;
+}
+
+message Parameter {
+  int32 id = 1;
+  // Название параметра
+  string name = 2;
+  // Тип значения, который в себе содержит параметр
+  Type type = 3;
+  // Обязательное ли значение или нет
+  bool is_required = 4;
+  // Список возможных значений, если они имеются
+  repeated string values = 5;
+}
+
+enum Type {
+  STRING = 0;
+  DATE = 1;
+  INTEGER = 2;
+}

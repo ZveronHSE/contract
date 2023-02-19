@@ -2,7 +2,7 @@ syntax = "proto3";
 package ru.zveron.contract.parameter.external;
 
 import "google/protobuf/wrappers.proto";
-import "model/parameter.proto";
+import "external/model/parameter.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.parameter.external";

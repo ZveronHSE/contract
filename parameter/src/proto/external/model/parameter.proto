@@ -1,5 +1,5 @@
 syntax = "proto3";
-package ru.zveron.contract.parameter.model;
+package ru.zveron.contract.parameter.external.model;
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.parameter.model";

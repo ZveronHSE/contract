@@ -180,7 +180,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
 extension AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AddToBlacklistRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    2: .same(proto: "id"),
+    1: .same(proto: "id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -189,7 +189,7 @@ extension AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 2: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       default: break
       }
     }
@@ -197,7 +197,7 @@ extension AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 2)
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -212,7 +212,7 @@ extension AddToBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 extension DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeleteFromBlacklistRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    2: .same(proto: "id"),
+    1: .same(proto: "id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -221,7 +221,7 @@ extension DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 2: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       default: break
       }
     }
@@ -229,7 +229,7 @@ extension DeleteFromBlacklistRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 2)
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

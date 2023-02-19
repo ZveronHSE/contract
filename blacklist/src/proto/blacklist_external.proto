@@ -32,10 +32,10 @@ message ProfileSummary {
 
 message AddToBlacklistRequest {
   // Id пользователя, добавляемого в черный список
-  int64 id = 2;
+  int64 id = 1;
 }
 
 message DeleteFromBlacklistRequest {
   // Id пользователя, удаляемого из черного списка
-  int64 id = 2;
+  int64 id = 1;
 }

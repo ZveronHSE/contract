@@ -1,0 +1,39 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron.contract.blacklist;
+
+option swift_prefix="";
+option java_package = "ru.zveron.contract.blacklist";
+option java_outer_classname = "BlacklistGrpcInternal";
+option java_multiple_files = true;
+
+service BlacklistServiceInternal {
+  // Проверяет наличие определенного пользователя в черном списке владельца
+  rpc ExistInBlacklist(ExistInBlacklistRequest) returns(ExistInBlacklistResponse);
+
+  // Удаление всех упоминаний о добавлении в черный список определенного пользователя
+  rpc DeleteAllRecordsWhereUserBlocks(DeleteAllRecordsWhereUserBlocksRequest) returns(google.protobuf.Empty);
+
+  // Удаление всех записей в черном списке владельца
+  rpc DeleteAllRecordsWhereUserIsBlocked(DeleteAllRecordsWhereUserIsBlockedRequest) returns(google.protobuf.Empty);
+}
+
+message ExistInBlacklistRequest {
+  // Id владельца черного списка
+  int64 owner_id = 1;
+  int64 target_user_id = 2;
+}
+
+message ExistInBlacklistResponse {
+  bool exists = 1;
+}
+
+message DeleteAllRecordsWhereUserBlocksRequest {
+  // Id владельца черного списка
+  int64 owner_id = 1;
+}
+
+message DeleteAllRecordsWhereUserIsBlockedRequest {
+  // Id пользователя, удаляемого из всех черных списков
+  int64 deleted_user_id = 1;
+}

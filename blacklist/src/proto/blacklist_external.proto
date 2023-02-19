@@ -1,0 +1,41 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron.contract.blacklist;
+
+option swift_prefix="";
+option java_package = "ru.zveron.contract.blacklist";
+option java_outer_classname = "BlacklistGrpcExternal";
+option java_multiple_files = true;
+
+service BlacklistServiceExternal {
+  // Получение списка всех добавленных в черный список владельца других пользователей
+  rpc GetBlacklist(google.protobuf.Empty) returns(GetBlacklistResponse);
+
+  // Добавление в черный список владельца нового пользователя
+  rpc AddToBlacklist(AddToBlacklistRequest) returns(google.protobuf.Empty);
+
+  // Удаление из черного списка владельца определенного пользователя
+  rpc DeleteFromBlacklist(DeleteFromBlacklistRequest) returns(google.protobuf.Empty);
+}
+
+message GetBlacklistResponse {
+  repeated ProfileSummary blacklist_users = 1;
+}
+
+message ProfileSummary {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint64 image_id = 4;
+  int64 address_id = 6;
+}
+
+message AddToBlacklistRequest {
+  // Id пользователя, добавляемого в черный список
+  int64 id = 1;
+}
+
+message DeleteFromBlacklistRequest {
+  // Id пользователя, удаляемого из черного списка
+  int64 id = 1;
+}

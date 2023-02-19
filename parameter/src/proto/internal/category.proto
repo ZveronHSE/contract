@@ -12,12 +12,18 @@ service CategoryService {
   // Получить всю семью для категории, то есть если A->B->C, то вернет A, B, C
   rpc getCategoryTree(google.protobuf.Int32Value) returns (CategoryTreeResponse);
 
-  // Проверка, есть ли у категории еще дети
-  rpc categoryHasChildren(google.protobuf.Int32Value) returns (google.protobuf.BoolValue);
+  // Получить информацию про саму категорию, например, содержит ли детей и тд
+  rpc getInfoAboutCategory(google.protobuf.Int32Value) returns (InfoCategory);
 }
 
 message CategoryTreeResponse {
   repeated Category categories = 1;
+}
+
+message InfoCategory {
+  Category category = 1;
+  bool has_children = 2;
+  bool has_gender = 3;
 }
 
 message Category {

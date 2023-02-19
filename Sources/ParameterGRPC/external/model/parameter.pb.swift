@@ -20,42 +20,80 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct ParameterRequest {
+public enum TypeEnum: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+  case string // = 0
+  case date // = 1
+  case integer // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .string
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .string
+    case 1: self = .date
+    case 2: self = .integer
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .string: return 0
+    case .date: return 1
+    case .integer: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [TypeEnum] = [
+    .string,
+    .date,
+    .integer,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+public struct ParameterResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Идентификатор категория.
-  public var categoryID: Int32 = 0
-
-  /// Идентификатор типа объявления.
-  public var lotFormID: Int32 = 0
+  public var parameters: [Parameter] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct LotFormResponse {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var lotForms: [LotForm] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct LotForm {
+public struct Parameter {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   public var id: Int32 = 0
 
+  /// Название параметра
   public var name: String = String()
+
+  /// Тип значения, который в себе содержит параметр
+  public var type: TypeEnum = .string
+
+  /// Обязательное ли значение или нет
+  public var isRequired: Bool = false
+
+  /// Список возможных значений, если они имеются
+  public var values: [String] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -63,20 +101,27 @@ public struct LotForm {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension ParameterRequest: @unchecked Sendable {}
-extension LotFormResponse: @unchecked Sendable {}
-extension LotForm: @unchecked Sendable {}
+extension TypeEnum: @unchecked Sendable {}
+extension ParameterResponse: @unchecked Sendable {}
+extension Parameter: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "ru.zveron.contract.parameter.external"
+fileprivate let _protobuf_package = "ru.zveron.contract.parameter.model"
 
-extension ParameterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ParameterRequest"
+extension TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "category_id"),
-    2: .standard(proto: "lot_form_id"),
+    0: .same(proto: "STRING"),
+    1: .same(proto: "DATE"),
+    2: .same(proto: "INTEGER"),
+  ]
+}
+
+extension ParameterResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ParameterResponse"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "parameters"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -85,68 +130,34 @@ extension ParameterRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularInt32Field(value: &self.categoryID) }()
-      case 2: try { try decoder.decodeSingularInt32Field(value: &self.lotFormID) }()
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.parameters) }()
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.categoryID != 0 {
-      try visitor.visitSingularInt32Field(value: self.categoryID, fieldNumber: 1)
-    }
-    if self.lotFormID != 0 {
-      try visitor.visitSingularInt32Field(value: self.lotFormID, fieldNumber: 2)
+    if !self.parameters.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.parameters, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: ParameterRequest, rhs: ParameterRequest) -> Bool {
-    if lhs.categoryID != rhs.categoryID {return false}
-    if lhs.lotFormID != rhs.lotFormID {return false}
+  public static func ==(lhs: ParameterResponse, rhs: ParameterResponse) -> Bool {
+    if lhs.parameters != rhs.parameters {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension LotFormResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".LotFormResponse"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "lot_forms"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.lotForms) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.lotForms.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.lotForms, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: LotFormResponse, rhs: LotFormResponse) -> Bool {
-    if lhs.lotForms != rhs.lotForms {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension LotForm: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".LotForm"
+extension Parameter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Parameter"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "name"),
+    3: .same(proto: "type"),
+    4: .standard(proto: "is_required"),
+    5: .same(proto: "values"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -157,6 +168,9 @@ extension LotForm: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularInt32Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
+      case 3: try { try decoder.decodeSingularEnumField(value: &self.type) }()
+      case 4: try { try decoder.decodeSingularBoolField(value: &self.isRequired) }()
+      case 5: try { try decoder.decodeRepeatedStringField(value: &self.values) }()
       default: break
       }
     }
@@ -169,12 +183,24 @@ extension LotForm: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
     }
+    if self.type != .string {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 3)
+    }
+    if self.isRequired != false {
+      try visitor.visitSingularBoolField(value: self.isRequired, fieldNumber: 4)
+    }
+    if !self.values.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.values, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: LotForm, rhs: LotForm) -> Bool {
+  public static func ==(lhs: Parameter, rhs: Parameter) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.isRequired != rhs.isRequired {return false}
+    if lhs.values != rhs.values {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

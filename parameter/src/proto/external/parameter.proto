@@ -2,7 +2,7 @@ syntax = "proto3";
 package ru.zveron.contract.parameter.external;
 
 import "google/protobuf/wrappers.proto";
-import "model/parameter_model.proto";
+import "parameter_model.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.parameter.external";
@@ -12,7 +12,7 @@ option java_multiple_files = true;
 
 service ParameterExternalService {
   // Получить список параметров для определенной категории и типа объявления.
-  rpc getParameters(ParameterRequest) returns (model.ParameterResponse);
+  rpc getParameters(ParameterRequest) returns (ParameterResponse);
 
   // Получить список типов объявлений по ID рутовой категории
   rpc getLotForms(google.protobuf.Int32Value) returns (LotFormResponse);

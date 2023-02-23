@@ -3,7 +3,7 @@ package ru.zveron.contract.parameter.internal;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
-import "model/parameter_model.proto";
+import "parameter_model.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.parameter.internal";
@@ -16,7 +16,7 @@ service ParameterService {
   rpc validateValuesForParameters(ParameterValueRequest) returns (google.protobuf.Empty);
 
   // Получить информацию по идентификаторам параметров
-  rpc getParametersByIds(ParametersRequest) returns (model.ParameterResponse);
+  rpc getParametersByIds(ParametersRequest) returns (ParameterResponse);
 }
 
 message ParameterValueRequest {

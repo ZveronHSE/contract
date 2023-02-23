@@ -108,7 +108,7 @@ extension Parameter: @unchecked Sendable {}
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "ru.zveron.contract.parameter.external.model"
+fileprivate let _protobuf_package = "ru.zveron.contract.parameter.model"
 
 extension TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [

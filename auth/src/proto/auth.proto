@@ -34,6 +34,9 @@ service AuthService {
 
   //запрос на получение новых токенов
   rpc IssueNewTokens (IssueNewTokensRequest) returns (MobileToken);
+
+  //user logout
+  rpc PerformLogout(LogoutRequest) returns (google.protobuf.Empty);
 }
 
 
@@ -104,6 +107,11 @@ message TimedToken{
 
 message ProfileDto{
   int64 id = 1;
+}
+
+message LogoutRequest{
+  string refresh_token = 1;
+  string device_id = 2;
 }
 
 //complementary data

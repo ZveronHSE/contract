@@ -28,10 +28,6 @@ service AuthService {
   //последний шаг логина по телефону, если пользователя еще не существует и создаем новый аккаунт
   rpc RegisterByPhone (PhoneRegisterRequest) returns (MobileToken);
 
-  //запрос для верификации текущего токена доступа, передается из апигея в сервис авторизации
-  //потому токены можно передать в метадате
-  rpc VerifyToken (VerifyMobileTokenRequest) returns (ProfileDto);
-
   //запрос на получение новых токенов
   rpc IssueNewTokens (IssueNewTokensRequest) returns (MobileToken);
 
@@ -103,10 +99,6 @@ message MobileToken{
 message TimedToken{
   string token = 1;
   google.protobuf.Timestamp expiration = 2;
-}
-
-message ProfileDto{
-  int64 id = 1;
 }
 
 //complementary data

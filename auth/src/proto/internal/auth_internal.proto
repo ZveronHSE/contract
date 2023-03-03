@@ -1,15 +1,14 @@
 syntax = "proto3";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-package ru.zveron.contract.auth;
+package ru.zveron.contract.auth.internal;
 
 option swift_prefix = "";
-option java_package = "ru.zveron.contract.auth";
-option java_outer_classname = "AuthProto";
+option java_package = "ru.zveron.contract.auth.internal";
+option java_outer_classname = "AuthInternalProto";
 option java_multiple_files = true;
 
-service AuthService {
+service AuthServiceInternal {
   //validate access token
   rpc VerifyToken (google.protobuf.Empty) returns (ProfileDto);
 }

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-///complementary data
+///Complementary data models
 public enum AuthProvider: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case vk // = 0
@@ -69,7 +69,7 @@ extension AuthProvider: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-///Запросы
+///Requests
 public struct LoginBySocialRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -89,7 +89,7 @@ public struct LoginByPasswordRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  ///любая форма телефона, код страны + телефон
+  ///any format of phone you wish, must contain country code and the phone number itself
   public var phoneNumber: String = String()
 
   public var password: Data = Data()
@@ -106,7 +106,7 @@ public struct PhoneLoginInitRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  ///любая форма телефона, код страны + телефон
+  ///any format of phone you wish, must contain country code and the phone number itself
   public var phoneNumber: String = String()
 
   public var deviceFp: String = String()
@@ -178,7 +178,7 @@ public struct IssueNewTokensRequest {
   public init() {}
 }
 
-///ответы
+///Response
 public struct PhoneLoginInitResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -315,7 +315,7 @@ extension TimedToken: @unchecked Sendable {}
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "ru.zveron.contract.auth"
+fileprivate let _protobuf_package = "ru.zveron.contract.auth.external"
 
 extension AuthProvider: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [

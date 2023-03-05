@@ -15,7 +15,7 @@ service LotFavoritesServiceExternal {
   rpc RemoveFromFavorites(RemoveLotFromFavoritesRequest) returns(google.protobuf.Empty);
 
   // Получение списка избранных объявлений пользователя
-  rpc GetFavoriteLots(google.protobuf.Empty) returns(GetFavoriteLotsResponse);
+  rpc GetFavoriteLots(GetFavoriteLotsRequest) returns(GetFavoriteLotsResponse);
 }
 
 message AddLotToFavoritesRequest {
@@ -24,6 +24,10 @@ message AddLotToFavoritesRequest {
 
 message RemoveLotFromFavoritesRequest {
   int64 id = 1;
+}
+
+message GetFavoriteLotsRequest {
+  uint64 category_id = 1;
 }
 
 message GetFavoriteLotsResponse {

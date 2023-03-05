@@ -34,6 +34,8 @@ service ProfileServiceInternal {
 
   // Получение превью страниц пользователя (для избранного)
   rpc GetProfilesSummary(GetProfilesSummaryRequest) returns(GetProfilesSummaryResponse);
+
+  rpc ExistsById(ExistsByIdRequest) returns(ExistsByIdResponse);
 }
 
 message CreateProfileRequest {
@@ -119,4 +121,12 @@ message ProfileSummary {
   string surname = 3;
   uint64 image_id = 4;
   int64 address_id = 6;
+}
+
+message ExistsByIdRequest {
+  uint64 id = 1;
+}
+
+message ExistsByIdResponse {
+  bool exists = 1;
 }

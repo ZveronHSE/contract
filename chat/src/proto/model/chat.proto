@@ -1,0 +1,55 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package ru.zveron.contract.chat.model;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.chat.model";
+option java_outer_classname = "ChatProto";
+option java_multiple_files = true;
+
+import "model/message.proto";
+
+enum ChatFolderType {
+  OPEN = 0;
+  IN_PROGRESS = 1;
+  DONE = 2;
+  CANCELLED = 3;
+  ARCHIVE = 4;
+}
+
+message ChatPagination {
+  // Получить чаты с датой последнего изменения до time_before
+  google.protobuf.Timestamp time_before = 1;
+  // Количество получаемых чатов не больше чем size
+  optional uint32 size = 2;
+}
+
+message Chat {
+  string chat_id = 1;
+  ProfileSummary interlocutor_summary = 2;
+  repeated model.Message messages = 3;
+  uint32 unread_messages = 4;
+  google.protobuf.Timestamp last_update = 5;
+  repeated uint64 lots_ids = 6;
+  optional uint64 service_id = 7;
+  optional uint64 review_id = 8;
+  repeated LotSummary lots = 9;
+
+}
+
+message ProfileSummary {
+  uint64 id = 1;
+  uint64 image_id = 2;
+  string name = 3;
+  string surname = 4;
+  bool is_online = 5;
+  // 'Был в сети...' Возвращается если is_online == false
+  optional string formatted_online_status = 6;
+}
+
+message LotSummary {
+  uint64 id = 1;
+  uint64 image_id = 2;
+  string title = 3;
+}

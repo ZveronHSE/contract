@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package ru.zveron.contract.chat;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.chat";
+option java_outer_classname = "ChatGrpcExternal";
+option java_multiple_files = true;
+
+import "model/chat.proto";
+import "model/message.proto";
+
+service ChatServiceExternal {
+
+  rpc ChatRoute(stream ChatRouteRequest) returns(stream ChatRouteResponse);
+}
+
+message ChatRouteRequest {
+  oneof request {
+    GetRecentChatsRequest get_recent_chats = 1;
+    GetChatMessagesRequest get_chat_recent_messages = 2;
+    SendMessageRequest send_message = 3;
+    AttachLotRequest attach_lot = 4;
+    DetachLotRequest detach_lot = 5;
+    SendEvent send_event = 6;
+  }
+}
+
+// Запрос на получение недавних чатов
+message GetRecentChatsRequest {
+  // Доступно только для специалистов
+  optional model.ChatFolderType type = 1;
+  optional model.ChatPagination pagination = 2;
+}
+
+// Запрос на получение сообщений в чате
+message GetChatMessagesRequest {
+  string chat_id = 1;
+  optional model.MessagePagination pagination = 2;
+}
+
+// Отправка сообщения
+message SendMessageRequest {
+  model.MessageType type = 1;
+  // Только для MessageType.DEFAULT
+  optional string text = 2;
+  // Только для MessageType.DEFAULT
+  repeated uint64 images_ids = 3;
+}
+
+// Добавление объявления в диалог. Если диалога нет - начало диалога
+message AttachLotRequest {
+  uint64 interlocutor_id = 1;
+  uint64 lot_id = 2;
+}
+
+// Удаление объявления из диалога
+message DetachLotRequest {
+  uint64 interlocutor_id = 1;
+  uint64 lot_id = 2;
+}
+
+// Отправка события
+message SendEvent {
+  model.EventType type = 1;
+}
+
+message ChatRouteResponse {
+  oneof response {
+    GetRecentChatsResponse get_recent_chats = 1;
+    GetChatMessagesResponse get_messages_response = 2;
+    ReceiveEvent receive_event = 3;
+  }
+}
+
+// Недавние чаты
+message GetRecentChatsResponse {
+  repeated model.Chat chats = 1;
+}
+
+// Сообщения в чате
+message GetChatMessagesResponse {
+  repeated model.Message messages = 1;
+}
+
+// Событие в чате
+message ReceiveEvent {
+  model.EventType type = 1;
+}

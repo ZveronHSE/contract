@@ -16,6 +16,9 @@ service LotFavoritesServiceExternal {
 
   // Получение списка избранных объявлений пользователя
   rpc GetFavoriteLots(GetFavoriteLotsRequest) returns(GetFavoriteLotsResponse);
+
+  // Удаление всех объявлений с определенным статусом
+  rpc DeleteAllByStatus(DeleteAllByStatusRequest) returns(google.protobuf.Empty);
 }
 
 message AddLotToFavoritesRequest {
@@ -47,4 +50,8 @@ message LotSummary {
 enum LotStatus {
   ACTIVE = 0;
   CLOSED = 1;
+}
+
+message DeleteAllByStatusRequest {
+  LotStatus status = 1;
 }

@@ -1,0 +1,14 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron.favorites;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.favorites";
+option java_outer_classname = "CommonFavoritesGrpcExternal";
+option java_multiple_files = true;
+
+service CommonFavoritesServiceExternal {
+
+  // Удаление всех избранных пользователя
+  rpc DeleteAll(google.protobuf.Empty) returns(google.protobuf.Empty);
+}

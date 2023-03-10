@@ -18,7 +18,7 @@ service LotFavoritesServiceExternal {
   rpc GetFavoriteLots(GetFavoriteLotsRequest) returns(GetFavoriteLotsResponse);
 
   // Удаление всех объявлений с определенным статусом из категории
-  rpc DeleteAllByStatus(DeleteAllByStatusRequest) returns(google.protobuf.Empty);
+  rpc DeleteAllByStatusAndCategory(DeleteAllByStatusAndCategoryRequest) returns(google.protobuf.Empty);
 
   // Удаление всех объявлений из категории
   rpc DeleteAllByCategory(DeleteAllByCategoryRequest) returns(google.protobuf.Empty);
@@ -55,7 +55,7 @@ enum LotStatus {
   CLOSED = 1;
 }
 
-message DeleteAllByStatusRequest {
+message DeleteAllByStatusAndCategoryRequest {
   LotStatus status = 1;
   int32 category_id = 2;
 }

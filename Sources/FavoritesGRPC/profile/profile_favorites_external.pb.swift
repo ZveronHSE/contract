@@ -62,13 +62,13 @@ public struct ProfileSummary {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var id: UInt64 = 0
+  public var id: Int64 = 0
 
   public var name: String = String()
 
   public var surname: String = String()
 
-  public var imageID: UInt64 = 0
+  public var imageID: Int64 = 0
 
   public var addressID: Int64 = 0
 
@@ -191,7 +191,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
     4: .standard(proto: "image_id"),
-    6: .standard(proto: "address_id"),
+    5: .standard(proto: "address_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -200,11 +200,11 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
-      case 4: try { try decoder.decodeSingularUInt64Field(value: &self.imageID) }()
-      case 6: try { try decoder.decodeSingularInt64Field(value: &self.addressID) }()
+      case 4: try { try decoder.decodeSingularInt64Field(value: &self.imageID) }()
+      case 5: try { try decoder.decodeSingularInt64Field(value: &self.addressID) }()
       default: break
       }
     }
@@ -212,7 +212,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.id != 0 {
-      try visitor.visitSingularUInt64Field(value: self.id, fieldNumber: 1)
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
     }
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
@@ -221,10 +221,10 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       try visitor.visitSingularStringField(value: self.surname, fieldNumber: 3)
     }
     if self.imageID != 0 {
-      try visitor.visitSingularUInt64Field(value: self.imageID, fieldNumber: 4)
+      try visitor.visitSingularInt64Field(value: self.imageID, fieldNumber: 4)
     }
     if self.addressID != 0 {
-      try visitor.visitSingularInt64Field(value: self.addressID, fieldNumber: 6)
+      try visitor.visitSingularInt64Field(value: self.addressID, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

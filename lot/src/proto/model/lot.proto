@@ -20,6 +20,8 @@ message Lot {
   bool favorite = 6;
   // В каком статусе находится объявление
   Status status = 7;
+  // Категория объявления
+  int32 category_id = 8;
 }
 
 enum CommunicationChannel {

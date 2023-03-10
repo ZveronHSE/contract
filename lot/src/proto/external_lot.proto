@@ -6,6 +6,7 @@ option java_package = "ru.zveron.contract.lot";
 option java_outer_classname = "LotExternalProto";
 option java_multiple_files = true;
 
+import "core/lot.proto";
 import "model/lot.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
@@ -109,7 +110,7 @@ enum Operation {
 }
 
 message WaterfallResponse {
-  repeated model.Lot lots = 1;
+  repeated core.Lot lots = 1;
 
   // Данные последнего объявления, необходимые для сортировки и работы водопада
   DataFilter data_filter = 2;

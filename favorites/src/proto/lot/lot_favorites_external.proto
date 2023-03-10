@@ -1,5 +1,8 @@
 syntax = "proto3";
+
 import "google/protobuf/empty.proto";
+import "core/lot.proto";
+
 package ru.zveron.favorites.lot;
 
 option swift_prefix = "";
@@ -28,19 +31,5 @@ message RemoveLotFromFavoritesRequest {
 
 message GetFavoriteLotsResponse {
   // Список добавленных в избранное объявлений
-  repeated LotSummary favorite_lots = 1;
-}
-
-message LotSummary {
-  uint64 id = 1;
-  string title = 2;
-  string price_formatted = 3;
-  string publication_date_formatted = 4;
-  LotStatus status = 5;
-  uint64 first_image = 6;
-}
-
-enum LotStatus {
-  ACTIVE = 0;
-  CLOSED = 1;
+  repeated contract.core.Lot favorite_lots = 1;
 }

@@ -79,6 +79,8 @@ public struct LoginBySocialRequest {
 
   public var providerUserID: Int64 = 0
 
+  public var deviceFp: String = String()
+
   public var authProvider: AuthProvider = .vk
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -333,7 +335,8 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "access_token"),
     2: .standard(proto: "provider_user_id"),
-    3: .standard(proto: "auth_provider"),
+    3: .standard(proto: "device_fp"),
+    4: .standard(proto: "auth_provider"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -344,7 +347,8 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.accessToken) }()
       case 2: try { try decoder.decodeSingularInt64Field(value: &self.providerUserID) }()
-      case 3: try { try decoder.decodeSingularEnumField(value: &self.authProvider) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.deviceFp) }()
+      case 4: try { try decoder.decodeSingularEnumField(value: &self.authProvider) }()
       default: break
       }
     }
@@ -357,8 +361,11 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     if self.providerUserID != 0 {
       try visitor.visitSingularInt64Field(value: self.providerUserID, fieldNumber: 2)
     }
+    if !self.deviceFp.isEmpty {
+      try visitor.visitSingularStringField(value: self.deviceFp, fieldNumber: 3)
+    }
     if self.authProvider != .vk {
-      try visitor.visitSingularEnumField(value: self.authProvider, fieldNumber: 3)
+      try visitor.visitSingularEnumField(value: self.authProvider, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -366,6 +373,7 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   public static func ==(lhs: LoginBySocialRequest, rhs: LoginBySocialRequest) -> Bool {
     if lhs.accessToken != rhs.accessToken {return false}
     if lhs.providerUserID != rhs.providerUserID {return false}
+    if lhs.deviceFp != rhs.deviceFp {return false}
     if lhs.authProvider != rhs.authProvider {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

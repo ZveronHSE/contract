@@ -180,6 +180,9 @@ public struct Lot {
   /// В каком статусе находится объявление
   public var status: Status = .active
 
+  /// Категория объявления
+  public var categoryID: Int32 = 0
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -284,6 +287,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     5: .standard(proto: "photo_id"),
     6: .same(proto: "favorite"),
     7: .same(proto: "status"),
+    8: .standard(proto: "category_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -299,6 +303,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
       case 5: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
       case 6: try { try decoder.decodeSingularBoolField(value: &self.favorite) }()
       case 7: try { try decoder.decodeSingularEnumField(value: &self.status) }()
+      case 8: try { try decoder.decodeSingularInt32Field(value: &self.categoryID) }()
       default: break
       }
     }
@@ -326,6 +331,9 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     if self.status != .active {
       try visitor.visitSingularEnumField(value: self.status, fieldNumber: 7)
     }
+    if self.categoryID != 0 {
+      try visitor.visitSingularInt32Field(value: self.categoryID, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -337,6 +345,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     if lhs.photoID != rhs.photoID {return false}
     if lhs.favorite != rhs.favorite {return false}
     if lhs.status != rhs.status {return false}
+    if lhs.categoryID != rhs.categoryID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

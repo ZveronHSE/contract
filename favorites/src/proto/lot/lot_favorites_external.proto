@@ -15,7 +15,13 @@ service LotFavoritesServiceExternal {
   rpc RemoveFromFavorites(RemoveLotFromFavoritesRequest) returns(google.protobuf.Empty);
 
   // Получение списка избранных объявлений пользователя
-  rpc GetFavoriteLots(google.protobuf.Empty) returns(GetFavoriteLotsResponse);
+  rpc GetFavoriteLots(GetFavoriteLotsRequest) returns(GetFavoriteLotsResponse);
+
+  // Удаление всех объявлений с определенным статусом из категории
+  rpc DeleteAllByStatusAndCategory(DeleteAllByStatusAndCategoryRequest) returns(google.protobuf.Empty);
+
+  // Удаление всех объявлений из категории
+  rpc DeleteAllByCategory(DeleteAllByCategoryRequest) returns(google.protobuf.Empty);
 }
 
 message AddLotToFavoritesRequest {
@@ -26,21 +32,34 @@ message RemoveLotFromFavoritesRequest {
   int64 id = 1;
 }
 
+message GetFavoriteLotsRequest {
+  int32 category_id = 1;
+}
+
 message GetFavoriteLotsResponse {
   // Список добавленных в избранное объявлений
   repeated LotSummary favorite_lots = 1;
 }
 
 message LotSummary {
-  uint64 id = 1;
+  int64 id = 1;
   string title = 2;
   string price_formatted = 3;
   string publication_date_formatted = 4;
   LotStatus status = 5;
-  uint64 first_image = 6;
+  int64 first_image = 6;
 }
 
 enum LotStatus {
   ACTIVE = 0;
   CLOSED = 1;
+}
+
+message DeleteAllByStatusAndCategoryRequest {
+  LotStatus status = 1;
+  int32 category_id = 2;
+}
+
+message DeleteAllByCategoryRequest {
+  int32 category_id = 1;
 }

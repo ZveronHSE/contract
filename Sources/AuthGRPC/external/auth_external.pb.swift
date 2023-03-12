@@ -77,7 +77,7 @@ public struct LoginBySocialRequest {
 
   public var accessToken: String = String()
 
-  public var providerUserID: Int64 = 0
+  public var providerUserID: String = String()
 
   public var deviceFp: String = String()
 
@@ -346,7 +346,7 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.accessToken) }()
-      case 2: try { try decoder.decodeSingularInt64Field(value: &self.providerUserID) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.providerUserID) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.deviceFp) }()
       case 4: try { try decoder.decodeSingularEnumField(value: &self.authProvider) }()
       default: break
@@ -358,8 +358,8 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     if !self.accessToken.isEmpty {
       try visitor.visitSingularStringField(value: self.accessToken, fieldNumber: 1)
     }
-    if self.providerUserID != 0 {
-      try visitor.visitSingularInt64Field(value: self.providerUserID, fieldNumber: 2)
+    if !self.providerUserID.isEmpty {
+      try visitor.visitSingularStringField(value: self.providerUserID, fieldNumber: 2)
     }
     if !self.deviceFp.isEmpty {
       try visitor.visitSingularStringField(value: self.deviceFp, fieldNumber: 3)

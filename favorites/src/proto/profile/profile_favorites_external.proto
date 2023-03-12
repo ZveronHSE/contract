@@ -1,0 +1,40 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron.favorites.profile;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.favorites.profile";
+option java_outer_classname = "ProfileFavoritesGrpcExternal";
+option java_multiple_files = true;
+
+service ProfileFavoritesServiceExternal {
+  // Добавление профиля в избранное пользователя
+  rpc AddToFavorites(AddProfileToFavoritesRequest) returns(google.protobuf.Empty);
+
+  // Удаление профиля из избранного пользователя
+  rpc RemoveFromFavorites(RemoveProfileFromFavoritesRequest) returns(google.protobuf.Empty);
+
+  // Получение списка избранных профилей пользователя
+  rpc GetFavoriteProfiles(google.protobuf.Empty) returns(GetFavoriteProfilesResponse);
+}
+
+message AddProfileToFavoritesRequest {
+  int64 id = 1;
+}
+
+message RemoveProfileFromFavoritesRequest {
+  int64 id = 2;
+}
+
+message GetFavoriteProfilesResponse {
+  // Список добавленных в избранное профилей
+  repeated ProfileSummary favorite_profiles = 1;
+}
+
+message ProfileSummary {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+  int64 image_id = 4;
+  int64 address_id = 5;
+}

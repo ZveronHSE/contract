@@ -1,0 +1,54 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package ru.zveron.favorites.lot;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.favorites.lot";
+option java_outer_classname = "LotFavoritesGrpcInternal";
+option java_multiple_files = true;
+
+service LotFavoritesServiceInternal {
+  // Проверка на существование объявлений в избранном пользователя
+  rpc ExistInFavorites(LotsExistInFavoritesRequest) returns(LotsExistInFavoritesResponse);
+
+  // Получение количества добавлений объявления в избранное
+  rpc GetCounter(GetLotCounterRequest) returns(GetLotCounterResponse);
+
+  // Удаление всех записей из избранного определенного пользователя
+  rpc RemoveAllByOwner(RemoveAllLotsByOwnerRequest) returns(google.protobuf.Empty);
+
+  // Удаление опредленного объявления из всех список избранного
+  rpc RemoveAllByFavoriteLot(RemoveAllByFavoriteLotRequest) returns(google.protobuf.Empty);
+}
+
+message LotsExistInFavoritesRequest {
+  // Id владельца списка избранного
+  int64 favorites_owner_id = 1;
+  // Объявления, наличие которого проверяется в избранном
+  repeated int64 favorite_lot_id = 2;
+}
+
+message LotsExistInFavoritesResponse {
+  // Содержится ли каждое из объявлений в избранном. Порядок сохраняется
+  repeated bool is_exists = 1;
+}
+
+message GetLotCounterRequest {
+  // Идентификатор объявления
+  int64 id = 1;
+}
+
+message GetLotCounterResponse {
+  // Количество добавлений объявления в избранное
+  int64 adds_to_favorites_counter = 1;
+}
+
+message RemoveAllLotsByOwnerRequest {
+  // Идентификатор профиля
+  int64 id = 1;
+}
+
+message RemoveAllByFavoriteLotRequest {
+  // Идентификатор объявления
+  int64 id = 1;
+}

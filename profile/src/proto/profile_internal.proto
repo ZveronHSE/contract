@@ -27,6 +27,15 @@ service ProfileServiceInternal {
 
   // Получение информации о пользователе по идентификатору в каком-то способе связи (номер телефона - телефон; id - соцсети)
   rpc GetProfileByChannel(GetProfileByChannelRequest) returns(GetProfileByChannelResponse);
+
+  // Проверка существования аккаунта по тлф + валидация хеша пароля
+  // Если нет такого телефона или пароль неверен - false в ответе
+  rpc VerifyProfileHash(VerifyProfileHashRequest) returns(VerifyProfileHashResponse);
+
+  // Получение превью страниц пользователя (для избранного)
+  rpc GetProfilesSummary(GetProfilesSummaryRequest) returns(GetProfilesSummaryResponse);
+
+  rpc ExistsById(ExistsByIdRequest) returns(ExistsByIdResponse);
 }
 
 message CreateProfileRequest {
@@ -76,6 +85,15 @@ message UpdateContactsRequest {
   model.Links links = 3;
 }
 
+message VerifyProfileHashRequest {
+  string phone_number = 1;
+  string password_hash = 2;
+}
+
+message VerifyProfileHashResponse{
+  bool is_valid_request = 1;
+}
+
 message GetProfileByChannelRequest {
   model.ChannelType type = 1;
   // В случае телефона - номер телефона
@@ -87,4 +105,28 @@ message GetProfileByChannelResponse {
   uint64 id = 1;
   string name = 2;
   string surname = 3;
+}
+
+message GetProfilesSummaryRequest{
+  repeated uint64 ids = 1;
+}
+
+message GetProfilesSummaryResponse {
+  repeated ProfileSummary profiles = 1;
+}
+
+message ProfileSummary {
+  uint64 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint64 image_id = 4;
+  int64 address_id = 6;
+}
+
+message ExistsByIdRequest {
+  uint64 id = 1;
+}
+
+message ExistsByIdResponse {
+  bool exists = 1;
 }

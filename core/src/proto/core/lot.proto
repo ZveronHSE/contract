@@ -3,7 +3,7 @@ syntax = "proto3";
 package ru.zveron.contract.core;
 
 option swift_prefix = "";
-option java_package = "ru.zveron.contract";
+option java_package = "ru.zveron.contract.core";
 option java_outer_classname = "LotProto";
 option java_multiple_files = true;
 
@@ -20,6 +20,8 @@ message Lot {
   bool favorite = 6;
   // В каком статусе находится объявление
   Status status = 7;
+  // Категория объявления, заполняется не всегда
+  optional int32 category_id = 8;
 }
 
 enum Status {

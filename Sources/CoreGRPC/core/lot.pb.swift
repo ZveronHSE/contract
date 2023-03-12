@@ -88,9 +88,21 @@ public struct Lot {
   /// В каком статусе находится объявление
   public var status: Status = .active
 
+  /// Категория объявления, заполняется не всегда
+  public var categoryID: Int32 {
+    get {return _categoryID ?? 0}
+    set {_categoryID = newValue}
+  }
+  /// Returns true if `categoryID` has been explicitly set.
+  public var hasCategoryID: Bool {return self._categoryID != nil}
+  /// Clears the value of `categoryID`. Subsequent reads from it will return its default value.
+  public mutating func clearCategoryID() {self._categoryID = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _categoryID: Int32? = nil
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -120,6 +132,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     5: .standard(proto: "photo_id"),
     6: .same(proto: "favorite"),
     7: .same(proto: "status"),
+    8: .standard(proto: "category_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -135,12 +148,17 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
       case 5: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
       case 6: try { try decoder.decodeSingularBoolField(value: &self.favorite) }()
       case 7: try { try decoder.decodeSingularEnumField(value: &self.status) }()
+      case 8: try { try decoder.decodeSingularInt32Field(value: &self._categoryID) }()
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     if self.id != 0 {
       try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
     }
@@ -162,6 +180,9 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     if self.status != .active {
       try visitor.visitSingularEnumField(value: self.status, fieldNumber: 7)
     }
+    try { if let v = self._categoryID {
+      try visitor.visitSingularInt32Field(value: v, fieldNumber: 8)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -173,6 +194,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     if lhs.photoID != rhs.photoID {return false}
     if lhs.favorite != rhs.favorite {return false}
     if lhs.status != rhs.status {return false}
+    if lhs._categoryID != rhs._categoryID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -45,7 +45,8 @@ message GetFavoriteLotsResponse {
 }
 
 message DeleteAllByStatusAndCategoryRequest {
-  LotStatus status = 1;
+  // Статус объявлений
+  contract.core.Status status = 1;
   int32 category_id = 2;
 }
 

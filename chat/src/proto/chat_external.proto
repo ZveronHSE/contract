@@ -12,7 +12,7 @@ import "model/message.proto";
 
 service ChatServiceExternal {
 
-  rpc ChatRoute(stream ChatRouteRequest) returns(stream ChatRouteResponse);
+  rpc BidiChatRoute(stream ChatRouteRequest) returns(stream ChatRouteResponse);
 }
 
 message ChatRouteRequest {
@@ -22,7 +22,7 @@ message ChatRouteRequest {
     SendMessageRequest send_message = 3;
     AttachLotRequest attach_lot = 4;
     DetachLotRequest detach_lot = 5;
-    SendEvent send_event = 6;
+    SendEventRequest send_event = 6;
   }
 }
 
@@ -61,7 +61,7 @@ message DetachLotRequest {
 }
 
 // Отправка события
-message SendEvent {
+message SendEventRequest {
   model.EventType type = 1;
 }
 

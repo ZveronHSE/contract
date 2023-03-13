@@ -18,8 +18,8 @@ message Message {
   string id = 1;
   string text = 2;
   bool is_read = 3;
-  repeated int64 images_ids = 4;
-  uint64 sender = 5;
+  repeated string images_urls = 4;
+  uint64 sender_id = 5;
 }
 
 enum MessageType {

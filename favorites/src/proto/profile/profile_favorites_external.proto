@@ -36,5 +36,5 @@ message ProfileSummary {
   string name = 2;
   string surname = 3;
   int64 image_id = 4;
-  int64 address_id = 5;
+  double rating = 5;
 }

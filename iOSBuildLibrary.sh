@@ -48,7 +48,7 @@ function createDirectoryAndFile() {
   mkdir -p "$logicPathToNewProto"
   currentDir="$PWD"
   cd "$(dirname $proto)"
-  command1="protoc --swift_opt=Visibility=Public --swift_out=$logicPathToNewProto $(basename $proto)"
+  command1="protoc -I=. -I=$currentDir/core/src/proto -I=$currentDir/parameter/src/proto --swift_opt=Visibility=Public --swift_out=$logicPathToNewProto $(basename $proto)"
   command2="protoc $(basename $proto) --grpc-swift_opt=Visibility=Public,Client=true,Server=false --grpc-swift_out=$logicPathToNewProto"
   $command1
 

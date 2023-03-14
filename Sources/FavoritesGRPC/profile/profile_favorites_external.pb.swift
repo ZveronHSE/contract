@@ -70,7 +70,7 @@ public struct ProfileSummary {
 
   public var imageID: Int64 = 0
 
-  public var addressID: Int64 = 0
+  public var rating: Double = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -191,7 +191,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
     4: .standard(proto: "image_id"),
-    5: .standard(proto: "address_id"),
+    5: .same(proto: "rating"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -204,7 +204,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
       case 4: try { try decoder.decodeSingularInt64Field(value: &self.imageID) }()
-      case 5: try { try decoder.decodeSingularInt64Field(value: &self.addressID) }()
+      case 5: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
       default: break
       }
     }
@@ -223,8 +223,8 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if self.imageID != 0 {
       try visitor.visitSingularInt64Field(value: self.imageID, fieldNumber: 4)
     }
-    if self.addressID != 0 {
-      try visitor.visitSingularInt64Field(value: self.addressID, fieldNumber: 5)
+    if self.rating != 0 {
+      try visitor.visitSingularDoubleField(value: self.rating, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -234,7 +234,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
     if lhs.imageID != rhs.imageID {return false}
-    if lhs.addressID != rhs.addressID {return false}
+    if lhs.rating != rhs.rating {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -20,46 +20,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum LotStatus: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-  case active // = 0
-  case closed // = 1
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .active
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .active
-    case 1: self = .closed
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .active: return 0
-    case .closed: return 1
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension LotStatus: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [LotStatus] = [
-    .active,
-    .closed,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 public struct GetProfilePageRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -227,12 +187,12 @@ public struct GetProfilePageResponse {
     set {_uniqueStorage()._address = newValue}
   }
 
-  public var activeLots: [LotSummary] {
+  public var activeLots: [Lot] {
     get {return _storage._activeLots}
     set {_uniqueStorage()._activeLots = newValue}
   }
 
-  public var closedLots: [LotSummary] {
+  public var closedLots: [Lot] {
     get {return _storage._closedLots}
     set {_uniqueStorage()._closedLots = newValue}
   }
@@ -251,30 +211,6 @@ public struct GetProfilePageResponse {
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-public struct LotSummary {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var id: UInt64 = 0
-
-  public var title: String = String()
-
-  public var priceFormatted: String = String()
-
-  public var publicationDateFormatted: String = String()
-
-  public var status: LotStatus = .active
-
-  public var firstImage: UInt64 = 0
-
-  public var isFavorite: Bool = false
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
 }
 
 public struct GetChannelTypesResponse {
@@ -354,13 +290,11 @@ public struct Contacts {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
-extension LotStatus: @unchecked Sendable {}
 extension GetProfilePageRequest: @unchecked Sendable {}
 extension SetProfileInfoRequest: @unchecked Sendable {}
 extension SetSettingsRequest: @unchecked Sendable {}
 extension GetProfileInfoResponse: @unchecked Sendable {}
 extension GetProfilePageResponse: @unchecked Sendable {}
-extension LotSummary: @unchecked Sendable {}
 extension GetChannelTypesResponse: @unchecked Sendable {}
 extension Address: @unchecked Sendable {}
 extension GetSettingsResponse: @unchecked Sendable {}
@@ -370,13 +304,6 @@ extension Contacts: @unchecked Sendable {}
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.profile"
-
-extension LotStatus: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "ACTIVE"),
-    1: .same(proto: "CLOSED"),
-  ]
-}
 
 extension GetProfilePageRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfilePageRequest"
@@ -597,8 +524,8 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     var _rating: Double = 0
     var _reviewNumber: Int32 = 0
     var _address: String = String()
-    var _activeLots: [LotSummary] = []
-    var _closedLots: [LotSummary] = []
+    var _activeLots: [Lot] = []
+    var _closedLots: [Lot] = []
     var _lastActivity: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 
     static let defaultInstance = _StorageClass()
@@ -715,74 +642,6 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       }
       if !storagesAreEqual {return false}
     }
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension LotSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".LotSummary"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "title"),
-    3: .standard(proto: "price_formatted"),
-    4: .standard(proto: "publication_date_formatted"),
-    5: .same(proto: "status"),
-    6: .standard(proto: "first_image"),
-    7: .standard(proto: "is_favorite"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.title) }()
-      case 3: try { try decoder.decodeSingularStringField(value: &self.priceFormatted) }()
-      case 4: try { try decoder.decodeSingularStringField(value: &self.publicationDateFormatted) }()
-      case 5: try { try decoder.decodeSingularEnumField(value: &self.status) }()
-      case 6: try { try decoder.decodeSingularUInt64Field(value: &self.firstImage) }()
-      case 7: try { try decoder.decodeSingularBoolField(value: &self.isFavorite) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularUInt64Field(value: self.id, fieldNumber: 1)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 2)
-    }
-    if !self.priceFormatted.isEmpty {
-      try visitor.visitSingularStringField(value: self.priceFormatted, fieldNumber: 3)
-    }
-    if !self.publicationDateFormatted.isEmpty {
-      try visitor.visitSingularStringField(value: self.publicationDateFormatted, fieldNumber: 4)
-    }
-    if self.status != .active {
-      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 5)
-    }
-    if self.firstImage != 0 {
-      try visitor.visitSingularUInt64Field(value: self.firstImage, fieldNumber: 6)
-    }
-    if self.isFavorite != false {
-      try visitor.visitSingularBoolField(value: self.isFavorite, fieldNumber: 7)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: LotSummary, rhs: LotSummary) -> Bool {
-    if lhs.id != rhs.id {return false}
-    if lhs.title != rhs.title {return false}
-    if lhs.priceFormatted != rhs.priceFormatted {return false}
-    if lhs.publicationDateFormatted != rhs.publicationDateFormatted {return false}
-    if lhs.status != rhs.status {return false}
-    if lhs.firstImage != rhs.firstImage {return false}
-    if lhs.isFavorite != rhs.isFavorite {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

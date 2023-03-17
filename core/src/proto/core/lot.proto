@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package ru.zveron.contract.core;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.core";
+option java_outer_classname = "LotProto";
+option java_multiple_files = true;
+
+message Lot {
+  // ID объявления
+  int64 id = 1;
+  string title = 2;
+  // Если цены нет, то придет текст, например "Договорная", а если есть цена - то число. Этим и обусловен выбор string тут.
+  string price = 3;
+  // Отформатированный текст, когда было опубликован объявление. Пример: 15 января 2022
+  string publication_date = 4;
+  int64 photo_id = 5;
+  // Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
+  bool favorite = 6;
+  // В каком статусе находится объявление
+  Status status = 7;
+  // Категория объявления, заполняется не всегда
+  optional int32 category_id = 8;
+}
+
+enum Status {
+  ACTIVE = 0;
+  CLOSED = 1;
+  CANCELED = 2;
+}

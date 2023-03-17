@@ -48,7 +48,7 @@ function createDirectoryAndFile() {
   mkdir -p "$logicPathToNewProto"
   currentDir="$PWD"
   cd "$(dirname $proto)"
-  command1="protoc --swift_opt=Visibility=Public --swift_out=$logicPathToNewProto $(basename $proto)"
+  command1="protoc -I=. -I=$currentDir/core/src/proto -I=$currentDir/parameter/src/proto --swift_opt=Visibility=Public --swift_out=$logicPathToNewProto $(basename $proto)"
   command2="protoc $(basename $proto) --grpc-swift_opt=Visibility=Public,Client=true,Server=false --grpc-swift_out=$logicPathToNewProto"
   $command1
 
@@ -147,10 +147,10 @@ function generatePackageSwift() {
 }
 
 #1. update necessary libraries
-loadSwiftProtobuf="brew install swift-protobuf"
-loadGRPCSwift="brew install grpc-swift"
-loadCoreUtils="brew install coreutils"
-$loadSwiftProtobuf;$loadGRPCSwift;$loadCoreUtils
+#loadSwiftProtobuf="brew install swift-protobuf"
+#loadGRPCSwift="brew install grpc-swift"
+#loadCoreUtils="brew install coreutils"
+#$loadSwiftProtobuf;$loadGRPCSwift;$loadCoreUtils
 
 #2. delete all previous files
 rm -R "Sources"

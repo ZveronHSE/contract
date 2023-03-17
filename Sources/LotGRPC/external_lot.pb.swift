@@ -761,6 +761,15 @@ public struct CardLot {
   /// Clears the value of `seller`. Subsequent reads from it will return its default value.
   public mutating func clearSeller() {_uniqueStorage()._seller = nil}
 
+  public var statistics: Statistics {
+    get {return _storage._statistics ?? Statistics()}
+    set {_uniqueStorage()._statistics = newValue}
+  }
+  /// Returns true if `statistics` has been explicitly set.
+  public var hasStatistics: Bool {return _storage._statistics != nil}
+  /// Clears the value of `statistics`. Subsequent reads from it will return its default value.
+  public mutating func clearStatistics() {_uniqueStorage()._statistics = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1663,6 +1672,7 @@ extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     11: .standard(proto: "can_add_review"),
     12: .same(proto: "contact"),
     13: .same(proto: "seller"),
+    14: .same(proto: "statistics"),
   ]
 
   fileprivate class _StorageClass {
@@ -1679,6 +1689,7 @@ extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     var _canAddReview: Bool = false
     var _contact: Contact? = nil
     var _seller: Seller? = nil
+    var _statistics: Statistics? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1698,6 +1709,7 @@ extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
       _canAddReview = source._canAddReview
       _contact = source._contact
       _seller = source._seller
+      _statistics = source._statistics
     }
   }
 
@@ -1729,6 +1741,7 @@ extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
         case 11: try { try decoder.decodeSingularBoolField(value: &_storage._canAddReview) }()
         case 12: try { try decoder.decodeSingularMessageField(value: &_storage._contact) }()
         case 13: try { try decoder.decodeSingularMessageField(value: &_storage._seller) }()
+        case 14: try { try decoder.decodeSingularMessageField(value: &_storage._statistics) }()
         default: break
         }
       }
@@ -1780,6 +1793,9 @@ extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
       try { if let v = _storage._seller {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
       } }()
+      try { if let v = _storage._statistics {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      } }()
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1802,6 +1818,7 @@ extension CardLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
         if _storage._canAddReview != rhs_storage._canAddReview {return false}
         if _storage._contact != rhs_storage._contact {return false}
         if _storage._seller != rhs_storage._seller {return false}
+        if _storage._statistics != rhs_storage._statistics {return false}
         return true
       }
       if !storagesAreEqual {return false}

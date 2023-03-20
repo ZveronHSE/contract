@@ -1,0 +1,14 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+package ru.zveron.contract.chat;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.chat";
+option java_outer_classname = "PingGrpcExternal";
+option java_multiple_files = true;
+
+service PingServiceExternal {
+   rpc Ping(google.protobuf.Empty) returns(google.protobuf.StringValue);
+}

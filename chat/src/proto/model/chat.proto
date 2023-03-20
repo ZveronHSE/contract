@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
+import "core/lot.proto";
 
 package ru.zveron.contract.chat.model;
 
@@ -36,7 +37,7 @@ message Chat {
   // Id услуги, связанной с чатом
   optional uint64 service_id = 7;
   optional uint64 review_id = 8;
-  repeated LotSummary lots = 9;
+  repeated contract.core.Lot lots = 9;
 
 }
 
@@ -48,10 +49,4 @@ message ProfileSummary {
   bool is_online = 5;
   // 'Был в сети...' Возвращается если is_online == false
   optional string formatted_online_status = 6;
-}
-
-message LotSummary {
-  uint64 id = 1;
-  string image_url = 2;
-  string title = 3;
 }

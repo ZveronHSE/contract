@@ -38,33 +38,26 @@ message WaterfallRequest {
   // Фильтровать по параметрам объявления, если они заданы
   repeated model.Parameter parameters = 5;
   // По какому признаку нужно сортировать объявления
-  oneof sort {
-    SortByDate sort_by_date = 6;
-    SortByPrice sort_by_price = 7;
-  }
+  Sort sort = 6;
 }
 
-message SortByDate {
-  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
-  message LastLot {
-    int64 id = 1;
-    // Дата создания
-    google.protobuf.Timestamp date = 2;
+message Sort {
+  enum SortBy {
+    PRICE = 0;
+    DATE = 1;
   }
 
-  TypeSort type_sort = 1;
-  optional LastLot last_lot = 2;
+  SortBy sort_by = 1;
+  TypeSort type_sort = 2;
+  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
+  optional LastLot last_lot = 3;
 }
 
-message SortByPrice {
-  // Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
-  message LastLot {
-    int64 id = 1;
-    int32 price = 2;
-  }
-
-  TypeSort type_sort = 1;
-  optional LastLot last_lot = 2;
+message LastLot {
+  int64 id = 1;
+  // Дата создания
+  google.protobuf.Timestamp date = 2;
+  int32 price = 3;
 }
 
 enum TypeSort {
@@ -113,15 +106,8 @@ message WaterfallResponse {
   repeated core.Lot lots = 1;
 
   // Данные последнего объявления, необходимые для сортировки и работы водопада
-  DataFilter data_filter = 2;
+  LastLot last_lot = 2;
 }
-
-message DataFilter {
-  int32 price = 1;
-  // Пока тут не уверена по типу
-  google.protobuf.Timestamp date = 2;
-}
-
 
 message CreateLotRequest {
   string title = 1;

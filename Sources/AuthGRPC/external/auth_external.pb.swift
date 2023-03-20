@@ -75,7 +75,11 @@ public struct LoginBySocialRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var token: String = String()
+  public var accessToken: String = String()
+
+  public var providerUserID: String = String()
+
+  public var deviceFp: String = String()
 
   public var authProvider: AuthProvider = .vk
 
@@ -329,8 +333,10 @@ extension AuthProvider: SwiftProtobuf._ProtoNameProviding {
 extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LoginBySocialRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "token"),
-    2: .standard(proto: "auth_provider"),
+    1: .standard(proto: "access_token"),
+    2: .standard(proto: "provider_user_id"),
+    3: .standard(proto: "device_fp"),
+    4: .standard(proto: "auth_provider"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -339,25 +345,35 @@ extension LoginBySocialRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.token) }()
-      case 2: try { try decoder.decodeSingularEnumField(value: &self.authProvider) }()
+      case 1: try { try decoder.decodeSingularStringField(value: &self.accessToken) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.providerUserID) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.deviceFp) }()
+      case 4: try { try decoder.decodeSingularEnumField(value: &self.authProvider) }()
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
+    if !self.accessToken.isEmpty {
+      try visitor.visitSingularStringField(value: self.accessToken, fieldNumber: 1)
+    }
+    if !self.providerUserID.isEmpty {
+      try visitor.visitSingularStringField(value: self.providerUserID, fieldNumber: 2)
+    }
+    if !self.deviceFp.isEmpty {
+      try visitor.visitSingularStringField(value: self.deviceFp, fieldNumber: 3)
     }
     if self.authProvider != .vk {
-      try visitor.visitSingularEnumField(value: self.authProvider, fieldNumber: 2)
+      try visitor.visitSingularEnumField(value: self.authProvider, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: LoginBySocialRequest, rhs: LoginBySocialRequest) -> Bool {
-    if lhs.token != rhs.token {return false}
+    if lhs.accessToken != rhs.accessToken {return false}
+    if lhs.providerUserID != rhs.providerUserID {return false}
+    if lhs.deviceFp != rhs.deviceFp {return false}
     if lhs.authProvider != rhs.authProvider {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

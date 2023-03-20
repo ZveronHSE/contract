@@ -14,8 +14,6 @@ service BucketService {
 
 message UploadImageRequest{
   bytes body = 1;
-  int32 height = 2;
-  int32 width = 3;
   MimeType mimeType = 4;
   FlowSource flow_source = 5;
 }

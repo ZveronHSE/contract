@@ -11,7 +11,6 @@ option java_multiple_files = true;
 service ObjectStorageService {
   //retrieves image url pointing to the storage
   rpc GetImageUrl(GetImageUrlRequest) returns (GetImageUrlResponse);
-
 }
 
 message GetImageUrlRequest{

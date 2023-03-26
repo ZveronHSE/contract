@@ -10,4 +10,5 @@ include(
     "profile",
     "lot",
     "core",
-)
+    "objectstorage",
+    )

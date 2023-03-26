@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package ru.zveron.contract.objectstorage.external;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.objectstorage.external";
+option java_outer_classname = "BucketServiceProto";
+option java_multiple_files = true;
+
+service BucketService {
+  //uploads an image to yandex cloud storage
+  rpc UploadImage(UploadImageRequest) returns (UploadImageResponse);
+}
+
+message UploadImageRequest{
+  bytes body = 1;
+  MimeType mimeType = 4;
+  FlowSource flow_source = 5;
+}
+
+message UploadImageResponse{
+  string image_url = 1;
+}
+
+enum MimeType{
+  IMAGE_JPEG = 0;
+  IMAGE_PNG = 1;
+}
+
+//для чего предназначается изображение
+enum FlowSource{
+  ORDER = 0;
+  PROFILE = 1;
+  LOT = 2;
+  CHAT = 3;
+}

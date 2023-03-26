@@ -759,7 +759,7 @@ public struct Seller {
 
   public var online: Bool = false
 
-  public var photoID: Int64 = 0
+  public var imageURL: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1683,7 +1683,7 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     3: .same(proto: "surname"),
     4: .same(proto: "rating"),
     5: .same(proto: "online"),
-    6: .standard(proto: "photo_id"),
+    6: .standard(proto: "image_url"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1697,7 +1697,7 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
       case 4: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
       case 5: try { try decoder.decodeSingularBoolField(value: &self.online) }()
-      case 6: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
+      case 6: try { try decoder.decodeSingularStringField(value: &self.imageURL) }()
       default: break
       }
     }
@@ -1719,8 +1719,8 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     if self.online != false {
       try visitor.visitSingularBoolField(value: self.online, fieldNumber: 5)
     }
-    if self.photoID != 0 {
-      try visitor.visitSingularInt64Field(value: self.photoID, fieldNumber: 6)
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1731,7 +1731,7 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     if lhs.surname != rhs.surname {return false}
     if lhs.rating != rhs.rating {return false}
     if lhs.online != rhs.online {return false}
-    if lhs.photoID != rhs.photoID {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

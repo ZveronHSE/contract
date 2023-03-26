@@ -6,6 +6,7 @@ option java_package = "ru.zveron.contract.lot";
 option java_outer_classname = "LotInternalProto";
 option java_multiple_files = true;
 
+import "core/lot.proto";
 import "model/lot.proto";
 
 service LotInternalService {
@@ -24,8 +25,8 @@ message ProfileLotsRequest {
 }
 
 message ProfileLotsResponse {
-  repeated model.Lot activate_lots = 1;
-  repeated model.Lot inactivate_lots = 2;
+  repeated core.Lot activate_lots = 1;
+  repeated core.Lot inactivate_lots = 2;
 }
 
 message LotsIdRequest {
@@ -35,5 +36,5 @@ message LotsIdRequest {
 }
 
 message LotsIdResponse {
-  repeated model.Lot lots = 1;
+  repeated core.Lot lots = 1;
 }

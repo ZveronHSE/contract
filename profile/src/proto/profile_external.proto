@@ -1,7 +1,9 @@
 syntax = "proto3";
+
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "model/communication.proto";
+import "core/lot.proto";
 
 package ru.zveron.contract.profile;
 
@@ -72,24 +74,9 @@ message GetProfilePageResponse {
   double rating = 6;
   int32 review_number = 7;
   string address = 8;
-  repeated LotSummary active_lots = 9;
-  repeated LotSummary closed_lots = 10;
+  repeated core.Lot active_lots = 9;
+  repeated core.Lot closed_lots = 10;
   google.protobuf.Timestamp last_activity = 11;
-}
-
-message LotSummary {
-  uint64 id = 1;
-  string title = 2;
-  string price_formatted = 3;
-  string publication_date_formatted = 4;
-  LotStatus status = 5;
-  uint64 first_image = 6;
-  bool is_favorite = 7;
-}
-
-enum LotStatus {
-  ACTIVE = 0;
-  CLOSED = 1;
 }
 
 message GetChannelTypesResponse {

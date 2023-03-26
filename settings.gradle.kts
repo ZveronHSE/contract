@@ -9,5 +9,6 @@ include(
     "auth",
     "profile",
     "lot",
-    "objectstorage"
+    "core",
+    "objectstorage",
     )

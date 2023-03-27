@@ -80,7 +80,7 @@ public struct Lot {
   /// Отформатированный текст, когда было опубликован объявление. Пример: 15 января 2022
   public var publicationDate: String = String()
 
-  public var photoID: Int64 = 0
+  public var imageURL: String = String()
 
   /// Красить кнопку "Избранное", если оно уже и так добавлено в избранное, иначе нет.
   public var favorite: Bool = false
@@ -129,7 +129,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     2: .same(proto: "title"),
     3: .same(proto: "price"),
     4: .standard(proto: "publication_date"),
-    5: .standard(proto: "photo_id"),
+    5: .standard(proto: "image_url"),
     6: .same(proto: "favorite"),
     7: .same(proto: "status"),
     8: .standard(proto: "category_id"),
@@ -145,7 +145,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
       case 2: try { try decoder.decodeSingularStringField(value: &self.title) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.price) }()
       case 4: try { try decoder.decodeSingularStringField(value: &self.publicationDate) }()
-      case 5: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self.imageURL) }()
       case 6: try { try decoder.decodeSingularBoolField(value: &self.favorite) }()
       case 7: try { try decoder.decodeSingularEnumField(value: &self.status) }()
       case 8: try { try decoder.decodeSingularInt32Field(value: &self._categoryID) }()
@@ -171,8 +171,8 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     if !self.publicationDate.isEmpty {
       try visitor.visitSingularStringField(value: self.publicationDate, fieldNumber: 4)
     }
-    if self.photoID != 0 {
-      try visitor.visitSingularInt64Field(value: self.photoID, fieldNumber: 5)
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 5)
     }
     if self.favorite != false {
       try visitor.visitSingularBoolField(value: self.favorite, fieldNumber: 6)
@@ -191,7 +191,7 @@ extension Lot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, 
     if lhs.title != rhs.title {return false}
     if lhs.price != rhs.price {return false}
     if lhs.publicationDate != rhs.publicationDate {return false}
-    if lhs.photoID != rhs.photoID {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
     if lhs.favorite != rhs.favorite {return false}
     if lhs.status != rhs.status {return false}
     if lhs._categoryID != rhs._categoryID {return false}

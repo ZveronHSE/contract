@@ -68,7 +68,7 @@ public struct ProfileSummary {
 
   public var surname: String = String()
 
-  public var imageID: Int64 = 0
+  public var imageURL: String = String()
 
   public var rating: Double = 0
 
@@ -190,7 +190,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     1: .same(proto: "id"),
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
-    4: .standard(proto: "image_id"),
+    4: .standard(proto: "image_url"),
     5: .same(proto: "rating"),
   ]
 
@@ -203,7 +203,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
-      case 4: try { try decoder.decodeSingularInt64Field(value: &self.imageID) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.imageURL) }()
       case 5: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
       default: break
       }
@@ -220,8 +220,8 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if !self.surname.isEmpty {
       try visitor.visitSingularStringField(value: self.surname, fieldNumber: 3)
     }
-    if self.imageID != 0 {
-      try visitor.visitSingularInt64Field(value: self.imageID, fieldNumber: 4)
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 4)
     }
     if self.rating != 0 {
       try visitor.visitSingularDoubleField(value: self.rating, fieldNumber: 5)
@@ -233,7 +233,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
-    if lhs.imageID != rhs.imageID {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
     if lhs.rating != rhs.rating {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

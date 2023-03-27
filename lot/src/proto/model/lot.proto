@@ -36,7 +36,7 @@ message Parameter {
 }
 
 message Photo {
-  int64 id = 1;
+  string url = 1;
   // Порядок фотографии
   int32 order = 2;
 }

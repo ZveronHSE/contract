@@ -43,7 +43,7 @@ message CreateProfileRequest {
   string name = 2;
   string surname = 3;
   model.Links links = 4;
-  uint64 image_id = 5;
+  string image_url = 5;
 }
 
 message CreateProfileResponse {
@@ -58,7 +58,7 @@ message GetProfileResponse {
   uint64 id = 1;
   string name = 2;
   string surname = 3;
-  uint64 image_id = 4;
+  string image_url = 4;
   repeated model.ChannelType channels = 5;
   int64 address_id = 6;
 }
@@ -71,7 +71,7 @@ message GetProfileWithContactsResponse {
   uint64 id = 1;
   string name = 2;
   string surname = 3;
-  uint64 image_id = 4;
+  string image_url = 4;
   repeated model.ChannelType channels = 5;
   model.Links links = 6;
   int64 address_id = 7;
@@ -119,7 +119,7 @@ message ProfileSummary {
   uint64 id = 1;
   string name = 2;
   string surname = 3;
-  uint64 image_id = 4;
+  string image_url = 4;
   int64 address_id = 6;
 }
 

@@ -214,7 +214,7 @@ message Seller {
   // Рейтинг продавца
   double rating = 4;
   bool online = 5;
-  int64 photo_id = 6;
+  string image_url = 6;
 }
 
 message Contact {

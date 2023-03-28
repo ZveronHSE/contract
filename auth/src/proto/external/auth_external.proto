@@ -39,7 +39,6 @@ service AuthServiceExternal {
 //Requests
 message LoginBySocialRequest{
   string access_token = 1;
-  string provider_user_id = 2;
   string device_fp = 3;
   AuthProvider auth_provider = 4;
 }

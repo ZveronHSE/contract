@@ -62,7 +62,11 @@ message DetachLotRequest {
 
 // Отправка события
 message SendEventRequest {
-  model.EventType type = 1;
+  oneof event {
+    model.DisconnectEvent disconnect_event = 1;
+    model.ChangeMessagesStatusEvent changed_status_event = 2;
+    model.NoPayloadEvent no_payload_event = 3;
+  }
 }
 
 message ChatRouteResponse {
@@ -85,5 +89,13 @@ message GetChatMessagesResponse {
 
 // Событие в чате
 message ReceiveEvent {
-  model.EventType type = 1;
+  oneof event {
+    model.DisconnectEvent disconnect_event = 1;
+    model.ChangeMessagesStatusEvent changed_status_event = 2;
+    model.NoPayloadEvent no_payload_event = 3;
+  }
+}
+
+message ReceiveMessage {
+  model.Message message = 1;
 }

@@ -26,8 +26,21 @@ enum MessageType {
   DEFAULT = 0;
 }
 
-enum EventType {
-  CONNECT = 0;
-  DISCONNECT = 1;
-  TEXTING = 2;
+message DisconnectEvent {
+  // Optional в запросе, Required в ответе
+  optional string last_online_formatted = 1;
+}
+
+message ChangeMessagesStatusEvent {
+  repeated string ids = 1;
+  bool is_read = 2;
+}
+
+message NoPayloadEvent {
+  NoPayloadEventType type = 1;
+}
+
+enum NoPayloadEventType {
+  TEXTING = 0;
+  ONLINE = 1;
 }

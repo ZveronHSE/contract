@@ -11,12 +11,14 @@ option java_multiple_files = true;
 
 import "model/message.proto";
 
-enum ChatFolderType {
-  OPEN = 0;
-  IN_PROGRESS = 1;
-  DONE = 2;
-  CANCELLED = 3;
-  ARCHIVE = 4;
+enum ChatFolder {
+  // Значение для обычного приложения
+  NONE = 0;
+  OPEN = 1;
+  IN_PROGRESS = 2;
+  DONE = 3;
+  CANCELLED = 4;
+  ARCHIVE = 5;
 }
 
 message ChatPagination {
@@ -32,13 +34,11 @@ message Chat {
   repeated model.Message messages = 3;
   uint32 unread_messages = 4;
   google.protobuf.Timestamp last_update = 5;
-  // Id объявлений, связанных с чатом
-  repeated uint64 lots_ids = 6;
   // Id услуги, связанной с чатом
-  optional uint64 service_id = 7;
-  optional uint64 review_id = 8;
-  repeated contract.core.Lot lots = 9;
-
+  optional uint64 service_id = 6;
+  optional uint64 review_id = 7;
+  repeated contract.core.Lot lots = 8;
+  ChatFolder folder = 9;
 }
 
 message ProfileSummary {

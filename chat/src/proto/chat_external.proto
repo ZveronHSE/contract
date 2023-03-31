@@ -28,9 +28,7 @@ message ChatRouteRequest {
 
 // Запрос на получение недавних чатов
 message GetRecentChatsRequest {
-  // Доступно только для специалистов
-  optional model.ChatFolderType type = 1;
-  optional model.ChatPagination pagination = 2;
+  optional model.ChatPagination pagination = 1;
 }
 
 // Запрос на получение сообщений в чате
@@ -45,19 +43,21 @@ message SendMessageRequest {
   // Только для MessageType.DEFAULT
   optional string text = 2;
   // Только для MessageType.DEFAULT
-  repeated uint64 images_ids = 3;
+  repeated uint64 images_urls = 3;
 }
 
 // Добавление объявления в диалог. Если диалога нет - начало диалога
 message AttachLotRequest {
   uint64 interlocutor_id = 1;
   uint64 lot_id = 2;
+  optional string chat_id = 3;
 }
 
 // Удаление объявления из диалога
 message DetachLotRequest {
   uint64 interlocutor_id = 1;
   uint64 lot_id = 2;
+  string chat_id = 3;
 }
 
 // Отправка события

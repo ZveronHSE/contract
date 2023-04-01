@@ -20,24 +20,29 @@ message ChatRouteRequest {
     GetRecentChatsRequest get_recent_chats = 1;
     GetChatMessagesRequest get_chat_recent_messages = 2;
     SendMessageRequest send_message = 3;
-    AttachLotRequest attach_lot = 4;
-    DetachLotRequest detach_lot = 5;
-    SendEventRequest send_event = 6;
+    StartChatRequest start_chat = 4;
+    AttachLotRequest attach_lot = 5;
+    DetachLotRequest detach_lot = 6;
+    SendEventRequest send_event = 7;
+    GetChatSummary get_chat = 8;
   }
 }
 
 // Запрос на получение недавних чатов
+// Ответ -> GetRecentChatsResponse
 message GetRecentChatsRequest {
   optional model.ChatPagination pagination = 1;
 }
 
 // Запрос на получение сообщений в чате
+// Ответ -> GetRecentChatsResponse
 message GetChatMessagesRequest {
   string chat_id = 1;
   optional model.MessagePagination pagination = 2;
 }
 
 // Отправка сообщения
+// Без ответа
 message SendMessageRequest {
   string chat_id = 1;
   model.MessageType type = 2;
@@ -47,17 +52,23 @@ message SendMessageRequest {
   repeated string images_urls = 4;
 }
 
-// Добавление объявления в диалог. Если диалога нет - начало диалога
+// Ответ -> ReceiveChatSummary
+message StartChatRequest {
+  uint64 interlocutor_id = 1;
+  uint64 lot_id = 2;
+  string text = 3;
+}
+
+// Добавление объявления в существующий диалог
+// Без ответа
 message AttachLotRequest {
   uint64 interlocutor_id = 1;
   uint64 lot_id = 2;
-  // Указывается если начинается диалог
-  optional string text = 3;
-  // Не указывается если начинается диалог
-  optional string chat_id = 4;
+  optional string chat_id = 3;
 }
 
 // Удаление объявления из диалога
+// Без ответа
 message DetachLotRequest {
   uint64 interlocutor_id = 1;
   uint64 lot_id = 2;
@@ -65,6 +76,7 @@ message DetachLotRequest {
 }
 
 // Отправка события
+// Без ответа
 message SendEventRequest {
   string chat_id = 1;
   oneof event {
@@ -72,6 +84,11 @@ message SendEventRequest {
     model.ChangeMessagesStatusEvent changed_status_event = 3;
     model.NoPayloadEvent no_payload_event = 4;
   }
+}
+
+// Ответ -> ReceiveChatSummary
+message GetChatSummary {
+  string chat_id = 1;
 }
 
 message ChatRouteResponse {
@@ -105,4 +122,8 @@ message ReceiveEvent {
 
 message ReceiveMessage {
   model.Message message = 1;
+}
+
+message ReceiveChatSummary {
+  model.Chat chat = 1;
 }

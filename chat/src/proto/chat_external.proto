@@ -51,7 +51,10 @@ message SendMessageRequest {
 message AttachLotRequest {
   uint64 interlocutor_id = 1;
   uint64 lot_id = 2;
-  optional string chat_id = 3;
+  // Указывается если начинается диалог
+  optional string text = 3;
+  // Не указывается если начинается диалог
+  optional string chat_id = 4;
 }
 
 // Удаление объявления из диалога
@@ -76,6 +79,7 @@ message ChatRouteResponse {
     GetRecentChatsResponse get_recent_chats = 1;
     GetChatMessagesResponse get_messages_response = 2;
     ReceiveEvent receive_event = 3;
+    ReceiveMessage receive_message = 4;
   }
 }
 

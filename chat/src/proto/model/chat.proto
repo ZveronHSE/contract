@@ -39,6 +39,8 @@ message Chat {
   optional uint64 review_id = 7;
   repeated contract.core.Lot lots = 8;
   ChatFolder folder = 9;
+  // Заблокирован ли получатель (тот, кто просматривает информацию о чате)
+  bool is_blocked = 10;
 }
 
 message ProfileSummary {

@@ -33,10 +33,15 @@ service AuthServiceExternal {
 
   //perform user logout, access token in the metadata
   rpc PerformLogout(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  //delete account
+  rpc DeleteProfile(google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
 
 //Requests
+
+
 message LoginBySocialRequest{
   string access_token = 1;
   string device_fp = 3;

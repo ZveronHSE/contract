@@ -39,11 +39,12 @@ message GetChatMessagesRequest {
 
 // Отправка сообщения
 message SendMessageRequest {
-  model.MessageType type = 1;
+  string chat_id = 1;
+  model.MessageType type = 2;
   // Только для MessageType.DEFAULT
-  optional string text = 2;
+  optional string text = 3;
   // Только для MessageType.DEFAULT
-  repeated uint64 images_urls = 3;
+  repeated string images_urls = 4;
 }
 
 // Добавление объявления в диалог. Если диалога нет - начало диалога
@@ -62,10 +63,11 @@ message DetachLotRequest {
 
 // Отправка события
 message SendEventRequest {
+  string chat_id = 1;
   oneof event {
-    model.DisconnectEvent disconnect_event = 1;
-    model.ChangeMessagesStatusEvent changed_status_event = 2;
-    model.NoPayloadEvent no_payload_event = 3;
+    model.DisconnectEvent disconnect_event = 2;
+    model.ChangeMessagesStatusEvent changed_status_event = 3;
+    model.NoPayloadEvent no_payload_event = 4;
   }
 }
 
@@ -89,10 +91,11 @@ message GetChatMessagesResponse {
 
 // Событие в чате
 message ReceiveEvent {
+  string chat_id = 1;
   oneof event {
-    model.DisconnectEvent disconnect_event = 1;
-    model.ChangeMessagesStatusEvent changed_status_event = 2;
-    model.NoPayloadEvent no_payload_event = 3;
+    model.DisconnectEvent disconnect_event = 2;
+    model.ChangeMessagesStatusEvent changed_status_event = 3;
+    model.NoPayloadEvent no_payload_event = 4;
   }
 }
 

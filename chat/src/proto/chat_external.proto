@@ -97,6 +97,7 @@ message ChatRouteResponse {
     GetChatMessagesResponse get_messages_response = 2;
     ReceiveEvent receive_event = 3;
     ReceiveMessage receive_message = 4;
+    ReceiveChatSummary chatSummary = 5;
   }
 }
 

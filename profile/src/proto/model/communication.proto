@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package ru.zveron.contract.profile.model;
 
-option swift_prefix="";
+option swift_prefix = "";
 option java_package = "ru.zveron.contract.profile.model";
 option java_outer_classname = "ProfileModelCommunication";
 option java_multiple_files = true;
@@ -18,6 +18,7 @@ message Links {
   optional Phone phone = 1;
   optional Vk vk = 2;
   optional Gmail gmail = 3;
+  optional Mailru mail = 4;
 }
 
 message Phone {
@@ -31,6 +32,11 @@ message Vk {
 }
 
 message Gmail {
+  string id = 1;
+  string email = 2;
+}
+
+message Mailru {
   string id = 1;
   string email = 2;
 }

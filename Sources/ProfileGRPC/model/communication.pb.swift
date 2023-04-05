@@ -100,6 +100,15 @@ public struct Links {
   /// Clears the value of `gmail`. Subsequent reads from it will return its default value.
   public mutating func clearGmail() {self._gmail = nil}
 
+  public var mail: Mailru {
+    get {return _mail ?? Mailru()}
+    set {_mail = newValue}
+  }
+  /// Returns true if `mail` has been explicitly set.
+  public var hasMail: Bool {return self._mail != nil}
+  /// Clears the value of `mail`. Subsequent reads from it will return its default value.
+  public mutating func clearMail() {self._mail = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -107,6 +116,7 @@ public struct Links {
   fileprivate var _phone: Phone? = nil
   fileprivate var _vk: Vk? = nil
   fileprivate var _gmail: Gmail? = nil
+  fileprivate var _mail: Mailru? = nil
 }
 
 public struct Phone {
@@ -160,12 +170,27 @@ public struct Gmail {
   public init() {}
 }
 
+public struct Mailru {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var email: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 #if swift(>=5.5) && canImport(_Concurrency)
 extension ChannelType: @unchecked Sendable {}
 extension Links: @unchecked Sendable {}
 extension Phone: @unchecked Sendable {}
 extension Vk: @unchecked Sendable {}
 extension Gmail: @unchecked Sendable {}
+extension Mailru: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -187,6 +212,7 @@ extension Links: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
     1: .same(proto: "phone"),
     2: .same(proto: "vk"),
     3: .same(proto: "gmail"),
+    4: .same(proto: "mail"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -198,6 +224,7 @@ extension Links: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
       case 1: try { try decoder.decodeSingularMessageField(value: &self._phone) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._vk) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._gmail) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._mail) }()
       default: break
       }
     }
@@ -217,6 +244,9 @@ extension Links: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
     try { if let v = self._gmail {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     } }()
+    try { if let v = self._mail {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -224,6 +254,7 @@ extension Links: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
     if lhs._phone != rhs._phone {return false}
     if lhs._vk != rhs._vk {return false}
     if lhs._gmail != rhs._gmail {return false}
+    if lhs._mail != rhs._mail {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -340,6 +371,44 @@ extension Gmail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase
   }
 
   public static func ==(lhs: Gmail, rhs: Gmail) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.email != rhs.email {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Mailru: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Mailru"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "email"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.id) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.email) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.email.isEmpty {
+      try visitor.visitSingularStringField(value: self.email, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Mailru, rhs: Mailru) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.email != rhs.email {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

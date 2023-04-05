@@ -26,6 +26,7 @@ public enum ChannelType: SwiftProtobuf.Enum {
   case google // = 1
   case phone // = 2
   case chat // = 3
+  case mailru // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -38,6 +39,7 @@ public enum ChannelType: SwiftProtobuf.Enum {
     case 1: self = .google
     case 2: self = .phone
     case 3: self = .chat
+    case 4: self = .mailru
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -48,6 +50,7 @@ public enum ChannelType: SwiftProtobuf.Enum {
     case .google: return 1
     case .phone: return 2
     case .chat: return 3
+    case .mailru: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -63,6 +66,7 @@ extension ChannelType: CaseIterable {
     .google,
     .phone,
     .chat,
+    .mailru,
   ]
 }
 
@@ -203,6 +207,7 @@ extension ChannelType: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "GOOGLE"),
     2: .same(proto: "PHONE"),
     3: .same(proto: "CHAT"),
+    4: .same(proto: "MAILRU"),
   ]
 }
 

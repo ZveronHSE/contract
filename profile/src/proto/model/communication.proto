@@ -12,6 +12,7 @@ enum ChannelType {
   GOOGLE = 1;
   PHONE = 2;
   CHAT = 3;
+  MAILRU = 4;
 }
 
 message Links {

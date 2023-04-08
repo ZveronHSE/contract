@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/timestamp.proto";
 
 package ru.zveron.contract.chat.model;
 
@@ -20,6 +21,7 @@ message Message {
   bool is_read = 3;
   repeated string images_urls = 4;
   uint64 sender_id = 5;
+  google.protobuf.Timestamp sent_at = 6;
 }
 
 enum MessageType {

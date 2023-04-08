@@ -10,5 +10,6 @@ include(
     "profile",
     "lot",
     "core",
+    "objectstorage",
     "chat",
 )

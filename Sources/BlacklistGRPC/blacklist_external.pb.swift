@@ -43,7 +43,7 @@ public struct ProfileSummary {
 
   public var surname: String = String()
 
-  public var imageID: UInt64 = 0
+  public var imageURL: String = String()
 
   public var addressID: Int64 = 0
 
@@ -127,7 +127,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     1: .same(proto: "id"),
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
-    4: .standard(proto: "image_id"),
+    4: .standard(proto: "image_url"),
     6: .standard(proto: "address_id"),
   ]
 
@@ -140,7 +140,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
-      case 4: try { try decoder.decodeSingularUInt64Field(value: &self.imageID) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.imageURL) }()
       case 6: try { try decoder.decodeSingularInt64Field(value: &self.addressID) }()
       default: break
       }
@@ -157,8 +157,8 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if !self.surname.isEmpty {
       try visitor.visitSingularStringField(value: self.surname, fieldNumber: 3)
     }
-    if self.imageID != 0 {
-      try visitor.visitSingularUInt64Field(value: self.imageID, fieldNumber: 4)
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 4)
     }
     if self.addressID != 0 {
       try visitor.visitSingularInt64Field(value: self.addressID, fieldNumber: 6)
@@ -170,7 +170,7 @@ extension ProfileSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
-    if lhs.imageID != rhs.imageID {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
     if lhs.addressID != rhs.addressID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

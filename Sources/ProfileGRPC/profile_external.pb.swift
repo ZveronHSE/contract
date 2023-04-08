@@ -55,14 +55,14 @@ public struct SetProfileInfoRequest {
   /// Clears the value of `surname`. Subsequent reads from it will return its default value.
   public mutating func clearSurname() {self._surname = nil}
 
-  public var imageID: UInt64 {
-    get {return _imageID ?? 0}
-    set {_imageID = newValue}
+  public var imageURL: String {
+    get {return _imageURL ?? String()}
+    set {_imageURL = newValue}
   }
-  /// Returns true if `imageID` has been explicitly set.
-  public var hasImageID: Bool {return self._imageID != nil}
-  /// Clears the value of `imageID`. Subsequent reads from it will return its default value.
-  public mutating func clearImageID() {self._imageID = nil}
+  /// Returns true if `imageURL` has been explicitly set.
+  public var hasImageURL: Bool {return self._imageURL != nil}
+  /// Clears the value of `imageURL`. Subsequent reads from it will return its default value.
+  public mutating func clearImageURL() {self._imageURL = nil}
 
   public var address: Address {
     get {return _address ?? Address()}
@@ -79,7 +79,7 @@ public struct SetProfileInfoRequest {
 
   fileprivate var _name: String? = nil
   fileprivate var _surname: String? = nil
-  fileprivate var _imageID: UInt64? = nil
+  fileprivate var _imageURL: String? = nil
   fileprivate var _address: Address? = nil
 }
 
@@ -118,7 +118,7 @@ public struct GetProfileInfoResponse {
 
   public var surname: String = String()
 
-  public var imageID: UInt64 = 0
+  public var imageURL: String = String()
 
   public var rating: Double = 0
 
@@ -158,9 +158,9 @@ public struct GetProfilePageResponse {
     set {_uniqueStorage()._surname = newValue}
   }
 
-  public var imageID: UInt64 {
-    get {return _storage._imageID}
-    set {_uniqueStorage()._imageID = newValue}
+  public var imageURL: String {
+    get {return _storage._imageURL}
+    set {_uniqueStorage()._imageURL = newValue}
   }
 
   public var contacts: Contacts {
@@ -342,7 +342,7 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
-    4: .standard(proto: "image_id"),
+    4: .standard(proto: "image_url"),
     5: .same(proto: "address"),
   ]
 
@@ -354,7 +354,7 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       switch fieldNumber {
       case 2: try { try decoder.decodeSingularStringField(value: &self._name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self._surname) }()
-      case 4: try { try decoder.decodeSingularUInt64Field(value: &self._imageID) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self._imageURL) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._address) }()
       default: break
       }
@@ -372,8 +372,8 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     try { if let v = self._surname {
       try visitor.visitSingularStringField(value: v, fieldNumber: 3)
     } }()
-    try { if let v = self._imageID {
-      try visitor.visitSingularUInt64Field(value: v, fieldNumber: 4)
+    try { if let v = self._imageURL {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 4)
     } }()
     try { if let v = self._address {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
@@ -384,7 +384,7 @@ extension SetProfileInfoRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   public static func ==(lhs: SetProfileInfoRequest, rhs: SetProfileInfoRequest) -> Bool {
     if lhs._name != rhs._name {return false}
     if lhs._surname != rhs._surname {return false}
-    if lhs._imageID != rhs._imageID {return false}
+    if lhs._imageURL != rhs._imageURL {return false}
     if lhs._address != rhs._address {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -439,7 +439,7 @@ extension GetProfileInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     1: .same(proto: "id"),
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
-    4: .standard(proto: "image_id"),
+    4: .standard(proto: "image_url"),
     5: .same(proto: "rating"),
     6: .same(proto: "address"),
   ]
@@ -453,7 +453,7 @@ extension GetProfileInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       case 1: try { try decoder.decodeSingularUInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
-      case 4: try { try decoder.decodeSingularUInt64Field(value: &self.imageID) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.imageURL) }()
       case 5: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._address) }()
       default: break
@@ -475,8 +475,8 @@ extension GetProfileInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if !self.surname.isEmpty {
       try visitor.visitSingularStringField(value: self.surname, fieldNumber: 3)
     }
-    if self.imageID != 0 {
-      try visitor.visitSingularUInt64Field(value: self.imageID, fieldNumber: 4)
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 4)
     }
     if self.rating != 0 {
       try visitor.visitSingularDoubleField(value: self.rating, fieldNumber: 5)
@@ -491,7 +491,7 @@ extension GetProfileInfoResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
-    if lhs.imageID != rhs.imageID {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
     if lhs.rating != rhs.rating {return false}
     if lhs._address != rhs._address {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -505,7 +505,7 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     1: .same(proto: "id"),
     2: .same(proto: "name"),
     3: .same(proto: "surname"),
-    4: .standard(proto: "image_id"),
+    4: .standard(proto: "image_url"),
     5: .same(proto: "contacts"),
     6: .same(proto: "rating"),
     7: .standard(proto: "review_number"),
@@ -519,7 +519,7 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     var _id: UInt64 = 0
     var _name: String = String()
     var _surname: String = String()
-    var _imageID: UInt64 = 0
+    var _imageURL: String = String()
     var _contacts: Contacts? = nil
     var _rating: Double = 0
     var _reviewNumber: Int32 = 0
@@ -536,7 +536,7 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       _id = source._id
       _name = source._name
       _surname = source._surname
-      _imageID = source._imageID
+      _imageURL = source._imageURL
       _contacts = source._contacts
       _rating = source._rating
       _reviewNumber = source._reviewNumber
@@ -565,7 +565,7 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
         case 1: try { try decoder.decodeSingularUInt64Field(value: &_storage._id) }()
         case 2: try { try decoder.decodeSingularStringField(value: &_storage._name) }()
         case 3: try { try decoder.decodeSingularStringField(value: &_storage._surname) }()
-        case 4: try { try decoder.decodeSingularUInt64Field(value: &_storage._imageID) }()
+        case 4: try { try decoder.decodeSingularStringField(value: &_storage._imageURL) }()
         case 5: try { try decoder.decodeSingularMessageField(value: &_storage._contacts) }()
         case 6: try { try decoder.decodeSingularDoubleField(value: &_storage._rating) }()
         case 7: try { try decoder.decodeSingularInt32Field(value: &_storage._reviewNumber) }()
@@ -594,8 +594,8 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       if !_storage._surname.isEmpty {
         try visitor.visitSingularStringField(value: _storage._surname, fieldNumber: 3)
       }
-      if _storage._imageID != 0 {
-        try visitor.visitSingularUInt64Field(value: _storage._imageID, fieldNumber: 4)
+      if !_storage._imageURL.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._imageURL, fieldNumber: 4)
       }
       try { if let v = _storage._contacts {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
@@ -630,7 +630,7 @@ extension GetProfilePageResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageI
         if _storage._id != rhs_storage._id {return false}
         if _storage._name != rhs_storage._name {return false}
         if _storage._surname != rhs_storage._surname {return false}
-        if _storage._imageID != rhs_storage._imageID {return false}
+        if _storage._imageURL != rhs_storage._imageURL {return false}
         if _storage._contacts != rhs_storage._contacts {return false}
         if _storage._rating != rhs_storage._rating {return false}
         if _storage._reviewNumber != rhs_storage._reviewNumber {return false}

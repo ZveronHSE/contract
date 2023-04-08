@@ -283,66 +283,36 @@ public struct WaterfallRequest {
   public var parameters: [Parameter] = []
 
   /// По какому признаку нужно сортировать объявления
-  public var sort: WaterfallRequest.OneOf_Sort? = nil
-
-  public var sortByDate: SortByDate {
-    get {
-      if case .sortByDate(let v)? = sort {return v}
-      return SortByDate()
-    }
-    set {sort = .sortByDate(newValue)}
+  public var sort: Sort {
+    get {return _sort ?? Sort()}
+    set {_sort = newValue}
   }
-
-  public var sortByPrice: SortByPrice {
-    get {
-      if case .sortByPrice(let v)? = sort {return v}
-      return SortByPrice()
-    }
-    set {sort = .sortByPrice(newValue)}
-  }
+  /// Returns true if `sort` has been explicitly set.
+  public var hasSort: Bool {return self._sort != nil}
+  /// Clears the value of `sort`. Subsequent reads from it will return its default value.
+  public mutating func clearSort() {self._sort = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  /// По какому признаку нужно сортировать объявления
-  public enum OneOf_Sort: Equatable {
-    case sortByDate(SortByDate)
-    case sortByPrice(SortByPrice)
-
-  #if !swift(>=4.1)
-    public static func ==(lhs: WaterfallRequest.OneOf_Sort, rhs: WaterfallRequest.OneOf_Sort) -> Bool {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch (lhs, rhs) {
-      case (.sortByDate, .sortByDate): return {
-        guard case .sortByDate(let l) = lhs, case .sortByDate(let r) = rhs else { preconditionFailure() }
-        return l == r
-      }()
-      case (.sortByPrice, .sortByPrice): return {
-        guard case .sortByPrice(let l) = lhs, case .sortByPrice(let r) = rhs else { preconditionFailure() }
-        return l == r
-      }()
-      default: return false
-      }
-    }
-  #endif
-  }
 
   public init() {}
 
   fileprivate var _query: String? = nil
   fileprivate var _categoryID: Int32? = nil
+  fileprivate var _sort: Sort? = nil
 }
 
-public struct SortByDate {
+public struct Sort {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  public var sortBy: Sort.SortBy = .price
+
   public var typeSort: TypeSort = .asc
 
-  public var lastLot: SortByDate.LastLot {
-    get {return _lastLot ?? SortByDate.LastLot()}
+  /// Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
+  public var lastLot: LastLot {
+    get {return _lastLot ?? LastLot()}
     set {_lastLot = newValue}
   }
   /// Returns true if `lastLot` has been explicitly set.
@@ -352,72 +322,75 @@ public struct SortByDate {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
-  public struct LastLot {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public enum SortBy: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+    case price // = 0
+    case date // = 1
+    case UNRECOGNIZED(Int)
 
-    public var id: Int64 = 0
-
-    /// Дата создания
-    public var date: SwiftProtobuf.Google_Protobuf_Timestamp {
-      get {return _date ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
-      set {_date = newValue}
+    public init() {
+      self = .price
     }
-    /// Returns true if `date` has been explicitly set.
-    public var hasDate: Bool {return self._date != nil}
-    /// Clears the value of `date`. Subsequent reads from it will return its default value.
-    public mutating func clearDate() {self._date = nil}
 
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .price
+      case 1: self = .date
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
 
-    public init() {}
+    public var rawValue: Int {
+      switch self {
+      case .price: return 0
+      case .date: return 1
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
 
-    fileprivate var _date: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
   }
 
   public init() {}
 
-  fileprivate var _lastLot: SortByDate.LastLot? = nil
+  fileprivate var _lastLot: LastLot? = nil
 }
 
-public struct SortByPrice {
+#if swift(>=4.2)
+
+extension Sort.SortBy: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Sort.SortBy] = [
+    .price,
+    .date,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+public struct LastLot {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var typeSort: TypeSort = .asc
+  public var id: Int64 = 0
 
-  public var lastLot: SortByPrice.LastLot {
-    get {return _lastLot ?? SortByPrice.LastLot()}
-    set {_lastLot = newValue}
+  /// Дата создания
+  public var date: SwiftProtobuf.Google_Protobuf_Timestamp {
+    get {return _date ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
+    set {_date = newValue}
   }
-  /// Returns true if `lastLot` has been explicitly set.
-  public var hasLastLot: Bool {return self._lastLot != nil}
-  /// Clears the value of `lastLot`. Subsequent reads from it will return its default value.
-  public mutating func clearLastLot() {self._lastLot = nil}
+  /// Returns true if `date` has been explicitly set.
+  public var hasDate: Bool {return self._date != nil}
+  /// Clears the value of `date`. Subsequent reads from it will return its default value.
+  public mutating func clearDate() {self._date = nil}
+
+  public var price: Int32 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Данные последнего объявления, который был на прошлой странице(если запрос от второй страницы и последующей)
-  public struct LastLot {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    public var id: Int64 = 0
-
-    public var price: Int32 = 0
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-  }
-
   public init() {}
 
-  fileprivate var _lastLot: SortByPrice.LastLot? = nil
+  fileprivate var _date: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 }
 
 public struct Filter {
@@ -444,44 +417,20 @@ public struct WaterfallResponse {
   public var lots: [Lot] = []
 
   /// Данные последнего объявления, необходимые для сортировки и работы водопада
-  public var dataFilter: DataFilter {
-    get {return _dataFilter ?? DataFilter()}
-    set {_dataFilter = newValue}
+  public var lastLot: LastLot {
+    get {return _lastLot ?? LastLot()}
+    set {_lastLot = newValue}
   }
-  /// Returns true if `dataFilter` has been explicitly set.
-  public var hasDataFilter: Bool {return self._dataFilter != nil}
-  /// Clears the value of `dataFilter`. Subsequent reads from it will return its default value.
-  public mutating func clearDataFilter() {self._dataFilter = nil}
+  /// Returns true if `lastLot` has been explicitly set.
+  public var hasLastLot: Bool {return self._lastLot != nil}
+  /// Clears the value of `lastLot`. Subsequent reads from it will return its default value.
+  public mutating func clearLastLot() {self._lastLot = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  fileprivate var _dataFilter: DataFilter? = nil
-}
-
-public struct DataFilter {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var price: Int32 = 0
-
-  /// Пока тут не уверена по типу
-  public var date: SwiftProtobuf.Google_Protobuf_Timestamp {
-    get {return _date ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
-    set {_date = newValue}
-  }
-  /// Returns true if `date` has been explicitly set.
-  public var hasDate: Bool {return self._date != nil}
-  /// Clears the value of `date`. Subsequent reads from it will return its default value.
-  public mutating func clearDate() {self._date = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  fileprivate var _date: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
+  fileprivate var _lastLot: LastLot? = nil
 }
 
 public struct CreateLotRequest {
@@ -810,7 +759,7 @@ public struct Seller {
 
   public var online: Bool = false
 
-  public var photoID: Int64 = 0
+  public var imageURL: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -893,14 +842,11 @@ extension Field: @unchecked Sendable {}
 extension Operation: @unchecked Sendable {}
 extension ClosingLotReason: @unchecked Sendable {}
 extension WaterfallRequest: @unchecked Sendable {}
-extension WaterfallRequest.OneOf_Sort: @unchecked Sendable {}
-extension SortByDate: @unchecked Sendable {}
-extension SortByDate.LastLot: @unchecked Sendable {}
-extension SortByPrice: @unchecked Sendable {}
-extension SortByPrice.LastLot: @unchecked Sendable {}
+extension Sort: @unchecked Sendable {}
+extension Sort.SortBy: @unchecked Sendable {}
+extension LastLot: @unchecked Sendable {}
 extension Filter: @unchecked Sendable {}
 extension WaterfallResponse: @unchecked Sendable {}
-extension DataFilter: @unchecked Sendable {}
 extension CreateLotRequest: @unchecked Sendable {}
 extension EditLotRequest: @unchecked Sendable {}
 extension CloseLotRequest: @unchecked Sendable {}
@@ -962,8 +908,7 @@ extension WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     3: .standard(proto: "category_id"),
     4: .same(proto: "filters"),
     5: .same(proto: "parameters"),
-    6: .standard(proto: "sort_by_date"),
-    7: .standard(proto: "sort_by_price"),
+    6: .same(proto: "sort"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -977,32 +922,7 @@ extension WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
       case 3: try { try decoder.decodeSingularInt32Field(value: &self._categoryID) }()
       case 4: try { try decoder.decodeRepeatedMessageField(value: &self.filters) }()
       case 5: try { try decoder.decodeRepeatedMessageField(value: &self.parameters) }()
-      case 6: try {
-        var v: SortByDate?
-        var hadOneofValue = false
-        if let current = self.sort {
-          hadOneofValue = true
-          if case .sortByDate(let m) = current {v = m}
-        }
-        try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {
-          if hadOneofValue {try decoder.handleConflictingOneOf()}
-          self.sort = .sortByDate(v)
-        }
-      }()
-      case 7: try {
-        var v: SortByPrice?
-        var hadOneofValue = false
-        if let current = self.sort {
-          hadOneofValue = true
-          if case .sortByPrice(let m) = current {v = m}
-        }
-        try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {
-          if hadOneofValue {try decoder.handleConflictingOneOf()}
-          self.sort = .sortByPrice(v)
-        }
-      }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._sort) }()
       default: break
       }
     }
@@ -1028,17 +948,9 @@ extension WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     if !self.parameters.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.parameters, fieldNumber: 5)
     }
-    switch self.sort {
-    case .sortByDate?: try {
-      guard case .sortByDate(let v)? = self.sort else { preconditionFailure() }
+    try { if let v = self._sort {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-    }()
-    case .sortByPrice?: try {
-      guard case .sortByPrice(let v)? = self.sort else { preconditionFailure() }
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-    }()
-    case nil: break
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1048,17 +960,18 @@ extension WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     if lhs._categoryID != rhs._categoryID {return false}
     if lhs.filters != rhs.filters {return false}
     if lhs.parameters != rhs.parameters {return false}
-    if lhs.sort != rhs.sort {return false}
+    if lhs._sort != rhs._sort {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension SortByDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".SortByDate"
+extension Sort: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Sort"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "type_sort"),
-    2: .standard(proto: "last_lot"),
+    1: .standard(proto: "sort_by"),
+    2: .standard(proto: "type_sort"),
+    3: .standard(proto: "last_lot"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1067,8 +980,9 @@ extension SortByDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularEnumField(value: &self.typeSort) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._lastLot) }()
+      case 1: try { try decoder.decodeSingularEnumField(value: &self.sortBy) }()
+      case 2: try { try decoder.decodeSingularEnumField(value: &self.typeSort) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._lastLot) }()
       default: break
       }
     }
@@ -1079,16 +993,20 @@ extension SortByDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
+    if self.sortBy != .price {
+      try visitor.visitSingularEnumField(value: self.sortBy, fieldNumber: 1)
+    }
     if self.typeSort != .asc {
-      try visitor.visitSingularEnumField(value: self.typeSort, fieldNumber: 1)
+      try visitor.visitSingularEnumField(value: self.typeSort, fieldNumber: 2)
     }
     try { if let v = self._lastLot {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: SortByDate, rhs: SortByDate) -> Bool {
+  public static func ==(lhs: Sort, rhs: Sort) -> Bool {
+    if lhs.sortBy != rhs.sortBy {return false}
     if lhs.typeSort != rhs.typeSort {return false}
     if lhs._lastLot != rhs._lastLot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1096,11 +1014,19 @@ extension SortByDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   }
 }
 
-extension SortByDate.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = SortByDate.protoMessageName + ".LastLot"
+extension Sort.SortBy: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "PRICE"),
+    1: .same(proto: "DATE"),
+  ]
+}
+
+extension LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LastLot"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "date"),
+    3: .same(proto: "price"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1111,6 +1037,7 @@ extension SortByDate.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._date) }()
+      case 3: try { try decoder.decodeSingularInt32Field(value: &self.price) }()
       default: break
       }
     }
@@ -1127,91 +1054,15 @@ extension SortByDate.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     try { if let v = self._date {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     } }()
+    if self.price != 0 {
+      try visitor.visitSingularInt32Field(value: self.price, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: SortByDate.LastLot, rhs: SortByDate.LastLot) -> Bool {
+  public static func ==(lhs: LastLot, rhs: LastLot) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs._date != rhs._date {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension SortByPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".SortByPrice"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "type_sort"),
-    2: .standard(proto: "last_lot"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularEnumField(value: &self.typeSort) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._lastLot) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every if/case branch local when no optimizations
-    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
-    // https://github.com/apple/swift-protobuf/issues/1182
-    if self.typeSort != .asc {
-      try visitor.visitSingularEnumField(value: self.typeSort, fieldNumber: 1)
-    }
-    try { if let v = self._lastLot {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    } }()
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: SortByPrice, rhs: SortByPrice) -> Bool {
-    if lhs.typeSort != rhs.typeSort {return false}
-    if lhs._lastLot != rhs._lastLot {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension SortByPrice.LastLot: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = SortByPrice.protoMessageName + ".LastLot"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "price"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
-      case 2: try { try decoder.decodeSingularInt32Field(value: &self.price) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.id != 0 {
-      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
-    }
-    if self.price != 0 {
-      try visitor.visitSingularInt32Field(value: self.price, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: SortByPrice.LastLot, rhs: SortByPrice.LastLot) -> Bool {
-    if lhs.id != rhs.id {return false}
     if lhs.price != rhs.price {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -1266,7 +1117,7 @@ extension WaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
   public static let protoMessageName: String = _protobuf_package + ".WaterfallResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "lots"),
-    2: .standard(proto: "data_filter"),
+    2: .standard(proto: "last_lot"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1276,7 +1127,7 @@ extension WaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeRepeatedMessageField(value: &self.lots) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._dataFilter) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._lastLot) }()
       default: break
       }
     }
@@ -1290,7 +1141,7 @@ extension WaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if !self.lots.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.lots, fieldNumber: 1)
     }
-    try { if let v = self._dataFilter {
+    try { if let v = self._lastLot {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     } }()
     try unknownFields.traverse(visitor: &visitor)
@@ -1298,49 +1149,7 @@ extension WaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 
   public static func ==(lhs: WaterfallResponse, rhs: WaterfallResponse) -> Bool {
     if lhs.lots != rhs.lots {return false}
-    if lhs._dataFilter != rhs._dataFilter {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension DataFilter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DataFilter"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "price"),
-    2: .same(proto: "date"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularInt32Field(value: &self.price) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._date) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every if/case branch local when no optimizations
-    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
-    // https://github.com/apple/swift-protobuf/issues/1182
-    if self.price != 0 {
-      try visitor.visitSingularInt32Field(value: self.price, fieldNumber: 1)
-    }
-    try { if let v = self._date {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    } }()
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: DataFilter, rhs: DataFilter) -> Bool {
-    if lhs.price != rhs.price {return false}
-    if lhs._date != rhs._date {return false}
+    if lhs._lastLot != rhs._lastLot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1874,7 +1683,7 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     3: .same(proto: "surname"),
     4: .same(proto: "rating"),
     5: .same(proto: "online"),
-    6: .standard(proto: "photo_id"),
+    6: .standard(proto: "image_url"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1888,7 +1697,7 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
       case 3: try { try decoder.decodeSingularStringField(value: &self.surname) }()
       case 4: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
       case 5: try { try decoder.decodeSingularBoolField(value: &self.online) }()
-      case 6: try { try decoder.decodeSingularInt64Field(value: &self.photoID) }()
+      case 6: try { try decoder.decodeSingularStringField(value: &self.imageURL) }()
       default: break
       }
     }
@@ -1910,8 +1719,8 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     if self.online != false {
       try visitor.visitSingularBoolField(value: self.online, fieldNumber: 5)
     }
-    if self.photoID != 0 {
-      try visitor.visitSingularInt64Field(value: self.photoID, fieldNumber: 6)
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1922,7 +1731,7 @@ extension Seller: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     if lhs.surname != rhs.surname {return false}
     if lhs.rating != rhs.rating {return false}
     if lhs.online != rhs.online {return false}
-    if lhs.photoID != rhs.photoID {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

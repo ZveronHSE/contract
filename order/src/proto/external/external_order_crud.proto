@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package ru.zveron.contract.order.external;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.order.external";
+option java_outer_classname = "OrderServiceProto";
+option java_multiple_files = true;
+
+service OrderService {
+  //gets order by id
+  rpc GetOrder(GetOrderRequest)
+      returns (GetOrderResponse);
+}
+
+
+message GetOrderRequest{
+  int64 id = 1;
+}
+
+message GetOrderResponse {
+  FullOrder order = 1;
+}
+
+//dto describing order when in full order info screen
+message FullOrder {
+  int64 id = 1;
+  Profile profile = 2;
+  Animal animal = 3;
+  string title = 4;
+  string price = 5;
+  Address address = 6;
+  //date of order delivery formatted as dd.MM.yyyy - dd.MM.yyyy
+  string service_date = 7;
+  //time of order delivery formatted as HH:mm (- HH:mm)
+  optional string service_time = 8;
+  string description = 9;
+  //delivery type, in person or remote
+  ServiceDeliveryMethod service_delivery_method = 10;
+}
+
+message Address {
+  string town = 1;
+  string station = 2;
+  string color = 3;
+}
+
+message Profile {
+  int64 id = 1;
+  string name = 2;
+  string image_url = 3;
+  //rating values like 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
+  float rating = 4;
+}
+
+message Animal {
+  int64 id = 1;
+  string name = 2;
+  string species = 3;
+  string breed = 4;
+  //first animal image
+  string image_url = 5;
+}
+
+enum ServiceDeliveryMethod {
+  IN_PERSON = 0;
+  REMOTE = 1;
+}

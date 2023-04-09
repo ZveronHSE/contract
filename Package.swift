@@ -11,6 +11,7 @@ let coreTargetName = "CoreGRPC"
 let favoritesTargetName = "FavoritesGRPC"
 let lotTargetName = "LotGRPC"
 let objectstorageTargetName = "ObjectstorageGRPC"
+let orderTargetName = "OrderGRPC"
 let parameterTargetName = "ParameterGRPC"
 let profileTargetName = "ProfileGRPC"
 
@@ -33,6 +34,7 @@ let package = Package(
                 favoritesTargetName,
                 lotTargetName,
                 objectstorageTargetName,
+                orderTargetName,
                 parameterTargetName,
                 profileTargetName,
             ]
@@ -47,6 +49,7 @@ let package = Package(
         .target(name: favoritesTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: lotTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: objectstorageTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
+        .target(name: orderTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: parameterTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: profileTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
     ]

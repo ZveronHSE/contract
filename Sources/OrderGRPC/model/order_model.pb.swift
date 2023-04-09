@@ -40,8 +40,25 @@ public struct Animal {
   public init() {}
 }
 
+public struct Address {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var town: String = String()
+
+  public var station: String = String()
+
+  public var color: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 #if swift(>=5.5) && canImport(_Concurrency)
 extension Animal: @unchecked Sendable {}
+extension Address: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -99,6 +116,50 @@ extension Animal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
     if lhs.breed != rhs.breed {return false}
     if lhs.species != rhs.species {return false}
     if lhs.imageURL != rhs.imageURL {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Address: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Address"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "town"),
+    2: .same(proto: "station"),
+    3: .same(proto: "color"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.town) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.station) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.color) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.town.isEmpty {
+      try visitor.visitSingularStringField(value: self.town, fieldNumber: 1)
+    }
+    if !self.station.isEmpty {
+      try visitor.visitSingularStringField(value: self.station, fieldNumber: 2)
+    }
+    if !self.color.isEmpty {
+      try visitor.visitSingularStringField(value: self.color, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Address, rhs: Address) -> Bool {
+    if lhs.town != rhs.town {return false}
+    if lhs.station != rhs.station {return false}
+    if lhs.color != rhs.color {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

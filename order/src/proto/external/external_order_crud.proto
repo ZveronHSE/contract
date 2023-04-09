@@ -31,7 +31,7 @@ message FullOrder {
   model.Animal animal = 3;
   string title = 4;
   string price = 5;
-  Address address = 6;
+  model.Address address = 6;
   //date of order delivery formatted as dd.MM.yyyy - dd.MM.yyyy
   string service_date = 7;
   //time of order delivery formatted as HH:mm (- HH:mm)
@@ -39,12 +39,6 @@ message FullOrder {
   string description = 9;
   //delivery type, in person or remote
   ServiceDeliveryMethod service_delivery_method = 10;
-}
-
-message Address {
-  string town = 1;
-  string station = 2;
-  string color = 3;
 }
 
 message Profile {

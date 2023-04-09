@@ -80,13 +80,7 @@ message WaterfallOrder {
   model.Animal animal = 2;
   string title = 3;
   string price = 4;
-  optional Address address = 5;
+  optional model.Address address = 5;
   string service_datetime = 6;
   string date_created = 7;
-}
-
-message Address {
-  string town = 1;
-  string station = 2;
-  string color = 3;
 }

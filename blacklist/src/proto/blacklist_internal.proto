@@ -11,6 +11,9 @@ service BlacklistServiceInternal {
   // Проверяет наличие определенного пользователя в черном списке владельца
   rpc ExistInBlacklist(ExistInBlacklistRequest) returns(ExistInBlacklistResponse);
 
+  // Проверяет наличие пользователя в черных списках других пользователей
+  rpc EachExistInBlacklist(EachExistInBlacklistRequest) returns(EachExistInBlacklistResponse);
+
   // Удаление всех упоминаний о добавлении в черный список определенного пользователя
   rpc DeleteAllRecordsWhereUserBlocks(DeleteAllRecordsWhereUserBlocksRequest) returns(google.protobuf.Empty);
 
@@ -36,4 +39,15 @@ message DeleteAllRecordsWhereUserBlocksRequest {
 message DeleteAllRecordsWhereUserIsBlockedRequest {
   // Id пользователя, удаляемого из всех черных списков
   int64 deleted_user_id = 1;
+}
+
+message EachExistInBlacklistRequest {
+  // Id владельцев черного списка
+  repeated int64 owner_id = 1;
+  // Id проверяемого пользователя
+  int64 target_user_id = 2;
+}
+
+message EachExistInBlacklistResponse {
+  repeated bool exists = 1;
 }

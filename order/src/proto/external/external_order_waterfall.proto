@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package ru.zveron.contract.order.external;
 
+import "model/order_model.proto";
+
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.order.external";
 option java_outer_classname = "OrderWaterfallServiceProto";
@@ -75,19 +77,12 @@ message GetWaterfallResponse {
 
 message WaterfallOrder {
   int64 id = 1;
-  Animal animal = 2;
+  model.Animal animal = 2;
   string title = 3;
   string price = 4;
   optional Address address = 5;
   string service_datetime = 6;
   string date_created = 7;
-}
-
-message Animal {
-  int64 id = 1;
-  string name = 2;
-  string breed = 3;
-  string image_url = 4;
 }
 
 message Address {

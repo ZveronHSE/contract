@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ru.zveron.contract.order.model;
+
+option swift_prefix="";
+option java_package = "ru.zveron.contract.order.model";
+option java_outer_classname = "OrderModelProto";
+option java_multiple_files = true;
+
+
+message Animal {
+  int64 id = 1;
+  string name = 2;
+  string breed = 3;
+  string species = 4;
+  string image_url = 5;
+}

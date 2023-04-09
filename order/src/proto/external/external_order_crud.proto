@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package ru.zveron.contract.order.external;
 
+import "model/order_model.proto";
+
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.order.external";
 option java_outer_classname = "OrderServiceProto";
@@ -26,7 +28,7 @@ message GetOrderResponse {
 message FullOrder {
   int64 id = 1;
   Profile profile = 2;
-  Animal animal = 3;
+  model.Animal animal = 3;
   string title = 4;
   string price = 5;
   Address address = 6;
@@ -51,15 +53,6 @@ message Profile {
   string image_url = 3;
   //rating values like 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
   float rating = 4;
-}
-
-message Animal {
-  int64 id = 1;
-  string name = 2;
-  string species = 3;
-  string breed = 4;
-  //first animal image
-  string image_url = 5;
 }
 
 enum ServiceDeliveryMethod {

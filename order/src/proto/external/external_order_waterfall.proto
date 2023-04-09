@@ -9,7 +9,7 @@ option java_package = "ru.zveron.contract.order.external";
 option java_outer_classname = "OrderWaterfallServiceExternalProto";
 option java_multiple_files = true;
 
-service OrderWaterfallService {
+service OrderWaterfallServiceExternal {
   //gets waterfall of orders
   rpc GetWaterfall(GetWaterfallRequest)
       returns (GetWaterfallResponse);

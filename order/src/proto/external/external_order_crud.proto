@@ -9,7 +9,7 @@ option java_package = "ru.zveron.contract.order.external";
 option java_outer_classname = "OrderServiceExternalProto";
 option java_multiple_files = true;
 
-service OrderService {
+service OrderServiceExternal {
   //gets order by id
   rpc GetOrder(GetOrderRequest)
       returns (GetOrderResponse);

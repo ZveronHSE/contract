@@ -43,7 +43,7 @@ message DeleteAllRecordsWhereUserIsBlockedRequest {
 
 message ExistInMultipleBlacklistsRequest {
   // Id владельцев черного списка
-  repeated int64 owner_id = 1;
+  repeated int64 owners_ids = 1;
   // Id проверяемого пользователя
   int64 target_user_id = 2;
 }

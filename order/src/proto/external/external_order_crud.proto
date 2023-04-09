@@ -6,7 +6,7 @@ import "model/order_model.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.order.external";
-option java_outer_classname = "OrderServiceProto";
+option java_outer_classname = "OrderServiceExternalProto";
 option java_multiple_files = true;
 
 service OrderService {

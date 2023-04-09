@@ -81,6 +81,6 @@ message WaterfallOrder {
   string title = 3;
   string price = 4;
   optional model.Address address = 5;
-  string service_datetime = 6;
+  string service_date = 6;
   string date_created = 7;
 }

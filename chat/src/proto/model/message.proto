@@ -28,11 +28,13 @@ enum MessageType {
   DEFAULT = 0;
 }
 
+// Событие выхода пользователя из сети
 message DisconnectEvent {
   // Optional в запросе, Required в ответе
   optional string last_online_formatted = 1;
 }
 
+// Событие, отмечающее, что сообщения по указанным идентификаторам были прочитаны
 message ChangeMessagesStatusEvent {
   repeated string ids = 1;
   bool is_read = 2;
@@ -43,6 +45,8 @@ message NoPayloadEvent {
 }
 
 enum NoPayloadEventType {
+  // Событие, сигнализирующее о том, что собеседник набирает сообщение
   TEXTING = 0;
+  // Событие подключения пользователя к чату
   ONLINE = 1;
 }

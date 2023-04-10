@@ -31,12 +31,14 @@ message ChatPagination {
 message Chat {
   string chat_id = 1;
   ProfileSummary interlocutor_summary = 2;
+  // 100 последних сообщений
   repeated model.Message messages = 3;
   uint32 unread_messages = 4;
   google.protobuf.Timestamp last_update = 5;
   // Id услуги, связанной с чатом
   optional uint64 service_id = 6;
   optional uint64 review_id = 7;
+  // Все объявления, связанные с чатом
   repeated contract.core.Lot lots = 8;
   ChatFolder folder = 9;
   // Заблокирован ли получатель (тот, кто просматривает информацию о чате)

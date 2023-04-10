@@ -9,6 +9,7 @@ option java_package = "ru.zveron.contract.chat";
 option java_outer_classname = "PingGrpcExternal";
 option java_multiple_files = true;
 
+// Service for e2e test
 service PingServiceExternal {
    rpc Ping(google.protobuf.Empty) returns(google.protobuf.StringValue);
 }

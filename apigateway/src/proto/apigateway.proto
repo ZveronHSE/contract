@@ -10,6 +10,9 @@ service ApigatewayService{
 
   //запрос из вне в шлюз
   rpc CallApiGateway(ApiGatewayRequest) returns (ApigatewayResponse);
+
+  // Двунаправленный обмен сообщениями между клиентом и шлюзом
+  rpc BidiStreamApiGateway(stream ApiGatewayRequest) returns (stream ApigatewayResponse);
 }
 
 

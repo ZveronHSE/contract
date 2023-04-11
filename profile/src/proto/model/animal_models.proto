@@ -1,12 +1,10 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
-
 package ru.zveron.contract.profile.model;
 
 option swift_prefix = "";
-option java_package = "ru.zveron.contract.profile";
-option java_outer_classname = "AnimalModel";
+option java_package = "ru.zveron.contract.profile.model";
+option java_outer_classname = "AnimalCommonModels";
 option java_multiple_files = true;
 
 message FullAnimal{
@@ -19,6 +17,3 @@ message FullAnimal{
   repeated string document_urls = 7;
 }
 
-message GetAnimalRequest {
-  string animal_id = 1;
-}

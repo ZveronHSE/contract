@@ -1,54 +1,34 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
+import  "model/animal_models.proto";
 
 package ru.zveron.contract.profile;
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.profile";
-option java_outer_classname = "AnimalGrpcInternal";
+option java_outer_classname = "AnimalGrpcInternalProto";
 option java_multiple_files = true;
 
 service AnimalServiceInternal {
-    //get animals by id
-    rpc GetAnimal (GetAnimalRequest) returns (GetAnimalResponse);
+  //get animals by id
+  rpc GetAnimal (GetAnimalRequestInt) returns (GetAnimalResponseInt);
 
-    //get animals by ids
-    rpc GetAnimalBatch (GetAnimalBatchRequest) returns (GetAnimalBatchResponse);
+  //get animals by ids
+  rpc GetAnimalBatch (GetAnimalBatchRequest) returns (GetAnimalBatchResponse);
 }
 
-message GetAnimalRequest {
-    string animal_id = 1;
+message GetAnimalRequestInt{
+  int64 animal_id = 1;
 }
 
-message GetAnimalResponse {
-    FullAnimal animal = 1;
-
-    message FullAnimal{
-        int64 id = 1;
-        string name = 2;
-        string breed = 3;
-        string species = 4;
-        int32 age = 5;
-        repeated string image_urls = 6;
-        repeated string document_urls = 7;
-    }
+message GetAnimalResponseInt {
+  model.FullAnimal animal = 1;
 }
 
 message GetAnimalBatchRequest {
-    repeated int64 animal_ids = 1;
+  repeated int64 animal_ids = 1;
 }
 
 message GetAnimalBatchResponse {
-    repeated FullAnimal animals = 1;
-
-    message FullAnimal{
-        int64 id = 1;
-        string name = 2;
-        string breed = 3;
-        string species = 4;
-        int32 age = 5;
-        repeated string image_urls = 6;
-        repeated string document_urls = 7;
-    }
+  repeated model.FullAnimal animals = 1;
 }

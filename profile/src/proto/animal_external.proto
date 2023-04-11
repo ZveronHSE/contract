@@ -1,18 +1,19 @@
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
+import "model/animal_models.proto";
 
 package ru.zveron.contract.profile;
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.profile";
-option java_outer_classname = "AnimalGrpcExternal";
+option java_outer_classname = "AnimalGrpcExternalProto";
 option java_multiple_files = true;
 
 service AnimalGrpcExternal {
   //gets animal by animal id
-  rpc GetAnimal (GetAnimalRequest)
-      returns (GetAnimalResponse);
+  rpc GetAnimal (GetAnimalRequestExt)
+      returns (GetAnimalResponseExt);
 
   //gets animals for a logged in user by profile id, request is empty as profile id is stored in context
   rpc GetAnimalsByProfile (google.protobuf.Empty)
@@ -23,22 +24,12 @@ service AnimalGrpcExternal {
       returns (CreateAnimalResponse);
 }
 
-message GetAnimalRequest {
+message GetAnimalRequestExt {
   string animal_id = 1;
 }
 
-message GetAnimalResponse {
-  FullAnimal animal = 1;
-
-  message FullAnimal{
-    int64 id = 1;
-    string name = 2;
-    string breed = 3;
-    string species = 4;
-    int32 age = 5;
-    repeated string image_urls = 6;
-    repeated string document_urls = 7;
-  }
+message GetAnimalResponseExt {
+  model.FullAnimal animal = 1;
 }
 
 message GetAnimalsByProfileResponse{
@@ -65,15 +56,5 @@ message CreateAnimalRequest{
 }
 
 message CreateAnimalResponse{
-  FullAnimal animal = 1;
-
-  message FullAnimal{
-    int64 id = 1;
-    string name = 2;
-    string breed = 3;
-    string species = 4;
-    int32 age = 5;
-    repeated string image_urls = 6;
-    repeated string document_urls = 7;
-  }
+  model.FullAnimal animal = 1;
 }

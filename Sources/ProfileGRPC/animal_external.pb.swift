@@ -37,8 +37,8 @@ public struct GetAnimalResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var animal: FullAnimal {
-    get {return _animal ?? FullAnimal()}
+  public var animal: GetAnimalResponse.FullAnimal {
+    get {return _animal ?? GetAnimalResponse.FullAnimal()}
     set {_animal = newValue}
   }
   /// Returns true if `animal` has been explicitly set.
@@ -48,9 +48,33 @@ public struct GetAnimalResponse {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  public struct FullAnimal {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    public var id: Int64 = 0
+
+    public var name: String = String()
+
+    public var breed: String = String()
+
+    public var species: String = String()
+
+    public var age: Int32 = 0
+
+    public var imageUrls: [String] = []
+
+    public var documentUrls: [String] = []
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
   public init() {}
 
-  fileprivate var _animal: FullAnimal? = nil
+  fileprivate var _animal: GetAnimalResponse.FullAnimal? = nil
 }
 
 public struct GetAnimalsByProfileResponse {
@@ -115,8 +139,8 @@ public struct CreateAnimalResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var animal: FullAnimal {
-    get {return _animal ?? FullAnimal()}
+  public var animal: CreateAnimalResponse.FullAnimal {
+    get {return _animal ?? CreateAnimalResponse.FullAnimal()}
     set {_animal = newValue}
   }
   /// Returns true if `animal` has been explicitly set.
@@ -126,43 +150,44 @@ public struct CreateAnimalResponse {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public init() {}
+  public struct FullAnimal {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
-  fileprivate var _animal: FullAnimal? = nil
-}
+    public var id: Int64 = 0
 
-public struct FullAnimal {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+    public var name: String = String()
 
-  public var id: Int64 = 0
+    public var breed: String = String()
 
-  public var name: String = String()
+    public var species: String = String()
 
-  public var breed: String = String()
+    public var age: Int32 = 0
 
-  public var species: String = String()
+    public var imageUrls: [String] = []
 
-  public var age: Int32 = 0
+    public var documentUrls: [String] = []
 
-  public var imageUrls: [String] = []
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public var documentUrls: [String] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+    public init() {}
+  }
 
   public init() {}
+
+  fileprivate var _animal: CreateAnimalResponse.FullAnimal? = nil
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
 extension GetAnimalRequest: @unchecked Sendable {}
 extension GetAnimalResponse: @unchecked Sendable {}
+extension GetAnimalResponse.FullAnimal: @unchecked Sendable {}
 extension GetAnimalsByProfileResponse: @unchecked Sendable {}
 extension ListedAnimal: @unchecked Sendable {}
 extension CreateAnimalRequest: @unchecked Sendable {}
 extension CreateAnimalResponse: @unchecked Sendable {}
-extension FullAnimal: @unchecked Sendable {}
+extension CreateAnimalResponse.FullAnimal: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -232,6 +257,74 @@ extension GetAnimalResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 
   public static func ==(lhs: GetAnimalResponse, rhs: GetAnimalResponse) -> Bool {
     if lhs._animal != rhs._animal {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension GetAnimalResponse.FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = GetAnimalResponse.protoMessageName + ".FullAnimal"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "breed"),
+    4: .same(proto: "species"),
+    5: .same(proto: "age"),
+    6: .standard(proto: "image_urls"),
+    7: .standard(proto: "document_urls"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.breed) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.species) }()
+      case 5: try { try decoder.decodeSingularInt32Field(value: &self.age) }()
+      case 6: try { try decoder.decodeRepeatedStringField(value: &self.imageUrls) }()
+      case 7: try { try decoder.decodeRepeatedStringField(value: &self.documentUrls) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if !self.breed.isEmpty {
+      try visitor.visitSingularStringField(value: self.breed, fieldNumber: 3)
+    }
+    if !self.species.isEmpty {
+      try visitor.visitSingularStringField(value: self.species, fieldNumber: 4)
+    }
+    if self.age != 0 {
+      try visitor.visitSingularInt32Field(value: self.age, fieldNumber: 5)
+    }
+    if !self.imageUrls.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.imageUrls, fieldNumber: 6)
+    }
+    if !self.documentUrls.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.documentUrls, fieldNumber: 7)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: GetAnimalResponse.FullAnimal, rhs: GetAnimalResponse.FullAnimal) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.breed != rhs.breed {return false}
+    if lhs.species != rhs.species {return false}
+    if lhs.age != rhs.age {return false}
+    if lhs.imageUrls != rhs.imageUrls {return false}
+    if lhs.documentUrls != rhs.documentUrls {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -429,8 +522,8 @@ extension CreateAnimalResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 }
 
-extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".FullAnimal"
+extension CreateAnimalResponse.FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = CreateAnimalResponse.protoMessageName + ".FullAnimal"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "name"),
@@ -484,7 +577,7 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: FullAnimal, rhs: FullAnimal) -> Bool {
+  public static func ==(lhs: CreateAnimalResponse.FullAnimal, rhs: CreateAnimalResponse.FullAnimal) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.breed != rhs.breed {return false}

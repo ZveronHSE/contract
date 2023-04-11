@@ -69,7 +69,6 @@ extension AuthProvider: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-///Requests
 public struct LoginBySocialRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for

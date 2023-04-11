@@ -36,6 +36,9 @@ service ProfileServiceInternal {
   rpc GetProfilesSummary(GetProfilesSummaryRequest) returns(GetProfilesSummaryResponse);
 
   rpc ExistsById(ExistsByIdRequest) returns(ExistsByIdResponse);
+
+  //delete profile by id
+  rpc DeleteProfile(DeleteAccountRequest) returns (google.protobuf.Empty);
 }
 
 message CreateProfileRequest {
@@ -129,4 +132,8 @@ message ExistsByIdRequest {
 
 message ExistsByIdResponse {
   bool exists = 1;
+}
+
+message DeleteAccountRequest{
+  int64 profile_id = 1;
 }

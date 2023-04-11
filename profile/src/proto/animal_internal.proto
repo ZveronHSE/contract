@@ -23,6 +23,16 @@ message GetAnimalRequest {
 
 message GetAnimalResponse {
     FullAnimal animal = 1;
+
+    message FullAnimal{
+        int64 id = 1;
+        string name = 2;
+        string breed = 3;
+        string species = 4;
+        int32 age = 5;
+        repeated string image_urls = 6;
+        repeated string document_urls = 7;
+    }
 }
 
 message GetAnimalBatchRequest {
@@ -31,14 +41,14 @@ message GetAnimalBatchRequest {
 
 message GetAnimalBatchResponse {
     repeated FullAnimal animals = 1;
-}
 
-message FullAnimal{
-    int64 id = 1;
-    string name = 2;
-    string breed = 3;
-    string species = 4;
-    int32 age = 5;
-    repeated string image_urls = 6;
-    repeated string document_urls = 7;
+    message FullAnimal{
+        int64 id = 1;
+        string name = 2;
+        string breed = 3;
+        string species = 4;
+        int32 age = 5;
+        repeated string image_urls = 6;
+        repeated string document_urls = 7;
+    }
 }

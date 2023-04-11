@@ -18,3 +18,7 @@ message FullAnimal{
   repeated string image_urls = 6;
   repeated string document_urls = 7;
 }
+
+message GetAnimalRequest {
+  string animal_id = 1;
+}

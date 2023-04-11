@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
-import "model/animal.proto";
 
 package ru.zveron.contract.profile;
 
@@ -23,7 +22,7 @@ message GetAnimalRequest {
 }
 
 message GetAnimalResponse {
-    model.FullAnimal animal = 1;
+    FullAnimal animal = 1;
 }
 
 message GetAnimalBatchRequest {
@@ -31,5 +30,15 @@ message GetAnimalBatchRequest {
 }
 
 message GetAnimalBatchResponse {
-    repeated model.FullAnimal animals = 1;
+    repeated FullAnimal animals = 1;
+}
+
+message FullAnimal{
+    int64 id = 1;
+    string name = 2;
+    string breed = 3;
+    string species = 4;
+    int32 age = 5;
+    repeated string image_urls = 6;
+    repeated string document_urls = 7;
 }

@@ -11,12 +11,15 @@ option java_outer_classname = "AnimalGrpcExternal";
 option java_multiple_files = true;
 
 service AnimalGrpcExternal {
+  //gets animal by animal id
   rpc GetAnimal (GetAnimalRequest)
       returns (GetAnimalResponse);
 
+  //gets animals for a logged in user by profile id, request is empty as profile id is stored in context
   rpc GetAnimalsByProfile (google.protobuf.Empty)
       returns (GetAnimalsByProfileResponse);
 
+  //creates an animal for a logged in user
   rpc CreateAnimal (CreateAnimalRequest)
       returns (CreateAnimalResponse);
 }

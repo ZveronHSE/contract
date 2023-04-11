@@ -11,7 +11,10 @@ option java_outer_classname = "AnimalGrpcInternal";
 option java_multiple_files = true;
 
 service AnimalServiceInternal {
+    //get animals by id
     rpc GetAnimal (GetAnimalRequest) returns (GetAnimalResponse);
+
+    //get animals by ids
     rpc GetAnimalBatch (GetAnimalBatchRequest) returns (GetAnimalBatchResponse);
 }
 

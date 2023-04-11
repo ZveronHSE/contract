@@ -25,7 +25,7 @@ service AnimalGrpcExternal {
 }
 
 message GetAnimalRequestExt {
-  string animal_id = 1;
+  int64 animal_id = 1;
 }
 
 message GetAnimalResponseExt {

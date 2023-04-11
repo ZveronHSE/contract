@@ -1,0 +1,56 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "core/lot.proto";
+
+package ru.zveron.contract.chat.model;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.chat.model";
+option java_outer_classname = "ChatProto";
+option java_multiple_files = true;
+
+import "model/message.proto";
+
+enum ChatFolder {
+  // Значение для обычного приложения
+  NONE = 0;
+  OPEN = 1;
+  IN_PROGRESS = 2;
+  DONE = 3;
+  CANCELLED = 4;
+  ARCHIVE = 5;
+}
+
+message ChatPagination {
+  // Получить чаты с датой последнего изменения до time_before
+  google.protobuf.Timestamp time_before = 1;
+  // Количество получаемых чатов не больше чем size
+  optional uint32 size = 2;
+}
+
+message Chat {
+  string chat_id = 1;
+  ProfileSummary interlocutor_summary = 2;
+  // 100 последних сообщений
+  repeated model.Message messages = 3;
+  uint32 unread_messages = 4;
+  google.protobuf.Timestamp last_update = 5;
+  // Id услуги, связанной с чатом
+  optional uint64 service_id = 6;
+  optional uint64 review_id = 7;
+  // Все объявления, связанные с чатом
+  repeated contract.core.Lot lots = 8;
+  ChatFolder folder = 9;
+  // Заблокирован ли получатель (тот, кто просматривает информацию о чате)
+  bool is_blocked = 10;
+}
+
+message ProfileSummary {
+  uint64 id = 1;
+  string image_url = 2;
+  string name = 3;
+  string surname = 4;
+  bool is_online = 5;
+  // 'Был в сети...' Возвращается если is_online == false
+  optional string formatted_online_status = 6;
+}

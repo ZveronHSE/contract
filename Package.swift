@@ -7,6 +7,7 @@ let productName = "ZveronGRPC"
 let apigatewayTargetName = "ApigatewayGRPC"
 let authTargetName = "AuthGRPC"
 let blacklistTargetName = "BlacklistGRPC"
+let chatTargetName = "ChatGRPC"
 let coreTargetName = "CoreGRPC"
 let favoritesTargetName = "FavoritesGRPC"
 let lotTargetName = "LotGRPC"
@@ -29,6 +30,7 @@ let package = Package(
                 apigatewayTargetName,
                 authTargetName,
                 blacklistTargetName,
+                chatTargetName,
                 coreTargetName,
                 favoritesTargetName,
                 lotTargetName,
@@ -43,6 +45,7 @@ let package = Package(
         .target(name: apigatewayTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: authTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: blacklistTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
+        .target(name: chatTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: coreTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: favoritesTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: lotTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "model/animal.proto";
+
+package ru.zveron.contract.profile;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.profile";
+option java_outer_classname = "AnimalGrpcInternal";
+option java_multiple_files = true;
+
+service AnimalServiceInternal {
+    rpc GetAnimal (GetAnimalRequest) returns (GetAnimalResponse);
+    rpc GetAnimalBatch (GetAnimalBatchRequest) returns (GetAnimalBatchResponse);
+}
+
+message GetAnimalRequest {
+    string animal_id = 1;
+}
+
+message GetAnimalResponse {
+    model.FullAnimal animal = 1;
+}
+
+message GetAnimalBatchRequest {
+    repeated int64 animal_ids = 1;
+}
+
+message GetAnimalBatchResponse {
+    repeated model.FullAnimal animals = 1;
+}

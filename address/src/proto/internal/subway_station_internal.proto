@@ -1,0 +1,53 @@
+syntax = "proto3";
+package ru.zveron.contract.address;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.address.internal";
+option java_outer_classname = "SubwayStationInternalProto";
+option java_multiple_files = true;
+
+service SubwayStationInternalService {
+  // Get all subway stations
+  rpc GetSubwayStations (GetSubwayStationsRequest)
+      returns (GetSubwayStationsResponse);
+
+  // Get subway station by id
+  rpc GetSubwayStation (GetSubwayStationRequest)
+      returns (GetSubwayStationResponse);
+
+  // Get subway stations filtered by distance
+  rpc GetSubwayFilteredByDistance (GetSubwayFilteredByDistanceRequest)
+      returns (GetSubwayFilteredByDistanceResponse);
+}
+
+message GetSubwayStationResponse {
+  IntSubwayStation subwayStations = 1;
+}
+
+message GetSubwayStationRequest {
+  int32 id = 1;
+}
+
+message GetSubwayFilteredByDistanceRequest {
+  double latitude = 1;
+  double longitude = 2;
+  int32 distance_km = 3;
+}
+
+message GetSubwayFilteredByDistanceResponse {
+  repeated IntSubwayStation subwayStations = 1;
+}
+
+message GetSubwayStationsRequest {
+  repeated int32 ids = 1;
+}
+
+message GetSubwayStationsResponse {
+  repeated IntSubwayStation subwayStations = 1;
+}
+
+message IntSubwayStation{
+  string id = 1;
+  string name = 2;
+  string color_hex = 3;
+}

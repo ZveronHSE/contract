@@ -1,0 +1,30 @@
+syntax = "proto3";
+package ru.zveron.contract.address;
+
+import "google/protobuf/empty.proto";
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.address.external";
+option java_outer_classname = "SubwayStationExternalProto";
+option java_multiple_files = true;
+
+service SubwayStationExternalService {
+  // Get all subway stations by city
+  rpc GetSubwayStationsByCity (GetSubwayStationsByCityExtRequest)
+      returns (GetSubwayStationsExtResponse);
+}
+
+message GetSubwayStationsByCityExtRequest {
+  string city = 1;
+}
+
+message GetSubwayStationsExtResponse{
+  repeated ExtSubwayStation subway_stations = 1;
+}
+
+message ExtSubwayStation{
+  string id = 1;
+  string name = 2;
+  string color_hex = 3;
+}
+

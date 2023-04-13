@@ -21,7 +21,7 @@ service SubwayStationInternalService {
 }
 
 message GetSubwayStationResponse {
-  IntSubwayStation subwayStations = 1;
+  IntSubwayStation subwayStation = 1;
 }
 
 message GetSubwayStationRequest {

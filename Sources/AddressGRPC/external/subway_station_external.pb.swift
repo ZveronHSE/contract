@@ -49,7 +49,7 @@ public struct ExtSubwayStation {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var id: String = String()
+  public var id: Int32 = 0
 
   public var name: String = String()
 
@@ -148,7 +148,7 @@ extension ExtSubwayStation: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.id) }()
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.colorHex) }()
       default: break
@@ -157,8 +157,8 @@ extension ExtSubwayStation: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    if self.id != 0 {
+      try visitor.visitSingularInt32Field(value: self.id, fieldNumber: 1)
     }
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)

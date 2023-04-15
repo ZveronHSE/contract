@@ -11,4 +11,6 @@ include(
     "lot",
     "core",
     "objectstorage",
-    )
+    "order",
+    "chat",
+)

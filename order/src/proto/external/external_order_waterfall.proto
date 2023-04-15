@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package ru.zveron.contract.order.external;
+
+import "model/order_model.proto";
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.order.external";
+option java_outer_classname = "OrderWaterfallServiceExternalProto";
+option java_multiple_files = true;
+
+service OrderWaterfallServiceExternal {
+  //gets waterfall of orders
+  rpc GetWaterfall(GetWaterfallRequest)
+      returns (GetWaterfallResponse);
+}
+
+
+message GetWaterfallRequest{
+  int32 page_size = 1;
+  optional int64 last_order_id = 2;
+  repeated Filter filters = 3;
+  Sort sort = 4;
+}
+
+message Filter{
+  Field field = 1;
+  Operation operation = 2;
+  string value = 3;
+}
+
+enum Field {
+  // Service price per hour or for the whole service
+  PRICE = 0;
+  // Service type
+  ORDER_SERVICE_TYPE = 1;
+  // Creation date
+  DATE_CREATED = 2;
+  // Distance from the user's location
+  DISTANCE = 3;
+}
+
+//comparison operations for filters
+enum Operation {
+  // field equals to
+  EQUALITY = 0;
+  // field not equals to
+  NEGATION = 1;
+  // field is greater than
+  GREATER_THAN = 2;
+  // field is greater than or equal to
+  GREATER_THAN_EQUALITY = 3;
+  // field is less than
+  LESS_THAN = 4;
+  // field is less than or equal to
+  LESS_THAN_EQUALITY = 5;
+  // field is in the list of values
+  IN = 6;
+  // field is not in the list of values
+  NOT_IN = 7;
+  // field is like
+  LIKE = 8;
+}
+
+enum Sort {
+  // Sort by price
+  BY_PRICE = 0;
+  // Sort by creation date
+  BY_DATE_CREATED = 1;
+  // Sort by distance
+  BY_DISTANCE = 2;
+}
+
+message GetWaterfallResponse {
+  repeated WaterfallOrder orders = 1;
+}
+
+message WaterfallOrder {
+  int64 id = 1;
+  model.Animal animal = 2;
+  string title = 3;
+  string price = 4;
+  optional model.Address address = 5;
+  string service_date = 6;
+  string date_created = 7;
+}

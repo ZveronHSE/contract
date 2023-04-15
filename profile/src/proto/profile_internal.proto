@@ -36,6 +36,8 @@ service ProfileServiceInternal {
   rpc GetProfilesSummary(GetProfilesSummaryRequest) returns(GetProfilesSummaryResponse);
 
   rpc ExistsById(ExistsByIdRequest) returns(ExistsByIdResponse);
+
+  rpc GetProfileForOrder(GetProfileRequest) returns(GetProfileForOrderResponse);
 }
 
 message CreateProfileRequest {
@@ -129,4 +131,11 @@ message ExistsByIdRequest {
 
 message ExistsByIdResponse {
   bool exists = 1;
+}
+
+message GetProfileForOrderResponse {
+  uint64 id = 1;
+  string name = 2;
+  string image_url = 4;
+  float rating = 6;
 }

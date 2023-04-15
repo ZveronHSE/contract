@@ -21,7 +21,7 @@ service SubwayStationInternalService {
 }
 
 message GetSubwayStationResponse {
-  IntSubwayStation subwayStation = 1;
+  SubwayStationInt subwayStation = 1;
 }
 
 message GetSubwayStationRequest {
@@ -35,7 +35,7 @@ message GetSubwayFilteredByDistanceRequest {
 }
 
 message GetSubwayFilteredByDistanceResponse {
-  repeated IntSubwayStation subwayStations = 1;
+  repeated SubwayStationInt subwayStations = 1;
 }
 
 message GetSubwayStationsRequest {
@@ -43,10 +43,10 @@ message GetSubwayStationsRequest {
 }
 
 message GetSubwayStationsResponse {
-  repeated IntSubwayStation subwayStations = 1;
+  repeated SubwayStationInt subwayStations = 1;
 }
 
-message IntSubwayStation{
+message SubwayStationInt{
   int32 id = 1;
   string name = 2;
   string color_hex = 3;

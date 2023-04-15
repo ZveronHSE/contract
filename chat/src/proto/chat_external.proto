@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package ru.zveron.contract.chat;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.chat";
+option java_outer_classname = "ChatGrpcExternal";
+option java_multiple_files = true;
+
+import "model/chat.proto";
+import "model/message.proto";
+
+service ChatServiceExternal {
+  // Метод двунаправленного обмена сообщениями
+  rpc BidiChatRoute(stream ChatRouteRequest) returns(stream ChatRouteResponse);
+}
+
+message ChatRouteRequest {
+  oneof request {
+    GetRecentChatsRequest get_recent_chats = 1;
+    GetChatMessagesRequest get_chat_recent_messages = 2;
+    SendMessageRequest send_message = 3;
+    StartChatRequest start_chat = 4;
+    AttachLotRequest attach_lot = 5;
+    DetachLotRequest detach_lot = 6;
+    SendEventRequest send_event = 7;
+    GetChatSummary get_chat = 8;
+  }
+}
+
+// Запрос на получение недавних чатов. Если пагинация не указана, возвращает 100 последних чатов.
+// Ответ -> GetRecentChatsResponse
+message GetRecentChatsRequest {
+  optional model.ChatPagination pagination = 1;
+}
+
+// Запрос на получение сообщений в чате. Если пагинация не указана, возвращает 100 последних сообщений.
+// Ответ -> GetRecentChatsResponse
+message GetChatMessagesRequest {
+  string chat_id = 1;
+  optional model.MessagePagination pagination = 2;
+}
+
+// Отправка сообщения.
+// Без ответа
+message SendMessageRequest {
+  string chat_id = 1;
+  model.MessageType type = 2;
+  // Только для MessageType.DEFAULT
+  optional string text = 3;
+  // Только для MessageType.DEFAULT
+  repeated string images_urls = 4;
+}
+
+// Ответ -> ReceiveChatSummary
+message StartChatRequest {
+  uint64 interlocutor_id = 1;
+  // Объявление / услуга, с которой связывается новый чат
+  Article article = 2;
+  // Приветсвенный текст
+  string text = 3;
+}
+
+message Article {
+  uint64 id = 1;
+  ArticleType type = 2;
+}
+
+enum ArticleType {
+  LOT = 0;
+  ORDER = 1;
+}
+
+// Добавление объявления в существующий диалог.
+// Без ответа
+message AttachLotRequest {
+  uint64 interlocutor_id = 1;
+  uint64 lot_id = 2;
+  optional string chat_id = 3;
+}
+
+// Удаление объявления из диалога.
+// Без ответа
+message DetachLotRequest {
+  uint64 interlocutor_id = 1;
+  uint64 lot_id = 2;
+  string chat_id = 3;
+}
+
+// Отправка события.
+// Без ответа
+message SendEventRequest {
+  string chat_id = 1;
+  oneof event {
+    model.DisconnectEvent disconnect_event = 2;
+    model.ChangeMessagesStatusEvent changed_status_event = 3;
+    model.NoPayloadEvent no_payload_event = 4;
+  }
+}
+
+// Ответ -> ReceiveChatSummary
+message GetChatSummary {
+  string chat_id = 1;
+}
+
+message ChatRouteResponse {
+  oneof response {
+    GetRecentChatsResponse get_recent_chats = 1;
+    GetChatMessagesResponse get_messages_response = 2;
+    ReceiveEvent receive_event = 3;
+    ReceiveMessage receive_message = 4;
+    ReceiveChatSummary chatSummary = 5;
+  }
+}
+
+// Недавние чаты
+message GetRecentChatsResponse {
+  repeated model.Chat chats = 1;
+}
+
+// Сообщения в чате
+message GetChatMessagesResponse {
+  repeated model.Message messages = 1;
+}
+
+// Событие в чате.
+// Указывает на то, что собеседник в обозначенном чате совершил определенное действие
+message ReceiveEvent {
+  string chat_id = 1;
+  oneof event {
+    model.DisconnectEvent disconnect_event = 2;
+    model.ChangeMessagesStatusEvent changed_status_event = 3;
+    model.NoPayloadEvent no_payload_event = 4;
+  }
+}
+
+// Входящее сообщение
+message ReceiveMessage {
+  model.Message message = 1;
+}
+
+// Полное представление чата
+message ReceiveChatSummary {
+  model.Chat chat = 1;
+}

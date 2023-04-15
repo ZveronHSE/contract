@@ -12,4 +12,5 @@ include(
     "core",
     "objectstorage",
     "order",
-    )
+    "chat",
+)

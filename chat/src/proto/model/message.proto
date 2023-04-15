@@ -1,0 +1,52 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package ru.zveron.contract.chat.model;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.chat.model";
+option java_outer_classname = "MessageProto";
+option java_multiple_files = true;
+
+message MessagePagination {
+  // Получить сообщения предшествующие сообщению с id messages_before_id
+  string messages_before_id = 1;
+  // Количество получаемых сообщений не больше чем size
+  optional uint32 size = 2;
+}
+
+message Message {
+  string id = 1;
+  string text = 2;
+  bool is_read = 3;
+  repeated string images_urls = 4;
+  uint64 sender_id = 5;
+  google.protobuf.Timestamp sent_at = 6;
+}
+
+enum MessageType {
+  DEFAULT = 0;
+}
+
+// Событие выхода пользователя из сети
+message DisconnectEvent {
+  // Optional в запросе, Required в ответе
+  optional string last_online_formatted = 1;
+}
+
+// Событие, отмечающее, что сообщения по указанным идентификаторам были прочитаны
+message ChangeMessagesStatusEvent {
+  repeated string ids = 1;
+  bool is_read = 2;
+}
+
+message NoPayloadEvent {
+  NoPayloadEventType type = 1;
+}
+
+enum NoPayloadEventType {
+  // Событие, сигнализирующее о том, что собеседник набирает сообщение
+  TEXTING = 0;
+  // Событие подключения пользователя к чату
+  ONLINE = 1;
+}

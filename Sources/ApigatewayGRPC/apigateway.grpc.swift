@@ -35,6 +35,11 @@ public protocol ApigatewayServiceClientProtocol: GRPCClient {
     _ request: ApiGatewayRequest,
     callOptions: CallOptions?
   ) -> UnaryCall<ApiGatewayRequest, ApigatewayResponse>
+
+  func bidiStreamApiGateway(
+    callOptions: CallOptions?,
+    handler: @escaping (ApigatewayResponse) -> Void
+  ) -> BidirectionalStreamingCall<ApiGatewayRequest, ApigatewayResponse>
 }
 
 extension ApigatewayServiceClientProtocol {
@@ -57,6 +62,27 @@ extension ApigatewayServiceClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCallApiGatewayInterceptors() ?? []
+    )
+  }
+
+  /// Двунаправленный обмен сообщениями между клиентом и шлюзом
+  ///
+  /// Callers should use the `send` method on the returned object to send messages
+  /// to the server. The caller should send an `.end` after the final message has been sent.
+  ///
+  /// - Parameters:
+  ///   - callOptions: Call options.
+  ///   - handler: A closure called when each response is received from the server.
+  /// - Returns: A `ClientStreamingCall` with futures for the metadata and status.
+  public func bidiStreamApiGateway(
+    callOptions: CallOptions? = nil,
+    handler: @escaping (ApigatewayResponse) -> Void
+  ) -> BidirectionalStreamingCall<ApiGatewayRequest, ApigatewayResponse> {
+    return self.makeBidirectionalStreamingCall(
+      path: ApigatewayServiceClientMetadata.Methods.bidiStreamApiGateway.path,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeBidiStreamApiGatewayInterceptors() ?? [],
+      handler: handler
     )
   }
 }
@@ -130,6 +156,10 @@ public protocol ApigatewayServiceAsyncClientProtocol: GRPCClient {
     _ request: ApiGatewayRequest,
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<ApiGatewayRequest, ApigatewayResponse>
+
+  func makeBidiStreamApiGatewayCall(
+    callOptions: CallOptions?
+  ) -> GRPCAsyncBidirectionalStreamingCall<ApiGatewayRequest, ApigatewayResponse>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -153,6 +183,16 @@ extension ApigatewayServiceAsyncClientProtocol {
       interceptors: self.interceptors?.makeCallApiGatewayInterceptors() ?? []
     )
   }
+
+  public func makeBidiStreamApiGatewayCall(
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncBidirectionalStreamingCall<ApiGatewayRequest, ApigatewayResponse> {
+    return self.makeAsyncBidirectionalStreamingCall(
+      path: ApigatewayServiceClientMetadata.Methods.bidiStreamApiGateway.path,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeBidiStreamApiGatewayInterceptors() ?? []
+    )
+  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -166,6 +206,30 @@ extension ApigatewayServiceAsyncClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeCallApiGatewayInterceptors() ?? []
+    )
+  }
+
+  public func bidiStreamApiGateway<RequestStream>(
+    _ requests: RequestStream,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncResponseStream<ApigatewayResponse> where RequestStream: Sequence, RequestStream.Element == ApiGatewayRequest {
+    return self.performAsyncBidirectionalStreamingCall(
+      path: ApigatewayServiceClientMetadata.Methods.bidiStreamApiGateway.path,
+      requests: requests,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeBidiStreamApiGatewayInterceptors() ?? []
+    )
+  }
+
+  public func bidiStreamApiGateway<RequestStream>(
+    _ requests: RequestStream,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncResponseStream<ApigatewayResponse> where RequestStream: AsyncSequence & Sendable, RequestStream.Element == ApiGatewayRequest {
+    return self.performAsyncBidirectionalStreamingCall(
+      path: ApigatewayServiceClientMetadata.Methods.bidiStreamApiGateway.path,
+      requests: requests,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeBidiStreamApiGatewayInterceptors() ?? []
     )
   }
 }
@@ -193,6 +257,9 @@ public protocol ApigatewayServiceClientInterceptorFactoryProtocol: GRPCSendable 
 
   /// - Returns: Interceptors to use when invoking 'callApiGateway'.
   func makeCallApiGatewayInterceptors() -> [ClientInterceptor<ApiGatewayRequest, ApigatewayResponse>]
+
+  /// - Returns: Interceptors to use when invoking 'bidiStreamApiGateway'.
+  func makeBidiStreamApiGatewayInterceptors() -> [ClientInterceptor<ApiGatewayRequest, ApigatewayResponse>]
 }
 
 public enum ApigatewayServiceClientMetadata {
@@ -201,6 +268,7 @@ public enum ApigatewayServiceClientMetadata {
     fullName: "ru.zveron.contract.apigateway.ApigatewayService",
     methods: [
       ApigatewayServiceClientMetadata.Methods.callApiGateway,
+      ApigatewayServiceClientMetadata.Methods.bidiStreamApiGateway,
     ]
   )
 
@@ -209,6 +277,12 @@ public enum ApigatewayServiceClientMetadata {
       name: "CallApiGateway",
       path: "/ru.zveron.contract.apigateway.ApigatewayService/CallApiGateway",
       type: GRPCCallType.unary
+    )
+
+    public static let bidiStreamApiGateway = GRPCMethodDescriptor(
+      name: "BidiStreamApiGateway",
+      path: "/ru.zveron.contract.apigateway.ApigatewayService/BidiStreamApiGateway",
+      type: GRPCCallType.bidirectionalStreaming
     )
   }
 }

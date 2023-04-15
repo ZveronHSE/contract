@@ -37,14 +37,14 @@ public struct GetSubwayStationsExtResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var subwayStations: [SubwayStationInt] = []
+  public var subwayStations: [SubwayStationExt] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct SubwayStationInt {
+public struct SubwayStationExt {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -63,7 +63,7 @@ public struct SubwayStationInt {
 #if swift(>=5.5) && canImport(_Concurrency)
 extension GetSubwayStationsByCityExtRequest: @unchecked Sendable {}
 extension GetSubwayStationsExtResponse: @unchecked Sendable {}
-extension SubwayStationInt: @unchecked Sendable {}
+extension SubwayStationExt: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -134,8 +134,8 @@ extension GetSubwayStationsExtResponse: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 }
 
-extension SubwayStationInt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".SubwayStationInt"
+extension SubwayStationExt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SubwayStationExt"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "name"),
@@ -169,7 +169,7 @@ extension SubwayStationInt: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: SubwayStationInt, rhs: SubwayStationInt) -> Bool {
+  public static func ==(lhs: SubwayStationExt, rhs: SubwayStationExt) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.colorHex != rhs.colorHex {return false}

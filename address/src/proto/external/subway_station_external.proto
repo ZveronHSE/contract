@@ -19,10 +19,10 @@ message GetSubwayStationsByCityExtRequest {
 }
 
 message GetSubwayStationsExtResponse{
-  repeated SubwayStationInt subway_stations = 1;
+  repeated SubwayStationExt subway_stations = 1;
 }
 
-message SubwayStationInt{
+message SubwayStationExt{
   int32 id = 1;
   string name = 2;
   string color_hex = 3;

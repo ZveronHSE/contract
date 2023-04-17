@@ -50,4 +50,5 @@ message SubwayStationInt{
   int32 id = 1;
   string name = 2;
   string color_hex = 3;
+  string town = 4;
 }

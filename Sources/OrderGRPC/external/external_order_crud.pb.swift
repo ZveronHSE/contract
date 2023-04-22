@@ -162,10 +162,19 @@ public struct FullOrder {
     set {_uniqueStorage()._description_p = newValue}
   }
 
-  ///delivery type, in person or remote
-  public var serviceDeliveryMethod: ServiceDeliveryMethod {
-    get {return _storage._serviceDeliveryMethod}
-    set {_uniqueStorage()._serviceDeliveryMethod = newValue}
+  public var createdAt: String {
+    get {return _storage._createdAt}
+    set {_uniqueStorage()._createdAt = newValue}
+  }
+
+  public var canAccept: Bool {
+    get {return _storage._canAccept}
+    set {_uniqueStorage()._canAccept = newValue}
+  }
+
+  public var similarOrders: [SimilarOrder] {
+    get {return _storage._similarOrders}
+    set {_uniqueStorage()._similarOrders = newValue}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -194,12 +203,54 @@ public struct Profile {
   public init() {}
 }
 
+public struct SimilarOrder {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: Int64 = 0
+
+  public var animal: Animal {
+    get {return _animal ?? Animal()}
+    set {_animal = newValue}
+  }
+  /// Returns true if `animal` has been explicitly set.
+  public var hasAnimal: Bool {return self._animal != nil}
+  /// Clears the value of `animal`. Subsequent reads from it will return its default value.
+  public mutating func clearAnimal() {self._animal = nil}
+
+  public var title: String = String()
+
+  public var price: String = String()
+
+  public var address: Address {
+    get {return _address ?? Address()}
+    set {_address = newValue}
+  }
+  /// Returns true if `address` has been explicitly set.
+  public var hasAddress: Bool {return self._address != nil}
+  /// Clears the value of `address`. Subsequent reads from it will return its default value.
+  public mutating func clearAddress() {self._address = nil}
+
+  public var serviceDate: String = String()
+
+  public var dateCreated: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _animal: Animal? = nil
+  fileprivate var _address: Address? = nil
+}
+
 #if swift(>=5.5) && canImport(_Concurrency)
 extension ServiceDeliveryMethod: @unchecked Sendable {}
 extension GetOrderRequest: @unchecked Sendable {}
 extension GetOrderResponse: @unchecked Sendable {}
 extension FullOrder: @unchecked Sendable {}
 extension Profile: @unchecked Sendable {}
+extension SimilarOrder: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -293,7 +344,9 @@ extension FullOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
     7: .standard(proto: "service_date"),
     8: .standard(proto: "service_time"),
     9: .same(proto: "description"),
-    10: .standard(proto: "service_delivery_method"),
+    10: .standard(proto: "created_at"),
+    11: .standard(proto: "can_accept"),
+    12: .standard(proto: "similar_orders"),
   ]
 
   fileprivate class _StorageClass {
@@ -306,7 +359,9 @@ extension FullOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
     var _serviceDate: String = String()
     var _serviceTime: String? = nil
     var _description_p: String = String()
-    var _serviceDeliveryMethod: ServiceDeliveryMethod = .inPerson
+    var _createdAt: String = String()
+    var _canAccept: Bool = false
+    var _similarOrders: [SimilarOrder] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -322,7 +377,9 @@ extension FullOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
       _serviceDate = source._serviceDate
       _serviceTime = source._serviceTime
       _description_p = source._description_p
-      _serviceDeliveryMethod = source._serviceDeliveryMethod
+      _createdAt = source._createdAt
+      _canAccept = source._canAccept
+      _similarOrders = source._similarOrders
     }
   }
 
@@ -350,7 +407,9 @@ extension FullOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
         case 7: try { try decoder.decodeSingularStringField(value: &_storage._serviceDate) }()
         case 8: try { try decoder.decodeSingularStringField(value: &_storage._serviceTime) }()
         case 9: try { try decoder.decodeSingularStringField(value: &_storage._description_p) }()
-        case 10: try { try decoder.decodeSingularEnumField(value: &_storage._serviceDeliveryMethod) }()
+        case 10: try { try decoder.decodeSingularStringField(value: &_storage._createdAt) }()
+        case 11: try { try decoder.decodeSingularBoolField(value: &_storage._canAccept) }()
+        case 12: try { try decoder.decodeRepeatedMessageField(value: &_storage._similarOrders) }()
         default: break
         }
       }
@@ -390,8 +449,14 @@ extension FullOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
       if !_storage._description_p.isEmpty {
         try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 9)
       }
-      if _storage._serviceDeliveryMethod != .inPerson {
-        try visitor.visitSingularEnumField(value: _storage._serviceDeliveryMethod, fieldNumber: 10)
+      if !_storage._createdAt.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._createdAt, fieldNumber: 10)
+      }
+      if _storage._canAccept != false {
+        try visitor.visitSingularBoolField(value: _storage._canAccept, fieldNumber: 11)
+      }
+      if !_storage._similarOrders.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._similarOrders, fieldNumber: 12)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -411,7 +476,9 @@ extension FullOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
         if _storage._serviceDate != rhs_storage._serviceDate {return false}
         if _storage._serviceTime != rhs_storage._serviceTime {return false}
         if _storage._description_p != rhs_storage._description_p {return false}
-        if _storage._serviceDeliveryMethod != rhs_storage._serviceDeliveryMethod {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
+        if _storage._canAccept != rhs_storage._canAccept {return false}
+        if _storage._similarOrders != rhs_storage._similarOrders {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -466,6 +533,78 @@ extension Profile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     if lhs.name != rhs.name {return false}
     if lhs.imageURL != rhs.imageURL {return false}
     if lhs.rating != rhs.rating {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension SimilarOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SimilarOrder"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "animal"),
+    3: .same(proto: "title"),
+    4: .same(proto: "price"),
+    5: .same(proto: "address"),
+    6: .standard(proto: "service_date"),
+    7: .standard(proto: "date_created"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._animal) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.title) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.price) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._address) }()
+      case 6: try { try decoder.decodeSingularStringField(value: &self.serviceDate) }()
+      case 7: try { try decoder.decodeSingularStringField(value: &self.dateCreated) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    try { if let v = self._animal {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    } }()
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 3)
+    }
+    if !self.price.isEmpty {
+      try visitor.visitSingularStringField(value: self.price, fieldNumber: 4)
+    }
+    try { if let v = self._address {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    } }()
+    if !self.serviceDate.isEmpty {
+      try visitor.visitSingularStringField(value: self.serviceDate, fieldNumber: 6)
+    }
+    if !self.dateCreated.isEmpty {
+      try visitor.visitSingularStringField(value: self.dateCreated, fieldNumber: 7)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: SimilarOrder, rhs: SimilarOrder) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs._animal != rhs._animal {return false}
+    if lhs.title != rhs.title {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs._address != rhs._address {return false}
+    if lhs.serviceDate != rhs.serviceDate {return false}
+    if lhs.dateCreated != rhs.dateCreated {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -62,13 +62,23 @@ enum Operation {
   LIKE = 8;
 }
 
-enum Sort {
-  // Sort by price
-  BY_PRICE = 0;
+message Sort{
+  SortBy sort_by = 1;
+  SortDir sort_dir = 2;
+}
+
+enum SortBy {
+  BY_ID = 0;
   // Sort by creation date
   BY_DATE_CREATED = 1;
   // Sort by distance
   BY_DISTANCE = 2;
+  BY_PRICE = 3;
+}
+
+enum SortDir{
+  DESC = 0;
+  ASC = 1;
 }
 
 message GetWaterfallResponse {
@@ -82,5 +92,5 @@ message WaterfallOrder {
   string price = 4;
   optional model.Address address = 5;
   string service_date = 6;
-  string date_created = 7;
+  string created_at = 7;
 }

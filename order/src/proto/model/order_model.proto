@@ -18,6 +18,6 @@ message Animal {
 
 message Address {
   string town = 1;
-  string station = 2;
-  string color = 3;
+  optional string station = 2;
+  optional string color = 3;
 }

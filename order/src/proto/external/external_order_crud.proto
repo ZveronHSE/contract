@@ -37,8 +37,10 @@ message FullOrder {
   //time of order delivery formatted as HH:mm (- HH:mm)
   optional string service_time = 8;
   string description = 9;
-  //delivery type, in person or remote
-  ServiceDeliveryMethod service_delivery_method = 10;
+  string created_at = 10;
+  bool can_accept = 11;
+
+  repeated SimilarOrder similar_orders = 12;
 }
 
 message Profile {
@@ -47,6 +49,16 @@ message Profile {
   string image_url = 3;
   //rating values like 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
   float rating = 4;
+}
+
+message SimilarOrder {
+  int64 id = 1;
+  model.Animal animal = 2;
+  string title = 3;
+  string price = 4;
+  optional model.Address address = 5;
+  string service_date = 6;
+  string date_created = 7;
 }
 
 enum ServiceDeliveryMethod {

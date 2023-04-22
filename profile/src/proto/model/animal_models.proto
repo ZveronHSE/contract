@@ -15,5 +15,10 @@ message FullAnimal{
   int32 age = 5;
   repeated string image_urls = 6;
   repeated string document_urls = 7;
+
+  message Document{
+    string url = 1;
+    string name = 2;
+  }
 }
 

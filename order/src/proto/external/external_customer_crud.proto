@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package ru.zveron.contract.order.external;
+
+import "model/order_model.proto";
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.order.external";
+option java_outer_classname = "OrderCustomerServiceExternalProto";
+option java_multiple_files = true;
+
+service OrderCustomerServiceExternal {
+  //get customer by order id
+  rpc GetCustomer(GetCustomerRequest)
+      returns (GetCustomerResponse);
+}
+
+message GetCustomerRequest{
+  int64 order_id = 1;
+}
+
+message GetCustomerResponse{
+  Customer customer = 1;
+}
+
+message Customer{
+  int64 id = 1;
+  string name = 2;
+  float rating = 3;
+  string image_url = 4;
+
+  repeated CustomerActiveOrder active_orders = 5;
+  repeated CustomerCompletedOrder completed_orders = 6;
+}
+
+message CustomerActiveOrder{
+  int64 id = 1;
+  model.Animal animal = 2;
+  string title = 3;
+  string price = 4;
+  optional model.Address address = 5;
+  string service_date = 6;
+  string created_at = 7;
+}
+
+message CustomerCompletedOrder{
+  int64 id = 1;
+  model.Animal animal = 2;
+  string title = 3;
+  string price = 4;
+  optional model.Address address = 5;
+  string service_date = 6;
+  string created_at = 7;
+}

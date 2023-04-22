@@ -13,4 +13,5 @@ include(
     "objectstorage",
     "order",
     "chat",
+    "specialist",
 )

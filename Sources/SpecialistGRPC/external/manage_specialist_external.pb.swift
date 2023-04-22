@@ -363,7 +363,7 @@ public struct Documents {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var documentUrls: [String] = []
+  public var urls: [String] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1076,7 +1076,7 @@ extension EditSurnameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 extension Documents: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Documents"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "document_urls"),
+    1: .same(proto: "urls"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1085,21 +1085,21 @@ extension Documents: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeRepeatedStringField(value: &self.documentUrls) }()
+      case 1: try { try decoder.decodeRepeatedStringField(value: &self.urls) }()
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.documentUrls.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.documentUrls, fieldNumber: 1)
+    if !self.urls.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.urls, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Documents, rhs: Documents) -> Bool {
-    if lhs.documentUrls != rhs.documentUrls {return false}
+    if lhs.urls != rhs.urls {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

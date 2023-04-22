@@ -205,5 +205,5 @@ message EditSurnameRequest {
 }
 
 message Documents {
-  repeated string document_urls = 1;
+  repeated string urls = 1;
 }

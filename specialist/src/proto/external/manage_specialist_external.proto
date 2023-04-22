@@ -14,7 +14,7 @@ service ManageSpecialistExternalService {
   rpc GetProfile (google.protobuf.Empty) returns (GetProfileResponse);
 
   // Редактирование ФИО
-  rpc EditSurname (EditSurnameRequest) returns (google.protobuf.StringValue);
+  rpc EditName (EditNameRequest) returns (google.protobuf.StringValue);
 
   // Редактирование описания
   rpc EditDescription (google.protobuf.StringValue) returns (google.protobuf.StringValue);
@@ -196,7 +196,7 @@ message GetProfileResponse {
 }
 
 
-message EditSurnameRequest {
+message EditNameRequest {
   string name = 1;
   // фамилия
   string surname = 2;

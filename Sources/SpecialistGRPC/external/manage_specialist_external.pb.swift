@@ -340,7 +340,7 @@ public struct GetProfileResponse {
   public init() {}
 }
 
-public struct EditSurnameRequest {
+public struct EditNameRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -383,7 +383,7 @@ extension EditServiceRequest: @unchecked Sendable {}
 extension FullOther: @unchecked Sendable {}
 extension EditOtherRequest: @unchecked Sendable {}
 extension GetProfileResponse: @unchecked Sendable {}
-extension EditSurnameRequest: @unchecked Sendable {}
+extension EditNameRequest: @unchecked Sendable {}
 extension Documents: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
@@ -1029,8 +1029,8 @@ extension GetProfileResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
   }
 }
 
-extension EditSurnameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".EditSurnameRequest"
+extension EditNameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".EditNameRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "surname"),
@@ -1064,7 +1064,7 @@ extension EditSurnameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: EditSurnameRequest, rhs: EditSurnameRequest) -> Bool {
+  public static func ==(lhs: EditNameRequest, rhs: EditNameRequest) -> Bool {
     if lhs.name != rhs.name {return false}
     if lhs.surname != rhs.surname {return false}
     if lhs.patronymic != rhs.patronymic {return false}

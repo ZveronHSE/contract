@@ -156,7 +156,7 @@ public struct FullAchievement {
   public var title: String = String()
 
   /// Год получения
-  public var year: String = String()
+  public var year: Int32 = 0
 
   /// Фотография достижения
   public var documentURL: String = String()
@@ -661,7 +661,7 @@ extension FullAchievement: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.title) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.year) }()
+      case 2: try { try decoder.decodeSingularInt32Field(value: &self.year) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.documentURL) }()
       case 4: try { try decoder.decodeSingularBoolField(value: &self.showPhoto) }()
       default: break
@@ -673,8 +673,8 @@ extension FullAchievement: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     if !self.title.isEmpty {
       try visitor.visitSingularStringField(value: self.title, fieldNumber: 1)
     }
-    if !self.year.isEmpty {
-      try visitor.visitSingularStringField(value: self.year, fieldNumber: 2)
+    if self.year != 0 {
+      try visitor.visitSingularInt32Field(value: self.year, fieldNumber: 2)
     }
     if !self.documentURL.isEmpty {
       try visitor.visitSingularStringField(value: self.documentURL, fieldNumber: 3)

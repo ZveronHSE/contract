@@ -124,7 +124,7 @@ message EditWorkExperienceRequest {
 message FullAchievement {
   string title = 1;
   // Год получения
-  string year = 2;
+  int32 year = 2;
   // Фотография достижения
   string document_url = 3;
   // показывать ли фотку клиентам

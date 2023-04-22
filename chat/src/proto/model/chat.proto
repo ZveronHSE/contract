@@ -51,6 +51,8 @@ message ProfileSummary {
   string name = 3;
   string surname = 4;
   bool is_online = 5;
-  // 'Был в сети...' Возвращается если is_online == false
-  optional string formatted_online_status = 6;
+  // 'Был в сети...' Возвращается если is_online == false. Устаревшее, используйте last_online
+  optional string formatted_online_status = 6 [ deprecated=true ];
+  // Если пользователь не в сети, когда он последний раз был онлайн
+  optional google.protobuf.Timestamp last_online = 7;
 }

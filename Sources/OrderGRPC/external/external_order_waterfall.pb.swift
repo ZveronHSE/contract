@@ -34,6 +34,9 @@ public enum Field: SwiftProtobuf.Enum {
 
   /// Distance from the user's location
   case distance // = 3
+
+  /// Service delivery type
+  case serviceDeliveryType // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -46,6 +49,7 @@ public enum Field: SwiftProtobuf.Enum {
     case 1: self = .orderServiceType
     case 2: self = .dateCreated
     case 3: self = .distance
+    case 4: self = .serviceDeliveryType
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -56,6 +60,7 @@ public enum Field: SwiftProtobuf.Enum {
     case .orderServiceType: return 1
     case .dateCreated: return 2
     case .distance: return 3
+    case .serviceDeliveryType: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -71,6 +76,7 @@ extension Field: CaseIterable {
     .orderServiceType,
     .dateCreated,
     .distance,
+    .serviceDeliveryType,
   ]
 }
 
@@ -395,6 +401,7 @@ extension Field: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "ORDER_SERVICE_TYPE"),
     2: .same(proto: "DATE_CREATED"),
     3: .same(proto: "DISTANCE"),
+    4: .same(proto: "SERVICE_DELIVERY_TYPE"),
   ]
 }
 

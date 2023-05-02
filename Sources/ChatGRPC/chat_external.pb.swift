@@ -563,6 +563,8 @@ public struct GetChatMessagesResponse {
 
   public var messages: [Message] = []
 
+  public var chatID: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -651,6 +653,8 @@ public struct ReceiveMessage {
   public var hasMessage: Bool {return self._message != nil}
   /// Clears the value of `message`. Subsequent reads from it will return its default value.
   public mutating func clearMessage() {self._message = nil}
+
+  public var chatID: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1524,6 +1528,7 @@ extension GetChatMessagesResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
   public static let protoMessageName: String = _protobuf_package + ".GetChatMessagesResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "messages"),
+    2: .standard(proto: "chat_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1533,6 +1538,7 @@ extension GetChatMessagesResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeRepeatedMessageField(value: &self.messages) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.chatID) }()
       default: break
       }
     }
@@ -1542,11 +1548,15 @@ extension GetChatMessagesResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
     if !self.messages.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.messages, fieldNumber: 1)
     }
+    if !self.chatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.chatID, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: GetChatMessagesResponse, rhs: GetChatMessagesResponse) -> Bool {
     if lhs.messages != rhs.messages {return false}
+    if lhs.chatID != rhs.chatID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1650,6 +1660,7 @@ extension ReceiveMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
   public static let protoMessageName: String = _protobuf_package + ".ReceiveMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
+    2: .standard(proto: "chat_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1659,6 +1670,7 @@ extension ReceiveMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._message) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.chatID) }()
       default: break
       }
     }
@@ -1672,11 +1684,15 @@ extension ReceiveMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     try { if let v = self._message {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     } }()
+    if !self.chatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.chatID, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: ReceiveMessage, rhs: ReceiveMessage) -> Bool {
     if lhs._message != rhs._message {return false}
+    if lhs.chatID != rhs.chatID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

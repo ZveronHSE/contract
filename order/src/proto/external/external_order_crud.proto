@@ -65,3 +65,9 @@ enum ServiceDeliveryMethod {
   IN_PERSON = 0;
   REMOTE = 1;
 }
+
+message Address {
+  string town = 1;
+  string station = 2;
+  string color = 3;
+}

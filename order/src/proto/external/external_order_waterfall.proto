@@ -26,6 +26,7 @@ message GetWaterfallRequest{
 message Filter{
   Field field = 1;
   Operation operation = 2;
+  //for multiple values, separate by comma
   string value = 3;
 }
 
@@ -33,13 +34,14 @@ enum Field {
   // Service price per hour or for the whole service
   PRICE = 0;
   // Service type
-  ORDER_SERVICE_TYPE = 1;
-  // Creation date
-  DATE_CREATED = 2;
+  SERVICE_TYPE = 1;
+  // service delivery date from and to dates. Can be equal if the same day
+  SERVICE_DATE_FROM = 2;
+  SERVICE_DATE_TO = 3;
   // Distance from the user's location
-  DISTANCE = 3;
+  DISTANCE = 4;
   // Service delivery type
-  SERVICE_DELIVERY_TYPE = 4;
+  SERVICE_DELIVERY_TYPE = 5;
 }
 
 //comparison operations for filters
@@ -70,10 +72,10 @@ message Sort{
 }
 
 enum SortBy {
-  BY_ID = 0;
+  DEFAULT = 0;
   // Sort by creation date
   BY_DATE_CREATED = 1;
-  // Sort by distance
+  // Sort by distance to self
   BY_DISTANCE = 2;
   BY_PRICE = 3;
 }

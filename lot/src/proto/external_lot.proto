@@ -30,6 +30,8 @@ service LotExternalProtoService {
 
 message GetOwnLotsRequest {
   optional LastLot last_lot = 1;
+  // возвращать либо активные объявления, либо архивные объявления
+  bool only_active = 2;
 }
 
 message WaterfallRequest {

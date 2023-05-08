@@ -262,6 +262,9 @@ public struct GetOwnLotsRequest {
   /// Clears the value of `lastLot`. Subsequent reads from it will return its default value.
   public mutating func clearLastLot() {self._lastLot = nil}
 
+  /// возвращать либо активные объявления, либо архивные объявления
+  public var onlyActive: Bool = false
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -926,6 +929,7 @@ extension GetOwnLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
   public static let protoMessageName: String = _protobuf_package + ".GetOwnLotsRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "last_lot"),
+    2: .standard(proto: "only_active"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -935,6 +939,7 @@ extension GetOwnLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._lastLot) }()
+      case 2: try { try decoder.decodeSingularBoolField(value: &self.onlyActive) }()
       default: break
       }
     }
@@ -948,11 +953,15 @@ extension GetOwnLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     try { if let v = self._lastLot {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     } }()
+    if self.onlyActive != false {
+      try visitor.visitSingularBoolField(value: self.onlyActive, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: GetOwnLotsRequest, rhs: GetOwnLotsRequest) -> Bool {
     if lhs._lastLot != rhs._lastLot {return false}
+    if lhs.onlyActive != rhs.onlyActive {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

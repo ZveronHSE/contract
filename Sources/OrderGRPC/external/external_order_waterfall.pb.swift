@@ -163,37 +163,38 @@ extension Operation: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-public enum Sort: SwiftProtobuf.Enum {
+public enum SortBy: SwiftProtobuf.Enum {
   public typealias RawValue = Int
-
-  /// Sort by price
-  case byPrice // = 0
+  case byID // = 0
 
   /// Sort by creation date
   case byDateCreated // = 1
 
   /// Sort by distance
   case byDistance // = 2
+  case byPrice // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .byPrice
+    self = .byID
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .byPrice
+    case 0: self = .byID
     case 1: self = .byDateCreated
     case 2: self = .byDistance
+    case 3: self = .byPrice
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   public var rawValue: Int {
     switch self {
-    case .byPrice: return 0
+    case .byID: return 0
     case .byDateCreated: return 1
     case .byDistance: return 2
+    case .byPrice: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -202,12 +203,53 @@ public enum Sort: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Sort: CaseIterable {
+extension SortBy: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Sort] = [
-    .byPrice,
+  public static var allCases: [SortBy] = [
+    .byID,
     .byDateCreated,
     .byDistance,
+    .byPrice,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+public enum SortDir: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+  case desc // = 0
+  case asc // = 1
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .desc
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .desc
+    case 1: self = .asc
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .desc: return 0
+    case .asc: return 1
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension SortDir: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [SortDir] = [
+    .desc,
+    .asc,
   ]
 }
 
@@ -231,13 +273,21 @@ public struct GetWaterfallRequest {
 
   public var filters: [Filter] = []
 
-  public var sort: Sort = .byPrice
+  public var sort: Sort {
+    get {return _sort ?? Sort()}
+    set {_sort = newValue}
+  }
+  /// Returns true if `sort` has been explicitly set.
+  public var hasSort: Bool {return self._sort != nil}
+  /// Clears the value of `sort`. Subsequent reads from it will return its default value.
+  public mutating func clearSort() {self._sort = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
   fileprivate var _lastOrderID: Int64? = nil
+  fileprivate var _sort: Sort? = nil
 }
 
 public struct Filter {
@@ -250,6 +300,20 @@ public struct Filter {
   public var operation: Operation = .equality
 
   public var value: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Sort {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var sortBy: SortBy = .byID
+
+  public var sortDir: SortDir = .desc
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -299,7 +363,7 @@ public struct WaterfallOrder {
 
   public var serviceDate: String = String()
 
-  public var dateCreated: String = String()
+  public var createdAt: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -312,9 +376,11 @@ public struct WaterfallOrder {
 #if swift(>=5.5) && canImport(_Concurrency)
 extension Field: @unchecked Sendable {}
 extension Operation: @unchecked Sendable {}
-extension Sort: @unchecked Sendable {}
+extension SortBy: @unchecked Sendable {}
+extension SortDir: @unchecked Sendable {}
 extension GetWaterfallRequest: @unchecked Sendable {}
 extension Filter: @unchecked Sendable {}
+extension Sort: @unchecked Sendable {}
 extension GetWaterfallResponse: @unchecked Sendable {}
 extension WaterfallOrder: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
@@ -346,11 +412,19 @@ extension Operation: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Sort: SwiftProtobuf._ProtoNameProviding {
+extension SortBy: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "BY_PRICE"),
+    0: .same(proto: "BY_ID"),
     1: .same(proto: "BY_DATE_CREATED"),
     2: .same(proto: "BY_DISTANCE"),
+    3: .same(proto: "BY_PRICE"),
+  ]
+}
+
+extension SortDir: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DESC"),
+    1: .same(proto: "ASC"),
   ]
 }
 
@@ -372,7 +446,7 @@ extension GetWaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       case 1: try { try decoder.decodeSingularInt32Field(value: &self.pageSize) }()
       case 2: try { try decoder.decodeSingularInt64Field(value: &self._lastOrderID) }()
       case 3: try { try decoder.decodeRepeatedMessageField(value: &self.filters) }()
-      case 4: try { try decoder.decodeSingularEnumField(value: &self.sort) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._sort) }()
       default: break
       }
     }
@@ -392,9 +466,9 @@ extension GetWaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if !self.filters.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.filters, fieldNumber: 3)
     }
-    if self.sort != .byPrice {
-      try visitor.visitSingularEnumField(value: self.sort, fieldNumber: 4)
-    }
+    try { if let v = self._sort {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -402,7 +476,7 @@ extension GetWaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if lhs.pageSize != rhs.pageSize {return false}
     if lhs._lastOrderID != rhs._lastOrderID {return false}
     if lhs.filters != rhs.filters {return false}
-    if lhs.sort != rhs.sort {return false}
+    if lhs._sort != rhs._sort {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -452,6 +526,44 @@ extension Filter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
   }
 }
 
+extension Sort: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Sort"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "sort_by"),
+    2: .standard(proto: "sort_dir"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularEnumField(value: &self.sortBy) }()
+      case 2: try { try decoder.decodeSingularEnumField(value: &self.sortDir) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.sortBy != .byID {
+      try visitor.visitSingularEnumField(value: self.sortBy, fieldNumber: 1)
+    }
+    if self.sortDir != .desc {
+      try visitor.visitSingularEnumField(value: self.sortDir, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Sort, rhs: Sort) -> Bool {
+    if lhs.sortBy != rhs.sortBy {return false}
+    if lhs.sortDir != rhs.sortDir {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension GetWaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetWaterfallResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -493,7 +605,7 @@ extension WaterfallOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     4: .same(proto: "price"),
     5: .same(proto: "address"),
     6: .standard(proto: "service_date"),
-    7: .standard(proto: "date_created"),
+    7: .standard(proto: "created_at"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -508,7 +620,7 @@ extension WaterfallOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       case 4: try { try decoder.decodeSingularStringField(value: &self.price) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._address) }()
       case 6: try { try decoder.decodeSingularStringField(value: &self.serviceDate) }()
-      case 7: try { try decoder.decodeSingularStringField(value: &self.dateCreated) }()
+      case 7: try { try decoder.decodeSingularStringField(value: &self.createdAt) }()
       default: break
       }
     }
@@ -537,8 +649,8 @@ extension WaterfallOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if !self.serviceDate.isEmpty {
       try visitor.visitSingularStringField(value: self.serviceDate, fieldNumber: 6)
     }
-    if !self.dateCreated.isEmpty {
-      try visitor.visitSingularStringField(value: self.dateCreated, fieldNumber: 7)
+    if !self.createdAt.isEmpty {
+      try visitor.visitSingularStringField(value: self.createdAt, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -550,7 +662,7 @@ extension WaterfallOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if lhs.price != rhs.price {return false}
     if lhs._address != rhs._address {return false}
     if lhs.serviceDate != rhs.serviceDate {return false}
-    if lhs.dateCreated != rhs.dateCreated {return false}
+    if lhs.createdAt != rhs.createdAt {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

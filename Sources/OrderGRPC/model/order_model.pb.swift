@@ -47,13 +47,30 @@ public struct Address {
 
   public var town: String = String()
 
-  public var station: String = String()
+  public var station: String {
+    get {return _station ?? String()}
+    set {_station = newValue}
+  }
+  /// Returns true if `station` has been explicitly set.
+  public var hasStation: Bool {return self._station != nil}
+  /// Clears the value of `station`. Subsequent reads from it will return its default value.
+  public mutating func clearStation() {self._station = nil}
 
-  public var color: String = String()
+  public var color: String {
+    get {return _color ?? String()}
+    set {_color = newValue}
+  }
+  /// Returns true if `color` has been explicitly set.
+  public var hasColor: Bool {return self._color != nil}
+  /// Clears the value of `color`. Subsequent reads from it will return its default value.
+  public mutating func clearColor() {self._color = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _station: String? = nil
+  fileprivate var _color: String? = nil
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -136,30 +153,34 @@ extension Address: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularStringField(value: &self.town) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.station) }()
-      case 3: try { try decoder.decodeSingularStringField(value: &self.color) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self._station) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self._color) }()
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     if !self.town.isEmpty {
       try visitor.visitSingularStringField(value: self.town, fieldNumber: 1)
     }
-    if !self.station.isEmpty {
-      try visitor.visitSingularStringField(value: self.station, fieldNumber: 2)
-    }
-    if !self.color.isEmpty {
-      try visitor.visitSingularStringField(value: self.color, fieldNumber: 3)
-    }
+    try { if let v = self._station {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    } }()
+    try { if let v = self._color {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Address, rhs: Address) -> Bool {
     if lhs.town != rhs.town {return false}
-    if lhs.station != rhs.station {return false}
-    if lhs.color != rhs.color {return false}
+    if lhs._station != rhs._station {return false}
+    if lhs._color != rhs._color {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

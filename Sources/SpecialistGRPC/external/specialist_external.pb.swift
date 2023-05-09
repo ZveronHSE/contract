@@ -27,6 +27,8 @@ public struct GetWaterfallRequest {
 
   public var pageSize: Int32 = 0
 
+  public var orderID: Int64 = 0
+
   public var sort: Sort {
     get {return _sort ?? Sort()}
     set {_sort = newValue}
@@ -347,7 +349,8 @@ extension GetWaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
   public static let protoMessageName: String = _protobuf_package + ".GetWaterfallRequest"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "page_size"),
-    2: .same(proto: "sort"),
+    2: .standard(proto: "order_id"),
+    3: .same(proto: "sort"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -357,7 +360,8 @@ extension GetWaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularInt32Field(value: &self.pageSize) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._sort) }()
+      case 2: try { try decoder.decodeSingularInt64Field(value: &self.orderID) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._sort) }()
       default: break
       }
     }
@@ -371,14 +375,18 @@ extension GetWaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if self.pageSize != 0 {
       try visitor.visitSingularInt32Field(value: self.pageSize, fieldNumber: 1)
     }
+    if self.orderID != 0 {
+      try visitor.visitSingularInt64Field(value: self.orderID, fieldNumber: 2)
+    }
     try { if let v = self._sort {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: GetWaterfallRequest, rhs: GetWaterfallRequest) -> Bool {
     if lhs.pageSize != rhs.pageSize {return false}
+    if lhs.orderID != rhs.orderID {return false}
     if lhs._sort != rhs._sort {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

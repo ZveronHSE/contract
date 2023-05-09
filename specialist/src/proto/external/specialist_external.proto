@@ -19,7 +19,8 @@ service SpecialistServiceExternal {
 
 message GetWaterfallRequest{
   int32 page_size = 1;
-  Sort sort = 2;
+  int64 order_id = 2;
+  Sort sort = 3;
 }
 
 

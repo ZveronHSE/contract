@@ -21,7 +21,7 @@ message FullOrder {
   int64 id = 1;
   // Надо будет заменить на категории услуги, чтобы не было свободной писанины
   string title = 2;
-  string price = 3;
+  int32 price = 3;
   model.Address address = 4;
   //delivery type, in person or remote
   ServiceDeliveryMethod service_delivery_method = 5;

@@ -3,7 +3,6 @@ package ru.zveron.contract.specialist.manage;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
-import "external/model/specialist_model.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.specialist.manage";
@@ -23,20 +22,20 @@ service ManageSpecialistExternalService {
 
 
   // Добавление образования
-  rpc AddEducation (FullEducation) returns (model.InfoEntity);
+  rpc AddEducation (FullEducation) returns (ProfileInfo);
 
   // Редактирование образования
-  rpc EditEducation (EditEducationRequest) returns (model.InfoEntity);
+  rpc EditEducation (EditEducationRequest) returns (ProfileInfo);
 
   // Удаление образования
   rpc DeleteEducation (google.protobuf.Int64Value) returns (google.protobuf.Empty);
 
 
   // Добавление работы
-  rpc AddWorkExperience (FullWorkExperience) returns (model.InfoEntity);
+  rpc AddWorkExperience (FullWorkExperience) returns (ProfileInfo);
 
   // Редактирование существующей работы
-  rpc EditWorkExperience (EditWorkExperienceRequest) returns (model.InfoEntity);
+  rpc EditWorkExperience (EditWorkExperienceRequest) returns (ProfileInfo);
 
   // Удаление работы
   rpc DeleteWorkExperience (google.protobuf.Int64Value) returns (google.protobuf.Empty);
@@ -44,20 +43,20 @@ service ManageSpecialistExternalService {
 
 
   // Добавление достижения
-  rpc AddAchievement (FullAchievement) returns (model.InfoEntity);
+  rpc AddAchievement (FullAchievement) returns (ProfileInfo);
 
   // Редактирование достижения
-  rpc EditAchievement (EditAchievementRequest) returns (model.InfoEntity);
+  rpc EditAchievement (EditAchievementRequest) returns (ProfileInfo);
 
   // Удаление достижения
   rpc DeleteAchievement (google.protobuf.Int64Value) returns (google.protobuf.Empty);
 
 
   // Добавление услуги
-  rpc AddOther (FullOther) returns (model.InfoEntity);
+  rpc AddOther (FullOther) returns (ProfileInfo);
 
   // Редактирование услуги
-  rpc EditOther (EditOtherRequest) returns (model.InfoEntity);
+  rpc EditOther (EditOtherRequest) returns (ProfileInfo);
 
   // Удаление услуги
   rpc DeleteOther (google.protobuf.Int64Value) returns (google.protobuf.Empty);
@@ -65,10 +64,10 @@ service ManageSpecialistExternalService {
 
 
   // Добавление услуги
-  rpc AddService (FullService) returns (model.InfoEntity);
+  rpc AddService (FullService) returns (ProfileInfo);
 
   // Редактирование услуги
-  rpc EditService (EditServiceRequest) returns (model.InfoEntity);
+  rpc EditService (EditServiceRequest) returns (ProfileInfo);
 
   // Удаление услуги
   rpc DeleteService (google.protobuf.Int64Value) returns (google.protobuf.Empty);
@@ -178,15 +177,15 @@ message GetProfileResponse {
   // Описание о себе
   string description = 6;
   // Образование
-  repeated model.InfoEntity educations = 7;
+  repeated ProfileInfo educations = 7;
   // Опыт работы
-  repeated model.InfoEntity work_experiences = 8;
+  repeated ProfileInfo work_experiences = 8;
   // Достижения
-  repeated model.InfoEntity achievements = 9;
+  repeated ProfileInfo achievements = 9;
   // разное
-  repeated model.InfoEntity others = 10;
+  repeated ProfileInfo others = 10;
   // услуги
-  repeated model.InfoEntity services = 11;
+  repeated ProfileInfo services = 11;
   // ссылки на документы
   repeated string document_urls = 12;
 }
@@ -202,4 +201,9 @@ message EditNameRequest {
 
 message Documents {
   repeated string urls = 1;
+}
+
+message ProfileInfo {
+  int64 id = 1;
+  string title = 2;
 }

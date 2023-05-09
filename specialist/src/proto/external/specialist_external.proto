@@ -6,14 +6,14 @@ import "google/protobuf/timestamp.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.specialist";
-option java_outer_classname = "SpecialistProto";
+option java_outer_classname = "SpecialistExternalProto";
 option java_multiple_files = true;
 
 service SpecialistServiceExternal {
   // Лента специалистов
   rpc GetWaterfall (GetWaterfallRequest) returns (GetWaterfallResponse);
   // Карточка специалиста
-  rpc GetCardSpecialist (google.protobuf.Int64Value) returns (Specialist);
+  rpc GetCardSpecialist (google.protobuf.Int64Value) returns (CardSpecialist);
 }
 
 
@@ -25,9 +25,9 @@ message GetWaterfallRequest{
 
 message Sort {
   enum SortBy {
-    PRICE_DESC = 0;
-    PRICE_ASC = 1;
-    DATE = 2;
+    DATE = 0;
+    PRICE_DESC = 1;
+    PRICE_ASC = 2;
     RATING = 3;
   }
 
@@ -45,7 +45,7 @@ message LastSpecialist {
 }
 
 message GetWaterfallResponse {
-  repeated Specialist specialist = 1;
+  repeated Specialist specialists = 1;
 
   // Данные последнего объявления, необходимые для сортировки и работы водопада
   LastSpecialist last_specialist = 2;
@@ -55,8 +55,18 @@ message Specialist {
   int64 id = 1;
   string name = 2;
   double rating = 3;
+  int32 reviews_count = 4;
+  string town = 5;
+  optional Subway subway_home = 6;
+  string description = 7;
+}
+
+message CardSpecialist {
+  int64 id = 1;
+  string name = 2;
+  double rating = 3;
   // Количество отзывов "123 отзыва"
-  string quantity_of_review = 4;
+  string reviews_count = 4;
   // Если специалист принимает у себя
   optional Subway subway_home = 5;
   // Куда выезжает специалист, если выезжает вообще
@@ -69,7 +79,7 @@ message Specialist {
 
 
 message Subway {
-  string station = 1;
+  string station_name = 1;
   string color = 2;
 }
 

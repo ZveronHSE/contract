@@ -48,7 +48,7 @@ public struct Sort {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var sortBy: Sort.SortBy = .priceDesc
+  public var sortBy: Sort.SortBy = .date
 
   /// Данные последнего специалиста, который был на прошлой странице(если запрос от второй страницы и последующей)
   public var lastSpecialist: LastSpecialist {
@@ -64,21 +64,21 @@ public struct Sort {
 
   public enum SortBy: SwiftProtobuf.Enum {
     public typealias RawValue = Int
-    case priceDesc // = 0
-    case priceAsc // = 1
-    case date // = 2
+    case date // = 0
+    case priceDesc // = 1
+    case priceAsc // = 2
     case rating // = 3
     case UNRECOGNIZED(Int)
 
     public init() {
-      self = .priceDesc
+      self = .date
     }
 
     public init?(rawValue: Int) {
       switch rawValue {
-      case 0: self = .priceDesc
-      case 1: self = .priceAsc
-      case 2: self = .date
+      case 0: self = .date
+      case 1: self = .priceDesc
+      case 2: self = .priceAsc
       case 3: self = .rating
       default: self = .UNRECOGNIZED(rawValue)
       }
@@ -86,9 +86,9 @@ public struct Sort {
 
     public var rawValue: Int {
       switch self {
-      case .priceDesc: return 0
-      case .priceAsc: return 1
-      case .date: return 2
+      case .date: return 0
+      case .priceDesc: return 1
+      case .priceAsc: return 2
       case .rating: return 3
       case .UNRECOGNIZED(let i): return i
       }
@@ -106,9 +106,9 @@ public struct Sort {
 extension Sort.SortBy: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   public static var allCases: [Sort.SortBy] = [
+    .date,
     .priceDesc,
     .priceAsc,
-    .date,
     .rating,
   ]
 }
@@ -148,7 +148,7 @@ public struct GetWaterfallResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var specialist: [Specialist] = []
+  public var specialists: [Specialist] = []
 
   /// Данные последнего объявления, необходимые для сортировки и работы водопада
   public var lastSpecialist: LastSpecialist {
@@ -178,8 +178,41 @@ public struct Specialist {
 
   public var rating: Double = 0
 
+  public var reviewsCount: Int32 = 0
+
+  public var town: String = String()
+
+  public var subwayHome: Subway {
+    get {return _subwayHome ?? Subway()}
+    set {_subwayHome = newValue}
+  }
+  /// Returns true if `subwayHome` has been explicitly set.
+  public var hasSubwayHome: Bool {return self._subwayHome != nil}
+  /// Clears the value of `subwayHome`. Subsequent reads from it will return its default value.
+  public mutating func clearSubwayHome() {self._subwayHome = nil}
+
+  public var description_p: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _subwayHome: Subway? = nil
+}
+
+public struct CardSpecialist {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: Int64 = 0
+
+  public var name: String = String()
+
+  public var rating: Double = 0
+
   /// Количество отзывов "123 отзыва"
-  public var quantityOfReview: String = String()
+  public var reviewsCount: String = String()
 
   /// Если специалист принимает у себя
   public var subwayHome: Subway {
@@ -213,7 +246,7 @@ public struct Subway {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var station: String = String()
+  public var stationName: String = String()
 
   public var color: String = String()
 
@@ -295,6 +328,7 @@ extension Sort.SortBy: @unchecked Sendable {}
 extension LastSpecialist: @unchecked Sendable {}
 extension GetWaterfallResponse: @unchecked Sendable {}
 extension Specialist: @unchecked Sendable {}
+extension CardSpecialist: @unchecked Sendable {}
 extension Subway: @unchecked Sendable {}
 extension Address: @unchecked Sendable {}
 extension Address.OneOf_Destination: @unchecked Sendable {}
@@ -372,7 +406,7 @@ extension Sort: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
-    if self.sortBy != .priceDesc {
+    if self.sortBy != .date {
       try visitor.visitSingularEnumField(value: self.sortBy, fieldNumber: 1)
     }
     try { if let v = self._lastSpecialist {
@@ -391,9 +425,9 @@ extension Sort: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
 
 extension Sort.SortBy: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "PRICE_DESC"),
-    1: .same(proto: "PRICE_ASC"),
-    2: .same(proto: "DATE"),
+    0: .same(proto: "DATE"),
+    1: .same(proto: "PRICE_DESC"),
+    2: .same(proto: "PRICE_ASC"),
     3: .same(proto: "RATING"),
   ]
 }
@@ -455,7 +489,7 @@ extension LastSpecialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
 extension GetWaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetWaterfallResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "specialist"),
+    1: .same(proto: "specialists"),
     2: .standard(proto: "last_specialist"),
   ]
 
@@ -465,7 +499,7 @@ extension GetWaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.specialist) }()
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.specialists) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._lastSpecialist) }()
       default: break
       }
@@ -477,8 +511,8 @@ extension GetWaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
-    if !self.specialist.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.specialist, fieldNumber: 1)
+    if !self.specialists.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.specialists, fieldNumber: 1)
     }
     try { if let v = self._lastSpecialist {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
@@ -487,7 +521,7 @@ extension GetWaterfallResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 
   public static func ==(lhs: GetWaterfallResponse, rhs: GetWaterfallResponse) -> Bool {
-    if lhs.specialist != rhs.specialist {return false}
+    if lhs.specialists != rhs.specialists {return false}
     if lhs._lastSpecialist != rhs._lastSpecialist {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -500,7 +534,79 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     1: .same(proto: "id"),
     2: .same(proto: "name"),
     3: .same(proto: "rating"),
-    4: .standard(proto: "quantity_of_review"),
+    4: .standard(proto: "reviews_count"),
+    5: .same(proto: "town"),
+    6: .standard(proto: "subway_home"),
+    7: .same(proto: "description"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
+      case 3: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
+      case 4: try { try decoder.decodeSingularInt32Field(value: &self.reviewsCount) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self.town) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._subwayHome) }()
+      case 7: try { try decoder.decodeSingularStringField(value: &self.description_p) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    if self.id != 0 {
+      try visitor.visitSingularInt64Field(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if self.rating != 0 {
+      try visitor.visitSingularDoubleField(value: self.rating, fieldNumber: 3)
+    }
+    if self.reviewsCount != 0 {
+      try visitor.visitSingularInt32Field(value: self.reviewsCount, fieldNumber: 4)
+    }
+    if !self.town.isEmpty {
+      try visitor.visitSingularStringField(value: self.town, fieldNumber: 5)
+    }
+    try { if let v = self._subwayHome {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    } }()
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 7)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Specialist, rhs: Specialist) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.rating != rhs.rating {return false}
+    if lhs.reviewsCount != rhs.reviewsCount {return false}
+    if lhs.town != rhs.town {return false}
+    if lhs._subwayHome != rhs._subwayHome {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension CardSpecialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CardSpecialist"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "rating"),
+    4: .standard(proto: "reviews_count"),
     5: .standard(proto: "subway_home"),
     6: .same(proto: "addresses"),
     7: .same(proto: "services"),
@@ -517,7 +623,7 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 1: try { try decoder.decodeSingularInt64Field(value: &self.id) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularDoubleField(value: &self.rating) }()
-      case 4: try { try decoder.decodeSingularStringField(value: &self.quantityOfReview) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.reviewsCount) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._subwayHome) }()
       case 6: try { try decoder.decodeRepeatedMessageField(value: &self.addresses) }()
       case 7: try { try decoder.decodeRepeatedMessageField(value: &self.services) }()
@@ -542,8 +648,8 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if self.rating != 0 {
       try visitor.visitSingularDoubleField(value: self.rating, fieldNumber: 3)
     }
-    if !self.quantityOfReview.isEmpty {
-      try visitor.visitSingularStringField(value: self.quantityOfReview, fieldNumber: 4)
+    if !self.reviewsCount.isEmpty {
+      try visitor.visitSingularStringField(value: self.reviewsCount, fieldNumber: 4)
     }
     try { if let v = self._subwayHome {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
@@ -563,11 +669,11 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Specialist, rhs: Specialist) -> Bool {
+  public static func ==(lhs: CardSpecialist, rhs: CardSpecialist) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.rating != rhs.rating {return false}
-    if lhs.quantityOfReview != rhs.quantityOfReview {return false}
+    if lhs.reviewsCount != rhs.reviewsCount {return false}
     if lhs._subwayHome != rhs._subwayHome {return false}
     if lhs.addresses != rhs.addresses {return false}
     if lhs.services != rhs.services {return false}
@@ -581,7 +687,7 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
 extension Subway: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Subway"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "station"),
+    1: .standard(proto: "station_name"),
     2: .same(proto: "color"),
   ]
 
@@ -591,7 +697,7 @@ extension Subway: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.station) }()
+      case 1: try { try decoder.decodeSingularStringField(value: &self.stationName) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.color) }()
       default: break
       }
@@ -599,8 +705,8 @@ extension Subway: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.station.isEmpty {
-      try visitor.visitSingularStringField(value: self.station, fieldNumber: 1)
+    if !self.stationName.isEmpty {
+      try visitor.visitSingularStringField(value: self.stationName, fieldNumber: 1)
     }
     if !self.color.isEmpty {
       try visitor.visitSingularStringField(value: self.color, fieldNumber: 2)
@@ -609,7 +715,7 @@ extension Subway: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBas
   }
 
   public static func ==(lhs: Subway, rhs: Subway) -> Bool {
-    if lhs.station != rhs.station {return false}
+    if lhs.stationName != rhs.stationName {return false}
     if lhs.color != rhs.color {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

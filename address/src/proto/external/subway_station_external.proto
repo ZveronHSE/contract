@@ -1,8 +1,6 @@
 syntax = "proto3";
 package ru.zveron.contract.address;
 
-import "google/protobuf/empty.proto";
-
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.address.external";
 option java_outer_classname = "SubwayStationExternalProto";

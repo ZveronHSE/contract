@@ -3,6 +3,8 @@ syntax = "proto3";
 package ru.zveron.contract.order.external;
 
 import "model/order_model.proto";
+import "google/type/date.proto";
+import "google/type/timeofday.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.order.external";
@@ -13,8 +15,38 @@ service OrderServiceExternal {
   //gets order by id
   rpc GetOrder(GetOrderRequest)
       returns (GetOrderResponse);
+
+  //creates order
+  rpc CreateOrder(CreateOrderRequest)
+      returns (CreateOrderResponse);
 }
 
+message CreateOrderRequest{
+  int64 profile_id = 1;
+  int64 animal_id = 2;
+  optional int64 subway_station_id = 3;
+
+  string title = 4;
+  int64 price = 5;
+
+  //date of order delivery formatted as dd.MM.yyyy - dd.MM.yyyy
+  google.type.Date service_date_from = 6;
+  //by default should be equal to service_date_from
+  google.type.Date service_date_to = 7;
+
+  //time of order delivery from
+  google.type.TimeOfDay service_time_from = 8;
+  //by default should be equal to service_time_from
+  google.type.TimeOfDay service_time_to = 9;
+
+  string description = 10;
+  ServiceDeliveryMethod delivery_method = 11;
+  model.ServiceType service_type = 12;
+}
+
+message CreateOrderResponse {
+  FullOrder full_order = 1;
+}
 
 message GetOrderRequest{
   int64 id = 1;

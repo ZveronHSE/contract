@@ -15,7 +15,6 @@ service OrderWaterfallServiceExternal {
       returns (GetWaterfallResponse);
 }
 
-
 message GetWaterfallRequest{
   int32 page_size = 1;
   optional int64 last_order_id = 2;
@@ -35,7 +34,7 @@ enum Field {
   PRICE = 0;
   // Service type
   SERVICE_TYPE = 1;
-  // service delivery date from and to dates. Can be equal if the same day
+  // service delivery date from and to dates. Equal by default
   SERVICE_DATE_FROM = 2;
   SERVICE_DATE_TO = 3;
   // Distance from the user's location
@@ -74,7 +73,7 @@ message Sort{
 enum SortBy {
   DEFAULT = 0;
   // Sort by creation date
-  BY_DATE_CREATED = 1;
+  BY_SERVICE_DELIVERY = 1;
   // Sort by distance to self
   BY_DISTANCE = 2;
   BY_PRICE = 3;

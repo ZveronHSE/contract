@@ -28,7 +28,7 @@ message FullOrder {
 }
 
 enum ServiceDeliveryMethod {
-  IN_PERSON = 0;
-  REMOTE = 1;
-  DEPARTURE = 2;
+  REMOTE = 0;
+  CUSTOMER_LOCATION = 1;
+  SPECIALIST_LOCATION = 2;
 }

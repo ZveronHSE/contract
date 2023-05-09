@@ -59,6 +59,7 @@ message Specialist {
   string town = 5;
   optional Subway subway_home = 6;
   string description = 7;
+  string img_url = 8;
 }
 
 message CardSpecialist {
@@ -75,6 +76,7 @@ message CardSpecialist {
   // В онлайне
   bool online = 9;
   string description = 10;
+  string img_url = 11;
 }
 
 

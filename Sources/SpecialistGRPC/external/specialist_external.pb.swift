@@ -193,6 +193,8 @@ public struct Specialist {
 
   public var description_p: String = String()
 
+  public var imgURL: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -233,6 +235,8 @@ public struct CardSpecialist {
   public var online: Bool = false
 
   public var description_p: String = String()
+
+  public var imgURL: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -538,6 +542,7 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     5: .same(proto: "town"),
     6: .standard(proto: "subway_home"),
     7: .same(proto: "description"),
+    8: .standard(proto: "img_url"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -553,6 +558,7 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 5: try { try decoder.decodeSingularStringField(value: &self.town) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._subwayHome) }()
       case 7: try { try decoder.decodeSingularStringField(value: &self.description_p) }()
+      case 8: try { try decoder.decodeSingularStringField(value: &self.imgURL) }()
       default: break
       }
     }
@@ -584,6 +590,9 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 7)
     }
+    if !self.imgURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imgURL, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -595,6 +604,7 @@ extension Specialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if lhs.town != rhs.town {return false}
     if lhs._subwayHome != rhs._subwayHome {return false}
     if lhs.description_p != rhs.description_p {return false}
+    if lhs.imgURL != rhs.imgURL {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -612,6 +622,7 @@ extension CardSpecialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     7: .same(proto: "services"),
     9: .same(proto: "online"),
     10: .same(proto: "description"),
+    11: .standard(proto: "img_url"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -629,6 +640,7 @@ extension CardSpecialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       case 7: try { try decoder.decodeRepeatedMessageField(value: &self.services) }()
       case 9: try { try decoder.decodeSingularBoolField(value: &self.online) }()
       case 10: try { try decoder.decodeSingularStringField(value: &self.description_p) }()
+      case 11: try { try decoder.decodeSingularStringField(value: &self.imgURL) }()
       default: break
       }
     }
@@ -666,6 +678,9 @@ extension CardSpecialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 10)
     }
+    if !self.imgURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imgURL, fieldNumber: 11)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -679,6 +694,7 @@ extension CardSpecialist: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     if lhs.services != rhs.services {return false}
     if lhs.online != rhs.online {return false}
     if lhs.description_p != rhs.description_p {return false}
+    if lhs.imgURL != rhs.imgURL {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -24,7 +24,7 @@ message FullOrder {
   int32 price = 3;
   model.Address address = 4;
   //delivery type, in person or remote
-  ServiceDeliveryMethod service_delivery_method = 5;
+  repeated ServiceDeliveryMethod service_delivery_method = 5;
 }
 
 enum ServiceDeliveryMethod {

@@ -27,17 +27,13 @@ public enum Field: SwiftProtobuf.Enum {
   case price // = 0
 
   /// Service type
-  case serviceType // = 1
+  case orderServiceType // = 1
 
-  /// service delivery date from and to dates. Can be equal if the same day
-  case serviceDateFrom // = 2
-  case serviceDateTo // = 3
+  /// Creation date
+  case dateCreated // = 2
 
   /// Distance from the user's location
-  case distance // = 4
-
-  /// Service delivery type
-  case serviceDeliveryType // = 5
+  case distance // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -47,11 +43,9 @@ public enum Field: SwiftProtobuf.Enum {
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .price
-    case 1: self = .serviceType
-    case 2: self = .serviceDateFrom
-    case 3: self = .serviceDateTo
-    case 4: self = .distance
-    case 5: self = .serviceDeliveryType
+    case 1: self = .orderServiceType
+    case 2: self = .dateCreated
+    case 3: self = .distance
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -59,11 +53,9 @@ public enum Field: SwiftProtobuf.Enum {
   public var rawValue: Int {
     switch self {
     case .price: return 0
-    case .serviceType: return 1
-    case .serviceDateFrom: return 2
-    case .serviceDateTo: return 3
-    case .distance: return 4
-    case .serviceDeliveryType: return 5
+    case .orderServiceType: return 1
+    case .dateCreated: return 2
+    case .distance: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -76,11 +68,9 @@ extension Field: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   public static var allCases: [Field] = [
     .price,
-    .serviceType,
-    .serviceDateFrom,
-    .serviceDateTo,
+    .orderServiceType,
+    .dateCreated,
     .distance,
-    .serviceDeliveryType,
   ]
 }
 
@@ -175,23 +165,23 @@ extension Operation: CaseIterable {
 
 public enum SortBy: SwiftProtobuf.Enum {
   public typealias RawValue = Int
-  case `default` // = 0
+  case byID // = 0
 
   /// Sort by creation date
   case byDateCreated // = 1
 
-  /// Sort by distance to self
+  /// Sort by distance
   case byDistance // = 2
   case byPrice // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .default
+    self = .byID
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .default
+    case 0: self = .byID
     case 1: self = .byDateCreated
     case 2: self = .byDistance
     case 3: self = .byPrice
@@ -201,7 +191,7 @@ public enum SortBy: SwiftProtobuf.Enum {
 
   public var rawValue: Int {
     switch self {
-    case .default: return 0
+    case .byID: return 0
     case .byDateCreated: return 1
     case .byDistance: return 2
     case .byPrice: return 3
@@ -216,7 +206,7 @@ public enum SortBy: SwiftProtobuf.Enum {
 extension SortBy: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   public static var allCases: [SortBy] = [
-    .default,
+    .byID,
     .byDateCreated,
     .byDistance,
     .byPrice,
@@ -309,7 +299,6 @@ public struct Filter {
 
   public var operation: Operation = .equality
 
-  ///for multiple values, separate by comma
   public var value: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -322,7 +311,7 @@ public struct Sort {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var sortBy: SortBy = .default
+  public var sortBy: SortBy = .byID
 
   public var sortDir: SortDir = .desc
 
@@ -403,11 +392,9 @@ fileprivate let _protobuf_package = "ru.zveron.contract.order.external"
 extension Field: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PRICE"),
-    1: .same(proto: "SERVICE_TYPE"),
-    2: .same(proto: "SERVICE_DATE_FROM"),
-    3: .same(proto: "SERVICE_DATE_TO"),
-    4: .same(proto: "DISTANCE"),
-    5: .same(proto: "SERVICE_DELIVERY_TYPE"),
+    1: .same(proto: "ORDER_SERVICE_TYPE"),
+    2: .same(proto: "DATE_CREATED"),
+    3: .same(proto: "DISTANCE"),
   ]
 }
 
@@ -427,7 +414,7 @@ extension Operation: SwiftProtobuf._ProtoNameProviding {
 
 extension SortBy: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "DEFAULT"),
+    0: .same(proto: "BY_ID"),
     1: .same(proto: "BY_DATE_CREATED"),
     2: .same(proto: "BY_DISTANCE"),
     3: .same(proto: "BY_PRICE"),
@@ -560,7 +547,7 @@ extension Sort: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.sortBy != .default {
+    if self.sortBy != .byID {
       try visitor.visitSingularEnumField(value: self.sortBy, fieldNumber: 1)
     }
     if self.sortDir != .desc {

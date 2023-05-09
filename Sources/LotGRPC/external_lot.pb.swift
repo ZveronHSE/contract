@@ -248,6 +248,30 @@ extension ClosingLotReason: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+public struct GetOwnLotsRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var lastLot: LastLot {
+    get {return _lastLot ?? LastLot()}
+    set {_lastLot = newValue}
+  }
+  /// Returns true if `lastLot` has been explicitly set.
+  public var hasLastLot: Bool {return self._lastLot != nil}
+  /// Clears the value of `lastLot`. Subsequent reads from it will return its default value.
+  public mutating func clearLastLot() {self._lastLot = nil}
+
+  /// возвращать либо активные объявления, либо архивные объявления
+  public var onlyActive: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _lastLot: LastLot? = nil
+}
+
 public struct WaterfallRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -841,6 +865,7 @@ extension TypeSort: @unchecked Sendable {}
 extension Field: @unchecked Sendable {}
 extension Operation: @unchecked Sendable {}
 extension ClosingLotReason: @unchecked Sendable {}
+extension GetOwnLotsRequest: @unchecked Sendable {}
 extension WaterfallRequest: @unchecked Sendable {}
 extension Sort: @unchecked Sendable {}
 extension Sort.SortBy: @unchecked Sendable {}
@@ -898,6 +923,48 @@ extension ClosingLotReason: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "SOLD_SOMEWHERE"),
     2: .same(proto: "IRRELEVANT"),
   ]
+}
+
+extension GetOwnLotsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GetOwnLotsRequest"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "last_lot"),
+    2: .standard(proto: "only_active"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._lastLot) }()
+      case 2: try { try decoder.decodeSingularBoolField(value: &self.onlyActive) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._lastLot {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    } }()
+    if self.onlyActive != false {
+      try visitor.visitSingularBoolField(value: self.onlyActive, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: GetOwnLotsRequest, rhs: GetOwnLotsRequest) -> Bool {
+    if lhs._lastLot != rhs._lastLot {return false}
+    if lhs.onlyActive != rhs.onlyActive {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
 extension WaterfallRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {

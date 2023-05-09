@@ -15,6 +15,9 @@ service LotExternalProtoService {
   // Получить список объявлений для ленты
   rpc GetWaterfall(WaterfallRequest) returns (WaterfallResponse);
 
+  // Получить список своих объявлений
+  rpc GetOwnLots(GetOwnLotsRequest) returns (WaterfallResponse);
+
   rpc CreateLot(CreateLotRequest) returns (CardLot);
 
   rpc EditLot(EditLotRequest) returns (CardLot);
@@ -25,6 +28,11 @@ service LotExternalProtoService {
   rpc GetCardLot(CardLotRequest) returns (CardLot);
 }
 
+message GetOwnLotsRequest {
+  optional LastLot last_lot = 1;
+  // возвращать либо активные объявления, либо архивные объявления
+  bool only_active = 2;
+}
 
 message WaterfallRequest {
   // Количество элементов запрашиваемых на страницу

@@ -1,0 +1,209 @@
+syntax = "proto3";
+package ru.zveron.contract.specialist.manage;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.specialist.manage";
+option java_outer_classname = "ManageSpecialistProto";
+option java_multiple_files = true;
+
+service ManageSpecialistExternalService {
+  // Получение профиля специалиста со всеми его данными для специалиста
+  rpc GetProfile (google.protobuf.Empty) returns (GetProfileResponse);
+
+  // Редактирование ФИО
+  rpc EditName (EditNameRequest) returns (google.protobuf.StringValue);
+
+  // Редактирование описания
+  rpc EditDescription (google.protobuf.StringValue) returns (google.protobuf.StringValue);
+
+
+
+  // Добавление образования
+  rpc AddEducation (FullEducation) returns (InfoEntity);
+
+  // Редактирование образования
+  rpc EditEducation (EditEducationRequest) returns (InfoEntity);
+
+  // Удаление образования
+  rpc DeleteEducation (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+
+
+  // Добавление работы
+  rpc AddWorkExperience (FullWorkExperience) returns (InfoEntity);
+
+  // Редактирование существующей работы
+  rpc EditWorkExperience (EditWorkExperienceRequest) returns (InfoEntity);
+
+  // Удаление работы
+  rpc DeleteWorkExperience (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+
+
+
+  // Добавление достижения
+  rpc AddAchievement (FullAchievement) returns (InfoEntity);
+
+  // Редактирование достижения
+  rpc EditAchievement (EditAchievementRequest) returns (InfoEntity);
+
+  // Удаление достижения
+  rpc DeleteAchievement (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+
+
+  // Добавление услуги
+  rpc AddOther (FullOther) returns (InfoEntity);
+
+  // Редактирование услуги
+  rpc EditOther (EditOtherRequest) returns (InfoEntity);
+
+  // Удаление услуги
+  rpc DeleteOther (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+
+
+
+  // Добавление услуги
+  rpc AddService (FullService) returns (InfoEntity);
+
+  // Редактирование услуги
+  rpc EditService (EditServiceRequest) returns (InfoEntity);
+
+  // Удаление услуги
+  rpc DeleteService (google.protobuf.Int64Value) returns (google.protobuf.Empty);
+
+
+  // Документы про квалификацию
+  rpc EditDocuments (Documents) returns (Documents);
+}
+
+message InfoEntity {
+  int64 id = 1;
+  string title = 2;
+}
+
+
+// ----------------------
+message FullEducation {
+  string educational_institution = 1;
+  string faculty = 2;
+  string specialization = 3;
+  // Год начала
+  int32 start_year = 4;
+  // Год окончания обучения
+  optional int32 end_year = 5;
+  string diploma_url = 6;
+  // показывать ли фотку диплома и зачетки клиентам
+  bool show_photo = 7;
+}
+
+message EditEducationRequest {
+  int64 id = 1;
+  FullEducation education = 2;
+}
+
+// ----------------------
+
+message FullWorkExperience {
+  string organization = 1;
+  string work_title = 2;
+  // Год начала
+  int32 start_year = 3;
+  // Год окончания обучения
+  optional int32 end_year = 4;
+  string document_url = 5;
+}
+
+message EditWorkExperienceRequest {
+  int64 id = 1;
+  FullWorkExperience work = 2;
+}
+
+// ----------------------
+
+message FullAchievement {
+  string title = 1;
+  // Год получения
+  int32 year = 2;
+  // Фотография достижения
+  string document_url = 3;
+  // показывать ли фотку клиентам
+  bool show_photo = 4;
+}
+
+message EditAchievementRequest {
+  int64 id = 1;
+  FullAchievement achievement = 2;
+}
+
+// ----------------------
+
+message FullService {
+  string title = 1;
+  optional int32 start_price = 2;
+  optional int32 end_price = 3;
+  bool is_remotely = 4;
+  bool at_home = 5;
+  bool home_visit = 6;
+}
+
+message EditServiceRequest {
+  int64 id = 1;
+  FullService service = 2;
+}
+
+// ----------------------
+
+message FullOther {
+  string title = 1;
+  string document_url = 2;
+  // показывать ли фотку клиентам
+  bool show_photo = 3;
+}
+
+message EditOtherRequest {
+  int64 id = 1;
+  FullOther other = 2;
+}
+
+// ----------------------
+
+message GetProfileResponse {
+  // Для формирования ссылки на поделиться
+  int64 id = 1;
+  // Имя и фамилия
+  string name = 2;
+  // Нет оценок или "4.9 (10 оценок)"
+  string rating = 3;
+  // Количество отзывов - "нет отзывов" или "14 отзывов"
+  string quantity_review = 4;
+  // Аватарка пользователя
+  string img_url = 5;
+  // Описание о себе
+  string description = 6;
+  // Образование
+  repeated InfoEntity educations = 7;
+  // Опыт работы
+  repeated InfoEntity work_experiences = 8;
+  // Достижения
+  repeated InfoEntity achievements = 9;
+  // разное
+  repeated InfoEntity others = 10;
+  // услуги
+  repeated InfoEntity services = 11;
+  // ссылки на документы
+  repeated string document_urls = 12;
+}
+
+
+message EditNameRequest {
+  string name = 1;
+  // фамилия
+  string surname = 2;
+  // отчество
+  string patronymic = 3;
+}
+
+message Documents {
+  repeated string urls = 1;
+}

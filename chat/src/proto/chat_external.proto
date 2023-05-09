@@ -110,6 +110,7 @@ message ChatRouteResponse {
     ReceiveEvent receive_event = 3;
     ReceiveMessage receive_message = 4;
     ReceiveChatSummary chatSummary = 5;
+    ErrorMessage error = 6;
   }
 }
 
@@ -121,6 +122,7 @@ message GetRecentChatsResponse {
 // Сообщения в чате
 message GetChatMessagesResponse {
   repeated model.Message messages = 1;
+  string chat_id = 2;
 }
 
 // Событие в чате.
@@ -137,9 +139,16 @@ message ReceiveEvent {
 // Входящее сообщение
 message ReceiveMessage {
   model.Message message = 1;
+  string chat_id = 2;
 }
 
 // Полное представление чата
 message ReceiveChatSummary {
   model.Chat chat = 1;
+}
+
+// Представление ошибки, возникшей в результате стриминга. Используется для предотвращения обрыва соединения
+message ErrorMessage {
+  uint32 status = 1;
+  string message = 2;
 }

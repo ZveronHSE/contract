@@ -485,6 +485,14 @@ public struct ChatRouteResponse {
     set {response = .chatSummary(newValue)}
   }
 
+  public var error: ErrorMessage {
+    get {
+      if case .error(let v)? = response {return v}
+      return ErrorMessage()
+    }
+    set {response = .error(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public enum OneOf_Response: Equatable {
@@ -493,6 +501,7 @@ public struct ChatRouteResponse {
     case receiveEvent(ReceiveEvent)
     case receiveMessage(ReceiveMessage)
     case chatSummary(ReceiveChatSummary)
+    case error(ErrorMessage)
 
   #if !swift(>=4.1)
     public static func ==(lhs: ChatRouteResponse.OneOf_Response, rhs: ChatRouteResponse.OneOf_Response) -> Bool {
@@ -518,6 +527,10 @@ public struct ChatRouteResponse {
       }()
       case (.chatSummary, .chatSummary): return {
         guard case .chatSummary(let l) = lhs, case .chatSummary(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.error, .error): return {
+        guard case .error(let l) = lhs, case .error(let r) = rhs else { preconditionFailure() }
         return l == r
       }()
       default: return false
@@ -549,6 +562,8 @@ public struct GetChatMessagesResponse {
   // methods supported on all messages.
 
   public var messages: [Message] = []
+
+  public var chatID: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -639,6 +654,8 @@ public struct ReceiveMessage {
   /// Clears the value of `message`. Subsequent reads from it will return its default value.
   public mutating func clearMessage() {self._message = nil}
 
+  public var chatID: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -668,6 +685,21 @@ public struct ReceiveChatSummary {
   fileprivate var _chat: Chat? = nil
 }
 
+/// Представление ошибки, возникшей в результате стриминга. Используется для предотвращения обрыва соединения
+public struct ErrorMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: UInt32 = 0
+
+  public var message: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 #if swift(>=5.5) && canImport(_Concurrency)
 extension ArticleType: @unchecked Sendable {}
 extension ChatRouteRequest: @unchecked Sendable {}
@@ -690,6 +722,7 @@ extension ReceiveEvent: @unchecked Sendable {}
 extension ReceiveEvent.OneOf_Event: @unchecked Sendable {}
 extension ReceiveMessage: @unchecked Sendable {}
 extension ReceiveChatSummary: @unchecked Sendable {}
+extension ErrorMessage: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -1325,6 +1358,7 @@ extension ChatRouteResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     3: .standard(proto: "receive_event"),
     4: .standard(proto: "receive_message"),
     5: .same(proto: "chatSummary"),
+    6: .same(proto: "error"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1398,6 +1432,19 @@ extension ChatRouteResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
           self.response = .chatSummary(v)
         }
       }()
+      case 6: try {
+        var v: ErrorMessage?
+        var hadOneofValue = false
+        if let current = self.response {
+          hadOneofValue = true
+          if case .error(let m) = current {v = m}
+        }
+        try decoder.decodeSingularMessageField(value: &v)
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.response = .error(v)
+        }
+      }()
       default: break
       }
     }
@@ -1428,6 +1475,10 @@ extension ChatRouteResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     case .chatSummary?: try {
       guard case .chatSummary(let v)? = self.response else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }()
+    case .error?: try {
+      guard case .error(let v)? = self.response else { preconditionFailure() }
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }()
     case nil: break
     }
@@ -1477,6 +1528,7 @@ extension GetChatMessagesResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
   public static let protoMessageName: String = _protobuf_package + ".GetChatMessagesResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "messages"),
+    2: .standard(proto: "chat_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1486,6 +1538,7 @@ extension GetChatMessagesResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeRepeatedMessageField(value: &self.messages) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.chatID) }()
       default: break
       }
     }
@@ -1495,11 +1548,15 @@ extension GetChatMessagesResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
     if !self.messages.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.messages, fieldNumber: 1)
     }
+    if !self.chatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.chatID, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: GetChatMessagesResponse, rhs: GetChatMessagesResponse) -> Bool {
     if lhs.messages != rhs.messages {return false}
+    if lhs.chatID != rhs.chatID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1603,6 +1660,7 @@ extension ReceiveMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
   public static let protoMessageName: String = _protobuf_package + ".ReceiveMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
+    2: .standard(proto: "chat_id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1612,6 +1670,7 @@ extension ReceiveMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._message) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.chatID) }()
       default: break
       }
     }
@@ -1625,11 +1684,15 @@ extension ReceiveMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     try { if let v = self._message {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     } }()
+    if !self.chatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.chatID, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: ReceiveMessage, rhs: ReceiveMessage) -> Bool {
     if lhs._message != rhs._message {return false}
+    if lhs.chatID != rhs.chatID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1666,6 +1729,44 @@ extension ReceiveChatSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 
   public static func ==(lhs: ReceiveChatSummary, rhs: ReceiveChatSummary) -> Bool {
     if lhs._chat != rhs._chat {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ErrorMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ErrorMessage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "message"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularUInt32Field(value: &self.status) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.message) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularUInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if !self.message.isEmpty {
+      try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: ErrorMessage, rhs: ErrorMessage) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

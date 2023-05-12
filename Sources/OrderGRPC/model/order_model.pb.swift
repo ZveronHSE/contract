@@ -20,6 +20,62 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+public enum ServiceType: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+  case other // = 0
+  case sitting // = 1
+  case boarding // = 2
+  case training // = 3
+  case grooming // = 4
+  case walk // = 5
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .other
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .other
+    case 1: self = .sitting
+    case 2: self = .boarding
+    case 3: self = .training
+    case 4: self = .grooming
+    case 5: self = .walk
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .other: return 0
+    case .sitting: return 1
+    case .boarding: return 2
+    case .training: return 3
+    case .grooming: return 4
+    case .walk: return 5
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension ServiceType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [ServiceType] = [
+    .other,
+    .sitting,
+    .boarding,
+    .training,
+    .grooming,
+    .walk,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 public struct Animal {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -74,6 +130,7 @@ public struct Address {
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
+extension ServiceType: @unchecked Sendable {}
 extension Animal: @unchecked Sendable {}
 extension Address: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
@@ -81,6 +138,17 @@ extension Address: @unchecked Sendable {}
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "ru.zveron.contract.order.model"
+
+extension ServiceType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "OTHER"),
+    1: .same(proto: "SITTING"),
+    2: .same(proto: "BOARDING"),
+    3: .same(proto: "TRAINING"),
+    4: .same(proto: "GROOMING"),
+    5: .same(proto: "WALK"),
+  ]
+}
 
 extension Animal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Animal"

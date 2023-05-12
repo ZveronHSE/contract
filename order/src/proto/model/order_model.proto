@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package ru.zveron.contract.order.model;
 
-option swift_prefix="";
+option swift_prefix = "";
 option java_package = "ru.zveron.contract.order.model";
 option java_outer_classname = "OrderModelProto";
 option java_multiple_files = true;
@@ -20,4 +20,13 @@ message Address {
   string town = 1;
   optional string station = 2;
   optional string color = 3;
+}
+
+enum ServiceType{
+  OTHER = 0;
+  SITTING = 1;
+  BOARDING = 2;
+  TRAINING = 3;
+  GROOMING = 4;
+  WALK = 5;
 }

@@ -13,6 +13,17 @@ service OrderWaterfallServiceExternal {
   //gets waterfall of orders
   rpc GetWaterfall(GetWaterfallRequest)
       returns (GetWaterfallResponse);
+
+  rpc GetFilteredCount(GetFilteredCountRequest)
+      returns (GetFilteredCountResponse);
+}
+
+message GetFilteredCountRequest{
+  repeated Filter filters = 1;
+}
+
+message GetFilteredCountResponse{
+  int32 count = 1;
 }
 
 message GetWaterfallRequest{

@@ -14,7 +14,7 @@ message FullAnimal{
   string species = 4;
   int32 age = 5;
   repeated string image_urls = 6;
-  repeated string document_urls = 7;
+  repeated Document document_urls = 7;
 
   message Document{
     string url = 1;

@@ -37,7 +37,7 @@ public struct FullAnimal {
 
   public var imageUrls: [String] = []
 
-  public var documentUrls: [String] = []
+  public var documentUrls: [FullAnimal.Document] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -91,7 +91,7 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 4: try { try decoder.decodeSingularStringField(value: &self.species) }()
       case 5: try { try decoder.decodeSingularInt32Field(value: &self.age) }()
       case 6: try { try decoder.decodeRepeatedStringField(value: &self.imageUrls) }()
-      case 7: try { try decoder.decodeRepeatedStringField(value: &self.documentUrls) }()
+      case 7: try { try decoder.decodeRepeatedMessageField(value: &self.documentUrls) }()
       default: break
       }
     }
@@ -117,7 +117,7 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       try visitor.visitRepeatedStringField(value: self.imageUrls, fieldNumber: 6)
     }
     if !self.documentUrls.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.documentUrls, fieldNumber: 7)
+      try visitor.visitRepeatedMessageField(value: self.documentUrls, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

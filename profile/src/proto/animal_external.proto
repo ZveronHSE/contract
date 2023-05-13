@@ -52,7 +52,7 @@ message CreateAnimalRequest{
   string species = 3;
   int32 age = 4;
   repeated string image_urls = 5;
-  repeated string document_urls = 6;
+  repeated model.AnimalDocument documents = 6;
 }
 
 message CreateAnimalResponse{

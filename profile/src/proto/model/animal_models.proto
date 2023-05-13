@@ -14,11 +14,10 @@ message FullAnimal{
   string species = 4;
   int32 age = 5;
   repeated string image_urls = 6;
-  repeated string document_urls = 7;
-
-  message Document{
-    string url = 1;
-    string name = 2;
-  }
+  repeated AnimalDocument documents = 7;
 }
 
+message AnimalDocument{
+  string url = 1;
+  string name = 2;
+}

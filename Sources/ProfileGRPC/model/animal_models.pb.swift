@@ -37,30 +37,30 @@ public struct FullAnimal {
 
   public var imageUrls: [String] = []
 
-  public var documentUrls: [String] = []
+  public var documents: [AnimalDocument] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public struct Document {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public init() {}
+}
 
-    public var url: String = String()
+public struct AnimalDocument {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
-    public var name: String = String()
+  public var url: String = String()
 
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var name: String = String()
 
-    public init() {}
-  }
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
 extension FullAnimal: @unchecked Sendable {}
-extension FullAnimal.Document: @unchecked Sendable {}
+extension AnimalDocument: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -76,7 +76,7 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     4: .same(proto: "species"),
     5: .same(proto: "age"),
     6: .standard(proto: "image_urls"),
-    7: .standard(proto: "document_urls"),
+    7: .same(proto: "documents"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -91,7 +91,7 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 4: try { try decoder.decodeSingularStringField(value: &self.species) }()
       case 5: try { try decoder.decodeSingularInt32Field(value: &self.age) }()
       case 6: try { try decoder.decodeRepeatedStringField(value: &self.imageUrls) }()
-      case 7: try { try decoder.decodeRepeatedStringField(value: &self.documentUrls) }()
+      case 7: try { try decoder.decodeRepeatedMessageField(value: &self.documents) }()
       default: break
       }
     }
@@ -116,8 +116,8 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if !self.imageUrls.isEmpty {
       try visitor.visitRepeatedStringField(value: self.imageUrls, fieldNumber: 6)
     }
-    if !self.documentUrls.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.documentUrls, fieldNumber: 7)
+    if !self.documents.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.documents, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -129,14 +129,14 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if lhs.species != rhs.species {return false}
     if lhs.age != rhs.age {return false}
     if lhs.imageUrls != rhs.imageUrls {return false}
-    if lhs.documentUrls != rhs.documentUrls {return false}
+    if lhs.documents != rhs.documents {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension FullAnimal.Document: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = FullAnimal.protoMessageName + ".Document"
+extension AnimalDocument: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AnimalDocument"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "url"),
     2: .same(proto: "name"),
@@ -165,7 +165,7 @@ extension FullAnimal.Document: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: FullAnimal.Document, rhs: FullAnimal.Document) -> Bool {
+  public static func ==(lhs: AnimalDocument, rhs: AnimalDocument) -> Bool {
     if lhs.url != rhs.url {return false}
     if lhs.name != rhs.name {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

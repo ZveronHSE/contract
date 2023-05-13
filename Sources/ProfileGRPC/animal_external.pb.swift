@@ -103,7 +103,7 @@ public struct CreateAnimalRequest {
 
   public var imageUrls: [String] = []
 
-  public var documentUrls: [String] = []
+  public var documents: [AnimalDocument] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -314,7 +314,7 @@ extension CreateAnimalRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     3: .same(proto: "species"),
     4: .same(proto: "age"),
     5: .standard(proto: "image_urls"),
-    6: .standard(proto: "document_urls"),
+    6: .same(proto: "documents"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -328,7 +328,7 @@ extension CreateAnimalRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
       case 3: try { try decoder.decodeSingularStringField(value: &self.species) }()
       case 4: try { try decoder.decodeSingularInt32Field(value: &self.age) }()
       case 5: try { try decoder.decodeRepeatedStringField(value: &self.imageUrls) }()
-      case 6: try { try decoder.decodeRepeatedStringField(value: &self.documentUrls) }()
+      case 6: try { try decoder.decodeRepeatedMessageField(value: &self.documents) }()
       default: break
       }
     }
@@ -350,8 +350,8 @@ extension CreateAnimalRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if !self.imageUrls.isEmpty {
       try visitor.visitRepeatedStringField(value: self.imageUrls, fieldNumber: 5)
     }
-    if !self.documentUrls.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.documentUrls, fieldNumber: 6)
+    if !self.documents.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.documents, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -362,7 +362,7 @@ extension CreateAnimalRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     if lhs.species != rhs.species {return false}
     if lhs.age != rhs.age {return false}
     if lhs.imageUrls != rhs.imageUrls {return false}
-    if lhs.documentUrls != rhs.documentUrls {return false}
+    if lhs.documents != rhs.documents {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

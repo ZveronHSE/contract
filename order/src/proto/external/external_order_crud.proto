@@ -36,6 +36,8 @@ message GetOrdersByProfileResponse{
     string image_url = 2;
     string title = 3;
     string price = 4;
+    int32 view_count = 5;
+    int32 is_favourite_count = 6;
 
     //todo: likes and views
   }

@@ -15,6 +15,16 @@ service LotInternalService {
 
   // Получить по списку айдишников объявления превью объявлений.
   rpc getLotsById(LotsIdRequest) returns (LotsIdResponse);
+
+  rpc getLotForReview(GetLotForReviewRequest) returns (GetLotForReviewResponse);
+}
+
+message GetLotForReviewRequest{
+  int64 lot_id = 1;
+}
+
+message GetLotForReviewResponse{
+  core.LotForReview lot = 1;
 }
 
 message ProfileLotsRequest {

@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package ru.zveron.contract.review.external;
+
+import "model/review_model.proto";
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.review.external";
+option java_outer_classname = "ReviewServiceExternalProto";
+option java_multiple_files = true;
+
+service ReviewServiceExternal {
+  rpc GetLotReviewById(GetLotReviewByIdRequest)
+      returns (GetLotReviewByIdResponse);
+
+  rpc GetProfileReviewById(GetProfileReviewByIdRequest)
+      returns (GetProfileReviewByIdResponse);
+
+  rpc CreateProfileReview(CreateProfileReviewRequest)
+      returns (CreateProfileReviewResponse);
+
+  rpc CreateLotReview(CreateLotReviewRequest)
+      returns (CreateLotReviewResponse);
+}
+
+message GetLotReviewByIdRequest{
+  int64 review_id = 1;
+}
+
+message GetLotReviewByIdResponse{
+
+  message Review{
+    int64 id = 1;
+    int64 reviewer_id = 2;
+    string test = 3;
+    int32 score = 4;
+  }
+
+  Review review = 1;
+  repeated string image_urls = 2;
+}
+
+message CreateLotReviewRequest{
+  string text = 1;
+  int32 score = 2;
+  int64 lot_id = 3;
+
+  repeated string image_urls = 4;
+}
+
+message CreateLotReviewResponse{
+  int64 id = 1;
+}
+
+message GetProfileReviewByIdRequest{
+  int64 profile_id = 1;
+}
+
+message GetProfileReviewByIdResponse{
+  message ProfileReview{
+    int64 id = 1;
+    int64 reviewer_id = 2;
+    int64 profile_id = 3;
+    string text = 4;
+  }
+
+  ProfileReview profile_review = 1;
+}
+
+message CreateProfileReviewRequest{
+  int64 profile_id = 1;
+  int32 score = 2;
+  string text = 3;
+}
+
+message CreateProfileReviewResponse{
+  int64 id = 1;
+}
+
+

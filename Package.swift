@@ -16,6 +16,7 @@ let objectstorageTargetName = "ObjectstorageGRPC"
 let orderTargetName = "OrderGRPC"
 let parameterTargetName = "ParameterGRPC"
 let profileTargetName = "ProfileGRPC"
+let reviewTargetName = "ReviewGRPC"
 let specialistTargetName = "SpecialistGRPC"
 
 import PackageDescription
@@ -42,6 +43,7 @@ let package = Package(
                 orderTargetName,
                 parameterTargetName,
                 profileTargetName,
+                reviewTargetName,
                 specialistTargetName,
             ]
         )
@@ -60,6 +62,7 @@ let package = Package(
         .target(name: orderTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: parameterTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: profileTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
+        .target(name: reviewTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
         .target(name: specialistTargetName, dependencies: [.product(name:"GRPC", package: "grpc-swift")]),
     ]
 )

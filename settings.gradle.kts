@@ -14,4 +14,5 @@ include(
     "order",
     "chat",
     "specialist",
+    "review",
 )

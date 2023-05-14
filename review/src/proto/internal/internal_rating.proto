@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package ru.zveron.contract.review.internal;
+
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.review.internal";
+option java_outer_classname = "RatingServiceInternalProto";
+option java_multiple_files = true;
+
+service RatingServiceExternal {
+  rpc GetRatingByLotId(GetRatingByLotIdRequest)
+      returns (GetRatingByLotIdResponse);
+
+  rpc GetRatingByProfileId(GetRatingByProfileIdRequest)
+      returns (GetRatingByProfileIdResponse);
+}
+
+message GetRatingByLotIdRequest{
+  int64 lot_id = 1;
+}
+
+message GetRatingByLotIdResponse{
+  float rating = 1;
+}
+
+message GetRatingByProfileIdRequest{
+  int64 profile_id = 1;
+}
+
+message GetRatingByProfileIdResponse{
+  float rating = 1;
+}

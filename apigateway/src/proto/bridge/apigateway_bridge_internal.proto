@@ -1,0 +1,28 @@
+syntax = "proto3";
+package ru.zveron.contract.apigateway.bridge;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.apigateway.bridge";
+option java_outer_classname = "ApigatewayBridgeProto";
+option java_multiple_files = true;
+
+service ApigatewayBridgeService{
+
+  //Rpc call used by api gateway to call the service
+  rpc CallService(ServiceRequest) returns (ServiceResponse);
+}
+
+//Request message
+message ServiceRequest{
+  //method alias
+  string method_alias = 1;
+
+  //request body
+  bytes request_body = 2;
+}
+
+//Response message
+message ServiceResponse{
+  //response body
+  bytes response_body = 1;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+package ru.zveron.contract.apigateway;
+
+option swift_prefix = "";
+option java_package = "ru.zveron.contract.apigateway";
+option java_outer_classname = "ApigatewayV2Proto";
+option java_multiple_files = true;
+
+service ApigatewayV2Service{
+
+  //Calls apigateway with a v2 request
+  rpc CallApiGatewayV2(ApiGatewayV2Request)
+      returns (ApigatewayV2Response);
+}
+
+
+//Apigateway v2 request, used by external client
+message ApiGatewayV2Request{
+  //service, that has the owership of the method
+  string service_name = 1;
+
+  //method alias
+  string method_alias = 2;
+
+  //запрос в apigateway
+  bytes request_body = 3;
+}
+
+//Apigateway v2 response, used by external client
+message ApigatewayV2Response{
+  bytes response_body = 1;
+}

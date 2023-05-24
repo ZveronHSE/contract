@@ -21,27 +21,8 @@ service OrderServiceExternal {
   //creates order
   rpc CreateOrder(CreateOrderRequest)
       returns (CreateOrderResponse);
-
-  //get orders by current profile
-  rpc GetOrdersByProfile(google.protobuf.Empty)
-      returns (GetOrdersByProfileResponse);
 }
 
-message GetOrdersByProfileResponse{
-
-  repeated Order orders = 1;
-
-  message Order{
-    int64 id = 1;
-    string image_url = 2;
-    string title = 3;
-    string price = 4;
-    int32 view_count = 5;
-    int32 is_favourite_count = 6;
-
-    //todo: likes and views
-  }
-}
 
 message CreateOrderRequest{
   //profile id in headers

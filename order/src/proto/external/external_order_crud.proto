@@ -22,12 +22,13 @@ service OrderServiceExternal {
 }
 
 message CreateOrderRequest{
-  int64 profile_id = 1;
-  int64 animal_id = 2;
-  optional int32 subway_station_id = 3;
+  //profile id in headers
+  int64 animal_id = 1;
+  optional int32 subway_station_id = 2;
 
-  string title = 4;
-  int64 price = 5;
+  string title = 3;
+  int64 price = 4;
+  PaymentType payment_type = 5;
 
   //date of order delivery formatted as dd.MM.yyyy - dd.MM.yyyy
   google.type.Date service_date_from = 6;
@@ -42,6 +43,12 @@ message CreateOrderRequest{
   string description = 10;
   ServiceDeliveryMethod delivery_method = 11;
   model.ServiceType service_type = 12;
+  //
+}
+
+enum PaymentType{
+  FLAT = 0;
+  PER_HOUR = 1;
 }
 
 message CreateOrderResponse {
@@ -96,10 +103,4 @@ message SimilarOrder {
 enum ServiceDeliveryMethod {
   IN_PERSON = 0;
   REMOTE = 1;
-}
-
-message Address {
-  string town = 1;
-  string station = 2;
-  string color = 3;
 }

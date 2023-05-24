@@ -33,7 +33,8 @@ public struct FullAnimal {
 
   public var species: String = String()
 
-  public var age: Int32 = 0
+  ///to string
+  public var age: String = String()
 
   public var imageUrls: [String] = []
 
@@ -89,7 +90,7 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.breed) }()
       case 4: try { try decoder.decodeSingularStringField(value: &self.species) }()
-      case 5: try { try decoder.decodeSingularInt32Field(value: &self.age) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self.age) }()
       case 6: try { try decoder.decodeRepeatedStringField(value: &self.imageUrls) }()
       case 7: try { try decoder.decodeRepeatedMessageField(value: &self.documents) }()
       default: break
@@ -110,8 +111,8 @@ extension FullAnimal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if !self.species.isEmpty {
       try visitor.visitSingularStringField(value: self.species, fieldNumber: 4)
     }
-    if self.age != 0 {
-      try visitor.visitSingularInt32Field(value: self.age, fieldNumber: 5)
+    if !self.age.isEmpty {
+      try visitor.visitSingularStringField(value: self.age, fieldNumber: 5)
     }
     if !self.imageUrls.isEmpty {
       try visitor.visitRepeatedStringField(value: self.imageUrls, fieldNumber: 6)

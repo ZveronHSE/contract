@@ -3,6 +3,7 @@ syntax = "proto3";
 package ru.zveron.contract.order.external;
 
 import "model/order_model.proto";
+import "google/protobuf/empty.proto";
 
 option swift_prefix = "";
 option java_package = "ru.zveron.contract.order.external";
@@ -13,6 +14,9 @@ service OrderCustomerServiceExternal {
   //get customer by order id
   rpc GetCustomer(GetCustomerRequest)
       returns (GetCustomerResponse);
+
+  rpc GetOrdersByProfile(google.protobuf.Empty)
+      returns (GetOrdersByProfileResponse);
 }
 
 message GetCustomerRequest{
@@ -21,6 +25,11 @@ message GetCustomerRequest{
 
 message GetCustomerResponse{
   Customer customer = 1;
+}
+
+message GetOrdersByProfileResponse{
+  repeated CustomerActiveOrder active_orders = 1;
+  repeated CustomerCompletedOrder completed_orders = 2;
 }
 
 message Customer{

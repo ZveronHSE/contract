@@ -12,7 +12,8 @@ message FullAnimal{
   string name = 2;
   string breed = 3;
   string species = 4;
-  int32 age = 5;
+  //to string
+  string age = 5;
   repeated string image_urls = 6;
   repeated AnimalDocument documents = 7;
 }
